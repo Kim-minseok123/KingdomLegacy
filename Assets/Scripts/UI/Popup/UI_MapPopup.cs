@@ -15,23 +15,25 @@ public class UI_MapPopup : UI_Popup
         ClearTimeText,
     }
     enum GameObjects { 
-        MapObjects,
-        MapManager,
-        MapView,
-        MapPlayerTracker,
+
     }
     enum Images {
-        BackGroundImage,
+        
     }
+    int stage = 0;
     public override bool Init()
     {
         Camera.main.orthographicSize = 7;
-        BindObject(typeof(GameObjects));
-        BindImage(typeof(Images));
+        //BindObject(typeof(GameObjects));
+        //BindImage(typeof(Images));
         BindButton(typeof(Buttons));
         BindText(typeof(Texts));
 
-        GetObject((int)GameObjects.MapManager).GetComponent<MapManager>().StartGenerate();
+        var BackGround = Managers.Resource.Instantiate("Map/BackGroundImage").GetComponent<SpriteRenderer>();
+        BackGround.sprite = Managers.Resource.Load<Sprite>($"Sprites/BattleGround/BattleGround{stage}");
+
+        var Map = GameObject.FindGameObjectWithTag("Map").GetComponentInChildren<MapManager>();
+        Map.StartGenerate();
 
         RefreshUI();
 
@@ -42,6 +44,6 @@ public class UI_MapPopup : UI_Popup
         
     }
     public void SetInfo() { 
-    
+        this.stage = Managers.Game.Stage;
     }
 }

@@ -40,6 +40,7 @@ namespace Map
         }
         public void GenerateNewMap()
         {
+            config = Managers.Resource.Load<MapConfig>($"ScriptableObjects/MapConfigs/Stage{Managers.Game.Stage}");
             var map = MapGenerator.GetMap(config);
             CurrentMap = map;
             Debug.Log(map.ToJson());
@@ -56,9 +57,17 @@ namespace Map
             PlayerPrefs.Save();
         }
 
-        private void OnApplicationQuit()
+        /*private void OnApplicationQuit()
         {
             SaveMap();
+        }*/
+        public void ResetSavedMap()
+        {
+            if (PlayerPrefs.HasKey("Map"))
+            {
+                PlayerPrefs.DeleteKey("Map");
+            }
         }
+
     }
 }

@@ -166,6 +166,7 @@ public class UI_SelectChampAndItemPopup : UI_Popup
          Managers.UI.MakeSubItem<UI_Item>().SetInfo(4);
          GameEvents.OnGetItem();*/
         //Managers.UI.ShowPopupUI<UI_BattlePopup>().SetInfo();
+        Managers.Game.Stage = 1;
         Managers.UI.ShowPopupUI<UI_MapPopup>().SetInfo();
     }
     void OnClickItem1() { 

@@ -1,3 +1,4 @@
+using Map;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -23,7 +24,7 @@ public class UI_TitlePopup : UI_Popup
     enum GameObjects { 
         GameTitleLogoImage,
     }
-
+    MapManager mapManager;
     public override bool Init()
     {
         if(base.Init() == false)
@@ -32,6 +33,8 @@ public class UI_TitlePopup : UI_Popup
         BindText(typeof(Texts));
         BindButton(typeof(Buttons));
         BindObject(typeof(GameObjects));
+
+        mapManager = GameObject.FindGameObjectWithTag("Map").GetComponentInChildren<MapManager>();
 
         GetButton((int)Buttons.NewGameButton).gameObject.BindEvent(OnClickStartButton);
         GetButton((int)Buttons.LoadGameButton).gameObject.BindEvent(OnClickContinueButton);
@@ -56,12 +59,14 @@ public class UI_TitlePopup : UI_Popup
 
                 //초반 능력치 설정하는 팝업출력/ 이전 팝업 삭제
                 Managers.UI.ShowPopupUI<UI_SelectChampAndItemPopup>();
+                mapManager.ResetSavedMap();
             }, Managers.GetText(Define.DataResetConfirm));
         }
         else
         {
             Managers.Game.Init();
             Managers.Game.SaveGame();
+            mapManager.ResetSavedMap();
 
             Managers.UI.ShowPopupUI<UI_SelectChampAndItemPopup>();
         }

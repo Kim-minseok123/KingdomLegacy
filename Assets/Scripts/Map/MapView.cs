@@ -48,7 +48,7 @@ namespace Map
         [Tooltip("Unavailable path color")]
         public Color32 lineLockedColor = Color.gray;
 
-        protected GameObject firstParent;
+        public GameObject firstParent;
         protected GameObject mapParent;
         private List<List<Point>> paths;
         private Camera cam;
@@ -102,6 +102,9 @@ namespace Map
             SetLineColors();
 
             CreateMapBackground(m);
+
+            firstParent.transform.position = new Vector3(-7, -1.5f);
+
         }
 
         protected virtual void CreateMapBackground(Map m)
