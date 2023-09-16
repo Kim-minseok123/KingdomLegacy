@@ -6,7 +6,7 @@ public class ArrowController : MonoBehaviour
 {
     GameObject _body;
     GameObject _head;
-    public int resolution = 16;
+    public int resolution = 20;
     bool _isDraw = false;
     List<GameObject> _arrow = new();
     void Start()
