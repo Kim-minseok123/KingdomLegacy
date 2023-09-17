@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Linq;
 using DG.Tweening;
 using UnityEngine;
@@ -8,6 +9,7 @@ namespace Map
     public class MapPlayerTracker : MonoBehaviour
     {
         public bool lockAfterSelecting = false;
+        public bool isAnimWork = false;
         public float enterNodeDelay = 1f;
         public MapManager mapManager;
         public MapView view;
@@ -51,14 +53,17 @@ namespace Map
         {
             Locked = lockAfterSelecting;
             mapManager.CurrentMap.path.Add(mapNode.Node.point);
-            mapManager.SaveMap();
+            //mapManager.SaveMap();
             view.SetAttainableNodes();
             view.SetLineColors();
             mapNode.ShowSwirlAnimation();
-
-            DOTween.Sequence().AppendInterval(enterNodeDelay).OnComplete(() => EnterNode(mapNode));
+            isAnimWork = true;
+            DOTween.Sequence().AppendInterval(enterNodeDelay).OnComplete(() => { EnterNode(mapNode); StartCoroutine(AnimWorkWating()); });
         }
-
+        IEnumerator AnimWorkWating() {
+            yield return new WaitForSeconds(1f);
+            isAnimWork = false;
+        }
         private static void EnterNode(MapNode mapNode)
         {
             // we have access to blueprint name here as well

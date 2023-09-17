@@ -21,6 +21,8 @@ public class UI_MapPopup : UI_Popup
         
     }
     int stage = 0;
+    float _time = 0f;
+    string _timeText = "";
     public override bool Init()
     {
         Camera.main.orthographicSize = 7;
@@ -41,9 +43,20 @@ public class UI_MapPopup : UI_Popup
     }
     void RefreshUI()
     {
-        
+        GetText((int)Texts.HpText).text = Managers.Game.CurHp.ToString() + " / " + Managers.Game.MaxHp.ToString();
+        GetText((int)Texts.MoneyText).text = Managers.Game.Money.ToString();
+        GetText((int)Texts.ClearTimeText).text = _timeText;
     }
     public void SetInfo() { 
         this.stage = Managers.Game.Stage;
+    }
+    public void Update()
+    {
+        _time += Time.deltaTime;
+        int hours = (int)(_time / 3600);
+        int minutes = (int)((_time % 3600) / 60);
+        int seconds = (int)(_time % 60);
+        _timeText = string.Format("{0:D2} : {1:D2} : {2:D2}", hours, minutes, seconds);
+        RefreshUI();
     }
 }

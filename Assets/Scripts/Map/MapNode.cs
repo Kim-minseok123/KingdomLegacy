@@ -157,7 +157,8 @@ namespace Map
             if (Time.time - mouseDownTime < MaxClickDuration)
             {
                 // user clicked on this node:
-                MapPlayerTracker.Instance.SelectNode(this);
+                if(!MapPlayerTracker.Instance.isAnimWork)
+                    MapPlayerTracker.Instance.SelectNode(this);
             }
         }
 

@@ -1,3 +1,4 @@
+using Map;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
@@ -12,8 +13,11 @@ public class GameData
     public int startDrawCardNum;
     public bool isPreservation;
     public bool isDoublePoisoning;
+    public int MaxHp;
+    public int CurHp;
+    public int Money;
 }
-public class GameManager 
+public class GameManager : MonoBehaviour
 {
     GameData _gameData = new GameData();
     public GameData SaveData {  get { return _gameData; } set { _gameData = value; } }
@@ -21,6 +25,10 @@ public class GameManager
     public int Mana { get { return _gameData.mana; } set { _gameData.mana = value; } }
     public bool isPreservation { get { return _gameData.isPreservation; } set {_gameData.isPreservation = value; } }
     public bool isDoublePoisoning { get { return _gameData.isDoublePoisoning; } set { _gameData.isDoublePoisoning = value; } }
+    public int MaxHp { get { return _gameData.MaxHp; } set { _gameData.MaxHp = value; } }
+    public int CurHp { get { return _gameData.CurHp; } set { _gameData.CurHp = value; } }
+    public int Money { get { return _gameData.Money; } set { _gameData.Money = value; } }
+
 
     public List<CardData> Cards { get {  return _gameData.cards; } set { _gameData.cards.AddRange(value);} }
     public int StartDrawCardNum { get {  return _gameData.startDrawCardNum;} set { _gameData.startDrawCardNum = value; } }
@@ -38,6 +46,9 @@ public class GameManager
         StartDrawCardNum = 5;
         isPreservation = false;
         isDoublePoisoning = false;
+        MaxHp = 100;
+        CurHp = MaxHp;
+        Money = 99;
     }
     
     #region Save & Load	
@@ -47,6 +58,8 @@ public class GameManager
     {
         string jsonStr = JsonUtility.ToJson(Managers.Game.SaveData);
         File.WriteAllText(_path, jsonStr);
+        var Map = GameObject.FindGameObjectWithTag("Map").GetComponentInChildren<MapManager>();
+        Map.SaveMap();
         Debug.Log($"Save Game Completed : {_path}");
     }
 
