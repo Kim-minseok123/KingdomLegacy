@@ -84,6 +84,10 @@ public class UI_BattlePopup : UI_Popup
     bool isDraggingCard = false;
     bool isUseCard = false;
     bool cardsDrawn = false;
+
+    //플레이어
+    GameObject _player;
+    Animator _playerAnim;
     ArrowController _ar;
     [SerializeField] private Ease ease;
     public override bool Init()
@@ -102,6 +106,9 @@ public class UI_BattlePopup : UI_Popup
         BindImage(typeof(Images));
         BindButton(typeof(Buttons));
         BindText(typeof(Texts));
+
+        _player = Managers.Resource.Instantiate("PlayerCharacter/" + Managers.Game.PlayerName, GetObject((int)GameObjects.PlayerTransform).transform);
+        _playerAnim = _player.GetComponent<Animator>();
 
         GetButton((int)Buttons.TurnEndButton).gameObject.BindEvent(TurnEnd);
         _ar = GetObject((int)GameObjects.ArrowController).GetComponent<ArrowController>(); 
@@ -395,6 +402,8 @@ public class UI_BattlePopup : UI_Popup
     {
         obj.transform.DOMove(transform.position, 0.5f).SetEase(ease);
         //스킬 사용.
+        _playerAnim.SetTrigger("Attack");
+
         _curMana -= obj._cardData.mana;
         yield return new WaitForSeconds(0.7f);
         
@@ -424,6 +433,7 @@ public class UI_BattlePopup : UI_Popup
         isUseCard = false;
     }
     IEnumerator UseCardTarget(UI_Card obj) {
+        _playerAnim.SetTrigger("Attack");
         _curMana -= obj._cardData.mana;
         yield return null;
     }

@@ -16,6 +16,7 @@ public class GameData
     public int MaxHp;
     public int CurHp;
     public int Money;
+    public string PlayerName;
 }
 public class GameManager : MonoBehaviour
 {
@@ -28,6 +29,7 @@ public class GameManager : MonoBehaviour
     public int MaxHp { get { return _gameData.MaxHp; } set { _gameData.MaxHp = value; } }
     public int CurHp { get { return _gameData.CurHp; } set { _gameData.CurHp = value; } }
     public int Money { get { return _gameData.Money; } set { _gameData.Money = value; } }
+    public string PlayerName { get { return _gameData.PlayerName; } set { _gameData.PlayerName = value; } }
 
 
     public List<CardData> Cards { get {  return _gameData.cards; } set { _gameData.cards.AddRange(value);} }
@@ -49,6 +51,7 @@ public class GameManager : MonoBehaviour
         MaxHp = 100;
         CurHp = MaxHp;
         Money = 99;
+        PlayerName = "";
     }
     
     #region Save & Load	
