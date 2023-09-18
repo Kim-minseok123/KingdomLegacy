@@ -48,7 +48,7 @@ public class GameManager : MonoBehaviour
         StartDrawCardNum = 5;
         isPreservation = false;
         isDoublePoisoning = false;
-        MaxHp = 100;
+        MaxHp = 80;
         CurHp = MaxHp;
         Money = 99;
         PlayerName = "";
