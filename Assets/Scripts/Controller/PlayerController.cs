@@ -1,7 +1,7 @@
 
 using UnityEngine;
 
-public class PlayerController : BaseController
+public class PlayerController : UI_Base
 {
     enum Images { 
         HpValue,

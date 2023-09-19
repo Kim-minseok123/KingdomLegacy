@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using DG.Tweening;
+using System;
 
 public class UI_BattlePopup : UI_Popup
 {
@@ -88,6 +89,8 @@ public class UI_BattlePopup : UI_Popup
     //플레이어
     GameObject _player;
     Animator _playerAnim;
+    EnemyInfo _enemyInfo;
+    List<GameObject> _enemyList = new();
     ArrowController _ar;
     [SerializeField] private Ease ease;
     public override bool Init()
@@ -110,6 +113,13 @@ public class UI_BattlePopup : UI_Popup
         _player = Managers.Resource.Instantiate("PlayerCharacter/" + Managers.Game.PlayerName, GetObject((int)GameObjects.PlayerTransform).transform);
         _playerAnim = _player.GetComponent<Animator>();
 
+        //적들 소환
+        for (int i = 0; i < _enemyInfo.Enemys.Count; i++) {
+            var enemy = Managers.Resource.Instantiate(_enemyInfo.Enemys[i], GetObject(i + 7).transform);
+            enemy.GetComponent<EnemyController>().Setting(_enemyInfo.EnemyHp[i]);
+            _enemyList.Add(enemy);
+        }
+
         GetButton((int)Buttons.TurnEndButton).gameObject.BindEvent(TurnEnd);
         _ar = GetObject((int)GameObjects.ArrowController).GetComponent<ArrowController>(); 
         RefreshUI();
@@ -123,7 +133,7 @@ public class UI_BattlePopup : UI_Popup
         GetText((int)Texts.ExitCardText).text = _exitCards.Count.ToString();
         GetText((int)Texts.ManaText).text = _curMana.ToString() + " / " + _maxMana.ToString();
     }
-    public void SetInfo()
+    public void SetInfo(EnemyInfo enemyInfo)
     {
         //스테이지, 체력, 카드 등 값 넘겨줘야함
         _maxMana = Managers.Game.Mana;
@@ -135,6 +145,7 @@ public class UI_BattlePopup : UI_Popup
         _handCardsUI.Clear();
         _throwCards.Clear();
         _exitCards.Clear();
+        _enemyInfo = enemyInfo;
 
         _state = States.BattleStart;
     }

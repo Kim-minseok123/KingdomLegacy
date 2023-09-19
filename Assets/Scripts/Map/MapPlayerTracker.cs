@@ -66,6 +66,7 @@ namespace Map
         }
         private static void EnterNode(MapNode mapNode)
         {
+            Managers.Game.StageNumber++;
             // we have access to blueprint name here as well
             Debug.Log("Entering node: " + mapNode.Node.blueprintName + " of type: " + mapNode.Node.nodeType);
             // load appropriate scene with context based on nodeType:
@@ -74,19 +75,18 @@ namespace Map
             switch (mapNode.Node.nodeType)
             {
                 case NodeType.MinorEnemy:
-                    Managers.UI.ShowPopupUI<UI_BattlePopup>().SetInfo();
+                    EnemyInfo info = Managers.Resource.Load<EnemyInfo>($"ScriptableObjects/Enemy/Minor/{Managers.Game.Stage}-{Managers.Game.StageNumber}");
+                    Managers.UI.ShowPopupUI<UI_BattlePopup>().SetInfo(info);
                     break;
                 case NodeType.EliteEnemy:
+                    info = Managers.Resource.Load<EnemyInfo>($"ScriptableObjects/Enemy/Elite/{Managers.Game.Stage}-{Managers.Game.StageNumber}");
                     break;
                 case NodeType.RestSite:
                     break;
                 case NodeType.Treasure:
                     break;
-                case NodeType.Store:
-                    break;
                 case NodeType.Boss:
-                    break;
-                case NodeType.Mystery:
+                    info = Managers.Resource.Load<EnemyInfo>($"ScriptableObjects/Enemy/Boss/{Managers.Game.Stage}-{Managers.Game.StageNumber}");
                     break;
                 default:
                     throw new ArgumentOutOfRangeException();

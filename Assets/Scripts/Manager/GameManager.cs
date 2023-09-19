@@ -17,6 +17,7 @@ public class GameData
     public int CurHp;
     public int Money;
     public string PlayerName;
+    public int stageNumber;
 }
 public class GameManager : MonoBehaviour
 {
@@ -30,12 +31,14 @@ public class GameManager : MonoBehaviour
     public int CurHp { get { return _gameData.CurHp; } set { _gameData.CurHp = value; } }
     public int Money { get { return _gameData.Money; } set { _gameData.Money = value; } }
     public string PlayerName { get { return _gameData.PlayerName; } set { _gameData.PlayerName = value; } }
+    public int StageNumber { get { return _gameData.stageNumber; } set { _gameData.stageNumber = value; } }
 
 
     public List<CardData> Cards { get {  return _gameData.cards; } set { _gameData.cards.AddRange(value);} }
     public int StartDrawCardNum { get {  return _gameData.startDrawCardNum;} set { _gameData.startDrawCardNum = value; } }
     public void Init() { 
         Stage = 1;
+        StageNumber = 0;
         Mana = 3;
         for (int i = 0; i < 5; i++)
         {
