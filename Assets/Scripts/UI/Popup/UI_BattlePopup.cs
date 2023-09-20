@@ -91,6 +91,7 @@ public class UI_BattlePopup : UI_Popup
     Animator _playerAnim;
     EnemyInfo _enemyInfo;
     List<GameObject> _enemyList = new();
+    public GameObject _curEnemy;
     ArrowController _ar;
     [SerializeField] private Ease ease;
     public override bool Init()
@@ -404,8 +405,12 @@ public class UI_BattlePopup : UI_Popup
         }
         else {
             //타겟이 있는 경우만
-            _ar.StopDrawArrow();
-            _isDragArrow = false;
+            if (_curEnemy != null && _enemyList.Contains(_curEnemy)) {
+                isUseCard = true;
+                StartCoroutine(UseCardTarget(card, _curEnemy));
+                _ar.StopDrawArrow();
+                _isDragArrow = false;
+            }  
         }
     }
 
@@ -417,8 +422,17 @@ public class UI_BattlePopup : UI_Popup
 
         _curMana -= obj._cardData.mana;
         yield return new WaitForSeconds(0.7f);
-        
-        //
+
+        StartCoroutine(EndCard(obj));
+    }
+    IEnumerator UseCardTarget(UI_Card obj, GameObject go) {
+        //스킬 사용
+        _playerAnim.SetTrigger("Attack");
+        _curMana -= obj._cardData.mana;
+        yield return null;
+        StartCoroutine(EndCard(obj));
+    }
+    IEnumerator EndCard(UI_Card obj) {
         Vector3 target = GetButton((int)Buttons.ThrowDeckCard).gameObject.transform.position;
 
         obj.transform.DOMove(target, 0.5f).SetEase(ease);
@@ -442,11 +456,6 @@ public class UI_BattlePopup : UI_Popup
         _handCardsUI.RemoveAll(ui => ui == null);
         RefreshUI();
         isUseCard = false;
-    }
-    IEnumerator UseCardTarget(UI_Card obj) {
-        _playerAnim.SetTrigger("Attack");
-        _curMana -= obj._cardData.mana;
-        yield return null;
     }
     public void CheckCards() {
         for (int i = 0; i < _handCardsUI.Count; i++) {
