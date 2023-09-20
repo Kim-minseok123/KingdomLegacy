@@ -38,7 +38,7 @@
   <ItemData ID="36" name="바람의 고리" description="한 턴에 공격 카드를 3 장 사용할 때 마다 힘을 1 획득합니다." type ="UseCard" value="1" ></ItemData>
   <ItemData ID="37" name="동료의 응원" description="동료 카드를 사용할 때 마다 체력을 2 회복합니다." type ="UseCard" value="2" ></ItemData>
   <ItemData ID="38" name="심각한 취약점" description="취약 상태의 적이 50% 대신 75%의 피해를 추가로 받습니다." type ="GetItem" value="75" ></ItemData>
-  <ItemData ID="39" name="보호의 순환" description="덱을 섞을 때 마다 방어도를 6 획득합니다." type ="ShuffleDeck" value="75" ></ItemData>
+  <ItemData ID="39" name="보호의 순환" description="덱을 섞을 때 마다 방어도를 6 획득합니다." type ="ShuffleDeck" value="6" ></ItemData>
   <ItemData ID="40" name="강적 대비" description="보스 전투 시작 시 체력을 25 회복합니다." type ="BattleStart" value="25" ></ItemData>
   <ItemData ID="41" name="단단한 체술" description="2번 째 턴 시작 시 방어도를 15 획득합니다." type ="TurnValue" value="15" frequency="2"></ItemData>
   <ItemData ID="42" name="잊혀진 재산" description="획득 시 골드를 300 획득합니다." type ="GetItem" value="300" ></ItemData>

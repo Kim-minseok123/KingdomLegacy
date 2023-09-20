@@ -7,8 +7,13 @@ using UnityEngine.UI;
 
 public class EnemyController : UI_Base
 {
-	public int MaxHp = 0;
+    public int MaxHp = 0;
     public int CurHp = 0;
+    public int Weakness = 0;
+    public int Vulenerable = 0;
+    public int Power = 0;
+    public int Agility = 0;
+    public int Poisoning = 0;
     public Animator animator;
     enum Images
     {
@@ -18,7 +23,7 @@ public class EnemyController : UI_Base
     {
         HpText,
     }
-    enum GameObjects { 
+    enum GameObjects {
         CheckBody,
     }
     UI_BattlePopup battleScene;
@@ -37,18 +42,55 @@ public class EnemyController : UI_Base
         battleScene = Managers.UI.FindPopup<UI_BattlePopup>();
         animator = GetComponent<Animator>();
 
+        Image uiImage = GetComponent<Image>();
+        uiImage.material = new Material(uiImage.material);
+
         RefreshUI();
         return true;
     }
-    public void Damaged()
+    public void Damaged(int value)
     {
-        //√º∑¬ ¥‚±‚
+        if (Vulenerable > 0) value += (int)(value * (Managers.Game.VulenrablePercent/ 100f));
         animator.SetTrigger("Stun");
+        //StartCoroutine(DamageMaterial());
+        CurHp -= value;
+        if (CurHp <= 0) { 
+            CurHp = 0;
+            // ¡◊¿Ω
+            animator.SetTrigger("Death");
+        }
+        RefreshUI();
+        
+    }
+    public IEnumerator DamageMaterial() {
+        float value = 0f;
+        Material material = GetComponent<Image>().material;
+        material.EnableKeyword("HITEFFECT_ON");
+        while (value < 0.25f) {
+            material.SetFloat("_HitEffectBlend", value);
+            value += Time.deltaTime;
+            yield return null;
+        }
+        while (value > 0.01f)
+        {
+            material.SetFloat("_HitEffectBlend", value);
+            value -= Time.deltaTime;
+            yield return null;
+        }
+        material.DisableKeyword("HITEFFECT_ON");
     }
     public void AttackPlayer()
     {
         //∞¯∞›
         animator.SetTrigger("Attack");
+    }
+    public void GetVulenrable(int value) {
+        Vulenerable += value;
+        //¿Ã∆Â∆Æ √ﬂ∞°
+    }   
+    public void GetWeakness(int value) { 
+        Weakness += value;
+        //¿Ã∆Â∆Æ √ﬂ∞°
     }
     public void RefreshUI()
     {
@@ -71,5 +113,10 @@ public class EnemyController : UI_Base
     private void OnDestroy()
     {
         battleScene._curEnemy = null;
+    }
+    public void Death()
+    {
+        battleScene._enemyList.Remove(gameObject);
+        Managers.Resource.Destroy(gameObject);
     }
 }

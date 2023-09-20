@@ -18,6 +18,7 @@ public class GameData
     public int Money;
     public string PlayerName;
     public int stageNumber;
+    public int VulenrablePercent;
 }
 public class GameManager : MonoBehaviour
 {
@@ -32,7 +33,7 @@ public class GameManager : MonoBehaviour
     public int Money { get { return _gameData.Money; } set { _gameData.Money = value; } }
     public string PlayerName { get { return _gameData.PlayerName; } set { _gameData.PlayerName = value; } }
     public int StageNumber { get { return _gameData.stageNumber; } set { _gameData.stageNumber = value; } }
-
+    public int VulenrablePercent { get { return _gameData.VulenrablePercent; } set { _gameData.VulenrablePercent = value; } }
 
     public List<CardData> Cards { get {  return _gameData.cards; } set { _gameData.cards.AddRange(value);} }
     public int StartDrawCardNum { get {  return _gameData.startDrawCardNum;} set { _gameData.startDrawCardNum = value; } }
@@ -54,6 +55,7 @@ public class GameManager : MonoBehaviour
         MaxHp = 80;
         CurHp = MaxHp;
         Money = 99;
+        VulenrablePercent = 50;
         PlayerName = "";
     }
     

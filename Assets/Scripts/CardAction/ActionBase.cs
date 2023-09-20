@@ -6,7 +6,7 @@ using UnityEngine;
 
 public abstract class ActionBase
 {
-    public abstract void StartAction();
+    public abstract void StartAction(PlayerController player, CardData card, EnemyController enemy = null);
 }
 public static class ActionFactory
 {

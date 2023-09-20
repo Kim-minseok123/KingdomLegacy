@@ -44,7 +44,7 @@ public class UI_BattlePopup : UI_Popup
     }
     enum States
     {
-        BattleStart, 
+        BattleStart,
         TurnStart,
         Turning,
         TurnEnd,
@@ -88,9 +88,9 @@ public class UI_BattlePopup : UI_Popup
 
     //플레이어
     GameObject _player;
-    Animator _playerAnim;
+    public PlayerController _playerController;
     EnemyInfo _enemyInfo;
-    List<GameObject> _enemyList = new();
+    public List<GameObject> _enemyList = new();
     public GameObject _curEnemy;
     ArrowController _ar;
     [SerializeField] private Ease ease;
@@ -112,17 +112,17 @@ public class UI_BattlePopup : UI_Popup
         BindText(typeof(Texts));
 
         _player = Managers.Resource.Instantiate("PlayerCharacter/" + Managers.Game.PlayerName, GetObject((int)GameObjects.PlayerTransform).transform);
-        _playerAnim = _player.GetComponent<Animator>();
-
+        _playerController = _player.GetComponent<PlayerController>();
         //적들 소환
-        for (int i = 0; i < _enemyInfo.Enemys.Count; i++) {
+        for (int i = 0; i < _enemyInfo.Enemys.Count; i++)
+        {
             var enemy = Managers.Resource.Instantiate(_enemyInfo.Enemys[i], GetObject(i + 7).transform);
             enemy.GetComponent<EnemyController>().Setting(_enemyInfo.EnemyHp[i]);
             _enemyList.Add(enemy);
         }
 
         GetButton((int)Buttons.TurnEndButton).gameObject.BindEvent(TurnEnd);
-        _ar = GetObject((int)GameObjects.ArrowController).GetComponent<ArrowController>(); 
+        _ar = GetObject((int)GameObjects.ArrowController).GetComponent<ArrowController>();
         RefreshUI();
 
         return true;
@@ -193,7 +193,8 @@ public class UI_BattlePopup : UI_Popup
     {
         StartCoroutine(Draw(drawcardsnum));
     }
-    public IEnumerator Draw(int drawcardsnum) {
+    public IEnumerator Draw(int drawcardsnum)
+    {
         if (cardsDrawn)
             GameEvents.OnDrawCard();
         for (int i = 0; i < drawcardsnum; i++)
@@ -216,7 +217,8 @@ public class UI_BattlePopup : UI_Popup
             yield return new WaitForSeconds(0.25f);
         }
     }
-    public void DrawCards(CardData cardData) {
+    public void DrawCards(CardData cardData)
+    {
         var NewCardUI = Managers.UI.MakeSubItem<UI_Card>(GetObject((int)GameObjects.CardList).transform).SetInfo(cardData.ID);
         NewCardUI.gameObject.BindEvent((obj) => PointEnterSelectCard(obj), Define.UIEvent.PointerEnter);
         NewCardUI.gameObject.BindEvent(PointExitCard, Define.UIEvent.PointerExit);
@@ -273,7 +275,8 @@ public class UI_BattlePopup : UI_Popup
             }
         }
     }
-    public void HealMana(int value) {
+    public void HealMana(int value)
+    {
         _curMana += value;
         RefreshUI();
     }
@@ -287,11 +290,12 @@ public class UI_BattlePopup : UI_Popup
             isDestoryCard = true;
             _curMana = 0;
             StartCoroutine(CheckDestoryCard());
-            
+
         }
 
     }
-    IEnumerator CheckDestoryCard() {
+    IEnumerator CheckDestoryCard()
+    {
         if (!Managers.Game.isPreservation)
             yield return StartCoroutine(DestroyCardRoutine());
         RefreshUI();
@@ -381,7 +385,7 @@ public class UI_BattlePopup : UI_Popup
                 obj.transform.DOMove(target, 0.5f).SetEase(ease);
                 obj.transform.rotation = Quaternion.identity;
                 //화살표 그리기.
-               _ar.DrawArrow(obj.transform.position, worldPos);
+                _ar.DrawArrow(obj.transform.position, worldPos);
                 _isDragArrow = true;
             }
         }
@@ -403,14 +407,17 @@ public class UI_BattlePopup : UI_Popup
                 StartCoroutine(UseCardNonTarget(card));
             }
         }
-        else {
+        else
+        {
             //타겟이 있는 경우만
-            if (_curEnemy != null && _enemyList.Contains(_curEnemy)) {
+            if (_curEnemy != null && _enemyList.Contains(_curEnemy))
+            {
                 isUseCard = true;
                 StartCoroutine(UseCardTarget(card, _curEnemy));
-                _ar.StopDrawArrow();
-                _isDragArrow = false;
-            }  
+                
+            }
+            _ar.StopDrawArrow();
+            _isDragArrow = false;
         }
     }
 
@@ -418,21 +425,29 @@ public class UI_BattlePopup : UI_Popup
     {
         obj.transform.DOMove(transform.position, 0.5f).SetEase(ease);
         //스킬 사용.
-        _playerAnim.SetTrigger("Attack");
+        foreach (ActionBase cardAction in obj._cardData.actions)
+        {
+            cardAction.StartAction(_playerController, obj._cardData);
+        }
 
         _curMana -= obj._cardData.mana;
         yield return new WaitForSeconds(0.7f);
 
         StartCoroutine(EndCard(obj));
     }
-    IEnumerator UseCardTarget(UI_Card obj, GameObject go) {
+    IEnumerator UseCardTarget(UI_Card obj, GameObject go)
+    {
         //스킬 사용
-        _playerAnim.SetTrigger("Attack");
+        foreach (ActionBase cardAction in obj._cardData.actions)
+        {
+            cardAction.StartAction(_playerController, obj._cardData, go.GetComponent<EnemyController>());
+        }
         _curMana -= obj._cardData.mana;
         yield return null;
         StartCoroutine(EndCard(obj));
     }
-    IEnumerator EndCard(UI_Card obj) {
+    IEnumerator EndCard(UI_Card obj)
+    {
         Vector3 target = GetButton((int)Buttons.ThrowDeckCard).gameObject.transform.position;
 
         obj.transform.DOMove(target, 0.5f).SetEase(ease);
@@ -457,8 +472,10 @@ public class UI_BattlePopup : UI_Popup
         RefreshUI();
         isUseCard = false;
     }
-    public void CheckCards() {
-        for (int i = 0; i < _handCardsUI.Count; i++) {
+    public void CheckCards()
+    {
+        for (int i = 0; i < _handCardsUI.Count; i++)
+        {
             _handCardsUI[i].CheckManaUseCard(_curMana);
         }
     }
