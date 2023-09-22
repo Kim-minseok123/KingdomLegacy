@@ -14,6 +14,7 @@ public class EnemyController : UI_Base
     public int Power = 0;
     public int Agility = 0;
     public int Poisoning = 0;
+    public int Shield = 0;
     public Animator animator;
     enum Images
     {

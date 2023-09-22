@@ -8,6 +8,7 @@ public class PlayerController : UI_Base
     public int Power = 0;
     public int Agility = 0;
     public int Poisoning = 0;
+    public int Shield = 0;
     enum Images { 
         HpValue,
     }
