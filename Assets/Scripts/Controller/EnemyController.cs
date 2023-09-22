@@ -51,8 +51,7 @@ public class EnemyController : UI_Base
     public void Damaged(int value)
     {
         if (Vulenerable > 0) value += (int)(value * (Managers.Game.VulenrablePercent/ 100f));
-        animator.SetTrigger("Stun");
-        //StartCoroutine(DamageMaterial());
+        StartCoroutine(DamageMaterial());
         CurHp -= value;
         if (CurHp <= 0) { 
             CurHp = 0;
@@ -65,16 +64,17 @@ public class EnemyController : UI_Base
     public IEnumerator DamageMaterial() {
         float value = 0f;
         Material material = GetComponent<Image>().material;
+        //animator.SetTrigger("Stun");
         material.EnableKeyword("HITEFFECT_ON");
-        while (value < 0.25f) {
+        while (value < 0.3f) {
             material.SetFloat("_HitEffectBlend", value);
-            value += Time.deltaTime;
+            value += 0.02f;
             yield return null;
         }
         while (value > 0.01f)
         {
             material.SetFloat("_HitEffectBlend", value);
-            value -= Time.deltaTime;
+            value -= 0.02f;
             yield return null;
         }
         material.DisableKeyword("HITEFFECT_ON");
