@@ -48,6 +48,9 @@ public class UI_BattlePopup : UI_Popup
         TurnStart,
         Turning,
         TurnEnd,
+        EnemyTurnStart,
+        EnemyTurning,
+        EnemyTurnEnd,
         BattleEnd,
     }
 
@@ -71,7 +74,6 @@ public class UI_BattlePopup : UI_Popup
     private UI_Card _selectCard = null;
 
     //현재 스테이지
-    private int _stage = 0;
     public int _curTurn = 0;
     public int _curMana = 0;
     public int _maxMana = 0;
@@ -138,7 +140,6 @@ public class UI_BattlePopup : UI_Popup
     {
         //스테이지, 체력, 카드 등 값 넘겨줘야함
         _maxMana = Managers.Game.Mana;
-        _stage = Managers.Game.Stage;
         _drawCards.Clear();
         _drawCards = Managers.Game.Cards;
         _startDrawCardNum = Managers.Game.StartDrawCardNum;

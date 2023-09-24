@@ -14,7 +14,8 @@ public class PlayerController : UI_Base
     public Animator _playerAnim;
 
     public List<string> buffList = new();
-    enum Images { 
+    enum Images
+    {
         HpValue,
         BuffImage1,
         BuffImage2,
@@ -23,8 +24,10 @@ public class PlayerController : UI_Base
         BuffImage5,
         BuffImage6,
         BuffImage7,
+        BuffImage8,
     }
-    enum Texts { 
+    enum Texts
+    {
         HpText,
         BuffText1,
         BuffText2,
@@ -33,6 +36,7 @@ public class PlayerController : UI_Base
         BuffText5,
         BuffText6,
         BuffText7,
+        BuffText8,
     }
     public override bool Init()
     {
@@ -50,7 +54,8 @@ public class PlayerController : UI_Base
         return true;
     }
 
-    public void Damaged(int value) { 
+    public void Damaged(int value)
+    {
         //체력 닳기
     }
     public void GetVulenrable(int value)
@@ -67,7 +72,32 @@ public class PlayerController : UI_Base
         //이펙트 추가
         RefreshUI();
     }
-    public void AttackEnemy(int Damage, EnemyController enemy =null) {
+    public void GetShield(int value)
+    {
+        Shield = Shield + value + Agility;
+        //이펙트 추가
+        RefreshUI();
+    }
+    public void GetPower(int value)
+    {
+        Power = value;
+        RefreshUI();
+    }
+    public void GetdePower(int value)
+    {
+        dePower += value;
+        RefreshUI();
+    }
+    public void GetAgility(int value) { 
+        Agility += value;
+        RefreshUI();
+    }
+    public void GetPoisoning(int value) { 
+        Poisoning += value;
+        RefreshUI();
+    }
+    public void AttackEnemy(int Damage, EnemyController enemy = null)
+    {
         //공격
         if (enemy == null)
         {
@@ -78,12 +108,14 @@ public class PlayerController : UI_Base
                 go.GetComponent<EnemyController>().Damaged(Damage);
             }
         }
-        else if (enemy != null) { 
+        else if (enemy != null)
+        {
             enemy.Damaged(Damage);
         }
         _playerAnim.SetTrigger("Attack");
     }
-    public void RefreshUI() {
+    public void RefreshUI()
+    {
         int i = 0;
         for (i = 0; i < buffList.Count; i++)
         {
@@ -91,7 +123,7 @@ public class PlayerController : UI_Base
             buff.sprite = Managers.Resource.Load<Sprite>($"Sprites/Icon/{buffList[i]}");
             buff.color = new Color(1, 1, 1, 1);
             if (buffList[i] == "취약")
-                GetText(i+1).text = Vulenerable.ToString();
+                GetText(i + 1).text = Vulenerable.ToString();
             else if (buffList[i] == "약화")
                 GetText(i + 1).text = Weakness.ToString();
             else if (buffList[i] == "힘")
@@ -104,15 +136,24 @@ public class PlayerController : UI_Base
                 GetText(i + 1).text = Poisoning.ToString();
         }
 
-        for (int j = i; j < 7; j++) {
+        for (int j = i; j < 7; j++)
+        {
             var buff = GetImage(j + 1);
             buff.sprite = null;
             buff.color = new Color(1, 1, 1, 0);
             GetText(j + 1).text = "";
         }
+        //방어도 체크
         GetText((int)Texts.HpText).text = Managers.Game.CurHp.ToString() + " / " + Managers.Game.MaxHp.ToString();
         float value = Managers.Game.CurHp / (float)Managers.Game.MaxHp;
         GetImage((int)Images.HpValue).fillAmount = value;
     }
-    
+    public void ResetBuff()
+    {
+        if (Vulenerable > 0) { Vulenerable--; }
+        if (Weakness > 0) { Weakness--; }
+        if (Shield > 0) { Shield = 0; }
+        if (dePower > 0) { Power -= dePower; dePower = 0; }
+        if (Poisoning > 0) { Damaged(Poisoning); Poisoning--; }
+    }
 }

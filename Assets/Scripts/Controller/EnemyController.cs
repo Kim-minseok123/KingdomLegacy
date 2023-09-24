@@ -30,6 +30,7 @@ public class EnemyController : UI_Base
         BuffImage5,
         BuffImage6,
         BuffImage7,
+        BuffImage8,
     }
     enum Texts
     {
@@ -41,6 +42,7 @@ public class EnemyController : UI_Base
         BuffText5,
         BuffText6,
         BuffText7,
+        BuffText8,
     }
     enum GameObjects {
         CheckBody,
@@ -116,6 +118,32 @@ public class EnemyController : UI_Base
         //ÀÌÆåÆ® Ãß°¡
         RefreshUI();
     }
+    public void GetShield(int value)
+    {
+        Shield = Shield + value + Agility;
+        //ÀÌÆåÆ® Ãß°¡
+        RefreshUI();
+    }
+    public void GetPower(int value)
+    {
+        Power = value;
+        RefreshUI();
+    }
+    public void GetdePower(int value)
+    {
+        dePower += value;
+        RefreshUI();
+    }
+    public void GetAgility(int value)
+    {
+        Agility += value;
+        RefreshUI();
+    }
+    public void GetPoisoning(int value)
+    {
+        Poisoning += value;
+        RefreshUI();
+    }
     public void RefreshUI()
     {
         int i = 0;
@@ -169,5 +197,13 @@ public class EnemyController : UI_Base
     {
         battleScene._enemyList.Remove(gameObject);
         Managers.Resource.Destroy(gameObject);
+    }
+    public void ResetBuff()
+    {
+        if (Vulenerable > 0) { Vulenerable--; }
+        if (Weakness > 0) { Weakness--; }
+        if (Shield > 0) { Shield = 0; }
+        if (dePower > 0) { Power -= dePower; dePower = 0; }
+        if (Poisoning > 0) { Damaged(Poisoning); Poisoning--; }
     }
 }

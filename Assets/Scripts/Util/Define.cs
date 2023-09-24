@@ -43,6 +43,9 @@ public class Define
 		ExitCard,
 		DrawCard,
         PreservationCards,
+        EnemyTurnStart,
+        EnemyTurning,
+        EnemyTurnEnd,
     }
     public enum UIEvent
 	{
