@@ -1,4 +1,5 @@
 
+using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerController : UI_Base
@@ -9,13 +10,30 @@ public class PlayerController : UI_Base
     public int Agility = 0;
     public int Poisoning = 0;
     public int Shield = 0;
+    public int dePower = 0;
+    public Animator _playerAnim;
+
+    public List<string> buffList = new();
     enum Images { 
         HpValue,
+        BuffImage1,
+        BuffImage2,
+        BuffImage3,
+        BuffImage4,
+        BuffImage5,
+        BuffImage6,
+        BuffImage7,
     }
     enum Texts { 
         HpText,
+        BuffText1,
+        BuffText2,
+        BuffText3,
+        BuffText4,
+        BuffText5,
+        BuffText6,
+        BuffText7,
     }
-    public Animator _playerAnim;
     public override bool Init()
     {
         if (base.Init() == false)
@@ -25,6 +43,8 @@ public class PlayerController : UI_Base
         BindText(typeof(Texts));
 
         _playerAnim = GetComponent<Animator>();
+
+        buffList.Clear();
 
         RefreshUI();
         return true;
@@ -36,12 +56,16 @@ public class PlayerController : UI_Base
     public void GetVulenrable(int value)
     {
         Vulenerable += value;
+        buffList.Add("√Îæ‡");
         //¿Ã∆Â∆Æ √ﬂ∞°
+        RefreshUI();
     }
     public void GetWeakness(int value)
     {
         Weakness += value;
+        buffList.Add("æ‡»≠");
         //¿Ã∆Â∆Æ √ﬂ∞°
+        RefreshUI();
     }
     public void AttackEnemy(int Damage, EnemyController enemy =null) {
         //∞¯∞›
@@ -59,7 +83,33 @@ public class PlayerController : UI_Base
         }
         _playerAnim.SetTrigger("Attack");
     }
-    public void RefreshUI() { 
+    public void RefreshUI() {
+        int i = 0;
+        for (i = 0; i < buffList.Count; i++)
+        {
+            var buff = GetImage(i + 1);
+            buff.sprite = Managers.Resource.Load<Sprite>($"Sprites/Icon/{buffList[i]}");
+            buff.color = new Color(1, 1, 1, 1);
+            if (buffList[i] == "√Îæ‡")
+                GetText(i+1).text = Vulenerable.ToString();
+            else if (buffList[i] == "æ‡»≠")
+                GetText(i + 1).text = Weakness.ToString();
+            else if (buffList[i] == "»˚")
+                GetText(i + 1).text = Power.ToString();
+            else if (buffList[i] == "»˚∞®º“")
+                GetText(i + 1).text = dePower.ToString();
+            else if (buffList[i] == "πŒ√∏")
+                GetText(i + 1).text = Agility.ToString();
+            else if (buffList[i] == "¡ﬂµ∂")
+                GetText(i + 1).text = Poisoning.ToString();
+        }
+
+        for (int j = i; j < 7; j++) {
+            var buff = GetImage(j + 1);
+            buff.sprite = null;
+            buff.color = new Color(1, 1, 1, 0);
+            GetText(j + 1).text = "";
+        }
         GetText((int)Texts.HpText).text = Managers.Game.CurHp.ToString() + " / " + Managers.Game.MaxHp.ToString();
         float value = Managers.Game.CurHp / (float)Managers.Game.MaxHp;
         GetImage((int)Images.HpValue).fillAmount = value;
