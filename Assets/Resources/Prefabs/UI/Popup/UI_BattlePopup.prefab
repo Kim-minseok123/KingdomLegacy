@@ -1874,7 +1874,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
-  m_PresetInfoIsWorld: 0
+  m_PresetInfoIsWorld: 1
 --- !u!114 &8733769087253660586
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1911,7 +1911,10 @@ MonoBehaviour:
   _curTurn: 0
   _curMana: 0
   _maxMana: 0
-  ease: 12
+  _playerController: {fileID: 0}
+  _enemyList: []
+  _curEnemy: {fileID: 0}
+  ease: 15
 --- !u!1 &8733769087348802660
 GameObject:
   m_ObjectHideFlags: 0

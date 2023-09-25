@@ -61,14 +61,16 @@ public class PlayerController : UI_Base
     public void GetVulenrable(int value)
     {
         Vulenerable += value;
-        buffList.Add("Ãë¾à");
+        if (!buffList.Contains("Ãë¾à"))
+            buffList.Add("Ãë¾à");
         //ÀÌÆåÆ® Ãß°¡
         RefreshUI();
     }
     public void GetWeakness(int value)
     {
         Weakness += value;
-        buffList.Add("¾àÈ­");
+        if (!buffList.Contains("¾àÈ­"))
+            buffList.Add("¾àÈ­");
         //ÀÌÆåÆ® Ãß°¡
         RefreshUI();
     }
@@ -76,24 +78,37 @@ public class PlayerController : UI_Base
     {
         Shield = Shield + value + Agility;
         //ÀÌÆåÆ® Ãß°¡
+        var effect = Managers.Resource.Instantiate("Effect/ShieldEffect", gameObject.transform);
+        Managers.Resource.Destroy(effect, 0.45f);
+
         RefreshUI();
     }
     public void GetPower(int value)
     {
         Power = value;
+        if (!buffList.Contains("Èû"))
+            buffList.Add("Èû");
         RefreshUI();
     }
     public void GetdePower(int value)
     {
         dePower += value;
+        if (!buffList.Contains("Èû°¨¼Ò"))
+            buffList.Add("Èû°¨¼Ò");
         RefreshUI();
     }
-    public void GetAgility(int value) { 
+    public void GetAgility(int value)
+    {
         Agility += value;
+        if (!buffList.Contains("¹ÎÃ¸"))
+            buffList.Add("¹ÎÃ¸");
         RefreshUI();
     }
-    public void GetPoisoning(int value) { 
+    public void GetPoisoning(int value)
+    {
         Poisoning += value;
+        if (!buffList.Contains("Áßµ¶"))
+            buffList.Add("Áßµ¶");
         RefreshUI();
     }
     public void AttackEnemy(int Damage, EnemyController enemy = null)
@@ -144,6 +159,16 @@ public class PlayerController : UI_Base
             GetText(j + 1).text = "";
         }
         //¹æ¾îµµ Ã¼Å©
+        if (Shield > 0) {
+            GetImage((int)Images.BuffImage8).color = new Color(1, 1, 1, 1);
+            GetText((int)Texts.BuffText8).text = Shield.ToString();
+        }
+        else
+        {
+            GetImage((int)Images.BuffImage8).color = new Color(1, 1, 1, 0);
+            GetText((int)Texts.BuffText8).text = "";
+        }
+
         GetText((int)Texts.HpText).text = Managers.Game.CurHp.ToString() + " / " + Managers.Game.MaxHp.ToString();
         float value = Managers.Game.CurHp / (float)Managers.Game.MaxHp;
         GetImage((int)Images.HpValue).fillAmount = value;

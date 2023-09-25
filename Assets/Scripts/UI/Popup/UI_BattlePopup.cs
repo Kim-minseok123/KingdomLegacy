@@ -185,6 +185,12 @@ public class UI_BattlePopup : UI_Popup
                 }
                 // 상대 턴 시작
                 break;
+            case States.EnemyTurnStart:
+                break;
+            case States.EnemyTurning:
+                break;
+            case States.EnemyTurnEnd:
+                    break;
             case States.BattleEnd:
                 break;
         }
@@ -215,7 +221,7 @@ public class UI_BattlePopup : UI_Popup
             CardData cardData = _drawCards[0];
             _drawCards.RemoveAt(0);
             DrawCards(cardData);
-            yield return new WaitForSeconds(0.25f);
+            yield return new WaitForSeconds(0.15f);
         }
     }
     public void DrawCards(CardData cardData)
@@ -254,23 +260,23 @@ public class UI_BattlePopup : UI_Popup
             if (_selected != i && !isDraggingCard)
             {
                 cardTransform.rotation = Quaternion.Slerp(cardTransform.rotation,
-                    Quaternion.LookRotation(cardForward, cardUp), 0.1f);
+                    Quaternion.LookRotation(cardForward, cardUp), 0.15f);
 
                 card.transform.SetSiblingIndex(i);
-                cardTransform.position = Vector3.Lerp(cardTransform.position, targetPosition, 0.1f);
+                cardTransform.position = Vector3.Lerp(cardTransform.position, targetPosition, 0.15f);
             }
             else if (_selected == i && !isDraggingCard)
             {
                 cardTransform.rotation = Quaternion.Slerp(cardTransform.rotation,
-                    Quaternion.LookRotation(cardForward), 0.1f);
+                    Quaternion.LookRotation(cardForward), 0.15f);
 
                 card.transform.SetSiblingIndex(99);
                 var selectedPosition = new Vector3(targetPosition.x, _selectUp, targetPosition.z);
-                cardTransform.position = Vector3.Lerp(cardTransform.position, selectedPosition, 0.2f);
+                cardTransform.position = Vector3.Lerp(cardTransform.position, selectedPosition, 0.15f);
             }
 
             // 카드 흔들림 방지
-            if (Vector3.Distance(cardTransform.position, targetPosition) < 0.01f)
+            if (Vector3.Distance(cardTransform.position, targetPosition) < 0.02f)
             {
                 cardTransform.position = targetPosition;
             }
@@ -325,11 +331,11 @@ public class UI_BattlePopup : UI_Popup
 
             // Movement Tween
             Tweener moveTweener = cardTransform.DOMove(target, 0.7f)
-                .SetEase(Ease.OutQuart);
+                .SetEase(ease);
 
             // Scale Down Effect
             Tweener scaleTweener = cardTransform.DOScale(Vector3.zero, 0.7f)
-                .SetEase(Ease.OutQuart)
+                .SetEase(ease)
                 .OnComplete(() =>
                 {
                     _throwCards.Add(_handCardsUI[currentIndex]._cardData);
@@ -444,7 +450,7 @@ public class UI_BattlePopup : UI_Popup
             cardAction.StartAction(_playerController, obj._cardData, go.GetComponent<EnemyController>());
         }
         _curMana -= obj._cardData.mana;
-        yield return null;
+        yield return new WaitForSeconds(0.7f);
         StartCoroutine(EndCard(obj));
     }
     IEnumerator EndCard(UI_Card obj)
