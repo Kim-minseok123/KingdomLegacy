@@ -1,18 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ArrayOfTextData xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <TextData ID="20022" kor="새로운 게임을&lt;br&gt;시작 하시겠습니까?&lt;br&gt;&lt;br&gt;(이전 게임 데이터가 삭제됩니다.)" eng="" />
-  <TextData ID="20023" kor="타이틀로" eng="" />
-  <TextData ID="20024" kor="기사.&lt;br&gt;왕궁 서열에서 밀려난 몰락 기사. 체력과 텐션이 적절한 밸런스를 이루고 있다." eng="" />
-  <TextData ID="20025" kor="최대 체력 : 100" eng="" />
-  <TextData ID="20026" kor="시작 텐션 : 3" eng="" />
-  <TextData ID="20027" kor="시작 재화 : 40" eng="" />
-  <TextData ID="20028" kor="To be Continue.." eng="" />
-  <TextData ID="20029" kor="To be Continue.." eng="" />
-  <TextData ID="20030" kor="To be Continue.." eng="" />
-  <TextData ID="20031" kor="To be Continue.." eng="" />
-  <TextData ID="20032" kor="To be Continue.." eng="" />
-  <TextData ID="20033" kor="To be Continue.." eng="" />
-  <TextData ID="20034" kor="To be Continue.." eng="" />
-  <TextData ID="20035" kor="To be Continue.." eng="" />
-  <TextData ID="20036" kor="To be Continue.." eng="" />
+	<TextData ID="20022" kor="새로운 게임을&lt;br&gt;시작 하시겠습니까?&lt;br&gt;&lt;br&gt;(이전 게임 데이터가 삭제됩니다.)" eng="" />
+	<TextData ID="20023" kor="타이틀로" eng="" />
+	<TextData ID="20024" kor="기사.&lt;br&gt;왕궁 서열에서 밀려난 몰락 기사. 체력과 텐션이 적절한 밸런스를 이루고 있다." eng="" />
+	<TextData ID="20025" kor="최대 체력 : 100" eng="" />
+	<TextData ID="20026" kor="시작 텐션 : 3" eng="" />
+	<TextData ID="20027" kor="시작 재화 : 40" eng="" />
+	<TextData ID="20028" kor="To be Continue.." eng="" />
+	<TextData ID="20029" kor="To be Continue.." eng="" />
+	<TextData ID="20030" kor="To be Continue.." eng="" />
+	<TextData ID="20031" kor="To be Continue.." eng="" />
+	<TextData ID="20032" kor="To be Continue.." eng="" />
+	<TextData ID="20033" kor="To be Continue.." eng="" />
+	<TextData ID="20034" kor="To be Continue.." eng="" />
+	<TextData ID="20035" kor="To be Continue.." eng="" />
+	<TextData ID="20036" kor="약화.&lt;br&gt;&lt;br&gt;공격 피해량이 25% 감소합니다." eng="" />
+	<TextData ID="20037" kor="취약.&lt;br&gt;&lt;br&gt;받는 피해가 50% 증가합니다." eng="" />
+	<TextData ID="20038" kor="힘.&lt;br&gt;&lt;br&gt;공격 시 힘의 수치만큼 추가 피해를 입힙니다." eng="" />
+	<TextData ID="20039" kor="민첩.&lt;br&gt;&lt;br&gt;;방어도 획득 시 수치만큼 추가 방어도를 획득합니다." eng="" />
+	<TextData ID="20040" kor="중독.&lt;br&gt;&lt;br&gt;매 턴 시작 시 수치만큼 피해를 입습니다." eng="" />
+	<TextData ID="20041" kor="방어도.&lt;br&gt;&lt;br&gt;피해를 수치만큼 방어합니다." eng="" />
+	<TextData ID="20042" kor="힘 감소.&lt;br&gt;&lt;br&gt;턴 종료 시 수치만큼 힘의 수치가 줄어듭니다." eng="" />
 </ArrayOfTextData>

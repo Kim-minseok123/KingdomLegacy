@@ -96,4 +96,11 @@ public class Define
     public const int WizardPlayerMaxHp = 20033;
     public const int WizardPlayerStartMana = 20034;
     public const int WizardPlayerStartMoney = 20035;
+    public const int Weakness = 20036;
+    public const int Vulenerable = 20037;
+    public const int Power = 20038;
+    public const int Agility = 20039;
+    public const int Poisoning = 20040;
+    public const int Shield = 20041;
+    public const int dePower = 20042;
 }
