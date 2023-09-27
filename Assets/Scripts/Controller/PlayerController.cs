@@ -94,7 +94,7 @@ public class PlayerController : UI_Base
     }
     public void GetPower(int value)
     {
-        Power = value;
+        Power += value;
         if (!buffList.Contains("힘"))
             buffList.Add("힘");
         RefreshUI();
@@ -142,30 +142,27 @@ public class PlayerController : UI_Base
     }
     public void RefreshUI()
     {
-        for (int i = 0; i < 7; i++)
-        {
-            var buff = GetImage(i + 1);
-            buff.sprite = null;
-            buff.color = new Color(1, 1, 1, 0);
-            GetText(i + 1).text = "";
-            if(buff.gameObject.TryGetComponent<UI_EventHandler>(out var handler))
-                Destroy(handler);
-        }
-        for (int i = 0; i < buffList.Count; i++)
+        int i = 0;
+
+        for (i = 0; i < buffList.Count; i++)
         {
             var buff = GetImage(i + 1);
             buff.sprite = Managers.Resource.Load<Sprite>($"Sprites/Icon/{buffList[i]}");
             buff.color = new Color(1, 1, 1, 1);
+            if (buff.gameObject.TryGetComponent(out UI_EventHandler ehd))
+            {
+                ehd.enabled = true;
+            }
             if (buffList[i] == "취약")
             {
                 GetText(i + 1).text = Vulenerable.ToString();
-                buff.gameObject.BindEvent((go) => { TooltipOn(go.transform,Define.Vulenerable); }, Define.UIEvent.PointerEnter);
+                buff.gameObject.BindEvent((go) => { TooltipOn(go.transform, Define.Vulenerable); }, Define.UIEvent.PointerEnter);
                 buff.gameObject.BindEvent(() => { TooltipOff(); }, Define.UIEvent.PointerExit);
             }
             else if (buffList[i] == "약화")
             {
                 GetText(i + 1).text = Weakness.ToString();
-                buff.gameObject.BindEvent((go) => { TooltipOn(go.transform,Define.Weakness); }, Define.UIEvent.PointerEnter);
+                buff.gameObject.BindEvent((go) => { TooltipOn(go.transform, Define.Weakness); }, Define.UIEvent.PointerEnter);
                 buff.gameObject.BindEvent(() => { TooltipOff(); }, Define.UIEvent.PointerExit);
             }
             else if (buffList[i] == "힘")
@@ -193,7 +190,17 @@ public class PlayerController : UI_Base
                 buff.gameObject.BindEvent(() => { TooltipOff(); }, Define.UIEvent.PointerExit);
             }
         }
-
+        for (int j = i; j < 7; j++)
+        {
+            var buff = GetImage(j + 1);
+            buff.sprite = null;
+            buff.color = new Color(1, 1, 1, 0);
+            GetText(j + 1).text = "";
+            if (buff.gameObject.TryGetComponent(out UI_EventHandler ehd))
+            {
+                ehd.enabled = false;
+            }
+        }
         //방어도 체크
         if (Shield > 0)
         {
@@ -212,20 +219,21 @@ public class PlayerController : UI_Base
     }
     public void ResetBuff()
     {
-        if (Vulenerable > 0) { Vulenerable--; }
-        if (Weakness > 0) { Weakness--; }
+        if (Vulenerable > 0) { Vulenerable--; buffList.Remove("취약"); }
+        if (Weakness > 0) { Weakness--; buffList.Remove("약화"); }
         if (Shield > 0) { Shield = 0; }
-        if (dePower > 0) { Power -= dePower; dePower = 0; }
-        if (Poisoning > 0) { Damaged(Poisoning); Poisoning--; }
+        if (dePower > 0) { Power -= dePower; dePower = 0; buffList.Remove("힘감소"); }
+        if (Poisoning > 0) { Damaged(Poisoning); Poisoning--; buffList.Remove("중독"); }
+        RefreshUI();
     }
     public void TooltipOn(Transform trf ,int text) {
 
         var tooltip = GetObject((int)GameObjects.ToolTip);
         var txt = GetText((int)Texts.ToolTipText);
         txt.text = Managers.GetText(text);
-        Vector3 pos = trf.position + new Vector3(0, -0.5f, 0);
+        Vector3 pos = trf.position + new Vector3(-1.5f, -1f, 0);
         tooltip.transform.position = pos;
-        rect.sizeDelta = new Vector2(txt.preferredWidth + 20, txt.preferredHeight + 20);
+        rect.sizeDelta = new Vector2(txt.preferredWidth + 30, txt.preferredHeight + 30);
         tooltip.SetActive(true);
     }
     public void TooltipOff() { 
