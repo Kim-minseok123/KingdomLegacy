@@ -56,6 +56,9 @@ public class CardData
 
     [XmlIgnore]
     public ICardCondition cardCondition;
+    public void Upgrade() {
+        damage += (int)attackDiff;
+    }
 }
 [Serializable, XmlRoot("ArrayOfStatData")]
 public class CardDataLoader : ILoader<int, CardData>

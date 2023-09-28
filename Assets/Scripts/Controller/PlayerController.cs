@@ -11,6 +11,7 @@ public class PlayerController : UI_Base
     public int Poisoning = 0;
     public int Shield = 0;
     public int dePower = 0;
+    public int infinitySword = 0;
     public Animator _playerAnim;
 
     public List<string> buffList = new();
@@ -45,6 +46,7 @@ public class PlayerController : UI_Base
         ToolTip,
     }
     RectTransform rect;
+    public UI_BattlePopup _battleScene;
     public override bool Init()
     {
         if (base.Init() == false)
@@ -59,6 +61,7 @@ public class PlayerController : UI_Base
         buffList.Clear();
         GetObject((int)GameObjects.ToolTip).SetActive(false);
         rect = GetImage((int)Images.TooltipImage).rectTransform;
+        _battleScene = Managers.UI.FindPopup<UI_BattlePopup>();
         RefreshUI();
         return true;
     }
@@ -238,5 +241,10 @@ public class PlayerController : UI_Base
     }
     public void TooltipOff() { 
         GetObject((int)GameObjects.ToolTip).SetActive(false);
+    }
+    public void HealHp(int value) {
+        Managers.Game.CurHp += value;
+        if(Managers.Game.CurHp > Managers.Game.MaxHp)
+            Managers.Game.CurHp = Managers.Game.MaxHp;
     }
 }

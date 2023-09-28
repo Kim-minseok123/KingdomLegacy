@@ -74,14 +74,14 @@
       <action>DrawAction</action>
     </actions>
   </CardData>
-  <CardData ID="15" name="약점 파악" description="피해 1. 적이 취약 상태라면 텐션 2 획득. 드로우 1." type ="Attack" rarity="Rare" target="Enemy" damage="1" mana="1" drawCard="1" getMana="2">
+  <CardData ID="15" name="약점 파악" description="피해 1. 드로우 1. 적이 취약 상태라면 텐션 2 획득. " type ="Attack" rarity="Rare" target="Enemy" damage="1" mana="1" drawCard="1" getMana="2">
     <actions>
       <action>AttackAction</action>
       <action>DrawAction</action>
       <action>GetManaAction</action>
     </actions>
   </CardData>
-  <CardData ID="16" name="약점 파악+" description="피해 8. 적이 취약 상태라면 텐션 2 획득. 드로우 1." type ="Attack" rarity="Rare" target="Enemy" damage="8" mana="1" drawCard="1" getMana="2">
+  <CardData ID="16" name="약점 파악+" description="피해 8. 드로우 1. 적이 취약 상태라면 텐션 2 획득." type ="Attack" rarity="Rare" target="Enemy" damage="8" mana="1" drawCard="1" getMana="2">
     <actions>
       <action>AttackAction</action>
       <action>DrawAction</action>
@@ -100,13 +100,11 @@
   </CardData>
   <CardData ID="19" name="반격" description="적이 공격 의도라면 취약 1 부여. 상대의 공격력만큼 피해." type ="Attack" rarity="Rare" target="Enemy" damage="0" mana="1">
     <actions>
-      <action>VulnerableAction</action>
       <action>AttackAction</action>
     </actions>
   </CardData>
   <CardData ID="20" name="반격+" description="적이 공격 의도라면 취약 1 부여. 상대의 공격력만큼 피해." type ="Attack" rarity="Rare" target="Enemy" damage="0" mana="0">
     <actions>
-      <action>VulnerableAction</action>
       <action>AttackAction</action>
     </actions>
   </CardData>

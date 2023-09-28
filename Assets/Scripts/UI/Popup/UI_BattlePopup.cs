@@ -56,7 +56,7 @@ public class UI_BattlePopup : UI_Popup
 
     //뽑을 카드 더미, 손패 카드, 버린 카드 더미, 제외된 카드 더미
     List<CardData> _drawCards = new();
-    List<UI_Card> _handCardsUI = new();
+    public List<UI_Card> _handCardsUI = new();
     List<CardData> _throwCards = new();
     List<CardData> _exitCards = new();
 
@@ -456,11 +456,17 @@ public class UI_BattlePopup : UI_Popup
     IEnumerator EndCard(UI_Card obj)
     {
         Vector3 target = GetButton((int)Buttons.ThrowDeckCard).gameObject.transform.position;
-
-        obj.transform.DOMove(target, 0.5f).SetEase(ease);
-        obj.transform.DOScale(Vector3.zero, 0.5f).SetEase(ease);
-        yield return new WaitForSeconds(0.5f);
-
+        if (obj._cardData.state != Define.CardLifeState.Extinction)
+        {
+            obj.transform.DOMove(target, 0.5f).SetEase(ease);
+            obj.transform.DOScale(Vector3.zero, 0.5f).SetEase(ease);
+            yield return new WaitForSeconds(0.5f);
+        }
+        //카드 소멸 함수 하나 만들기
+        else {
+            obj.BurnFade();
+            yield return new WaitForSeconds(0.5f);
+        }
         int i = _handCardsUI.IndexOf(obj);
         if (i != -1)
         {
@@ -485,5 +491,11 @@ public class UI_BattlePopup : UI_Popup
         {
             _handCardsUI[i].CheckManaUseCard(_curMana);
         }
+    }
+    public void ExitCard(UI_Card obj) {
+        obj.BurnFade();
+        _exitCards.Add(obj._cardData);
+        GameEvents.OnExitCard();
+        Managers.Resource.Destroy(obj.gameObject);
     }
 }
