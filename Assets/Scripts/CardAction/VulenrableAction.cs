@@ -13,6 +13,9 @@ public class VulenrableAction : ActionBase
                     go.GetComponent<EnemyController>().GetVulenrable(card.vulnerable);
                 }
                 break;
+            case 35: case 36:
+                enemy.GetVulenrable(card.vulnerable);
+                break;
         }
     }
 }

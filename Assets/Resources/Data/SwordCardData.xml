@@ -158,24 +158,24 @@
       <action>AttackAction</action>
     </actions>
   </CardData>
-  <CardData ID="31" name="마무리 일격" description="이번 턴 사용한 카드 하나당 피해 8. 중독 2 부여." type ="Attack" rarity="Unique" target="Enemy" damage="14" mana="1" poisoning="2">
+  <CardData ID="31" name="마무리 일격" description="이번 턴 사용한 카드 하나당 피해 8. 중독 2 부여." type ="Attack" rarity="Unique" target="Enemy" damage="8" mana="1" poisoning="2">
     <actions>
       <action>AttackAction</action>
       <action>PoisonAction</action>
     </actions>
   </CardData>
-  <CardData ID="32" name="마무리 일격+" description="이번 턴 사용한 카드 하나당 피해 12. 중독 3 부여." type ="Attack" rarity="Unique" target="Enemy" damage="14" mana="1" poisoning="3">
+  <CardData ID="32" name="마무리 일격+" description="이번 턴 사용한 카드 하나당 피해 12. 중독 3 부여." type ="Attack" rarity="Unique" target="Enemy" damage="12" mana="1" poisoning="3">
     <actions>
       <action>AttackAction</action>
       <action>PoisonAction</action>
     </actions>
   </CardData>
-  <CardData ID="33" name="쥐어짜기" description="전체공격. 5만큼 x번 피해." type ="Attack" rarity="Unique" target="AllEnemy" damage="0" mana="99">
+  <CardData ID="33" name="쥐어짜기" description="전체공격. 5만큼 x번 피해." type ="Attack" rarity="Unique" target="AllEnemy" damage="5" mana="0">
     <actions>
       <action>AttackAction</action>
     </actions>
   </CardData>
-  <CardData ID="34" name="쥐어짜기+" description="전체공격. 8만큼 x번 피해." type ="Attack" rarity="Unique" target="AllEnemy" damage="0" mana="99">
+  <CardData ID="34" name="쥐어짜기+" description="전체공격. 8만큼 x번 피해." type ="Attack" rarity="Unique" target="AllEnemy" damage="8" mana="0">
     <actions>
       <action>AttackAction</action>
     </actions>
@@ -197,11 +197,13 @@
   <CardData ID="37" name="승부 굳히기" description="체력 2 소모. 피해 19. 중독 3 부여." type ="Attack" rarity="Unique" target="Enemy" damage="19" mana="1" poisoning="3">
     <actions>
       <action>AttackAction</action>
-    </actions>
+	  <action>PoisonAction</action>
+	</actions>
   </CardData>
   <CardData ID="38" name="승부 굳히기+" description="체력 2 소모. 피해 20. 중독 7 부여." type ="Attack" rarity="Unique" target="Enemy" damage="20" mana="1" poisoning="7">
     <actions>
       <action>AttackAction</action>
+	  <action>PoisonAction</action>
     </actions>
   </CardData>
   <CardData ID="39" name="이판사판" description="조건: 손에 가지고 있는 카드 1장 이상. 카드 한장을 버리고 피해 18. " type ="Attack" rarity="Unique" target="Enemy" damage="18" mana="1" condition ="HaveCardOneOver">

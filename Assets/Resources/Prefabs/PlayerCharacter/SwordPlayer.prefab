@@ -2595,6 +2595,7 @@ GameObject:
   - component: {fileID: 4495388727830604621}
   - component: {fileID: 346601673721372034}
   - component: {fileID: 6374467309508787983}
+  - component: {fileID: 2629400307434059255}
   m_Layer: 5
   m_Name: SwordPlayer
   m_TagString: Untagged
@@ -2645,7 +2646,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 2100000, guid: 979b62beb34930d498cc518f6d906f79, type: 2}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
@@ -2702,8 +2703,26 @@ MonoBehaviour:
   Poisoning: 0
   Shield: 0
   dePower: 0
+  infinitySword: 0
   _playerAnim: {fileID: 0}
   buffList: []
+  _battleScene: {fileID: 0}
+--- !u!114 &2629400307434059255
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8849442430046357180}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee158225ee1e59f4791627785501d950, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shaderTypes: 0
+  normalStrength: 5
+  normalSmoothing: 1
+  computingNormal: 0
 --- !u!1 &8891874412726725006
 GameObject:
   m_ObjectHideFlags: 0

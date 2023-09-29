@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class AttackAction : ActionBase
@@ -7,7 +8,7 @@ public class AttackAction : ActionBase
     public override void StartAction(PlayerController player, CardData card, EnemyController enemy = null) {
         int Damage = 0;
         switch (card.ID) {
-            case 1: case 2: case 3: case 4: case 5: case 6: case 7: case 8: case 13: case 14:case 15:case 16: case 23: case 24:
+            case 1: case 2: case 3: case 4: case 5: case 6: case 7: case 8: case 13: case 14:case 15:case 16: case 23: case 24: case 35: case 36:
                 Damage = card.damage + player.Power;
                 break;
             case 9: case 10:
@@ -21,17 +22,12 @@ public class AttackAction : ActionBase
                 break;
             case 17:
                 Damage = card.damage + player.Power;
-                for (int i = 0; i < 2; i++) {
-                    player.AttackEnemy(Damage, enemy);
-                }
-                break;
+                player._battleScene.ManyTimesAttack(player, 3, Damage, enemy);
+                return;
             case 18:
                 Damage = card.damage + player.Power;
-                for (int i = 0; i < 3; i++)
-                {
-                    player.AttackEnemy(Damage, enemy);
-                }
-                break;
+                player._battleScene.ManyTimesAttack(player, 4, Damage, enemy);
+                return;
             case 19: case 20:
                     //적이 공격의도라면  취약 1 부여 및 공격 만큼 데미지
                 break;
@@ -58,6 +54,17 @@ public class AttackAction : ActionBase
                 {
                     enemy.Shield = 0;
                 }
+                Damage = card.damage + player.Power;
+                break;
+            case 31: case 32:
+                Damage = player._battleScene._curTurnUseCard * card.damage + player.Power;
+                break;
+            case 33: case 34:
+                var num = player._battleScene._curMana;
+                player._battleScene.ManyTimesAttack(player, num, player.Power + card.damage, enemy);
+                return;
+            case 37: case 38:
+                player.Damaged(2);
                 Damage = card.damage + player.Power;
                 break;
         }

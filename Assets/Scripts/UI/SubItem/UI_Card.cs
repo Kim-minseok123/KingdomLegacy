@@ -27,6 +27,13 @@ public class UI_Card : UI_Base
         BindText(typeof(Texts));
         BindImage(typeof(Images));
 
+        Image uiImage = GetComponent<Image>();
+        uiImage.material = new Material(uiImage.material);
+        GetImage((int)Images.CardImage).material = uiImage.material;
+        GetImage((int)Images.CardBackGroundImage).material = uiImage.material;
+        GetImage((int)Images.DontUseCardImage).material = uiImage.material;
+        GetImage((int)Images.CardManaImage).material = uiImage.material;
+
         RefreshUI();
 
         return true;
@@ -37,16 +44,18 @@ public class UI_Card : UI_Base
 
         if(_cardData == null)
             return;
-        Image uiImage = GetComponent<Image>();
-        uiImage.material = new Material(uiImage.material);
 
         GetText((int)Texts.CardNameText).text = _cardData.name;
+        if (_cardData.ID == 33 || _cardData. ID == 34) { 
+            GetText((int)Texts.CardManaText).text = "x";
+        }
+        else
+        {
         GetText((int)Texts.CardManaText).text = _cardData.mana.ToString();
+
+        }
         GetText((int)Texts.CardContentsText).text = _cardData.description;
-        GetImage((int)Images.CardImage).material = uiImage.material;
-        GetImage((int)Images.CardBackGroundImage).material = uiImage.material;
-        GetImage((int)Images.DontUseCardImage).material = uiImage.material;
-        GetImage((int)Images.CardManaImage).material = uiImage.material;
+        
 
         if (_cardData.type == Define.CardType.Attack)
             GetImage((int)Images.CardBackGroundImage).sprite = Managers.Resource.Load<Sprite>("Sprites/Card/AttackCard");
@@ -67,7 +76,7 @@ public class UI_Card : UI_Base
         return this;
     }
     public void CheckManaUseCard(int curMana) {
-        if (_cardData.mana <= curMana)
+        if (_cardData.mana <= curMana && _cardData.cardCondition.isUsable())
             _isUseCard = true;
         else
             _isUseCard = false;

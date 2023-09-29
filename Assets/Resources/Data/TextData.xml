@@ -15,7 +15,7 @@
 	<TextData ID="20034" kor="To be Continue.." eng="" />
 	<TextData ID="20035" kor="To be Continue.." eng="" />
 	<TextData ID="20036" kor="약화.&lt;br&gt;[디버프]&lt;br&gt;공격 피해량이 25% 감소합니다." eng="" />
-	<TextData ID="20037" kor="취약.&lt;br&gt;[디버프]&lt;br&gt;받는 피해가 50% 증가합니다." eng="" />
+	<TextData ID="20037" kor="취약.&lt;br&gt;[디버프]&lt;br&gt;모든 받는 피해가 50% 증가합니다." eng="" />
 	<TextData ID="20038" kor="힘.&lt;br&gt;[버프]&lt;br&gt;공격 시 힘의 수치만큼&lt;br&gt;추가 피해를 입힙니다." eng="" />
 	<TextData ID="20039" kor="민첩.&lt;br&gt;[버프]&lt;br&gt;방어도 획득 시 수치만큼&lt;br&gt;추가 방어도를 획득합니다." eng="" />
 	<TextData ID="20040" kor="중독.&lt;br&gt;[디버프]&lt;br&gt;매 턴 시작 시 수치만큼&lt;br&gt;피해를 입습니다." eng="" />

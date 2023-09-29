@@ -19,6 +19,7 @@ public class GameData
     public string PlayerName;
     public int stageNumber;
     public int VulenrablePercent;
+    public bool isManaDisappear;
 }
 public class GameManager : MonoBehaviour
 {
@@ -34,6 +35,7 @@ public class GameManager : MonoBehaviour
     public string PlayerName { get { return _gameData.PlayerName; } set { _gameData.PlayerName = value; } }
     public int StageNumber { get { return _gameData.stageNumber; } set { _gameData.stageNumber = value; } }
     public int VulenrablePercent { get { return _gameData.VulenrablePercent; } set { _gameData.VulenrablePercent = value; } }
+    public bool isManaDisappear { get { return _gameData.isManaDisappear; } set { _gameData.isManaDisappear = value; } }
 
     public List<CardData> Cards { get {  return _gameData.cards; } set { _gameData.cards.AddRange(value);} }
     public int StartDrawCardNum { get {  return _gameData.startDrawCardNum;} set { _gameData.startDrawCardNum = value; } }
@@ -46,6 +48,7 @@ public class GameManager : MonoBehaviour
             Cards.Add(Managers.Data.Cards[1]);
         }
         Cards.Add(Managers.Data.Cards[3]);
+        //Cards.Add(Managers.Data.Cards[7]);
         for (int i = 0; i < 4; i++) {
             Cards.Add(Managers.Data.Cards[49]);
         }
@@ -57,6 +60,7 @@ public class GameManager : MonoBehaviour
         Money = 99;
         VulenrablePercent = 50;
         PlayerName = "";
+        isManaDisappear = false;
     }
     
     #region Save & Load	

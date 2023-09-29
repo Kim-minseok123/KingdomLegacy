@@ -4,6 +4,8 @@ using TMPro;
 using UnityEngine;
 using DG.Tweening;
 using System;
+using static UnityEngine.EventSystems.EventTrigger;
+using Unity.VisualScripting;
 
 public class UI_BattlePopup : UI_Popup
 {
@@ -77,7 +79,7 @@ public class UI_BattlePopup : UI_Popup
     public int _curTurn = 0;
     public int _curMana = 0;
     public int _maxMana = 0;
-
+    public int _curTurnUseCard = 0;
 
     //턴 시작 시 드로우 카드 수
     int _startDrawCardNum = 5;
@@ -179,10 +181,7 @@ public class UI_BattlePopup : UI_Popup
                 }
                 break;
             case States.TurnEnd:
-                if (!isDestoryCard)
-                {
-                    HandleCardsCircle();
-                }
+                HandleCardsCircle();
                 // 상대 턴 시작
                 break;
             case States.EnemyTurnStart:
@@ -295,9 +294,10 @@ public class UI_BattlePopup : UI_Popup
             _state = States.TurnEnd;
             GameEvents.OnTurnEnd();
             isDestoryCard = true;
-            _curMana = 0;
+            if(!Managers.Game.isManaDisappear)
+                _curMana = 0;
             StartCoroutine(CheckDestoryCard());
-
+            _curTurnUseCard = 0;
         }
 
     }
@@ -480,7 +480,7 @@ public class UI_BattlePopup : UI_Popup
             Managers.Resource.Destroy(_handCardsUI[i].gameObject);
             _handCardsUI[i] = null;
         }
-
+        _curTurnUseCard++;
         _handCardsUI.RemoveAll(ui => ui == null);
         RefreshUI();
         isUseCard = false;
@@ -497,5 +497,18 @@ public class UI_BattlePopup : UI_Popup
         _exitCards.Add(obj._cardData);
         GameEvents.OnExitCard();
         Managers.Resource.Destroy(obj.gameObject);
+    }
+    public void ManyTimesAttack(PlayerController player, int num, int Damage, EnemyController enemy = null)
+    {
+        StartCoroutine(ManyTimeAttack(player,num,Damage,enemy));
+    }
+    IEnumerator ManyTimeAttack(PlayerController player, int num, int Damage, EnemyController enemy = null) {
+        for (int i = 0; i < num; i++)
+        {
+            player.AttackEnemy(Damage, enemy);
+            player._battleScene._curMana--;
+            yield return new WaitForSeconds(0.5f);
+        }
+        yield break;
     }
 }

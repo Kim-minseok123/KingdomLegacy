@@ -1,6 +1,8 @@
 
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerController : UI_Base
 {
@@ -69,6 +71,34 @@ public class PlayerController : UI_Base
     public void Damaged(int value)
     {
         //Ã¼·Â ´â±â
+        if (Vulenerable > 0) value += (int)(value * (50 / 100f));
+        StartCoroutine(DamageMaterial());
+        Managers.Game.CurHp -= value;
+        if (Managers.Game.CurHp <= 0) { 
+            Managers.Game.CurHp = 0;
+            _playerAnim.SetTrigger("Death");
+        }
+        RefreshUI();
+    }
+    public IEnumerator DamageMaterial()
+    {
+        float value = 0f;
+        Material material = GetComponent<Image>().material;
+        //animator.SetTrigger("Stun");
+        material.EnableKeyword("HITEFFECT_ON");
+        while (value < 0.3f)
+        {
+            material.SetFloat("_HitEffectBlend", value);
+            value += 0.04f;
+            yield return null;
+        }
+        while (value > 0.01f)
+        {
+            material.SetFloat("_HitEffectBlend", value);
+            value -= 0.04f;
+            yield return null;
+        }
+        material.DisableKeyword("HITEFFECT_ON");
     }
     public void GetVulenrable(int value)
     {
