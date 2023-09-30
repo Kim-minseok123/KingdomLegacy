@@ -511,4 +511,12 @@ public class UI_BattlePopup : UI_Popup
         }
         yield break;
     }
+    public void ThrowCardSelect(int numofThrow, CardData card = null) {
+        Managers.UI.ShowPopupUI<UI_SelectCardPopup>().SetInfo(_handCardsUI,numofThrow, card);
+    }
+    public void ThrowCard(int i) {
+        var go = _handCardsUI[i].gameObject;
+        _handCardsUI.RemoveAt(i);
+        Managers.Resource.Destroy(go);  
+    }
 }

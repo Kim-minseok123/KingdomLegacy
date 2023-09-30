@@ -8,7 +8,7 @@ public class AttackAction : ActionBase
     public override void StartAction(PlayerController player, CardData card, EnemyController enemy = null) {
         int Damage = 0;
         switch (card.ID) {
-            case 1: case 2: case 3: case 4: case 5: case 6: case 7: case 8: case 13: case 14:case 15:case 16: case 23: case 24: case 35: case 36:
+            case 1: case 2: case 3: case 4: case 5: case 6: case 7: case 8: case 13: case 14:case 15:case 16: case 23: case 24: case 35: case 36: case 41: case 42: case 43: case 44: case 47: case 48:
                 Damage = card.damage + player.Power;
                 break;
             case 9: case 10:
@@ -65,6 +65,14 @@ public class AttackAction : ActionBase
                 return;
             case 37: case 38:
                 player.Damaged(2);
+                Damage = card.damage + player.Power;
+                break;
+            case 39: case 40:
+                //카드 한장 버리는거 구현
+                player._battleScene.ThrowCardSelect(1, card);
+                Damage = card.damage + player.Power;
+                break;
+            case 45: case 46:
                 Damage = card.damage + player.Power;
                 break;
         }

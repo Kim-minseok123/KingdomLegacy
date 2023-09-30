@@ -48,7 +48,9 @@ public class GameManager : MonoBehaviour
             Cards.Add(Managers.Data.Cards[1]);
         }
         Cards.Add(Managers.Data.Cards[3]);
-        //Cards.Add(Managers.Data.Cards[7]);
+        Cards.Add(Managers.Data.Cards[39]);
+        Cards.Add(Managers.Data.Cards[39]);
+
         for (int i = 0; i < 4; i++) {
             Cards.Add(Managers.Data.Cards[49]);
         }

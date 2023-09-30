@@ -206,12 +206,12 @@
 	  <action>PoisonAction</action>
     </actions>
   </CardData>
-  <CardData ID="39" name="이판사판" description="조건: 손에 가지고 있는 카드 1장 이상. 카드 한장을 버리고 피해 18. " type ="Attack" rarity="Unique" target="Enemy" damage="18" mana="1" condition ="HaveCardOneOver">
+  <CardData ID="39" name="이판사판" description="조건: 이 카드 이외 손에 가지고 있는 카드 1장 이상. 카드 한장을 버리고 피해 18. " type ="Attack" rarity="Unique" target="Enemy" damage="18" mana="1" condition ="HaveCardOneOver">
     <actions>
       <action>AttackAction</action>
     </actions>
   </CardData>
-  <CardData ID="40" name="이판사판+" description="조건: 손에 가지고 있는 카드 1장 이상. 카드 한장을 버리고 피해 25. " type ="Attack" rarity="Unique" target="Enemy" damage="25" mana="1" condition ="HaveCardOneOver">
+  <CardData ID="40" name="이판사판+" description="조건: 이 카드 이외 손에 가지고 있는 카드 1장 이상. 카드 한장을 버리고 피해 25. " type ="Attack" rarity="Unique" target="Enemy" damage="25" mana="1" condition ="HaveCardOneOver">
     <actions>
       <action>AttackAction</action>
     </actions>

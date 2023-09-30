@@ -28,7 +28,7 @@ public class HaveCardOneOver : ICardCondition {
         //카드를 한장 이상 손에 들고 있을 경우 사용가능
         if (battlePopup == null)
             battlePopup = Managers.UI.FindPopup<UI_BattlePopup>();
-        if (battlePopup._handCardsUI.Count >= 1)
+        if (battlePopup._handCardsUI.Count >= 2)
             return true;
         return false;
     }
