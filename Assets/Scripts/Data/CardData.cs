@@ -57,8 +57,15 @@ public class CardData : ICloneable
     [XmlIgnore]
     public ICardCondition cardCondition;
 
-    public int useCardNum = 0;
     public int OnlyCardnum = 0;
+    [XmlIgnore]
+    public string FormattedDescription
+    {
+        get
+        {
+            return string.Format(description, damage);
+        }
+    }
     public object Clone()
     {
         Random random = new Random();
@@ -80,7 +87,6 @@ public class CardData : ICloneable
             weakness = this.weakness,
             vulnerable = this.vulnerable,
             cardCondition = this.cardCondition,
-            useCardNum = this.useCardNum,
             actions = this.actions,
             getMana = this.getMana,
             state = this.state,

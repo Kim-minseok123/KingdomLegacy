@@ -382,7 +382,7 @@ public class UI_BattlePopup : UI_Popup
     public void DragCard(GameObject obj)
     {
         var card = obj.GetComponent<UI_Card>();
-        if (_state != States.Turning || isUseCard || !card._isUseCard)
+        if (_state != States.Turning || isUseCard || !card._isUseCard || card._cardData.ID == 128)
             return;
         isDraggingCard = true;
         Vector3 screenPoint = new Vector3(Input.mousePosition.x, Input.mousePosition.y, Camera.main.WorldToScreenPoint(obj.transform.position).z);
@@ -408,7 +408,7 @@ public class UI_BattlePopup : UI_Popup
     public void EndDragCard(GameObject obj)
     {
         var card = obj.GetComponent<UI_Card>();
-        if (_state != States.Turning || isUseCard || !card._isUseCard)
+        if (_state != States.Turning || isUseCard || !card._isUseCard || card._cardData.ID == 128)
             return;
         isDraggingCard = false;
         Vector3 screenPoint = new Vector3(Input.mousePosition.x, Input.mousePosition.y, Camera.main.WorldToScreenPoint(obj.transform.position).z);
@@ -478,7 +478,7 @@ public class UI_BattlePopup : UI_Popup
         int i = _handCardsUI.IndexOf(obj);
         if (i != -1)
         {
-            _handCardsUI[i]._cardData.useCardNum++;
+            
             if (obj._cardData.state == Define.CardLifeState.Extinction)
             {
                 _exitCards.Add(_handCardsUI[i]._cardData);
@@ -520,12 +520,61 @@ public class UI_BattlePopup : UI_Popup
         }
         yield break;
     }
-    public void ThrowCardSelect(int numofThrow, CardData card = null) {
-        Managers.UI.ShowPopupUI<UI_SelectCardPopup>().SetInfo(_handCardsUI,numofThrow, card);
+    public void ThrowCardSelect(int numofThrow, CardData card = null, PlayerController player = null, EnemyController enemy =null, int Damage = 0) {
+        Managers.UI.ShowPopupUI<UI_SelectCardPopup>().SetInfo(_handCardsUI, numofThrow, card, player, enemy, Damage);
     }
     public void ThrowCard(int i) {
         var go = _handCardsUI[i].gameObject;
         _handCardsUI.RemoveAt(i);
         Managers.Resource.Destroy(go);  
+    }
+    public void GetStress(int value) {
+        StartCoroutine(GenerateStressCards(value));
+    }
+    IEnumerator GenerateStressCards(int value)
+    {
+        for (int i = 0; i < value; i++)
+        {
+            StartCoroutine(StressAction());
+            yield return new WaitForSeconds(0.6f); // Wait for the card to move before generating the next
+        }
+    }
+    IEnumerator StressAction() {
+        var stresscard = Managers.UI.MakeSubItem<UI_Card>(transform).SetInfo(Managers.Data.Cards[128]);
+        yield return new WaitForSeconds(0.6f);
+
+        Vector3 target = GetButton((int)Buttons.ThrowDeckCard).gameObject.transform.position;
+        stresscard.transform.DOMove(target, 0.6f).SetEase(ease);
+        stresscard.transform.DOScale(Vector3.zero, 0.6f).SetEase(ease);
+        yield return new WaitForSeconds(0.6f);
+        _throwCards.Add(stresscard._cardData);
+        RefreshUI();
+    }
+    public void GetDizziness(int value)
+    {
+        StartCoroutine(GenerateDizzinessCards(value));
+    }
+
+    IEnumerator GenerateDizzinessCards(int value)
+    {
+        for (int i = 0; i < value; i++)
+        {
+            StartCoroutine(DizzinessAction());
+            yield return new WaitForSeconds(0.6f); // Wait for the card to move before generating the next
+        }
+    }
+
+    IEnumerator DizzinessAction() {
+        var Dizzinesscard = Managers.UI.MakeSubItem<UI_Card>(transform).SetInfo(Managers.Data.Cards[129]);
+
+        yield return new WaitForSeconds(0.6f);
+
+        Vector3 target = GetButton((int)Buttons.DrawDeckCard).gameObject.transform.position;
+        Dizzinesscard.transform.DOMove(target, 0.6f).SetEase(ease);
+        Dizzinesscard.transform.DOScale(Vector3.zero, 0.6f).SetEase(ease);
+        yield return new WaitForSeconds(0.6f);
+        _drawCards.Add(Dizzinesscard._cardData);
+        RefreshUI();
+
     }
 }

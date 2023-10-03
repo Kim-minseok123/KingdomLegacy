@@ -6,6 +6,12 @@ public class StressAction : ActionBase
 {
     public override void StartAction(PlayerController player, CardData card, EnemyController enemy = null)
     {
-
+        switch (card.ID)
+        {
+            case 43:
+            case 44:
+                player._battleScene.GetStress(card.disturbance);
+                break;
+        }
     }
 }

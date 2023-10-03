@@ -54,7 +54,7 @@ public class UI_Card : UI_Base
         GetText((int)Texts.CardManaText).text = _cardData.mana.ToString();
 
         }
-        GetText((int)Texts.CardContentsText).text = _cardData.description;
+        GetText((int)Texts.CardContentsText).text = _cardData.FormattedDescription;
         
 
         if (_cardData.type == Define.CardType.Attack)

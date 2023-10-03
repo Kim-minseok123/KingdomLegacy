@@ -1904,6 +1904,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 50012c9595b016043832de826ff11b65, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _handCardsUI: []
   selectionSpacing: 1
   curveStart: {x: -500, y: -550, z: 0}
   curveMiddle: {x: 0, y: -400, z: 0}
@@ -1911,6 +1912,7 @@ MonoBehaviour:
   _curTurn: 0
   _curMana: 0
   _maxMana: 0
+  _curTurnUseCard: 0
   _playerController: {fileID: 0}
   _enemyList: []
   _curEnemy: {fileID: 0}

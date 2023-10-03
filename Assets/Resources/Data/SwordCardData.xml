@@ -1,43 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ArrayOfStatData xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <CardData ID="1" name="낡은 검" description="피해 6." type ="Attack" rarity="Normal" target="Enemy" damage="6" mana="1">
+  <CardData ID="1" name="낡은 검" description="피해 {0}." type ="Attack" rarity="Normal" target="Enemy" damage="6" mana="1">
     <actions>
       <action>AttackAction</action>
     </actions>
   </CardData>
-  <CardData ID="2" name="낡은 검+" description="피해 9." type ="Attack" rarity="Normal" target="Enemy" damage="9" mana="1">
+  <CardData ID="2" name="낡은 검+" description="피해 {0}." type ="Attack" rarity="Normal" target="Enemy" damage="9" mana="1">
     <actions>
       <action>AttackAction</action>
     </actions>
   </CardData>
-  <CardData ID="3" name="발 구르기" description="전체공격. 피해 4. 취약 1 부여." type ="Attack" rarity="Normal" target="AllEnemy" damage="4" mana="1" vulnerable="1">
-    <actions>
-      <action>AttackAction</action>
-      <action>VulnerableAction</action>
-    </actions>
-  </CardData>
-  <CardData ID="4" name="발 구르기+" description="전체공격. 피해 7. 취약 1 부여." type ="Attack" rarity="Normal" target="AllEnemy" damage="7" mana="1" vulnerable="1">
+  <CardData ID="3" name="발 구르기" description="전체공격. 피해 {0}. 취약 1 부여." type ="Attack" rarity="Normal" target="AllEnemy" damage="4" mana="1" vulnerable="1">
     <actions>
       <action>AttackAction</action>
       <action>VulnerableAction</action>
     </actions>
   </CardData>
-  <CardData ID="5" name="검기" description="전체공격. 피해 8." type ="Attack" rarity="Normal" target="AllEnemy" damage="8" mana="1">
+  <CardData ID="4" name="발 구르기+" description="전체공격. 피해 {0}. 취약 1 부여." type ="Attack" rarity="Normal" target="AllEnemy" damage="7" mana="1" vulnerable="1">
+    <actions>
+      <action>AttackAction</action>
+      <action>VulnerableAction</action>
+    </actions>
+  </CardData>
+  <CardData ID="5" name="검기" description="전체공격. 피해 {0}." type ="Attack" rarity="Normal" target="AllEnemy" damage="8" mana="1">
     <actions>
       <action>AttackAction</action>
     </actions>
   </CardData>
-  <CardData ID="6" name="검기+" description="전체공격. 피해 11." type ="Attack" rarity="Normal" target="AllEnemy" damage="11" mana="1">
+  <CardData ID="6" name="검기+" description="전체공격. 피해 {0}." type ="Attack" rarity="Normal" target="AllEnemy" damage="11" mana="1">
     <actions>
       <action>AttackAction</action>
     </actions>
   </CardData>
-  <CardData ID="7" name="한방 찌르기" description="조건 : 이번턴 사용 카드 3장 이상. 피해 10." type ="Attack" rarity="Normal" target="Enemy" damage="10"  mana="0" condition="UsedCardThreeOver">
+  <CardData ID="7" name="한방 찌르기" description="조건 : 이번턴 사용 카드 3장 이상. 피해 {0}." type ="Attack" rarity="Normal" target="Enemy" damage="10"  mana="0" condition="UsedCardThreeOver">
     <actions>
       <action>AttackAction</action>
     </actions>
   </CardData>
-  <CardData ID="8" name="한방 찌르기+" description="조건 : 이번턴 사용 카드 3장 이상. 피해 14." type ="Attack" rarity="Normal" target="Enemy" damage="14" mana="0" condition="UsedCardThreeOver">
+  <CardData ID="8" name="한방 찌르기+" description="조건 : 이번턴 사용 카드 3장 이상. 피해 {0}." type ="Attack" rarity="Normal" target="Enemy" damage="14" mana="0" condition="UsedCardThreeOver">
     <actions>
       <action>AttackAction</action>
     </actions>
@@ -52,48 +52,48 @@
       <action>AttackAction</action>
     </actions>
   </CardData>
-  <CardData ID="11" name="몰락 기사단" description="피해 10. 힘 효과 2배 적용." type ="Attack" rarity="Rare" target="Enemy" damage="10" mana="2" attackDiff="2">
+  <CardData ID="11" name="몰락 기사단" description="피해 {0}. 힘 효과 2배 적용." type ="Attack" rarity="Rare" target="Enemy" damage="10" mana="2" attackDiff="2">
     <actions>
       <action>AttackAction</action>
     </actions>
   </CardData>
-  <CardData ID="12" name="몰락 기사단+" description="피해 10. 힘 효과 5배 적용." type ="Attack" rarity="Rare" target="Enemy" damage="10" mana="2" attackDiff="5">
+  <CardData ID="12" name="몰락 기사단+" description="피해 {0}. 힘 효과 5배 적용." type ="Attack" rarity="Rare" target="Enemy" damage="10" mana="2" attackDiff="5">
     <actions>
       <action>AttackAction</action>
     </actions>
   </CardData>
-  <CardData ID="13" name="칼춤" description="피해 9. 드로우 1." type ="Attack" rarity="Rare" target="Enemy" damage="9" mana="1" drawCard="1">
-    <actions>
-      <action>AttackAction</action>
-      <action>DrawAction</action>
-    </actions>
-  </CardData>
-  <CardData ID="14" name="칼춤+" description="피해 12. 드로우 2." type ="Attack" rarity="Rare" target="Enemy" damage="12" mana="1" drawCard="2">
+  <CardData ID="13" name="칼춤" description="피해 {0}. 드로우 1." type ="Attack" rarity="Rare" target="Enemy" damage="9" mana="1" drawCard="1">
     <actions>
       <action>AttackAction</action>
       <action>DrawAction</action>
     </actions>
   </CardData>
-  <CardData ID="15" name="약점 파악" description="피해 1. 드로우 1. 적이 취약 상태라면 텐션 2 획득. " type ="Attack" rarity="Rare" target="Enemy" damage="1" mana="1" drawCard="1" getMana="2">
+  <CardData ID="14" name="칼춤+" description="피해 {0}. 드로우 2." type ="Attack" rarity="Rare" target="Enemy" damage="12" mana="1" drawCard="2">
     <actions>
       <action>AttackAction</action>
       <action>DrawAction</action>
-      <action>GetManaAction</action>
     </actions>
   </CardData>
-  <CardData ID="16" name="약점 파악+" description="피해 8. 드로우 1. 적이 취약 상태라면 텐션 2 획득." type ="Attack" rarity="Rare" target="Enemy" damage="8" mana="1" drawCard="1" getMana="2">
+  <CardData ID="15" name="약점 파악" description="피해 {0}. 드로우 1. 적이 취약 상태라면 텐션 2 획득. " type ="Attack" rarity="Rare" target="Enemy" damage="1" mana="1" drawCard="1" getMana="2">
     <actions>
       <action>AttackAction</action>
       <action>DrawAction</action>
       <action>GetManaAction</action>
     </actions>
   </CardData>
-  <CardData ID="17" name="베어가르기" description="소멸. 1만큼 3번 피해." type ="Attack" rarity="Rare" target="Enemy" damage="1" mana="1" state="Extinction" attackNum="3">
+  <CardData ID="16" name="약점 파악+" description="피해 {0}. 드로우 1. 적이 취약 상태라면 텐션 2 획득." type ="Attack" rarity="Rare" target="Enemy" damage="8" mana="1" drawCard="1" getMana="2">
+    <actions>
+      <action>AttackAction</action>
+      <action>DrawAction</action>
+      <action>GetManaAction</action>
+    </actions>
+  </CardData>
+  <CardData ID="17" name="베어가르기" description="소멸. {0}만큼 3번 피해." type ="Attack" rarity="Rare" target="Enemy" damage="1" mana="1" state="Extinction" attackNum="3">
     <actions>
       <action>AttackAction</action>
     </actions>
   </CardData>
-  <CardData ID="18" name="베어가르기+" description="소멸. 1만큼 4번 피해." type ="Attack" rarity="Rare" target="Enemy" damage="8" mana="1" state="Extinction" attackNum="4">
+  <CardData ID="18" name="베어가르기+" description="소멸. {0}만큼 4번 피해." type ="Attack" rarity="Rare" target="Enemy" damage="8" mana="1" state="Extinction" attackNum="4">
     <actions>
       <action>AttackAction</action>
     </actions>
@@ -118,143 +118,143 @@
       <action>AttackAction</action>
     </actions>
   </CardData>
-  <CardData ID="23" name="참기" description="보존. 피해 7. 보존 될 때마다 피해 5 증가." type ="Attack" rarity="Rare" target="Enemy" damage="7" mana="1" state="Preservation" attackDiff="5">
+  <CardData ID="23" name="참기" description="보존. 피해 {0}. 보존 될 때마다 피해 5 증가." type ="Attack" rarity="Rare" target="Enemy" damage="7" mana="1" state="Preservation" attackDiff="5">
     <actions>
       <action>AttackAction</action>
     </actions>
   </CardData>
-  <CardData ID="24" name="참기+" description="보존. 피해 10. 보존 될 때마다 피해 8 증가." type ="Attack" rarity="Rare" target="Enemy" damage="10" mana="1" state="Preservation" attackDiff="8">
+  <CardData ID="24" name="참기+" description="보존. 피해 {0}. 보존 될 때마다 피해 8 증가." type ="Attack" rarity="Rare" target="Enemy" damage="10" mana="1" state="Preservation" attackDiff="8">
     <actions>
       <action>AttackAction</action>
     </actions>
   </CardData>
-  <CardData ID="25" name="흡수" description="소멸. 피해 6. 흡혈. 힘 효과 0.5배 적용." type ="Attack" rarity="Rare" target="Enemy" damage="6" mana="2" state="Extinction" attackDiff="0.5">
+  <CardData ID="25" name="흡수" description="소멸. 피해 {0}. 흡혈. 힘 효과 0.5배 적용." type ="Attack" rarity="Rare" target="Enemy" damage="6" mana="2" state="Extinction" attackDiff="0.5">
     <actions>
       <action>AttackAction</action>
     </actions>
   </CardData>
-  <CardData ID="26" name="흡수+" description="소멸. 피해 8. 흡혈. 힘 효과 0.5배 적용." type ="Attack" rarity="Rare" target="Enemy" damage="8" mana="1" state="Extinction" attackDiff="0.5">
+  <CardData ID="26" name="흡수+" description="소멸. 피해 {0}. 흡혈. 힘 효과 0.5배 적용." type ="Attack" rarity="Rare" target="Enemy" damage="8" mana="1" state="Extinction" attackDiff="0.5">
     <actions>
       <action>AttackAction</action>
     </actions>
   </CardData>
-  <CardData ID="27" name="죽기살기" description="전체공격. 손에 있는 공격 카드를 제외한 카드 모두 소멸. 피해 12." type ="Attack" rarity="Rare" target="AllEnemy" damage="12" mana="1">
+  <CardData ID="27" name="죽기살기" description="전체공격. 손에 있는 공격 카드를 제외한 카드 모두 소멸. 피해 {0}." type ="Attack" rarity="Rare" target="AllEnemy" damage="12" mana="1">
     <actions>
       <action>AttackAction</action>
     </actions>
   </CardData>
-  <CardData ID="28" name="죽기살기+" description="전체공격. 손에 있는 공격 카드를 제외한 카드 모두 소멸. 피해 18." type ="Attack" rarity="Rare" target="AllEnemy" damage="18" mana="1">
+  <CardData ID="28" name="죽기살기+" description="전체공격. 손에 있는 공격 카드를 제외한 카드 모두 소멸. 피해 {0}." type ="Attack" rarity="Rare" target="AllEnemy" damage="18" mana="1">
     <actions>
       <action>AttackAction</action>
     </actions>
   </CardData>
-  <CardData ID="29" name="깨드리다" description="적 방어도 제거. 피해 10." type ="Attack" rarity="Unique" target="Enemy" damage="10" mana="1">
+  <CardData ID="29" name="깨드리다" description="적 방어도 제거. 피해 {0}." type ="Attack" rarity="Unique" target="Enemy" damage="10" mana="1">
     <actions>
       <action>AttackAction</action>
     </actions>
   </CardData>
-  <CardData ID="30" name="깨드리다+" description="적 방어도 제거. 피해 14." type ="Attack" rarity="Unique" target="Enemy" damage="14" mana="1">
+  <CardData ID="30" name="깨드리다+" description="적 방어도 제거. 피해 {0}." type ="Attack" rarity="Unique" target="Enemy" damage="14" mana="1">
     <actions>
       <action>AttackAction</action>
     </actions>
   </CardData>
-  <CardData ID="31" name="마무리 일격" description="이번 턴 사용한 카드 하나당 피해 8. 중독 2 부여." type ="Attack" rarity="Unique" target="Enemy" damage="8" mana="1" poisoning="2">
-    <actions>
-      <action>AttackAction</action>
-      <action>PoisonAction</action>
-    </actions>
-  </CardData>
-  <CardData ID="32" name="마무리 일격+" description="이번 턴 사용한 카드 하나당 피해 12. 중독 3 부여." type ="Attack" rarity="Unique" target="Enemy" damage="12" mana="1" poisoning="3">
+  <CardData ID="31" name="마무리 일격" description="이번 턴 사용한 카드 하나당 피해 {0}. 중독 2 부여." type ="Attack" rarity="Unique" target="Enemy" damage="8" mana="1" poisoning="2">
     <actions>
       <action>AttackAction</action>
       <action>PoisonAction</action>
     </actions>
   </CardData>
-  <CardData ID="33" name="쥐어짜기" description="전체공격. 5만큼 x번 피해." type ="Attack" rarity="Unique" target="AllEnemy" damage="5" mana="0">
+  <CardData ID="32" name="마무리 일격+" description="이번 턴 사용한 카드 하나당 피해 {0}. 중독 3 부여." type ="Attack" rarity="Unique" target="Enemy" damage="12" mana="1" poisoning="3">
+    <actions>
+      <action>AttackAction</action>
+      <action>PoisonAction</action>
+    </actions>
+  </CardData>
+  <CardData ID="33" name="쥐어짜기" description="전체공격. {0}만큼 x번 피해." type ="Attack" rarity="Unique" target="AllEnemy" damage="5" mana="0">
     <actions>
       <action>AttackAction</action>
     </actions>
   </CardData>
-  <CardData ID="34" name="쥐어짜기+" description="전체공격. 8만큼 x번 피해." type ="Attack" rarity="Unique" target="AllEnemy" damage="8" mana="0">
+  <CardData ID="34" name="쥐어짜기+" description="전체공격. {0}만큼 x번 피해." type ="Attack" rarity="Unique" target="AllEnemy" damage="8" mana="0">
     <actions>
       <action>AttackAction</action>
     </actions>
   </CardData>
-  <CardData ID="35" name="성스러운 칼" description="피해 15. 취약 2, 약화 2 부여." type ="Attack" rarity="Unique" target="Enemy" damage="15" mana="1" vulnerable="2" weakness="2">
+  <CardData ID="35" name="성스러운 칼" description="피해 {0}. 취약 2, 약화 2 부여." type ="Attack" rarity="Unique" target="Enemy" damage="15" mana="1" vulnerable="2" weakness="2">
     <actions>
       <action>AttackAction</action>
       <action>VulnerableAction</action>
       <action>WeaknessAction</action>
     </actions>
   </CardData>
-  <CardData ID="36" name="성스러운 칼+" description="피해 15. 취약 3, 약화 3 부여." type ="Attack" rarity="Unique" target="Enemy" damage="15" mana="1" vulnerable="3" weakness="3">
+  <CardData ID="36" name="성스러운 칼+" description="피해 {0}. 취약 3, 약화 3 부여." type ="Attack" rarity="Unique" target="Enemy" damage="15" mana="1" vulnerable="3" weakness="3">
     <actions>
       <action>AttackAction</action>
       <action>VulnerableAction</action>
       <action>WeaknessAction</action>
     </actions>
   </CardData>
-  <CardData ID="37" name="승부 굳히기" description="체력 2 소모. 피해 19. 중독 3 부여." type ="Attack" rarity="Unique" target="Enemy" damage="19" mana="1" poisoning="3">
+  <CardData ID="37" name="승부 굳히기" description="체력 2 소모. 피해 {0}. 중독 3 부여." type ="Attack" rarity="Unique" target="Enemy" damage="19" mana="1" poisoning="3">
     <actions>
       <action>AttackAction</action>
 	  <action>PoisonAction</action>
 	</actions>
   </CardData>
-  <CardData ID="38" name="승부 굳히기+" description="체력 2 소모. 피해 20. 중독 7 부여." type ="Attack" rarity="Unique" target="Enemy" damage="20" mana="1" poisoning="7">
+  <CardData ID="38" name="승부 굳히기+" description="체력 2 소모. 피해 {0}. 중독 7 부여." type ="Attack" rarity="Unique" target="Enemy" damage="20" mana="1" poisoning="7">
     <actions>
       <action>AttackAction</action>
 	  <action>PoisonAction</action>
     </actions>
   </CardData>
-  <CardData ID="39" name="이판사판" description="조건: 이 카드 이외 손에 가지고 있는 카드 1장 이상. 카드 한장을 버리고 피해 18. " type ="Attack" rarity="Unique" target="Enemy" damage="18" mana="1" condition ="HaveCardOneOver">
+  <CardData ID="39" name="이판사판" description="조건: 이 카드 이외 손에 가지고 있는 카드 1장 이상. 카드 한장을 버리고 피해 {0}. " type ="Attack" rarity="Unique" target="Enemy" damage="18" mana="1" condition ="HaveCardOneOver">
     <actions>
       <action>AttackAction</action>
     </actions>
   </CardData>
-  <CardData ID="40" name="이판사판+" description="조건: 이 카드 이외 손에 가지고 있는 카드 1장 이상. 카드 한장을 버리고 피해 25. " type ="Attack" rarity="Unique" target="Enemy" damage="25" mana="1" condition ="HaveCardOneOver">
+  <CardData ID="40" name="이판사판+" description="조건: 이 카드 이외 손에 가지고 있는 카드 1장 이상. 카드 한장을 버리고 피해 {0}. " type ="Attack" rarity="Unique" target="Enemy" damage="25" mana="1" condition ="HaveCardOneOver">
     <actions>
       <action>AttackAction</action>
     </actions>
   </CardData>
-  <CardData ID="41" name="기습" description="피해 42." type ="Attack" rarity="Legend" target="Enemy" damage="42" mana="3">
+  <CardData ID="41" name="기습" description="피해 {0}." type ="Attack" rarity="Legend" target="Enemy" damage="42" mana="3">
     <actions>
       <action>AttackAction</action>
     </actions>
   </CardData>
-  <CardData ID="42" name="기습+" description="피해 52." type ="Attack" rarity="Legend" target="Enemy" damage="52" mana="3">
+  <CardData ID="42" name="기습+" description="피해 {0}." type ="Attack" rarity="Legend" target="Enemy" damage="52" mana="3">
     <actions>
       <action>AttackAction</action>
     </actions>
   </CardData>
-  <CardData ID="43" name="묵사발" description="전체공격. 버린 카드 더미에 스트레스 카드 추가. 피해 25." type ="Attack" rarity="Legend" target="AllEnemy" damage="25" mana="2" disturbance="1">
-    <actions>
-      <action>AttackAction</action>
-      <action>StressAction</action>
-    </actions>
-  </CardData>
-  <CardData ID="44" name="묵사발+" description="전체공격. 버린 카드 더미에 스트레스 카드 추가. 피해 32." type ="Attack" rarity="Legend" target="AllEnemy" damage="32" mana="2" disturbance="1">
+  <CardData ID="43" name="묵사발" description="전체공격. 버린 카드 더미에 스트레스 카드 추가. 피해 {0}." type ="Attack" rarity="Legend" target="AllEnemy" damage="25" mana="2" disturbance="1">
     <actions>
       <action>AttackAction</action>
       <action>StressAction</action>
     </actions>
   </CardData>
-  <CardData ID="45" name="연속 베기" description="전체공격. 피해 10. 이번 전투동안 이 카드 피해량 8 증가." type ="Attack" rarity="Legend" target="AllEnemy" damage="10" mana="1" attackDiff="8">
+  <CardData ID="44" name="묵사발+" description="전체공격. 버린 카드 더미에 스트레스 카드 추가. 피해 {0}." type ="Attack" rarity="Legend" target="AllEnemy" damage="32" mana="2" disturbance="1">
+    <actions>
+      <action>AttackAction</action>
+      <action>StressAction</action>
+    </actions>
+  </CardData>
+  <CardData ID="45" name="연속 베기" description="전체공격. 피해 {0}. 이번 전투동안 이 카드 피해량 8 증가." type ="Attack" rarity="Legend" target="AllEnemy" damage="10" mana="1" attackDiff="8">
     <actions>
       <action>AttackAction</action>
     </actions>
   </CardData>
-  <CardData ID="46" name="연속 베기+" description="전체공격. 피해 10. 이번 전투동안 이 카드 피해량 12 증가." type ="Attack" rarity="Legend" target="AllEnemy" damage="10" mana="1" attackDiff="12">
+  <CardData ID="46" name="연속 베기+" description="전체공격. 피해 {0}. 이번 전투동안 이 카드 피해량 12 증가." type ="Attack" rarity="Legend" target="AllEnemy" damage="10" mana="1" attackDiff="12">
     <actions>
       <action>AttackAction</action>
     </actions>
   </CardData>
-  <CardData ID="47" name="포효" description="전체공격. 피해 25. 뽑을 카드 더미에 어지러움 카드 2장 추가." type ="Attack" rarity="Legend" target="AllEnemy" damage="25" mana="1" disturbance="2">
+  <CardData ID="47" name="포효" description="전체공격. 피해 {0}. 뽑을 카드 더미에 어지러움 카드 2장 추가." type ="Attack" rarity="Legend" target="AllEnemy" damage="25" mana="1" disturbance="2">
     <actions>
       <action>AttackAction</action>
       <action>DizzinessAction</action>
     </actions>
   </CardData>
-  <CardData ID="48" name="포효+" description="전체공격. 피해 35. 뽑을 카드 더미에 어지러움 카드 2장 추가." type ="Attack" rarity="Legend" target="AllEnemy" damage="35" mana="1" disturbance="2">
+  <CardData ID="48" name="포효+" description="전체공격. 피해 {0}. 뽑을 카드 더미에 어지러움 카드 2장 추가." type ="Attack" rarity="Legend" target="AllEnemy" damage="35" mana="1" disturbance="2">
     <actions>
       <action>AttackAction</action>
       <action>DizzinessAction</action>
@@ -663,7 +663,7 @@
       <action>AttackAction</action>
     </actions>
   </CardData>
-    <CardData ID="128" name="스트레스" description="사용 불가." type ="Skill" rarity="Normal" target="AllEnemy" mana="1"  damage ="0">
+    <CardData ID="128" name="스트레스" description="사용 불가." type ="Attack" rarity="Normal" target="AllEnemy" mana="0"  damage ="0">
 		<actions>
 		</actions>
 	</CardData>

@@ -16,6 +16,9 @@ public class UI_SelectCardPopup : UI_Popup
     public int numofThrow = 0;
     public CardData useCard;
     public GameObject selectCard = null;
+    PlayerController player;
+    EnemyController enemy;
+    int Damage;
     public override bool Init()
     {
         if(base.Init() == false)
@@ -38,10 +41,13 @@ public class UI_SelectCardPopup : UI_Popup
     public void RefreshUI() { 
         
     }
-    public void SetInfo(List<UI_Card> cards, int numofThrow, CardData useCard = null) {
+    public void SetInfo(List<UI_Card> cards, int numofThrow, CardData useCard = null, PlayerController player = null, EnemyController enemy = null, int Damage = 0) {
         this.cards = cards;
         this.numofThrow = numofThrow;
         this.useCard = useCard;
+        this.player = player;
+        this.enemy = enemy;
+        this.Damage = Damage;
         cardList.Clear();
     }
     public void SelectCardButton() {
@@ -49,6 +55,7 @@ public class UI_SelectCardPopup : UI_Popup
         int i = cardList.IndexOf(selectCard);
 
         Managers.UI.FindPopup<UI_BattlePopup>().ThrowCard(i);
+        player.AttackEnemy(Damage, enemy);
         Managers.UI.ClosePopupUI();
     }
     public void SelectCard(GameObject go) { 

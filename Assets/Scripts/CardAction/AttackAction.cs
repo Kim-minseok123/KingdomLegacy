@@ -69,14 +69,16 @@ public class AttackAction : ActionBase
                 break;
             case 39: case 40:
                 //카드 한장 버리는거 구현
-                player._battleScene.ThrowCardSelect(1, card);
                 Damage = card.damage + player.Power;
-                break;
+                player._battleScene.ThrowCardSelect(1, card, player,enemy, Damage);
+                return;
             case 45:
-                Damage = (card.damage + card.useCardNum * 8) + player.Power;
+                Damage = card.damage + player.Power;
+                card.damage += 8;
                 break;
             case 46:
-                Damage = (card.damage + card.useCardNum * 12) + player.Power;
+                Damage = card.damage  + player.Power;
+                card.damage += 12;
                 break;
         }
 
