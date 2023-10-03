@@ -67,11 +67,8 @@ public class UI_Card : UI_Base
         //GetImage((int)Images.CardImage).sprite = Managers.Resource.Load<Sprite>($"Sprites/Card/{_cardData.ID}");
 
     }
-    public UI_Card SetInfo(int id) {
-        if (Managers.Data.Cards.TryGetValue(id, out _cardData) == false) {
-            Debug.Log($"Faild Load Card Data. Card id is {id}");
-            return null;
-        }
+    public UI_Card SetInfo(CardData id) {
+        _cardData = (CardData)id.Clone();
         RefreshUI();
         return this;
     }

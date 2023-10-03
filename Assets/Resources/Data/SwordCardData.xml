@@ -663,4 +663,13 @@
       <action>AttackAction</action>
     </actions>
   </CardData>
+    <CardData ID="128" name="스트레스" description="사용 불가." type ="Skill" rarity="Normal" target="AllEnemy" mana="1"  damage ="0">
+		<actions>
+		</actions>
+	</CardData>
+	<CardData ID="129" name="어지러움" description="소멸." type ="Skill" rarity="Normal" target="AllEnemy" mana="1" state="Extinction" damage ="0">
+	    <actions>
+	    </actions>
+    </CardData>
+	
 </ArrayOfStatData>

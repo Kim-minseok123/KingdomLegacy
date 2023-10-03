@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Xml.Serialization;
 using static Define;
 
-public class CardData
+public class CardData : ICloneable
 {
     [XmlAttribute]
     public int ID;
@@ -56,6 +56,42 @@ public class CardData
 
     [XmlIgnore]
     public ICardCondition cardCondition;
+
+    public int useCardNum = 0;
+    public int OnlyCardnum = 0;
+    public object Clone()
+    {
+        Random random = new Random();
+
+        return new CardData
+        {
+            ID = this.ID,
+            name = this.name,
+            description = this.description,
+            target = this.target,
+            type = this.type,
+            rarity = this.rarity,
+            damage = this.damage,
+            shield = this.shield,
+            mana = this.mana,
+            drawCard = this.drawCard,
+            increaseAgility = this.increaseAgility,
+            increasePower = this.increasePower,
+            weakness = this.weakness,
+            vulnerable = this.vulnerable,
+            cardCondition = this.cardCondition,
+            useCardNum = this.useCardNum,
+            actions = this.actions,
+            getMana = this.getMana,
+            state = this.state,
+            attackNum = this.attackNum,
+            attackDiff = this.attackDiff,
+            condition = this.condition,
+            poisoning = this.poisoning,
+            disturbance = this.disturbance,
+            OnlyCardnum = random.Next(0, 10000),
+        };
+    }
     public void Upgrade() {
         damage += (int)attackDiff;
     }

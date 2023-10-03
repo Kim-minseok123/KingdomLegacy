@@ -25,8 +25,8 @@ public class UI_SelectCardPopup : UI_Popup
         BindObject(typeof(GameObjects));
 
         for (int i = 0; i < cards.Count; i++) {
-            if (cards[i]._cardData == useCard) continue;
-            var card = Managers.UI.MakeSubItem<UI_Card>(GetObject((int)GameObjects.CardContent).transform).SetInfo(cards[i]._cardData.ID);
+            if (cards[i]._cardData.OnlyCardnum == useCard.OnlyCardnum) continue;
+            var card = Managers.UI.MakeSubItem<UI_Card>(GetObject((int)GameObjects.CardContent).transform).SetInfo(cards[i]._cardData);
             //ÅøÆÁ Ãß°¡
             cardList.Add(card.gameObject);
             card.gameObject.BindEvent(() => { SelectCard(card.gameObject); });

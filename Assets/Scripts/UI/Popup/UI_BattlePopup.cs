@@ -143,7 +143,15 @@ public class UI_BattlePopup : UI_Popup
         //스테이지, 체력, 카드 등 값 넘겨줘야함
         _maxMana = Managers.Game.Mana;
         _drawCards.Clear();
-        _drawCards = Managers.Game.Cards;
+        foreach (CardData cardData in Managers.Game.Cards)
+        {
+            int id = cardData.ID;
+            if (Managers.Data.Cards.TryGetValue(id, out CardData card) == false)
+            {
+                Debug.Log($"Faild Load Card Data. Card id is {id}");
+            }
+            _drawCards.Add(card);
+        }
         _startDrawCardNum = Managers.Game.StartDrawCardNum;
         _drawCards.Shuffle();
         _handCardsUI.Clear();
@@ -225,7 +233,7 @@ public class UI_BattlePopup : UI_Popup
     }
     public void DrawCards(CardData cardData)
     {
-        var NewCardUI = Managers.UI.MakeSubItem<UI_Card>(GetObject((int)GameObjects.CardList).transform).SetInfo(cardData.ID);
+        var NewCardUI = Managers.UI.MakeSubItem<UI_Card>(GetObject((int)GameObjects.CardList).transform).SetInfo(cardData);
         NewCardUI.gameObject.BindEvent((obj) => PointEnterSelectCard(obj), Define.UIEvent.PointerEnter);
         NewCardUI.gameObject.BindEvent(PointExitCard, Define.UIEvent.PointerExit);
         NewCardUI.gameObject.BindEvent((obj) => DragCard(obj), Define.UIEvent.Drag);
@@ -470,6 +478,7 @@ public class UI_BattlePopup : UI_Popup
         int i = _handCardsUI.IndexOf(obj);
         if (i != -1)
         {
+            _handCardsUI[i]._cardData.useCardNum++;
             if (obj._cardData.state == Define.CardLifeState.Extinction)
             {
                 _exitCards.Add(_handCardsUI[i]._cardData);

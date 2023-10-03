@@ -72,8 +72,11 @@ public class AttackAction : ActionBase
                 player._battleScene.ThrowCardSelect(1, card);
                 Damage = card.damage + player.Power;
                 break;
-            case 45: case 46:
-                Damage = card.damage + player.Power;
+            case 45:
+                Damage = (card.damage + card.useCardNum * 8) + player.Power;
+                break;
+            case 46:
+                Damage = (card.damage + card.useCardNum * 12) + player.Power;
                 break;
         }
 

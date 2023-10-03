@@ -145,8 +145,8 @@ Material:
     - _HsvBright: 1
     - _HsvSaturation: 1
     - _HsvShift: 180
-    - _InnerOutlineAlpha: 1
-    - _InnerOutlineGlow: 4
+    - _InnerOutlineAlpha: 0.81
+    - _InnerOutlineGlow: 1
     - _InnerOutlineThickness: 1
     - _MaxXUV: 1
     - _MaxYUV: 1
@@ -156,7 +156,7 @@ Material:
     - _MotionBlurDist: 1.25
     - _MyDstMode: 10
     - _MySrcMode: 5
-    - _NegativeAmount: 1
+    - _NegativeAmount: 0.196
     - _OffsetUvX: 0
     - _OffsetUvY: 0
     - _OnlyInnerOutline: 0
