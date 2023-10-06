@@ -59,7 +59,7 @@ public class UI_BattlePopup : UI_Popup
     //뽑을 카드 더미, 손패 카드, 버린 카드 더미, 제외된 카드 더미
     List<CardData> _drawCards = new();
     public List<UI_Card> _handCardsUI = new();
-    List<CardData> _throwCards = new();
+    public List<CardData> _throwCards = new();
     List<CardData> _exitCards = new();
 
     //카드를 회전하기 위한 정보
@@ -88,7 +88,7 @@ public class UI_BattlePopup : UI_Popup
     States _state = States.TurnStart;
     bool isDraggingCard = false;
     bool isUseCard = false;
-    bool cardsDrawn = false;
+    public bool cardsDrawn = true;
 
     //플레이어
     GameObject _player;
@@ -173,20 +173,13 @@ public class UI_BattlePopup : UI_Popup
             case States.TurnStart:
                 GameEvents.OnTurnStart();
                 _curTurn++;
-                if (!cardsDrawn)
-                {
-                    DrawCards(_startDrawCardNum);
-                    cardsDrawn = true;
-                    HealMana(_maxMana);
-                }
+                DrawCards(_startDrawCardNum);
+                HealMana(_maxMana);
                 _state = States.Turning;
                 break;
             case States.Turning:
-                if (!isUseCard)
-                {
-                    CheckCards();
-                    HandleCardsCircle();
-                }
+                CheckCards();
+                HandleCardsCircle();
                 break;
             case States.TurnEnd:
                 HandleCardsCircle();
@@ -205,12 +198,12 @@ public class UI_BattlePopup : UI_Popup
 
     public void DrawCards(int drawcardsnum)
     {
+        if (!cardsDrawn) return; 
+        GameEvents.OnDrawCard();
         StartCoroutine(Draw(drawcardsnum));
     }
     public IEnumerator Draw(int drawcardsnum)
     {
-        if (cardsDrawn)
-            GameEvents.OnDrawCard();
         for (int i = 0; i < drawcardsnum; i++)
         {
             if (_drawCards.Count <= 0)
@@ -233,6 +226,8 @@ public class UI_BattlePopup : UI_Popup
     }
     public void DrawCards(CardData cardData)
     {
+        if (!cardsDrawn) return;
+
         var NewCardUI = Managers.UI.MakeSubItem<UI_Card>(GetObject((int)GameObjects.CardList).transform).SetInfo(cardData);
         NewCardUI.gameObject.BindEvent((obj) => PointEnterSelectCard(obj), Define.UIEvent.PointerEnter);
         NewCardUI.gameObject.BindEvent(PointExitCard, Define.UIEvent.PointerExit);
@@ -301,6 +296,7 @@ public class UI_BattlePopup : UI_Popup
         {
             _state = States.TurnEnd;
             GameEvents.OnTurnEnd();
+            cardsDrawn = true;
             isDestoryCard = true;
             if(!Managers.Game.isManaDisappear)
                 _curMana = 0;
@@ -317,7 +313,6 @@ public class UI_BattlePopup : UI_Popup
         isDestoryCard = false;
 
         //임시 차례
-        cardsDrawn = false;
         _state = States.TurnStart;
     }
 
@@ -367,7 +362,7 @@ public class UI_BattlePopup : UI_Popup
     public void PointEnterSelectCard(GameObject obj)
     {
         var card = obj.GetComponent<UI_Card>();
-        if ((_state == States.Turning || isUseCard) && card._isUseCard)
+        if (_state == States.Turning && !isUseCard && card._isUseCard)
             _selectCard = card;
     }
     public void PointExitCard()
@@ -419,6 +414,7 @@ public class UI_BattlePopup : UI_Popup
             {
                 //카드 사용.
                 isUseCard = true;
+                _handCardsUI.Remove(card);
                 StartCoroutine(UseCardNonTarget(card));
             }
         }
@@ -428,6 +424,7 @@ public class UI_BattlePopup : UI_Popup
             if (_curEnemy != null && _enemyList.Contains(_curEnemy))
             {
                 isUseCard = true;
+                _handCardsUI.Remove(card);
                 StartCoroutine(UseCardTarget(card, _curEnemy));
                 
             }
@@ -475,20 +472,15 @@ public class UI_BattlePopup : UI_Popup
             obj.BurnFade();
             yield return new WaitForSeconds(0.5f);
         }
-        int i = _handCardsUI.IndexOf(obj);
-        if (i != -1)
+        if (obj._cardData.state == Define.CardLifeState.Extinction)
         {
-            
-            if (obj._cardData.state == Define.CardLifeState.Extinction)
-            {
-                _exitCards.Add(_handCardsUI[i]._cardData);
-                GameEvents.OnExitCard();
-            }
-            else
-                _throwCards.Add(_handCardsUI[i]._cardData);
-            Managers.Resource.Destroy(_handCardsUI[i].gameObject);
-            _handCardsUI[i] = null;
+            _exitCards.Add(obj._cardData);
+            GameEvents.OnExitCard();
         }
+        else
+            _throwCards.Add(obj._cardData);
+        Managers.Resource.Destroy(obj.gameObject);
+        
         _curTurnUseCard++;
         _handCardsUI.RemoveAll(ui => ui == null);
         RefreshUI();
@@ -505,7 +497,6 @@ public class UI_BattlePopup : UI_Popup
         obj.BurnFade();
         _exitCards.Add(obj._cardData);
         GameEvents.OnExitCard();
-        Managers.Resource.Destroy(obj.gameObject);
     }
     public void ManyTimesAttack(PlayerController player, int num, int Damage, EnemyController enemy = null)
     {
@@ -515,13 +506,14 @@ public class UI_BattlePopup : UI_Popup
         for (int i = 0; i < num; i++)
         {
             player.AttackEnemy(Damage, enemy);
-            player._battleScene._curMana--;
+            if(_curMana > 0)
+                _curMana--;
             yield return new WaitForSeconds(0.5f);
         }
         yield break;
     }
-    public void ThrowCardSelect(int numofThrow, CardData card = null, PlayerController player = null, EnemyController enemy =null, int Damage = 0) {
-        Managers.UI.ShowPopupUI<UI_SelectCardPopup>().SetInfo(_handCardsUI, numofThrow, card, player, enemy, Damage);
+    public void ThrowCardSelect(int numofThrow, int cases,CardData card = null, PlayerController player = null, EnemyController enemy =null, int Damage = 0) {
+        Managers.UI.ShowPopupUI<UI_SelectCardPopup>().SetInfo(_handCardsUI, numofThrow, cases, card, player, enemy, Damage);
     }
     public void ThrowCard(int i) {
         var go = _handCardsUI[i].gameObject;
@@ -576,5 +568,12 @@ public class UI_BattlePopup : UI_Popup
         _drawCards.Add(Dizzinesscard._cardData);
         RefreshUI();
 
+    }
+    public void DrawWaitSecond(int value) {
+        StartCoroutine(WaitSecondDraw(value));
+    }
+    IEnumerator WaitSecondDraw(int value) {
+        yield return new WaitForSeconds(0.6f);
+        DrawCards(value);
     }
 }

@@ -10,6 +10,13 @@ public class WeaknessAction : ActionBase
             case 35: case 36:
                 enemy.GetWeakness(card.weakness);
                 break;
+            case 61: case 62: case 69: case 70:
+                var Enemys = Managers.UI.FindPopup<UI_BattlePopup>()._enemyList;
+                foreach (GameObject go in Enemys)
+                {
+                    go.GetComponent<EnemyController>().GetWeakness(card.weakness);
+                }
+                break;
         }
     }
 }

@@ -15,6 +15,7 @@ public class UI_Card : UI_Base
         CardBackGroundImage,
         DontUseCardImage,
         CardManaImage,
+        CardRarity,
     }
     public CardData _cardData;
     public bool _isUseCard = true;
@@ -33,6 +34,7 @@ public class UI_Card : UI_Base
         GetImage((int)Images.CardBackGroundImage).material = uiImage.material;
         GetImage((int)Images.DontUseCardImage).material = uiImage.material;
         GetImage((int)Images.CardManaImage).material = uiImage.material;
+        GetImage((int)Images.CardRarity).material = uiImage.material;
 
         RefreshUI();
 
@@ -64,8 +66,21 @@ public class UI_Card : UI_Base
         else if(_cardData.type == Define.CardType.Friend)
             GetImage((int)Images.CardBackGroundImage).sprite = Managers.Resource.Load<Sprite>("Sprites/Card/FriendCard");
 
-        //GetImage((int)Images.CardImage).sprite = Managers.Resource.Load<Sprite>($"Sprites/Card/{_cardData.ID}");
+        if (_cardData.rarity == Define.CardRarity.Normal) {
+            GetImage((int)Images.CardRarity).sprite = Managers.Resource.Load<Sprite>("Sprites/Card/Normal");
+        }
+        else if (_cardData.rarity == Define.CardRarity.Rare) {
+            GetImage((int)Images.CardRarity).sprite = Managers.Resource.Load<Sprite>("Sprites/Card/Rare");
+        }
+        else if (_cardData.rarity == Define.CardRarity.Unique) {
+            GetImage((int)Images.CardRarity).sprite = Managers.Resource.Load<Sprite>("Sprites/Card/Unique");
+        }
+        else if (_cardData.rarity == Define.CardRarity.Legend) {
+            GetImage((int)Images.CardRarity).sprite = Managers.Resource.Load<Sprite>("Sprites/Card/Legend");
+        }
 
+
+        //GetImage((int)Images.CardImage).sprite = Managers.Resource.Load<Sprite>($"Sprites/Card/{_cardData.ID}");
     }
     public UI_Card SetInfo(CardData id) {
         _cardData = (CardData)id.Clone();
@@ -104,5 +119,7 @@ public class UI_Card : UI_Base
             yield return null;
         }
         material.EnableKeyword("FADE_ON");
+        Managers.Resource.Destroy(gameObject);
+
     }
 }

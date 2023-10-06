@@ -74,14 +74,14 @@
       <action>DrawAction</action>
     </actions>
   </CardData>
-  <CardData ID="15" name="약점 파악" description="피해 {0}. 드로우 1. 적이 취약 상태라면 텐션 2 획득. " type ="Attack" rarity="Rare" target="Enemy" damage="1" mana="1" drawCard="1" getMana="2">
+  <CardData ID="15" name="약점 파악" description="피해 {0}. 적이 취약 상태라면 텐션 2 획득. 드로우 1." type ="Attack" rarity="Rare" target="Enemy" damage="1" mana="1" drawCard="1" getMana="2">
     <actions>
       <action>AttackAction</action>
       <action>DrawAction</action>
       <action>GetManaAction</action>
     </actions>
   </CardData>
-  <CardData ID="16" name="약점 파악+" description="피해 {0}. 드로우 1. 적이 취약 상태라면 텐션 2 획득." type ="Attack" rarity="Rare" target="Enemy" damage="8" mana="1" drawCard="1" getMana="2">
+  <CardData ID="16" name="약점 파악+" description="피해 {0}. 적이 취약 상태라면 텐션 2 획득. 드로우 1." type ="Attack" rarity="Rare" target="Enemy" damage="8" mana="1" drawCard="1" getMana="2">
     <actions>
       <action>AttackAction</action>
       <action>DrawAction</action>
@@ -374,12 +374,12 @@
       <action>WeaknessAction</action>
     </actions>
   </CardData>
-  <CardData ID="71" name="승천" description="카드 1장 소멸. 드로우 2." type ="Skill" rarity="Rare" target="Player" mana="1" drawCard="2">
+  <CardData ID="71" name="승천" description="무작위 손 패 카드 1장 소멸. 드로우 2." type ="Skill" rarity="Rare" target="Player" mana="1" drawCard="2">
     <actions>
       <action>DrawAction</action>
     </actions>
   </CardData>
-  <CardData ID="72" name="승천+" description="카드 1장 소멸. 드로우 3." type ="Skill" rarity="Rare" target="Player" mana="1" drawCard="3">
+  <CardData ID="72" name="승천+" description="무작위 손 패 카드 1장 소멸. 드로우 3." type ="Skill" rarity="Rare" target="Player" mana="1" drawCard="3">
     <actions>
       <action>DrawAction</action>
     </actions>
@@ -426,32 +426,32 @@
       <action>DrawAction</action>
     </actions>
   </CardData>
-  <CardData ID="81" name="아픔나누기" description="조건: 체력 30 이상. 체력 절반 소모. 소모한 양 만큼 적 전체에게 피해. 2턴 후 소모한 체력의 절반 회복." type ="Skill" rarity="Unique" target="AllEnemy" mana="1" condition="HaveHpThirtyOver">
+  <CardData ID="81" name="아픔나누기" description="조건: 체력 30 이상. 체력 1/3 소모. 소모한 양의 1.5배 만큼 적 전체에게 피해." type ="Skill" rarity="Unique" target="AllEnemy" mana="1" condition="HaveHpThirtyOver">
     <actions>
       <action>AttackAction</action>
     </actions>
   </CardData>
-  <CardData ID="82" name="아픔나누기+" description="조건: 체력 30 이상. 체력 절반 소모. 소모한 양 만큼 적 전체에게 피해. 2턴 후 소모한 체력의 절반 회복." type ="Skill" rarity="Unique" target="AllEnemy" mana="0" condition="HaveHpThirtyOver">
+  <CardData ID="82" name="아픔나누기+" description="조건: 체력 30 이상. 체력 1/3 소모. 소모한 양의 1.5배 만큼 적 전체에게 피해." type ="Skill" rarity="Unique" target="AllEnemy" mana="0" condition="HaveHpThirtyOver">
     <actions>
       <action>AttackAction</action>
     </actions>
   </CardData>
-  <CardData ID="83" name="무한의 검" description="무한의 검 소환. 매 턴 종료시 방어도 6 획득" type ="Skill" rarity="Unique" target="Player" mana="2" shield="6">
+  <CardData ID="83" name="무한의 검" description="무한의 검 소환. 매 턴 종료시 방어도 6과 충전량 1 획득." type ="Skill" rarity="Unique" target="Player" mana="2" shield="6">
     <actions>
       <action>DefenseAction</action>
     </actions>
   </CardData>
-  <CardData ID="84" name="무한의 검+" description="무한의 검 소환. 매 턴 종료시 방어도 6 획득" type ="Skill" rarity="Unique" target="Player" mana="1" shield="6">
+  <CardData ID="84" name="무한의 검+" description="무한의 검 소환. 매 턴 종료시 방어도 6과 충전량 1 획득." type ="Skill" rarity="Unique" target="Player" mana="1" shield="6">
     <actions>
       <action>DefenseAction</action>
     </actions>
   </CardData>
-  <CardData ID="85" name="방어 태세" description="방어도 2배" type ="Skill" rarity="Unique" target="Player" mana="1" >
+  <CardData ID="85" name="방어 태세" description="방어도 2배." type ="Skill" rarity="Unique" target="Player" mana="1" >
     <actions>
       <action>DefenseAction</action>
     </actions>
   </CardData>
-  <CardData ID="86" name="방어 태세+" description="방어도 2배" type ="Skill" rarity="Unique" target="Player" mana="0" >
+  <CardData ID="86" name="방어 태세+" description="방어도 2배." type ="Skill" rarity="Unique" target="Player" mana="0" >
     <actions>
       <action>DefenseAction</action>
     </actions>

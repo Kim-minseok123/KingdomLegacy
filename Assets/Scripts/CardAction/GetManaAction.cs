@@ -16,6 +16,10 @@ public class GetManaAction : ActionBase
                     }
                 }
                 break;
+            case 77: case 78:
+                player.Damaged(3);
+                player._battleScene.HealMana(card.getMana);
+                break;
         }
     }
 }

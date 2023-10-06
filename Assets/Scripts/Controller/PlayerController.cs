@@ -252,11 +252,11 @@ public class PlayerController : UI_Base
     }
     public void ResetBuff()
     {
-        if (Vulenerable > 0) { Vulenerable--; buffList.Remove("취약"); }
-        if (Weakness > 0) { Weakness--; buffList.Remove("약화"); }
+        if (Vulenerable > 0) { Vulenerable--; if(Vulenerable == 0) buffList.Remove("취약"); }
+        if (Weakness > 0) { Weakness--; if (Weakness == 0) buffList.Remove("약화"); }
         if (Shield > 0) { Shield = 0; }
         if (dePower > 0) { Power -= dePower; dePower = 0; buffList.Remove("힘감소"); }
-        if (Poisoning > 0) { Damaged(Poisoning); Poisoning--; buffList.Remove("중독"); }
+        if (Poisoning > 0) { Damaged(Poisoning); Poisoning--; if (Poisoning == 0) buffList.Remove("중독"); }
         RefreshUI();
     }
     public void TooltipOn(Transform trf ,int text) {

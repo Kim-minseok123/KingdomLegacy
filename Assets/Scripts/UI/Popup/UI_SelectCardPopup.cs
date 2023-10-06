@@ -18,6 +18,7 @@ public class UI_SelectCardPopup : UI_Popup
     public GameObject selectCard = null;
     PlayerController player;
     EnemyController enemy;
+    public int cases;
     int Damage;
     public override bool Init()
     {
@@ -28,7 +29,7 @@ public class UI_SelectCardPopup : UI_Popup
         BindObject(typeof(GameObjects));
 
         for (int i = 0; i < cards.Count; i++) {
-            if (cards[i]._cardData.OnlyCardnum == useCard.OnlyCardnum) continue;
+            //if (cards[i]._cardData.OnlyCardnum == useCard.OnlyCardnum) continue;
             var card = Managers.UI.MakeSubItem<UI_Card>(GetObject((int)GameObjects.CardContent).transform).SetInfo(cards[i]._cardData);
             //ÅøÆÁ Ãß°¡
             cardList.Add(card.gameObject);
@@ -41,9 +42,10 @@ public class UI_SelectCardPopup : UI_Popup
     public void RefreshUI() { 
         
     }
-    public void SetInfo(List<UI_Card> cards, int numofThrow, CardData useCard = null, PlayerController player = null, EnemyController enemy = null, int Damage = 0) {
+    public void SetInfo(List<UI_Card> cards, int numofThrow, int cases, CardData useCard = null, PlayerController player = null, EnemyController enemy = null, int Damage = 0) {
         this.cards = cards;
         this.numofThrow = numofThrow;
+        this.cases = cases;
         this.useCard = useCard;
         this.player = player;
         this.enemy = enemy;
@@ -55,7 +57,10 @@ public class UI_SelectCardPopup : UI_Popup
         int i = cardList.IndexOf(selectCard);
 
         Managers.UI.FindPopup<UI_BattlePopup>().ThrowCard(i);
-        player.AttackEnemy(Damage, enemy);
+        if (cases == 0)
+            player.AttackEnemy(Damage, enemy);
+        else if (cases == 1)
+            player.GetShield(Damage);
         Managers.UI.ClosePopupUI();
     }
     public void SelectCard(GameObject go) { 

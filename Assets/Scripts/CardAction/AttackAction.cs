@@ -70,7 +70,7 @@ public class AttackAction : ActionBase
             case 39: case 40:
                 //카드 한장 버리는거 구현
                 Damage = card.damage + player.Power;
-                player._battleScene.ThrowCardSelect(1, card, player,enemy, Damage);
+                player._battleScene.ThrowCardSelect(1, 0, card, player,enemy, Damage);
                 return;
             case 45:
                 Damage = card.damage + player.Power;
@@ -79,6 +79,12 @@ public class AttackAction : ActionBase
             case 46:
                 Damage = card.damage  + player.Power;
                 card.damage += 12;
+                break;
+            case 81: case 82:
+                int half = Managers.Game.CurHp / 3;
+                Damage = (int)(half * 1.5) + player.Power;
+                Managers.Game.CurHp -= half;
+                player.RefreshUI();
                 break;
         }
 

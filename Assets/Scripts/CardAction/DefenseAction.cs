@@ -9,9 +9,23 @@ public class DefenseAction : ActionBase
         int Shield = 0;
         switch (card.ID)
         {
-            case 49:case 50:
-                Shield = card.shield;
+            case 49:case 50: case 59: case 60: case 63: case 64: case 87: case 88:
+                Shield = card.shield+ player.Agility;
                 break;
+            case 53: case 54:
+                Shield = card.shield + player.Agility;
+                player._battleScene.ThrowCardSelect(1, 1, card, player, enemy, Shield);
+                return;
+            case 55: case 56:
+                Shield = player._battleScene._throwCards.Count + player.Agility;
+                break;
+            case 83: case 84:
+                //무한의 검 소환
+                break;
+            case 85: case 86:
+                Shield = player.Shield;
+                break;
+
         }
         player.GetShield(Shield);
     }

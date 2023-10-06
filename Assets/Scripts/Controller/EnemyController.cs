@@ -279,7 +279,6 @@ public class EnemyController : UI_Base
         if (pos.x > 6.8f)
             pos = new Vector3(6.8f, pos.y, pos.z);
         tooltip.transform.position = pos;
-        Debug.Log(tooltip.transform.TransformPoint(tooltip.transform.position));
 
         rect.sizeDelta = new Vector2(txt.preferredWidth + 20, txt.preferredHeight + 20);
         tooltip.SetActive(true);

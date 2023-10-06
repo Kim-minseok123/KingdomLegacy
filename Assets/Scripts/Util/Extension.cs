@@ -22,7 +22,7 @@ public static class Extension
         UI_Base.BindEvent(go, action, type);
     }
 
-    static System.Random _rand = new System.Random();
+    public static System.Random _rand = new System.Random();
 
 	public static void Shuffle<T>(this IList<T> list)
 	{

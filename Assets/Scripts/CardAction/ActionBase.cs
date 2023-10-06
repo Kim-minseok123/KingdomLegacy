@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Xml.Serialization;
 using UnityEngine;
 
-public abstract class ActionBase : MonoBehaviour
+public abstract class ActionBase 
 {
     public abstract void StartAction(PlayerController player, CardData card, EnemyController enemy = null);
 }
