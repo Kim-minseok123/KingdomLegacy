@@ -21,4 +21,5 @@
 	<TextData ID="20040" kor="중독.&lt;br&gt;[디버프]&lt;br&gt;매 턴 시작 시 수치만큼&lt;br&gt;피해를 입습니다." eng="" />
 	<TextData ID="20041" kor="방어도.&lt;br&gt;[버프]&lt;br&gt;피해를 수치만큼 방어합니다." eng="" />
 	<TextData ID="20042" kor="힘 감소.&lt;br&gt;[디버프]&lt;br&gt;턴 종료 시 수치만큼&lt;br&gt;힘의 수치가 줄어듭니다." eng="" />
+	<TextData ID="20043" kor="무한의 검.&lt;br&gt;[버프]&lt;br&gt;턴 종료 시 수치가 1 증가한다." eng="" />
 </ArrayOfTextData>

@@ -33,9 +33,11 @@ public class AttackAction : ActionBase
                 break;
             case 21:
                 Damage = player.infinitySword * 15 + player.Power;
+                player.ResetSwordGauge();
                 break;
             case 22:
                 Damage = player.infinitySword * 20 + player.Power;
+                player.ResetSwordGauge();
                 break;
             case 25: case 26:
                 Damage = card.damage + (int)(player.Power * 0.5);

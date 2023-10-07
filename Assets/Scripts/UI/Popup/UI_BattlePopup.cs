@@ -61,7 +61,7 @@ public class UI_BattlePopup : UI_Popup
     public List<UI_Card> _handCardsUI = new();
     public List<CardData> _throwCards = new();
     List<CardData> _exitCards = new();
-
+    int curFriendNumer = 0;
     //카드를 회전하기 위한 정보
     [SerializeField][Range(0, 5)] private float selectionSpacing = 1;
     [SerializeField] private Vector3 curveStart = new Vector3(-500f, -500f, 0);
@@ -575,5 +575,11 @@ public class UI_BattlePopup : UI_Popup
     IEnumerator WaitSecondDraw(int value) {
         yield return new WaitForSeconds(0.6f);
         DrawCards(value);
+    }
+    public void MakeFriend(string name, FriendAbility ability) {
+        if (curFriendNumer > 6) return;
+        curFriendNumer++;
+        var Friend = Managers.Resource.Instantiate("UI/SubItem/UI_Friend", GetObject(curFriendNumer).transform);
+        Friend.GetComponent<UI_Friend>().SetInfo(name, ability);
     }
 }

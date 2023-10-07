@@ -103,4 +103,5 @@ public class Define
     public const int Poisoning = 20040;
     public const int Shield = 20041;
     public const int dePower = 20042;
+    public const int infinitySword = 20043;
 }

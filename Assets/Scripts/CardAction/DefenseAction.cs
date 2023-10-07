@@ -21,7 +21,9 @@ public class DefenseAction : ActionBase
                 break;
             case 83: case 84:
                 //무한의 검 소환
-                break;
+                FriendAbility Infinity = new InfinitySword();
+                player._battleScene.MakeFriend("무한의 검", Infinity);
+                return;
             case 85: case 86:
                 Shield = player.Shield;
                 break;

@@ -33,9 +33,14 @@ public class HaveCardOneOver : ICardCondition {
         return false;
     }
 }
-public class IsSpawnInfiSword : ICardCondition { 
-    public bool isUsable() { 
+public class IsSpawnInfiSword : ICardCondition {
+    PlayerController player;
+    public bool isUsable() {
+        if (player == null)
+            player = Managers.UI.FindPopup<UI_BattlePopup>()._playerController;
         //무한의 검이 소환 되어 있을 경우 사용가능
+        if(player.isInfinitySword)
+            return true;
         return false;
     }
 }

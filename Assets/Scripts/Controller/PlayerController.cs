@@ -14,6 +14,7 @@ public class PlayerController : UI_Base
     public int Shield = 0;
     public int dePower = 0;
     public int infinitySword = 0;
+    public bool isInfinitySword = false;
     public Animator _playerAnim;
 
     public List<string> buffList = new();
@@ -153,6 +154,20 @@ public class PlayerController : UI_Base
             buffList.Add("중독");
         RefreshUI();
     }
+    public void GetSwordGauge(int value) {
+        infinitySword += value;
+        if (!buffList.Contains("무한의검"))
+            buffList.Add("무한의검");
+        RefreshUI();
+
+    }
+    public void ResetSwordGauge() { 
+        infinitySword = 0;
+        if (buffList.Contains("무한의검"))
+            buffList.Remove("무한의검");
+        RefreshUI();
+
+    }
     public void AttackEnemy(int Damage, EnemyController enemy = null)
     {
         if (Weakness > 0)
@@ -220,6 +235,12 @@ public class PlayerController : UI_Base
             {
                 GetText(i + 1).text = Poisoning.ToString();
                 buff.gameObject.BindEvent((go) => { TooltipOn(go.transform, Define.Poisoning); }, Define.UIEvent.PointerEnter);
+                buff.gameObject.BindEvent(() => { TooltipOff(); }, Define.UIEvent.PointerExit);
+            }
+            else if (buffList[i] == "무한의검")
+            {
+                GetText(i + 1).text = infinitySword.ToString();
+                buff.gameObject.BindEvent((go) => { TooltipOn(go.transform, Define.infinitySword); }, Define.UIEvent.PointerEnter);
                 buff.gameObject.BindEvent(() => { TooltipOff(); }, Define.UIEvent.PointerExit);
             }
         }
