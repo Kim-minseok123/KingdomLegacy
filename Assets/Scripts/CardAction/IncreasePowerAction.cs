@@ -17,6 +17,10 @@ public class IncreasePowerAction : ActionBase
             case 89: case 90:
                 player.GetPower(player.Power);
                 break;
+            case 119:
+                player.GetdePower(card.increasePower);
+                player.HealHp(1);
+                break;
         }
     }
 }

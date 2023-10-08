@@ -22,7 +22,7 @@ public class DefenseAction : ActionBase
             case 83: case 84:
                 //무한의 검 소환
                 FriendAbility Infinity = new InfinitySword();
-                player._battleScene.MakeFriend("무한의 검", Infinity);
+                player._battleScene.MakeFriend("무한의 검", Infinity,card);
                 return;
             case 85: case 86:
                 Shield = player.Shield;

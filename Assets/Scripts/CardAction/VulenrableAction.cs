@@ -16,6 +16,9 @@ public class VulenrableAction : ActionBase
             case 35: case 36: 
                 enemy.GetVulenrable(card.vulnerable);
                 break;
+            case 95: case 96:
+                player.GetVulenrable(card.vulnerable);
+                break;
         }
     }
 }

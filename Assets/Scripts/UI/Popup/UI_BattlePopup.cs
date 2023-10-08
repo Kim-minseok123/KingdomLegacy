@@ -173,6 +173,7 @@ public class UI_BattlePopup : UI_Popup
             case States.TurnStart:
                 GameEvents.OnTurnStart();
                 _curTurn++;
+                GameEvents.OnTurnValue(_curTurn);
                 DrawCards(_startDrawCardNum);
                 HealMana(_maxMana);
                 _state = States.Turning;
@@ -213,7 +214,7 @@ public class UI_BattlePopup : UI_Popup
                 _drawCards.Shuffle();
                 GameEvents.OnShuffleDeck();
             }
-            if ((_drawCards.Count <= 0 && _throwCards.Count <= 0) || _handCardsUI.Count >= 10)
+            if ((_drawCards.Count <= 0 && _throwCards.Count <= 0) || _handCardsUI.Count >= 12)
             {
                 Debug.Log("더이상 카드를 드로우 할 수 없습니다.");
                 yield break;
@@ -513,7 +514,12 @@ public class UI_BattlePopup : UI_Popup
         yield break;
     }
     public void ThrowCardSelect(int numofThrow, int cases,CardData card = null, PlayerController player = null, EnemyController enemy =null, int Damage = 0) {
+        StartCoroutine(ThrowCardSelectUI(numofThrow,cases,card,player,enemy,Damage));
+    }
+    IEnumerator ThrowCardSelectUI(int numofThrow, int cases, CardData card = null, PlayerController player = null, EnemyController enemy = null, int Damage = 0) {
+        yield return new WaitForSeconds(1f);
         Managers.UI.ShowPopupUI<UI_SelectCardPopup>().SetInfo(_handCardsUI, numofThrow, cases, card, player, enemy, Damage);
+
     }
     public void ThrowCard(int i) {
         var go = _handCardsUI[i].gameObject;
@@ -576,10 +582,14 @@ public class UI_BattlePopup : UI_Popup
         yield return new WaitForSeconds(0.6f);
         DrawCards(value);
     }
-    public void MakeFriend(string name, FriendAbility ability) {
+    public List<string> FriendsName = new();
+    public void MakeFriend(string name, FriendAbility ability, CardData card) {
         if (curFriendNumer > 6) return;
+        if (FriendsName.Contains(name)) return; 
+
         curFriendNumer++;
         var Friend = Managers.Resource.Instantiate("UI/SubItem/UI_Friend", GetObject(curFriendNumer).transform);
-        Friend.GetComponent<UI_Friend>().SetInfo(name, ability);
+        Friend.GetComponent<UI_Friend>().SetInfo(name, ability, card);
+        FriendsName.Add(name);
     }
 }

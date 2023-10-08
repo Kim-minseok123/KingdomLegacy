@@ -38,6 +38,8 @@ public class CardData : ICloneable
     [XmlAttribute]
     public int getMana;
     [XmlAttribute]
+    public int anyAttribute;
+    [XmlAttribute]
     public CardLifeState state = CardLifeState.None;
     [XmlAttribute]
     public int attackNum = 1;
@@ -47,6 +49,7 @@ public class CardData : ICloneable
     public int poisoning;   //Áßµ¶
     [XmlAttribute]
     public int disturbance;
+    
     [XmlArray("actions")]
     [XmlArrayItem("action")]
     public List<string> actionNames;
@@ -57,7 +60,6 @@ public class CardData : ICloneable
     [XmlIgnore]
     public ICardCondition cardCondition;
 
-    public int OnlyCardnum = 0;
     [XmlIgnore]
     public string FormattedDescription
     {
@@ -68,8 +70,6 @@ public class CardData : ICloneable
     }
     public object Clone()
     {
-        Random random = new Random();
-
         return new CardData
         {
             ID = this.ID,
@@ -95,7 +95,7 @@ public class CardData : ICloneable
             condition = this.condition,
             poisoning = this.poisoning,
             disturbance = this.disturbance,
-            OnlyCardnum = random.Next(0, 10000),
+            anyAttribute = this.anyAttribute,
         };
     }
     public void Upgrade() {

@@ -476,22 +476,22 @@
       <action>IncreasePowerAction</action>
     </actions>
   </CardData>
-  <CardData ID="91" name="호드" description="소환. 턴 종료 시 방어도 4 획득." type ="Friend" rarity="Rare" target="Player" mana="1" state="Extinction">
+  <CardData ID="91" name="호드" description="소환. 턴 종료 시 방어도 4 획득." type ="Friend" rarity="Rare" target="Player" mana="1" state="Extinction" shield="4">
     <actions>
       <action>FriendAction</action>
     </actions>
   </CardData>
-  <CardData ID="92" name="호드+" description="소환. 턴 종료 시 방어도 5 획득." type ="Friend" rarity="Rare" target="Player" mana="1" state="Extinction">
+  <CardData ID="92" name="호드+" description="소환. 턴 종료 시 방어도 5 획득." type ="Friend" rarity="Rare" target="Player" mana="1" state="Extinction" shield="5">
     <actions>
       <action>FriendAction</action>
     </actions>
   </CardData>
-  <CardData ID="93" name="캘리칼리" description="소환. 턴 시작 시 보급품 카드 획득." type ="Friend" rarity="Rare" target="Player" mana="1" state="Extinction">
+  <CardData ID="93" name="캘리칼리" description="소환. 턴 시작 시 보급품 카드 획득." type ="Friend" rarity="Rare" target="Player" mana="1" state="Extinction" anyAttribute="1">
     <actions>
       <action>FriendAction</action>
     </actions>
   </CardData>
-  <CardData ID="94" name="캘리칼리+" description="소환. 턴 시작 시 보급품 카드 2장 획득." type ="Friend" rarity="Rare" target="Player" mana="1" state="Extinction">
+  <CardData ID="94" name="캘리칼리+" description="소환. 턴 시작 시 보급품 카드 2장 획득." type ="Friend" rarity="Rare" target="Player" mana="1" state="Extinction" anyAttribute="2">
     <actions>
       <action>FriendAction</action>
     </actions>
@@ -508,22 +508,22 @@
       <action>VulnerableAction</action>
     </actions>
   </CardData>
-  <CardData ID="97" name="베드퍼드" description="소환. 소환 시 힘 3 획득." type ="Friend" rarity="Rare" target="Player" mana="1" state="Extinction">
+  <CardData ID="97" name="베드퍼드" description="소환. 소환 시 힘 3 획득." type ="Friend" rarity="Rare" target="Player" mana="1" state="Extinction" anyAttribute="3">
     <actions>
       <action>FriendAction</action>
     </actions>
   </CardData>
-  <CardData ID="98" name="베드퍼드+" description="소환. 소환 시 힘 4 획득." type ="Friend" rarity="Rare" target="Player" mana="1" state="Extinction">
+  <CardData ID="98" name="베드퍼드+" description="소환. 소환 시 힘 4 획득." type ="Friend" rarity="Rare" target="Player" mana="1" state="Extinction" anyAttribute="4">
     <actions>
       <action>FriendAction</action>
     </actions>
   </CardData>
-  <CardData ID="99" name="그래프턴" description="소환. 적이 죽으면 골드 8 획득." type ="Friend" rarity="Rare" target="Player" mana="1" state="Extinction">
+  <CardData ID="99" name="그래프턴" description="소환. 적이 죽으면 골드 8 획득." type ="Friend" rarity="Rare" target="Player" mana="1" state="Extinction" anyAttribute="8">
     <actions>
       <action>FriendAction</action>
     </actions>
   </CardData>
-  <CardData ID="100" name="그래프턴+" description="소환. 적이 죽으면 골드 12 획득." type ="Friend" rarity="Rare" target="Player" mana="1" state="Extinction">
+  <CardData ID="100" name="그래프턴+" description="소환. 적이 죽으면 골드 12 획득." type ="Friend" rarity="Rare" target="Player" mana="1" state="Extinction" anyAttribute="12">
     <actions>
       <action>FriendAction</action>
     </actions>
@@ -538,22 +538,22 @@
       <action>FriendAction</action>
     </actions>
   </CardData>
-  <CardData ID="103" name="데본" description="소환. 공격카드 사용 시 전 턴에 피해를 입었을 경우 피해 2배." type ="Friend" rarity="Unique" target="Player" mana="2" state="Extinction">
+  <CardData ID="103" name="데본" description="소환. 턴 시작 시 적 한명에게 취약 1 약화 1 부여." type ="Friend" rarity="Unique" target="Player" mana="2" state="Extinction" vulnerable="1" weakness="1">
     <actions>
       <action>FriendAction</action>
     </actions>
   </CardData>
-  <CardData ID="104" name="데본+" description="소환. 공격카드 사용 시 전 턴에 피해를 입었을 경우 피해 3배." type ="Friend" rarity="Unique" target="Player" mana="2" state="Extinction">
+  <CardData ID="104" name="데본+" description="소환. 턴 시작 시 적 전체에게 취약 1 부여." type ="Friend" rarity="Unique" target="Player" mana="2" state="Extinction"  vulnerable="1">
     <actions>
       <action>FriendAction</action>
     </actions>
   </CardData>
-  <CardData ID="105" name="케이시" description="소환. 턴 시작 시 드로우 2." type ="Friend" rarity="Unique" target="Player" mana="2" state="Extinction">
+  <CardData ID="105" name="케이시" description="소환. 턴 시작 시 드로우 1." type ="Friend" rarity="Unique" target="Player" mana="2" state="Extinction" drawCard="1">
     <actions>
       <action>FriendAction</action>
     </actions>
   </CardData>
-  <CardData ID="106" name="케이시+" description="소환. 턴 시작 시 드로우 3." type ="Friend" rarity="Unique" target="Player" mana="2" state="Extinction">
+  <CardData ID="106" name="케이시+" description="소환. 턴 시작 시 드로우 2." type ="Friend" rarity="Unique" target="Player" mana="2" state="Extinction" drawCard="2">
     <actions>
       <action>FriendAction</action>
     </actions>
@@ -583,37 +583,37 @@
       <action>FriendAction</action>
     </actions>
   </CardData>
-  <CardData ID="112" name="첼리시+" description="소환. 턴 시작 시 적에게 부여된 방어도 75% 감소." type ="Friend" rarity="Legend" target="Player" mana="3" state="Extinction">
+  <CardData ID="112" name="첼리시+" description="소환. 턴 시작 시 적에게 부여된 방어도 50% 감소." type ="Friend" rarity="Legend" target="Player" mana="2" state="Extinction">
     <actions>
       <action>FriendAction</action>
     </actions>
   </CardData>
-  <CardData ID="113" name="에스메릴다" description="소환. 턴 시작 시 힘 2 획득." type ="Friend" rarity="Legend" target="Player" mana="3" state="Extinction">
+  <CardData ID="113" name="에스메릴다" description="소환. 턴 시작 시 힘 2 획득." type ="Friend" rarity="Legend" target="Player" mana="3" state="Extinction" anyAttribute="2">
     <actions>
       <action>FriendAction</action>
     </actions>
   </CardData>
-  <CardData ID="114" name="에스메릴다+" description="소환. 턴 시작 시 힘 3 획득." type ="Friend" rarity="Legend" target="Player" mana="3" state="Extinction">
+  <CardData ID="114" name="에스메릴다+" description="소환. 턴 시작 시 힘 3 획득." type ="Friend" rarity="Legend" target="Player" mana="3" state="Extinction" anyAttribute="3">
     <actions>
       <action>FriendAction</action>
     </actions>
   </CardData>
-  <CardData ID="115" name="리네" description="소환. 자신이 피해를 입을 시 모든 적에게 피해 15." type ="Friend" rarity="Legend" target="Player" mana="3" state="Extinction">
+  <CardData ID="115" name="리네" description="소환. 자신이 피해를 입을 시 모든 적에게 피해 15." type ="Friend" rarity="Legend" target="Player" mana="3" state="Extinction" anyAttribute="15">
     <actions>
       <action>FriendAction</action>
     </actions>
   </CardData>
-  <CardData ID="116" name="리네+" description="소환. 자신이 피해를 입을 시 모든 적에게 피해 18." type ="Friend" rarity="Legend" target="Player" mana="2" state="Extinction">
+  <CardData ID="116" name="리네+" description="소환. 자신이 피해를 입을 시 모든 적에게 피해 18." type ="Friend" rarity="Legend" target="Player" mana="2" state="Extinction" anyAttribute="18">
     <actions>
       <action>FriendAction</action>
     </actions>
   </CardData>
-  <CardData ID="117" name="비안" description="소환. 턴 시작 시 무작위 적에게 힘 -1 부여." type ="Friend" rarity="Legend" target="Player" mana="3" state="Extinction">
+  <CardData ID="117" name="비안" description="소환. 턴 시작 시 무작위 적에게 힘 -1 부여." type ="Friend" rarity="Legend" target="Player" mana="3" state="Extinction" anyAttribute="1">
     <actions>
       <action>FriendAction</action>
     </actions>
   </CardData>
-  <CardData ID="118" name="비안+" description="소환. 턴 시작 시 무작위 적에게 힘 -2 부여." type ="Friend" rarity="Legend" target="Player" mana="3" state="Extinction">
+  <CardData ID="118" name="비안+" description="소환. 턴 시작 시 무작위 적에게 힘 -2 부여." type ="Friend" rarity="Legend" target="Player" mana="3" state="Extinction" anyAttribute="2">
     <actions>
       <action>FriendAction</action>
     </actions>

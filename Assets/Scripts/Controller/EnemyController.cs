@@ -136,6 +136,11 @@ public class EnemyController : UI_Base
         Managers.Resource.Destroy(effect, 0.45f);
         RefreshUI();
     }
+    public void HalfShield() { 
+        if(Shield > 0)
+            Shield /= 2;
+        RefreshUI();
+    }
     public void GetPower(int value)
     {
         Power += value;
@@ -259,6 +264,7 @@ public class EnemyController : UI_Base
     public void Death()
     {
         battleScene._enemyList.Remove(gameObject);
+        GameEvents.OnKillEnemy();
         Managers.Resource.Destroy(gameObject);
     }
     public void ResetBuff()

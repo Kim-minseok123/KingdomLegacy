@@ -75,6 +75,7 @@ public class PlayerController : UI_Base
         if (Vulenerable > 0) value += (int)(value * (50 / 100f));
         StartCoroutine(DamageMaterial());
         Managers.Game.CurHp -= value;
+        GameEvents.OnLostHp();
         if (Managers.Game.CurHp <= 0) { 
             Managers.Game.CurHp = 0;
             _playerAnim.SetTrigger("Death");
@@ -121,9 +122,14 @@ public class PlayerController : UI_Base
     {
         Shield = Shield + value + Agility;
         //이펙트 추가
+        var obj = transform.Find("ShieldEffect");
+        if (obj != null)
+        {
+            RefreshUI();
+            return;
+        }
         var effect = Managers.Resource.Instantiate("Effect/ShieldEffect", gameObject.transform);
         Managers.Resource.Destroy(effect, 0.45f);
-
         RefreshUI();
     }
     public void GetPower(int value)
@@ -271,11 +277,12 @@ public class PlayerController : UI_Base
         float value = Managers.Game.CurHp / (float)Managers.Game.MaxHp;
         GetImage((int)Images.HpValue).fillAmount = value;
     }
+    public bool isDisappearShield = false;
     public void ResetBuff()
     {
         if (Vulenerable > 0) { Vulenerable--; if(Vulenerable == 0) buffList.Remove("취약"); }
         if (Weakness > 0) { Weakness--; if (Weakness == 0) buffList.Remove("약화"); }
-        if (Shield > 0) { Shield = 0; }
+        if(!isDisappearShield) if (Shield > 0) { Shield = 0; }
         if (dePower > 0) { Power -= dePower; dePower = 0; buffList.Remove("힘감소"); }
         if (Poisoning > 0) { Damaged(Poisoning); Poisoning--; if (Poisoning == 0) buffList.Remove("중독"); }
         RefreshUI();

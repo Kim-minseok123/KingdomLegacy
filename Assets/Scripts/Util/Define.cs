@@ -15,6 +15,7 @@ public class Define
 		None,
         Extinction,
         Preservation,
+        Volatility,
     }
 	public enum CardType { 
 		Attack,

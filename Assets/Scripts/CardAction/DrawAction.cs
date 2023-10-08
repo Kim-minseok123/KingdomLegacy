@@ -10,7 +10,7 @@ public class DrawAction : ActionBase
     public override void StartAction(PlayerController player, CardData card, EnemyController enemy = null)
     {
         switch (card.ID) {
-            case 13: case 14: case 15: case 16: case 59: case 60: case 73: case 74:
+            case 13: case 14: case 15: case 16: case 59: case 60: case 73: case 74: case 120: case 121:
                 player._battleScene.DrawCards(card.drawCard);
                 break;
             case 65: case 66:
@@ -18,14 +18,9 @@ public class DrawAction : ActionBase
                 player._battleScene.cardsDrawn = false; 
                 break;
             case 71: case 72:
-                if (player._battleScene._handCardsUI.Count == 1) {
-                    player._battleScene.ExitCard(player._battleScene._handCardsUI[0]);
-                }
-                else {
+                if (player._battleScene._handCardsUI.Count >= 1) {
                     UI_Card value;
-                    do{
-                        value = player._battleScene._handCardsUI.GetRandom();
-                    }while (value._cardData.OnlyCardnum == card.OnlyCardnum);
+                    value = player._battleScene._handCardsUI.GetRandom();
                     player._battleScene.ExitCard(value);
                 }
                 player._battleScene.DrawWaitSecond(card.drawCard);
