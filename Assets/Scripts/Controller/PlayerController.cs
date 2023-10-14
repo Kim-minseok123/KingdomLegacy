@@ -73,6 +73,11 @@ public class PlayerController : UI_Base
     {
         //Ã¼·Â ´â±â
         if (Vulenerable > 0) value += (int)(value * (50 / 100f));
+        int temp = value;
+        value -= Shield;
+        Shield -= temp;
+        if(value < 0) value = 0;
+        if (Shield < 0) Shield = 0;
         StartCoroutine(DamageMaterial());
         Managers.Game.CurHp -= value;
         GameEvents.OnLostHp();

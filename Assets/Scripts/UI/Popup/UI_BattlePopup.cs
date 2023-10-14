@@ -161,7 +161,7 @@ public class UI_BattlePopup : UI_Popup
 
         _state = States.BattleStart;
     }
-
+    bool isEnemyTurn = false;
     private void Update()
     {
         switch (_state)
@@ -174,6 +174,7 @@ public class UI_BattlePopup : UI_Popup
                 GameEvents.OnTurnStart();
                 _curTurn++;
                 GameEvents.OnTurnValue(_curTurn);
+                _playerController.ResetBuff();
                 SetEnemyIntention();
                 DrawCards(_startDrawCardNum);
                 HealMana(_maxMana);
@@ -189,14 +190,36 @@ public class UI_BattlePopup : UI_Popup
                 // 상대 턴 시작
                 break;
             case States.EnemyTurnStart:
+                foreach (GameObject enemy in _enemyList)
+                {
+                    enemy.GetComponent<EnemyController>().ResetBuff();
+                }
+                isEnemyTurn = true;
+                _state = States.EnemyTurning;
                 break;
             case States.EnemyTurning:
+                if (isEnemyTurn) { 
+                    EnemyTurnAction();
+                    isEnemyTurn = false;
+                }
                 break;
             case States.EnemyTurnEnd:
-                    break;
+                _state = States.TurnStart;
+                break;
             case States.BattleEnd:
                 break;
         }
+    }
+    public void EnemyTurnAction() {
+        StartCoroutine(EnemyActionCor());
+    }
+    IEnumerator EnemyActionCor() {
+        foreach (GameObject enemy in _enemyList)
+        {
+            enemy.GetComponent<EnemyController>().IntentionMotion();
+            yield return new WaitForSeconds(1f);
+        }
+        _state = States.EnemyTurnEnd;
     }
     public void SetEnemyIntention() {
         foreach (GameObject enemy in _enemyList) {
@@ -319,8 +342,7 @@ public class UI_BattlePopup : UI_Popup
         RefreshUI();
         isDestoryCard = false;
 
-        //임시 차례
-        _state = States.TurnStart;
+        _state = States.EnemyTurnStart;
     }
 
     IEnumerator DestroyCardRoutine()

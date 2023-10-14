@@ -84,6 +84,10 @@ public class EnemyController : UI_Base
     public void Damaged(int value)
     {
         if (Vulenerable > 0) value += (int)(value * (Managers.Game.VulenrablePercent/ 100f));
+        int temp = value;
+        value -= Shield;
+        Shield -= temp;
+        if (value < 0) value = 0;
         StartCoroutine(DamageMaterial());
         CurHp -= value;
         if (CurHp <= 0) { 
@@ -112,10 +116,12 @@ public class EnemyController : UI_Base
         }
         material.DisableKeyword("HITEFFECT_ON");
     }
-    public void AttackPlayer()
+    public void AttackPlayer(int Damage)
     {
-        /*if (Weakness > 0)
-            Damage = (int)(Damage * 0.75f);*/
+        Damage += Power;
+        if (Weakness > 0)
+            Damage = (int)(Damage * 0.75f);
+        battleScene._playerController.Damaged(Damage);
         //공격
         animator.SetTrigger("Attack");
     }
@@ -301,6 +307,7 @@ public class EnemyController : UI_Base
     }
     public virtual void SetIntention() { RefreshUIIntention(); }
     public virtual void RefreshUIIntention() {
+        GetImage((int)Images.IntentionImage).color = new Color(1, 1, 1, 1);
         switch (curIntention) {
             case Intention.Attack:
                 GetImage((int)Images.IntentionImage).sprite = Managers.Resource.Load<Sprite>("Sprites/Icon/공격");
@@ -329,12 +336,12 @@ public class EnemyController : UI_Base
         }
         GetText((int)Texts.IntentionText).text = IntentionFigure.ToString();
     }
-    public virtual void ResetIntention() { 
-        GetImage((int)Images.IntentionImage).sprite = null;
+    public virtual void ResetIntention() {
+        GetImage((int)Images.IntentionImage).color = new Color(1, 1, 1, 0);
         GetText((int)Texts.IntentionText).text = "";
         IntentionFigure = 0;
     }
     public virtual void IntentionMotion() { 
-        
+        ResetIntention();
     }
 }

@@ -31,11 +31,15 @@ public class DarkElf : EnemyController
         switch (curIntention)
         {
             case Intention.Attack:
+                AttackPlayer(IntentionFigure);
                 break;
             case Intention.Buff:
+                GetPower(IntentionFigure);
                 break;
             case Intention.Defense:
+                GetShield(IntentionFigure);
                 break;   
         }
+        base.IntentionMotion();
     }
 }
