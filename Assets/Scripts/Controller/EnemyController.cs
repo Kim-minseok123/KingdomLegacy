@@ -16,6 +16,9 @@ public class EnemyController : UI_Base
     public int Poisoning = 0;
     public int Shield = 0;
     public int dePower = 0;
+    public int UnitNumber = 0;
+    public Intention curIntention = Intention.Nothing;
+    public int IntentionFigure = 0;
 
     public Animator animator;
     UI_BattlePopup battleScene;
@@ -32,6 +35,7 @@ public class EnemyController : UI_Base
         BuffImage7,
         BuffImage8,
         TooltipImage,
+        IntentionImage,
     }
     enum Texts
     {
@@ -45,6 +49,7 @@ public class EnemyController : UI_Base
         BuffText7,
         BuffText8,
         ToolTipText,
+        IntentionText,
     }
     RectTransform rect;
     enum GameObjects {
@@ -245,9 +250,10 @@ public class EnemyController : UI_Base
         float value = CurHp / (float)MaxHp;
         GetImage((int)Images.HpValue).fillAmount = value;
     }
-    public void Setting(int hp) { 
+    public void Setting(int hp, int number) { 
         MaxHp = hp;
         CurHp = MaxHp;
+        UnitNumber = number;
     }
     public void PointerEnterBody(GameObject go) {
         gameObject.GetComponent<Image>().material.EnableKeyword("OUTBASE_ON");
@@ -292,5 +298,43 @@ public class EnemyController : UI_Base
     public void TooltipOff()
     {
         GetObject((int)GameObjects.ToolTip).SetActive(false);
+    }
+    public virtual void SetIntention() { RefreshUIIntention(); }
+    public virtual void RefreshUIIntention() {
+        switch (curIntention) {
+            case Intention.Attack:
+                GetImage((int)Images.IntentionImage).sprite = Managers.Resource.Load<Sprite>("Sprites/Icon/공격");
+                break;
+            case Intention.AttackDefense:
+                GetImage((int)Images.IntentionImage).sprite = Managers.Resource.Load<Sprite>("Sprites/Icon/공격방어");
+                break;
+            case Intention.AttackDebuff:
+                GetImage((int)Images.IntentionImage).sprite = Managers.Resource.Load<Sprite>("Sprites/Icon/공격디버프");
+                break;
+            case Intention.Buff:
+                GetImage((int)Images.IntentionImage).sprite = Managers.Resource.Load<Sprite>("Sprites/Icon/버프");
+                break;
+            case Intention.DeBuff:
+                GetImage((int)Images.IntentionImage).sprite = Managers.Resource.Load<Sprite>("Sprites/Icon/디버프");
+                break;
+            case Intention.Defense:
+                GetImage((int)Images.IntentionImage).sprite = Managers.Resource.Load<Sprite>("Sprites/Icon/방어");
+                break;
+            case Intention.DefenseBuff:
+                GetImage((int)Images.IntentionImage).sprite = Managers.Resource.Load<Sprite>("Sprites/Icon/방어버프");
+                break;
+            case Intention.Nothing:
+                GetImage((int)Images.IntentionImage).sprite = Managers.Resource.Load<Sprite>("Sprites/Icon/아무것도안함");
+                break;
+        }
+        GetText((int)Texts.IntentionText).text = IntentionFigure.ToString();
+    }
+    public virtual void ResetIntention() { 
+        GetImage((int)Images.IntentionImage).sprite = null;
+        GetText((int)Texts.IntentionText).text = "";
+        IntentionFigure = 0;
+    }
+    public virtual void IntentionMotion() { 
+        
     }
 }

@@ -59,8 +59,18 @@ public class Define
 		Drag,
 		DragEnd,
 	}
+	public enum Intention { 
+		Attack,
+		AttackDebuff,
+		AttackDefense,
+		Defense,
+		DefenseBuff,
+		Buff,
+		DeBuff,
+		Nothing,
+	}
 
-	public enum Scene
+    public enum Scene
 	{
 		Unknown,
 		Game,

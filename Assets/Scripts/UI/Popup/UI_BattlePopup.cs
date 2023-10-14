@@ -121,7 +121,7 @@ public class UI_BattlePopup : UI_Popup
         for (int i = 0; i < _enemyInfo.Enemys.Count; i++)
         {
             var enemy = Managers.Resource.Instantiate(_enemyInfo.Enemys[i], GetObject(i + 7).transform);
-            enemy.GetComponent<EnemyController>().Setting(_enemyInfo.EnemyHp[i]);
+            enemy.GetComponent<EnemyController>().Setting(_enemyInfo.EnemyHp[i], i + 1);
             _enemyList.Add(enemy);
         }
 
@@ -174,8 +174,10 @@ public class UI_BattlePopup : UI_Popup
                 GameEvents.OnTurnStart();
                 _curTurn++;
                 GameEvents.OnTurnValue(_curTurn);
+                SetEnemyIntention();
                 DrawCards(_startDrawCardNum);
                 HealMana(_maxMana);
+
                 _state = States.Turning;
                 break;
             case States.Turning:
@@ -196,7 +198,11 @@ public class UI_BattlePopup : UI_Popup
                 break;
         }
     }
-
+    public void SetEnemyIntention() {
+        foreach (GameObject enemy in _enemyList) {
+            enemy.GetComponent<EnemyController>().SetIntention();
+        }
+    }
     public void DrawCards(int drawcardsnum)
     {
         if (!cardsDrawn) return; 
