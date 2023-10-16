@@ -206,10 +206,26 @@ public class UI_BattlePopup : UI_Popup
             case States.EnemyTurnEnd:
                 _state = States.TurnStart;
                 break;
-            case States.BattleEnd:
-                break;
+        }
+        if(_enemyList.Count == 0)
+        {
+            EndBattle();
         }
     }
+
+    private void EndBattle()
+    {
+        GameEvents.OnBattleEnd();
+        _state = States.BattleEnd;
+        foreach (FriendAbility ability in Friends) {
+            ability.Die();
+        }
+        //¹èÆ² ³¡³µÀ» ¶§ È¹µæ ÆË¾÷ ¶ç¿ì±â
+        //ÀÓ½Ã
+        Camera.main.orthographicSize = 7;
+        Managers.UI.ClosePopupUI(this);
+    }
+
     public void EnemyTurnAction() {
         StartCoroutine(EnemyActionCor());
     }
@@ -611,6 +627,7 @@ public class UI_BattlePopup : UI_Popup
         DrawCards(value);
     }
     public List<string> FriendsName = new();
+    public List<FriendAbility> Friends = new();
     public void MakeFriend(string name, FriendAbility ability, CardData card) {
         if (curFriendNumer > 6) return;
         if (FriendsName.Contains(name)) return; 
@@ -618,6 +635,7 @@ public class UI_BattlePopup : UI_Popup
         curFriendNumer++;
         var Friend = Managers.Resource.Instantiate("UI/SubItem/UI_Friend", GetObject(curFriendNumer).transform);
         Friend.GetComponent<UI_Friend>().SetInfo(name, ability, card);
+        Friends.Add(ability);
         FriendsName.Add(name);
     }
 }

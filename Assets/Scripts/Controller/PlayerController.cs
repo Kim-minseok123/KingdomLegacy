@@ -1,8 +1,10 @@
 
+using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using static Define;
 
 public class PlayerController : UI_Base
 {
@@ -30,6 +32,7 @@ public class PlayerController : UI_Base
         BuffImage7,
         BuffImage8,
         TooltipImage,
+        
     }
     enum Texts
     {
@@ -43,10 +46,12 @@ public class PlayerController : UI_Base
         BuffText7,
         BuffText8,
         ToolTipText,
+        NameText,
     }
     enum GameObjects
     {
         ToolTip,
+        CheckBody,
     }
     RectTransform rect;
     public UI_BattlePopup _battleScene;
@@ -58,6 +63,9 @@ public class PlayerController : UI_Base
         BindImage(typeof(Images));
         BindText(typeof(Texts));
         BindObject(typeof(GameObjects));
+        GetObject((int)GameObjects.CheckBody).BindEvent((go) => PointerEnterBody(go), UIEvent.PointerEnter);
+        GetObject((int)GameObjects.CheckBody).BindEvent(PointerExitBody, UIEvent.PointerExit);
+        GetText((int)Texts.NameText).DOFade(0, 1f);
 
         _playerAnim = GetComponent<Animator>();
 
@@ -67,6 +75,14 @@ public class PlayerController : UI_Base
         _battleScene = Managers.UI.FindPopup<UI_BattlePopup>();
         RefreshUI();
         return true;
+    }
+    public void PointerEnterBody(GameObject go)
+    {
+        GetText((int)Texts.NameText).DOFade(1, 0.5f);
+    }
+    public void PointerExitBody()
+    {
+        GetText((int)Texts.NameText).DOFade(0, 1f);
     }
 
     public void Damaged(int value)

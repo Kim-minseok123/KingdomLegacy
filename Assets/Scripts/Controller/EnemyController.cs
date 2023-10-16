@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using static Define;
+using DG.Tweening;
 using System;
 using UnityEngine.UI;
 
@@ -18,10 +19,10 @@ public class EnemyController : UI_Base
     public int dePower = 0;
     public int UnitNumber = 0;
     public Intention curIntention = Intention.Nothing;
-    public int IntentionFigure = 0;
+    public int IntentionFigure = -1;
 
     public Animator animator;
-    UI_BattlePopup battleScene;
+    public UI_BattlePopup battleScene;
     public List<string> buffList = new();
     enum Images
     {
@@ -50,11 +51,13 @@ public class EnemyController : UI_Base
         BuffText8,
         ToolTipText,
         IntentionText,
+        NameText,
     }
     RectTransform rect;
     enum GameObjects {
         CheckBody,
         ToolTip,
+        NameText,
     }
     public override bool Init()
     {
@@ -67,6 +70,7 @@ public class EnemyController : UI_Base
 
         GetObject((int)GameObjects.CheckBody).BindEvent((go) => PointerEnterBody(go), UIEvent.PointerEnter);
         GetObject((int)GameObjects.CheckBody).BindEvent(PointerExitBody, UIEvent.PointerExit);
+        GetText((int)Texts.NameText).DOFade(0, 1f);
 
         battleScene = Managers.UI.FindPopup<UI_BattlePopup>();
         animator = GetComponent<Animator>();
@@ -88,6 +92,7 @@ public class EnemyController : UI_Base
         value -= Shield;
         Shield -= temp;
         if (value < 0) value = 0;
+        if (Shield < 0) Shield = 0;
         StartCoroutine(DamageMaterial());
         CurHp -= value;
         if (CurHp <= 0) { 
@@ -264,10 +269,12 @@ public class EnemyController : UI_Base
     public void PointerEnterBody(GameObject go) {
         gameObject.GetComponent<Image>().material.EnableKeyword("OUTBASE_ON");
         battleScene._curEnemy = gameObject;
+        GetText((int)Texts.NameText).DOFade(1, 0.5f);
     }
     public void PointerExitBody() {
         gameObject.GetComponent<Image>().material.DisableKeyword("OUTBASE_ON");
         battleScene._curEnemy = null;
+        GetText((int)Texts.NameText).DOFade(0, 1f);
     }
     private void OnDestroy()
     {

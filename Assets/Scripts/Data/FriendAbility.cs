@@ -7,6 +7,7 @@ public interface FriendAbility
 {
     public void Use();
     public void Setting(CardData card);
+    public void Die();
 }
 
 public class InfinitySword : FriendAbility
@@ -24,6 +25,11 @@ public class InfinitySword : FriendAbility
         GameEvents.TurnEnd -= Use;
         GameEvents.TurnEnd += Use;
     }
+
+    public void Die()
+    {
+        GameEvents.TurnEnd -= Use;
+    }
 }
 public class Hod : FriendAbility
 {
@@ -40,6 +46,11 @@ public class Hod : FriendAbility
         GameEvents.TurnEnd -= Use;
         GameEvents.TurnEnd += Use;
         this.card = card;
+    }
+
+    public void Die()
+    {
+        GameEvents.TurnEnd -= Use;
     }
 }
 public class CalieCarly : FriendAbility
@@ -59,6 +70,12 @@ public class CalieCarly : FriendAbility
         GameEvents.TurnStart += Use;
         this.card = card;
     }
+
+    public void Die()
+    {
+        GameEvents.TurnStart -= Use;
+
+    }
 }
 public class Davidson : FriendAbility
 {
@@ -75,6 +92,12 @@ public class Davidson : FriendAbility
         GameEvents.TurnStart -= Use;
         GameEvents.TurnStart += Use;
     }
+
+    public void Die()
+    {
+        GameEvents.TurnStart -= Use;
+
+    }
 }
 
 public class Bedford : FriendAbility
@@ -85,6 +108,11 @@ public class Bedford : FriendAbility
 
     }
     public void Setting(CardData card)
+    {
+
+    }
+
+    public void Die()
     {
 
     }
@@ -102,6 +130,11 @@ public class Grafton : FriendAbility
         GameEvents.KillEnemy -= Use;
         GameEvents.KillEnemy += Use;
         this.card = card;
+    }
+
+    public void Die()
+    {
+        throw new System.NotImplementedException();
     }
 }
 
@@ -121,6 +154,11 @@ public class Beaufort : FriendAbility
         GameEvents.TurnStart -= Use;
         GameEvents.TurnStart += Use;
         this.card = card;
+    }
+
+    public void Die()
+    {
+        GameEvents.TurnStart -= Use;
     }
 }
 public class Devon : FriendAbility
@@ -151,6 +189,11 @@ public class Devon : FriendAbility
         GameEvents.TurnStart += Use;
         this.card = card;
     }
+
+    public void Die()
+    {
+        GameEvents.TurnStart -= Use;
+    }
 }
 public class Casey : FriendAbility
 {
@@ -170,6 +213,11 @@ public class Casey : FriendAbility
         GameEvents.TurnStart += Use;
         this.card = card;
     }
+
+    public void Die()
+    {
+        GameEvents.TurnStart -= Use;
+    }
 }
 public class Selmore : FriendAbility
 {
@@ -179,6 +227,11 @@ public class Selmore : FriendAbility
         
     }
     public void Setting(CardData card)
+    {
+        
+    }
+
+    public void Die()
     {
         
     }
@@ -216,6 +269,11 @@ public class Rudger : FriendAbility
         datasPlus[3] = 127;
         this.card = card;
     }
+
+    public void Die()
+    {
+        GameEvents.TurnStart -= Use;
+    }
 }
 public class Chellish : FriendAbility
 {
@@ -238,6 +296,11 @@ public class Chellish : FriendAbility
         GameEvents.TurnStart += Use;
         this.card = card;
     }
+
+    public void Die()
+    {
+        GameEvents.TurnStart -= Use;
+    }
 }
 public class Esmerilda : FriendAbility
 {
@@ -256,6 +319,11 @@ public class Esmerilda : FriendAbility
         GameEvents.TurnStart -= Use;
         GameEvents.TurnStart += Use;
         this.card = card;
+    }
+
+    public void Die()
+    {
+        GameEvents.TurnStart -= Use;
     }
 }
 public class Line : FriendAbility
@@ -279,6 +347,11 @@ public class Line : FriendAbility
         GameEvents.LostHp += Use;
         this.card = card;
     }
+
+    public void Die()
+    {
+        GameEvents.LostHp -= Use;
+    }
 }
 public class Bian : FriendAbility
 {
@@ -297,5 +370,10 @@ public class Bian : FriendAbility
         GameEvents.TurnStart -= Use;
         GameEvents.TurnStart += Use;
         this.card = card;
+    }
+
+    public void Die()
+    {
+        GameEvents.TurnStart -= Use;
     }
 }
