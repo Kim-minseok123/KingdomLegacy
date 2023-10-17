@@ -11,7 +11,7 @@ public class GetManaAction : ActionBase
             case 15: case 16:
                 if (enemy != null)
                 {
-                    if (enemy.Vulenerable > 0) { 
+                    if (enemy.buffList.GetBuffName("Ãë¾à").Value > 0) { 
                         player._battleScene.HealMana(card.getMana);
                     }
                 }

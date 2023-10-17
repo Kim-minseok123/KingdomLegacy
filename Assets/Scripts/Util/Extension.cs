@@ -52,4 +52,13 @@ public static class Extension
 	{
 		scrollRect.horizontalNormalizedPosition = 1;
 	}
+    public static Buff GetBuffName(this IList<Buff> list, string name)
+    {
+        foreach (Buff buff in list)
+        {
+            if (buff.Name == name)
+                return buff;
+        }
+        return null;
+    }
 }
