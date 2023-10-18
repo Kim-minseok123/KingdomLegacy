@@ -458,6 +458,7 @@ public class UI_BattlePopup : UI_Popup
             if (worldPos.y > -0.8f)
             {
                 //카드 사용.
+                GameEvents.OnUseCard(card._cardData);
                 isUseCard = true;
                 _handCardsUI.Remove(card);
                 StartCoroutine(UseCardNonTarget(card));
@@ -468,6 +469,7 @@ public class UI_BattlePopup : UI_Popup
             //타겟이 있는 경우만
             if (_curEnemy != null && _enemyList.Contains(_curEnemy))
             {
+                GameEvents.OnUseCard(card._cardData);
                 isUseCard = true;
                 _handCardsUI.Remove(card);
                 StartCoroutine(UseCardTarget(card, _curEnemy));

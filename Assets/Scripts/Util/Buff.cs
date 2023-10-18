@@ -38,4 +38,11 @@ public class BarrierBuff : Buff
         return;
     }
 }
+public class ShoutBuff : Buff
+{
+    public override void Update()
+    {
+        return;
+    }
+}
 

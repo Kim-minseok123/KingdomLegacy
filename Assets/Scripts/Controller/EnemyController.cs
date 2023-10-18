@@ -255,7 +255,11 @@ public class EnemyController : UI_Base
             {
                 ehd.enabled = true;
             }
-            GetText(i + 1).text = buff.Value.ToString();
+            if (buff.Value == 0) { 
+                GetText(i + 1).text = "";
+            }
+            else
+                GetText(i + 1).text = buff.Value.ToString();
             buffImage.gameObject.BindEvent((go) => { TooltipOn(go.transform, buff.des); }, Define.UIEvent.PointerEnter);
             buffImage.gameObject.BindEvent(() => { TooltipOff(); }, Define.UIEvent.PointerExit);
             
@@ -306,7 +310,7 @@ public class EnemyController : UI_Base
     {
         battleScene._curEnemy = null;
     }
-    public void Death()
+    public virtual void Death()
     {
         battleScene._enemyList.Remove(gameObject);
         GameEvents.OnKillEnemy();

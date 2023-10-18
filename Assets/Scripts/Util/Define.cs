@@ -117,4 +117,5 @@ public class Define
     public const int dePower = 20042;
     public const int infinitySword = 20043;
 	public const int Barrier = 20044;
+	public const int Shout = 20045;
 }
