@@ -53,7 +53,7 @@ public class CorruptKnight : EnemyController
         {
             if (buffList.Count > 6)
                 return;
-            buffList.Add(new DePowerBuff { Name = "함성", Value = value, controller = this, des = Define.Shout });
+            buffList.Add(new ShoutBuff { Name = "함성", Value = value, controller = this, des = Define.Shout });
         }
         else
         {

@@ -45,4 +45,15 @@ public class ShoutBuff : Buff
         return;
     }
 }
-
+public class AttackModeBuff : Buff {
+    public override void Update()
+    {
+        return;
+    }
+}
+public class DefenseModeBuff : Buff {
+    public override void Update()
+    {
+        return;
+    }
+}

@@ -27,7 +27,7 @@ public class GorblinMagician : EnemyController
         {
             if (buffList.Count > 6)
                 return;
-            buffList.Add(new Buff { Name = "배리어", Value = value, controller = this, des = Define.Barrier });
+            buffList.Add(new BarrierBuff { Name = "배리어", Value = value, controller = this, des = Define.Barrier });
         }
         else
         {
