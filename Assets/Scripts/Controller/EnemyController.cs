@@ -81,7 +81,7 @@ public class EnemyController : UI_Base
         RefreshUI();
         return true;
     }
-    public void Damaged(int value)
+    public virtual void Damaged(int value)
     {
         Buff buff = buffList.GetBuffName("취약");
 
@@ -339,10 +339,11 @@ public class EnemyController : UI_Base
         GetObject((int)GameObjects.ToolTip).SetActive(false);
     }
     public virtual void SetIntention() { RefreshUIIntention(); }
+    public int AttackNum = 1;
     public virtual void RefreshUIIntention() {
         GetImage((int)Images.IntentionImage).color = new Color(1, 1, 1, 1);
         switch (curIntention) {
-            case Intention.Attack:
+            case Intention.Attack: case Intention.AttackMany :
                 GetImage((int)Images.IntentionImage).sprite = Managers.Resource.Load<Sprite>("Sprites/Icon/공격");
                 break;
             case Intention.AttackDefense:
@@ -367,6 +368,11 @@ public class EnemyController : UI_Base
                 GetImage((int)Images.IntentionImage).sprite = Managers.Resource.Load<Sprite>("Sprites/Icon/아무것도안함");
                 break;
         }
+        if (curIntention == Intention.AttackMany)
+        {
+            GetText((int)Texts.IntentionText).text = IntentionFigure.ToString() + " X " + AttackNum.ToString();
+            return;
+        }
         GetText((int)Texts.IntentionText).text = IntentionFigure.ToString();
     }
     public virtual void ResetIntention() {
@@ -374,7 +380,8 @@ public class EnemyController : UI_Base
         GetText((int)Texts.IntentionText).text = "";
         IntentionFigure = 0;
     }
-    public virtual void IntentionMotion() { 
+    public virtual IEnumerator IntentionMotion() { 
         ResetIntention();
+        yield return null;
     }
 }

@@ -44,7 +44,7 @@ public class Gorblin : EnemyController
 
         base.SetIntention();
     }
-    public override void IntentionMotion()
+    public override IEnumerator IntentionMotion()
     {
         switch (curIntention)
         {
@@ -59,8 +59,8 @@ public class Gorblin : EnemyController
                 battleScene._enemyList.GetRandom().GetComponent<EnemyController>().GetShield(IntentionFigure);
                 break;
             case Intention.Nothing:
-                return;
+                yield break;
         }
-        base.IntentionMotion();
+        StartCoroutine(base.IntentionMotion());
     }
 }

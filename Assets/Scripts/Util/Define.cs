@@ -63,6 +63,7 @@ public class Define
 		Attack,
 		AttackDebuff,
 		AttackDefense,
+		AttackMany,
 		Defense,
 		DefenseBuff,
 		Buff,
@@ -115,4 +116,5 @@ public class Define
     public const int Shield = 20041;
     public const int dePower = 20042;
     public const int infinitySword = 20043;
+	public const int Barrier = 20044;
 }

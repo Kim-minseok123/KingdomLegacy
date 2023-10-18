@@ -14,7 +14,7 @@ public class DarkElf : EnemyController
             curIntention = Define.Intention.Attack;
             IntentionFigure = 7;
         }
-        else if (num < 70)
+        else if (num < 80)
         {
             curIntention = Intention.Defense;
             IntentionFigure = 6;
@@ -26,7 +26,7 @@ public class DarkElf : EnemyController
 
         base.SetIntention();
     }
-    public override void IntentionMotion()
+    public override IEnumerator IntentionMotion()
     {
         switch (curIntention)
         {
@@ -40,6 +40,7 @@ public class DarkElf : EnemyController
                 GetShield(IntentionFigure);
                 break;   
         }
-        base.IntentionMotion();
+        yield return null;
+        StartCoroutine(base.IntentionMotion());
     }
 }

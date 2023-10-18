@@ -232,7 +232,7 @@ public class UI_BattlePopup : UI_Popup
     IEnumerator EnemyActionCor() {
         foreach (GameObject enemy in _enemyList)
         {
-            enemy.GetComponent<EnemyController>().IntentionMotion();
+            yield return StartCoroutine(enemy.GetComponent<EnemyController>().IntentionMotion());
             yield return new WaitForSeconds(1f);
         }
         _state = States.EnemyTurnEnd;

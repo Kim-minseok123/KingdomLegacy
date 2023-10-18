@@ -31,4 +31,11 @@ public class PoisonBuff : Buff {
         base.Update();
     }
 }
+public class BarrierBuff : Buff
+{
+    public override void Update()
+    {
+        return;
+    }
+}
 
