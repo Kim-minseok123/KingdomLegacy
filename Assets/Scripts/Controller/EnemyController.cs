@@ -28,7 +28,7 @@ public class EnemyController : UI_Base
         BuffImage4,
         BuffImage5,
         BuffImage6,
-        BuffImage7,
+
         BuffImage8,
         TooltipImage,
         IntentionImage,
@@ -42,7 +42,7 @@ public class EnemyController : UI_Base
         BuffText4,
         BuffText5,
         BuffText6,
-        BuffText7,
+
         BuffText8,
         ToolTipText,
         IntentionText,
@@ -318,7 +318,7 @@ public class EnemyController : UI_Base
     }
     public void ResetBuff()
     {
-        for (int i = buffList.Count - 1; i > 0; i--) {
+        for (int i = buffList.Count - 1; i >= 0; i--) {
             buffList[i].Update();
         }
         if (Shield > 0) { Shield = 0;}
@@ -346,6 +346,7 @@ public class EnemyController : UI_Base
     public int AttackNum = 1;
     public virtual void RefreshUIIntention() {
         GetImage((int)Images.IntentionImage).color = new Color(1, 1, 1, 1);
+        GetImage((int)Images.IntentionImage).rectTransform.sizeDelta = new Vector2(45, 55);
         switch (curIntention) {
             case Intention.Attack: case Intention.AttackMany :
                 GetImage((int)Images.IntentionImage).sprite = Managers.Resource.Load<Sprite>("Sprites/Icon/공격");
@@ -370,6 +371,7 @@ public class EnemyController : UI_Base
                 break;
             case Intention.Nothing:
                 GetImage((int)Images.IntentionImage).sprite = Managers.Resource.Load<Sprite>("Sprites/Icon/아무것도안함");
+                GetImage((int)Images.IntentionImage).rectTransform.sizeDelta = new Vector2(71, 55);
                 break;
         }
         if (curIntention == Intention.AttackMany)
@@ -377,7 +379,12 @@ public class EnemyController : UI_Base
             GetText((int)Texts.IntentionText).text = IntentionFigure.ToString() + " X " + AttackNum.ToString();
             return;
         }
-        GetText((int)Texts.IntentionText).text = IntentionFigure.ToString();
+        if(IntentionFigure == 0)
+        {
+            GetText((int)Texts.IntentionText).text = "";
+        }
+        else
+            GetText((int)Texts.IntentionText).text = IntentionFigure.ToString();
     }
     public virtual void ResetIntention() {
         GetImage((int)Images.IntentionImage).color = new Color(1, 1, 1, 0);

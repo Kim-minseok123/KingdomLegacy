@@ -5,9 +5,11 @@ using static Define;
 
 public class ForestKing : EnemyController
 {
-    private void Start()
+    public override bool Init()
     {
+        base.Init();
         GetAttackMode(40);
+        return true;
     }
     public override void Damaged(int value)
     {

@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Enemys:
   - {fileID: 8849442430046357180, guid: 74ed7f403c6c8764ba11270778f6fd6e, type: 3}
-  EnemyHp: 28000000
+  EnemyHp: 1a000000

@@ -14,8 +14,15 @@ public class Gorblin : EnemyController
                 IntentionFigure = 6;
                 break;
             case 2:
-                curIntention = Intention.Defense;
-                IntentionFigure = 10;
+                if (battleScene._enemyList.Count < 2)
+                {
+                    curIntention = Intention.Attack;
+                    IntentionFigure = 10;
+                }
+                else {
+                    curIntention = Intention.Defense;
+                    IntentionFigure = 10;
+                }
                 break;
             case 3:
                 curIntention = Intention.AttackDebuff;

@@ -5,10 +5,11 @@ using static Define;
 
 public class GorblinMagician : EnemyController
 {
-    private void Start()
+    public override bool Init()
     {
+        base.Init();
         GetBarrier(2);
-
+        return true;
     }
     public override void Damaged(int value) {
         Buff buff = buffList.GetBuffName("¹è¸®¾î");

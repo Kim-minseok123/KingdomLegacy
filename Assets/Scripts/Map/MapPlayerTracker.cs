@@ -72,14 +72,16 @@ namespace Map
             // load appropriate scene with context based on nodeType:
             // or show appropriate GUI over the map: 
             // if you choose to show GUI in some of these cases, do not forget to set "Locked" in MapPlayerTracker back to false
+            EnemyInfo info;
             switch (mapNode.Node.nodeType)
             {
                 case NodeType.MinorEnemy:
-                    EnemyInfo info = Managers.Resource.Load<EnemyInfo>($"ScriptableObjects/Enemy/Minor/{Managers.Game.Stage}-{Managers.Game.StageNumber}");
+                    info = Managers.Resource.Load<EnemyInfo>($"ScriptableObjects/Enemy/Minor/{Managers.Game.Stage}-{Managers.Game.StageNumber}");
                     Managers.UI.ShowPopupUI<UI_BattlePopup>().SetInfo(info);
                     break;
                 case NodeType.EliteEnemy:
                     info = Managers.Resource.Load<EnemyInfo>($"ScriptableObjects/Enemy/Elite/{Managers.Game.Stage}-{Managers.Game.StageNumber}");
+                    Managers.UI.ShowPopupUI<UI_BattlePopup>().SetInfo(info);
                     break;
                 case NodeType.RestSite:
                     break;
@@ -87,6 +89,7 @@ namespace Map
                     break;
                 case NodeType.Boss:
                     info = Managers.Resource.Load<EnemyInfo>($"ScriptableObjects/Enemy/Boss/{Managers.Game.Stage}-{Managers.Game.StageNumber}");
+                    Managers.UI.ShowPopupUI<UI_BattlePopup>().SetInfo(info);
                     break;
                 default:
                     throw new ArgumentOutOfRangeException();

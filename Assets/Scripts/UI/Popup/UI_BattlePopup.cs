@@ -174,7 +174,6 @@ public class UI_BattlePopup : UI_Popup
                 GameEvents.OnTurnStart();
                 _curTurn++;
                 GameEvents.OnTurnValue(_curTurn);
-                _playerController.ResetBuff();
                 SetEnemyIntention();
                 DrawCards(_startDrawCardNum);
                 HealMana(_maxMana);
@@ -187,13 +186,11 @@ public class UI_BattlePopup : UI_Popup
                 break;
             case States.TurnEnd:
                 HandleCardsCircle();
+                _playerController.ResetBuff();
+
                 // 상대 턴 시작
                 break;
             case States.EnemyTurnStart:
-                foreach (GameObject enemy in _enemyList)
-                {
-                    enemy.GetComponent<EnemyController>().ResetBuff();
-                }
                 isEnemyTurn = true;
                 _state = States.EnemyTurning;
                 break;
@@ -204,6 +201,10 @@ public class UI_BattlePopup : UI_Popup
                 }
                 break;
             case States.EnemyTurnEnd:
+                foreach (GameObject enemy in _enemyList)
+                {
+                    enemy.GetComponent<EnemyController>().ResetBuff();
+                }
                 _state = States.TurnStart;
                 break;
         }
@@ -338,12 +339,12 @@ public class UI_BattlePopup : UI_Popup
     bool isDestoryCard = false;
     public void TurnEnd()
     {
-        if (_state == States.Turning && !isUseCard)
+        if (_state == States.Turning && !isUseCard && !isDestoryCard)
         {
+            isDestoryCard = true;
             _state = States.TurnEnd;
             GameEvents.OnTurnEnd();
             cardsDrawn = true;
-            isDestoryCard = true;
             if(!Managers.Game.isManaDisappear)
                 _curMana = 0;
             StartCoroutine(CheckDestoryCard());
@@ -371,6 +372,9 @@ public class UI_BattlePopup : UI_Popup
         {
             if (_handCardsUI[i]._cardData.state == Define.CardLifeState.Preservation)
             {
+                if (_handCardsUI[i]._cardData.ID == 23 || _handCardsUI[i]._cardData.ID == 24) {
+                    _handCardsUI[i]._cardData.Upgrade();
+                }
                 continue;
             }
 

@@ -39,10 +39,6 @@ public class DataManager
             }
             card.cardCondition = CardConditionFactory.CreateCondition(card.condition);
         }
-        GameEvents.PreservationCards -= (v) => { Cards[23].Upgrade(); };
-        GameEvents.PreservationCards += (v) => { Cards[23].Upgrade(); };
-        GameEvents.PreservationCards -= (v) => { Cards[24].Upgrade(); };
-        GameEvents.PreservationCards += (v) => { Cards[24].Upgrade(); };
         Items = LoadXml<ItemDataLoader, int, ItemData>("ItemData").MakeDic();
         foreach (ItemData item in Items.Values) {
             item.ability = ItemAbilityFactory.CreateAbility(item);

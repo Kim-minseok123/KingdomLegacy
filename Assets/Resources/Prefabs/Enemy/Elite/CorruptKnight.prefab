@@ -1806,7 +1806,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 45, y: 55}
+  m_SizeDelta: {x: 35, y: 35}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6877557157008649120
 CanvasRenderer:
@@ -1863,7 +1863,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 40.65
+  m_fontSize: 31.35
   m_fontSizeBase: 50
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -2961,19 +2961,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MaxHp: 0
   CurHp: 0
-  Weakness: 0
-  Vulenerable: 0
-  Power: 0
-  Agility: 0
-  Poisoning: 0
   Shield: 0
-  dePower: 0
   UnitNumber: 0
   curIntention: 7
   IntentionFigure: 0
   animator: {fileID: 0}
   battleScene: {fileID: 0}
-  buffList: []
+  AttackNum: 1
 --- !u!1 &8951559800498387887
 GameObject:
   m_ObjectHideFlags: 0
