@@ -2,7 +2,7 @@
 <ArrayOfStatData xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <ItemData ID="1" name="짧은 휴식" description="매 전투 종로시 체력을 5 회복합니다." type ="BattleEnd" value="5" ></ItemData>
   <ItemData ID="2" name="준비된 마음가짐" description="첫 턴에만 카드를 3 장 더 뽑습니다." type ="TurnValue" value="3" frequency="1"></ItemData>
-  <ItemData ID="3" name="약탈" description="매 전투 종료 승리 시 골드를 25% 추가 획득합니다." type ="BattleEnd" value="25"></ItemData>
+  <ItemData ID="3" name="약탈" description="매 전투 종료 승리 시 골드를 25% 추가 획득합니다." type ="GetItem" value="25"></ItemData>
   <ItemData ID="4" name="끝없는 근성" description="매 턴 시작 시 텐션을 1 추가 획득합니다. 더이상 휴식 장소에서 휴식을 할 수 없습니다." type ="TurnStart" value="1"></ItemData>
   <ItemData ID="5" name="금지된 성장" description="매 턴 시작 시 텐션을 1 추가 획득합니다. 더이상 휴식 장소에서 카드를 제련할 수 없습니다." type ="TurnStart" value="1"></ItemData>
   <ItemData ID="6" name="도전의 목걸이" description="매 턴 시작 시 텐션을 1 추가 획득합니다. 전투 시작 시 모든 적들은 2의 힘을 추가로 얻습니다." type ="BattleStart" value="1"></ItemData>

@@ -1,0 +1,61 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class UI_ClearRoomPopup : UI_Popup
+{
+    enum Texts { 
+        GetGoldText,
+    }
+    enum Buttons { 
+        GetGoldButton,
+        GetItemButton,
+        GetCardButton,
+        EndButton
+    }
+    public override bool Init()
+    {
+        if (!base.Init())
+            return false;
+        BindText(typeof(Texts));
+        BindButton(typeof(Buttons));
+        if(Managers.Game.CurMapNode.Node.nodeType == Map.NodeType.MinorEnemy)
+        {
+            Destroy(GetButton((int)Buttons.GetItemButton).gameObject);
+        }
+        else
+            GetButton((int)Buttons.GetItemButton).gameObject.BindEvent(GetItem);
+        if (Managers.Game.isGoldPlusItem)
+        {
+            GetText((int)Texts.GetGoldText).text = "32 °ñµå È¹µæ";
+        }
+        GetButton((int)Buttons.GetCardButton).gameObject.BindEvent(GetCard);
+        GetButton((int)Buttons.GetGoldButton).gameObject.BindEvent(GetGold);
+        GetButton((int)Buttons.EndButton).gameObject.BindEvent(EndRoom);
+
+        return true;
+    }
+    public void GetCard() { 
+        Destroy(GetButton((int)Buttons.GetCardButton).gameObject);
+    }
+    public void GetItem() {
+        Destroy(GetButton((int)Buttons.GetItemButton).gameObject);
+    }
+    public void GetGold() {
+        if (Managers.Game.isGoldPlusItem) {
+            Managers.Game.Money += 32;
+        }
+        else
+            Managers.Game.Money += 25;
+        Destroy(GetButton((int)Buttons.GetGoldButton).gameObject);
+    }
+    public void EndRoom() {
+        Camera.main.orthographicSize = 7;
+        Managers.UI.ClosePopupUI(this);
+        Managers.UI.ClosePopupUI(Managers.UI.FindPopup<UI_BattlePopup>());
+        if (Managers.Game.CurMapNode.Node.nodeType == Map.NodeType.Boss) {
+            Managers.Game.Stage++;
+            //¸Ê ÃÊ±âÈ­ ¹× ¸Ê ÆË¾÷ ¶ç¿ì±â ÆäÀÌµå ÀÎ ¾Æ¿ô ÅëÇØ¼­
+        }
+    }
+}

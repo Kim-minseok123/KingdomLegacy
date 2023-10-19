@@ -53,13 +53,13 @@ public class GorblinMagician : EnemyController
             curIntention = Intention.Attack;
             IntentionFigure = 6;
         }
-        else if (num < 35)
+        else if (num < 70)
         {
             curIntention = Intention.AttackMany;
             IntentionFigure = 1;
             AttackNum = 4;
         }
-        else if (num < 30)
+        else if (num < 100)
         {
             curIntention = Intention.Buff;
             IntentionFigure = 5;

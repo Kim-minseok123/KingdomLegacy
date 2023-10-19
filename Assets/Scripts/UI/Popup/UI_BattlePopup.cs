@@ -208,12 +208,13 @@ public class UI_BattlePopup : UI_Popup
                 _state = States.TurnStart;
                 break;
         }
-        if(_enemyList.Count == 0)
+        if(_enemyList.Count == 0 && !isBattleEnd)
         {
             EndBattle();
+            isBattleEnd = true;
         }
     }
-
+    bool isBattleEnd = false;
     private void EndBattle()
     {
         GameEvents.OnBattleEnd();
@@ -221,10 +222,12 @@ public class UI_BattlePopup : UI_Popup
         foreach (FriendAbility ability in Friends) {
             ability.Die();
         }
+        if (Managers.Game.Stage == 3) {
+            //¿£µù ÆË¾÷ ¶ç¿ì±â
+            return;
+        }
         //¹èÆ² ³¡³µÀ» ¶§ È¹µæ ÆË¾÷ ¶ç¿ì±â
-        //ÀÓ½Ã
-        Camera.main.orthographicSize = 7;
-        Managers.UI.ClosePopupUI(this);
+        Managers.UI.ShowPopupUI<UI_ClearRoomPopup>();
     }
 
     public void EnemyTurnAction() {

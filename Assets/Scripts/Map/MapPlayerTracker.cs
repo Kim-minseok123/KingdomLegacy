@@ -94,6 +94,7 @@ namespace Map
                 default:
                     throw new ArgumentOutOfRangeException();
             }
+            Managers.Game.CurMapNode = mapNode;
         }
 
         private void PlayWarningThatNodeCannotBeAccessed()

@@ -61,10 +61,16 @@ public class Item3 : ItemAbility
     {
         //°ñµå Ãß°¡ È¹µæ.
     }
+    public void GetItem()
+    {
+        GameEvents.GetItem -= GetItem;
+        Managers.Game.isGoldPlusItem = true;
+        //ÈÞ½Ä ¸øÇÏ°Ô
+    }
     public override void Setting()
     {
-        GameEvents.BattleEnd -= Use;
-        GameEvents.BattleEnd += Use;
+        GameEvents.GetItem -= GetItem;
+        GameEvents.GetItem += GetItem;
     }
 }
 public class Item4 : ItemAbility

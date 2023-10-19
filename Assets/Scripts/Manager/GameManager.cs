@@ -20,6 +20,8 @@ public class GameData
     public int stageNumber;
     public int VulenrablePercent;
     public bool isManaDisappear;
+    public MapNode curMapNode;
+    public bool isGoldPlusItem;
 }
 public class GameManager : MonoBehaviour
 {
@@ -36,8 +38,9 @@ public class GameManager : MonoBehaviour
     public int StageNumber { get { return _gameData.stageNumber; } set { _gameData.stageNumber = value; } }
     public int VulenrablePercent { get { return _gameData.VulenrablePercent; } set { _gameData.VulenrablePercent = value; } }
     public bool isManaDisappear { get { return _gameData.isManaDisappear; } set { _gameData.isManaDisappear = value; } }
-
+    public MapNode CurMapNode { get { return _gameData.curMapNode; } set { _gameData.curMapNode = value; } }
     public List<CardData> Cards { get {  return _gameData.cards; } set { _gameData.cards.AddRange(value);} }
+    public bool isGoldPlusItem { get { return _gameData.isGoldPlusItem; } set { _gameData.isGoldPlusItem = value; } }
     public int StartDrawCardNum { get {  return _gameData.startDrawCardNum;} set { _gameData.startDrawCardNum = value; } }
     public void Init() { 
         Stage = 1;
@@ -62,6 +65,7 @@ public class GameManager : MonoBehaviour
         VulenrablePercent = 50;
         PlayerName = "";
         isManaDisappear = false;
+        CurMapNode = null;
     }
     
     #region Save & Load	
