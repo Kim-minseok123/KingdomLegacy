@@ -19,9 +19,15 @@
 	<TextData ID="20038" kor="힘.&lt;br&gt;[버프]&lt;br&gt;공격 시 힘의 수치만큼&lt;br&gt;추가 피해를 입힙니다." eng="" />
 	<TextData ID="20039" kor="민첩.&lt;br&gt;[버프]&lt;br&gt;방어도 획득 시 수치만큼&lt;br&gt;추가 방어도를 획득합니다." eng="" />
 	<TextData ID="20040" kor="중독.&lt;br&gt;[디버프]&lt;br&gt;매 턴 시작 시 수치만큼&lt;br&gt;피해를 입습니다." eng="" />
-	<TextData ID="20041" kor="방어도.&lt;br&gt;[버프]&lt;br&gt;피해를 수치만큼 방어합니다." eng="" />
+	<TextData ID="20041" kor="방어도.&lt;br&gt;[버프]&lt;br&gt;피해가 수치만큼 감소합니다." eng="" />
 	<TextData ID="20042" kor="힘 감소.&lt;br&gt;[디버프]&lt;br&gt;턴 종료 시 수치만큼&lt;br&gt;힘의 수치가 줄어듭니다." eng="" />
 	<TextData ID="20043" kor="무한의 검.&lt;br&gt;[버프]&lt;br&gt;턴 종료 시 수치가 1 증가한다." eng="" />
   <TextData ID="20044" kor="방어막.&lt;br&gt;[버프]&lt;br&gt;받는 피해가 25% 감소합니다.&lt;br&gt;피격 시 수치가 1 감소합니다." eng="" />
-  <TextData ID="20045" kor="함성.&lt;br&gt;[버프]&lt;br&gt;스킬 카드를 사용할 때 마다 힘 2를 획득합니다." eng="" />
+  <TextData ID="20045" kor="소멸.&lt;br&gt;[상태]&lt;br&gt;사용 시 이번 배틀동안 카드가 제외됩니다." eng="" />
+  <TextData ID="20046" kor="보존.&lt;br&gt;[상태]&lt;br&gt;턴 종료 시 카드가 버린 카드 더미로 가지 않습니다." eng="" />
+  <TextData ID="20047" kor="조건.&lt;br&gt;[상태]&lt;br&gt;카드를 사용하기 위한 조건입니다." eng="" />
+  <TextData ID="20048" kor="텐션.&lt;br&gt;[상태]&lt;br&gt;카드를 사용할 때 소모되는 마나입니다." eng="" />
+  <TextData ID="20049" kor="소환.&lt;br&gt;[상태]&lt;br&gt;동료를 소환하고 카드는 소멸됩니다." eng="" />
+  <TextData ID="20050" kor="드로우.&lt;br&gt;[상태]&lt;br&gt;뽑을 카드 더미에서 카드를 획득합니다." eng="" />
+  <TextData ID="20051" kor="함성.&lt;br&gt;[버프]&lt;br&gt;스킬 카드를 사용할 때 마다 힘 2를 획득합니다." eng="" />
 </ArrayOfTextData>

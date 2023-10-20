@@ -37,6 +37,7 @@ public class UI_ClearRoomPopup : UI_Popup
     }
     public void GetCard() { 
         Destroy(GetButton((int)Buttons.GetCardButton).gameObject);
+        Managers.UI.ShowPopupUI<UI_ChooseClearCardPopup>();
     }
     public void GetItem() {
         Destroy(GetButton((int)Buttons.GetItemButton).gameObject);

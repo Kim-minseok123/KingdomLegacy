@@ -84,7 +84,6 @@ public class UI_Card : UI_Base
     }
     public UI_Card SetInfo(CardData id) {
         _cardData = (CardData)id.Clone();
-        RefreshUI();
         return this;
     }
     public void CheckManaUseCard(int curMana) {

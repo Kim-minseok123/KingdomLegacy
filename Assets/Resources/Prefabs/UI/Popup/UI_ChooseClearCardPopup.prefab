@@ -221,7 +221,7 @@ GameObject:
   - component: {fileID: 2966856753589584197}
   - component: {fileID: 2966856753589584196}
   - component: {fileID: 2966856753589584199}
-  - component: {fileID: 2486888632872914913}
+  - component: {fileID: 7060727695696260820}
   m_Layer: 5
   m_Name: UI_ChooseClearCardPopup
   m_TagString: Untagged
@@ -316,7 +316,7 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
---- !u!114 &2486888632872914913
+--- !u!114 &7060727695696260820
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -325,7 +325,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2966856753589584198}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: df280571734190d44825ed839ad4c67f, type: 3}
+  m_Script: {fileID: 11500000, guid: 162d63e0b328e444d9b54a4b72e17183, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &3703444487693046006
