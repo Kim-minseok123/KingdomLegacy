@@ -175,9 +175,9 @@ public class UI_BattlePopup : UI_Popup
                 _curTurn++;
                 GameEvents.OnTurnValue(_curTurn);
                 SetEnemyIntention();
+                _playerController.ResetShield();
                 DrawCards(_startDrawCardNum);
                 HealMana(_maxMana);
-
                 _state = States.Turning;
                 break;
             case States.Turning:
@@ -187,11 +187,13 @@ public class UI_BattlePopup : UI_Popup
             case States.TurnEnd:
                 HandleCardsCircle();
                 _playerController.ResetBuff();
-
-                // 상대 턴 시작
                 break;
             case States.EnemyTurnStart:
-                isEnemyTurn = true;
+                isEnemyTurn = true; 
+                foreach (GameObject enemy in _enemyList)
+                {
+                    enemy.GetComponent<EnemyController>().ResetShield();
+                }
                 _state = States.EnemyTurning;
                 break;
             case States.EnemyTurning:

@@ -326,4 +326,9 @@ public class PlayerController : UI_Base
         if(Managers.Game.CurHp > Managers.Game.MaxHp)
             Managers.Game.CurHp = Managers.Game.MaxHp;
     }
+    public void ResetShield()
+    {
+        if (Shield > 0) { Shield = 0; }
+        RefreshUI();
+    }
 }

@@ -321,8 +321,10 @@ public class EnemyController : UI_Base
         for (int i = buffList.Count - 1; i >= 0; i--) {
             buffList[i].Update();
         }
-        if (Shield > 0) { Shield = 0;}
-
+        RefreshUI();
+    }
+    public void ResetShield() {
+        if (Shield > 0) { Shield = 0; }
         RefreshUI();
     }
     public void TooltipOn(Transform trf, int text)
