@@ -40,7 +40,7 @@ public class UI_Card : UI_Base
 
         return true;
     }
-    void RefreshUI() {
+    public void RefreshUI() {
         if (_init == false)
             return;
 

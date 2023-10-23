@@ -125,4 +125,7 @@ public class Define
     public const int Draw = 20050;
     public const int Shout = 20051;
 	public const int Inviolable = 20052;
+    public const int AttackMode = 20053;
+    public const int DefenseMode = 20054;
+
 }

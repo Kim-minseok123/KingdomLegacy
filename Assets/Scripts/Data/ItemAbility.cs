@@ -303,7 +303,7 @@ public class Item15 : ItemAbility
         UI_BattlePopup btp = Managers.UI.FindPopup<UI_BattlePopup>();
         if (btp != null)
         {
-            btp._playerController.GetAgility(value);
+            btp._playerController.GetPower(value);
         }
     }
 
@@ -320,7 +320,7 @@ public class Item16 : ItemAbility
         UI_BattlePopup btp = Managers.UI.FindPopup<UI_BattlePopup>();
         if (btp != null)
         {
-            btp._playerController.HealHp(value);
+            btp._playerController.GetAgility(value);
         }
     }
 
@@ -334,6 +334,23 @@ public class Item17 : ItemAbility
 {
     public override void Use()
     {
+        UI_BattlePopup btp = Managers.UI.FindPopup<UI_BattlePopup>();
+        if (btp != null)
+        {
+            btp._playerController.HealHp(value);
+        }
+    }
+
+    public override void Setting()
+    {
+        GameEvents.BattleStart -= Use;
+        GameEvents.BattleStart += Use;
+    }
+}
+public class Item18 : ItemAbility
+{
+    public override void Use()
+    {
         Managers.Game.CurHp += value;
         if(Managers.Game.CurHp >= Managers.Game.MaxHp)
             Managers.Game.CurHp = Managers.Game.MaxHp;
@@ -343,23 +360,6 @@ public class Item17 : ItemAbility
     {
         GameEvents.TakeRest -= Use;
         GameEvents.TakeRest += Use;
-    }
-}
-public class Item18 : ItemAbility
-{
-    public override void Use()
-    {
-        UI_BattlePopup btp = Managers.UI.FindPopup<UI_BattlePopup>();
-        if (btp != null)
-        {
-            btp.HealMana(value);
-        }
-    }
-
-    public override void Setting()
-    {
-        GameEvents.BattleStart -= Use;
-        GameEvents.BattleStart += Use;
     }
 }
 public class Item19 : ItemAbility
@@ -379,6 +379,7 @@ public class Item19 : ItemAbility
         GameEvents.BattleStart += Use;
     }
 }
+
 public class Item20 : ItemAbility
 {
     public override void Use()

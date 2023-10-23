@@ -287,6 +287,9 @@ public class UI_BattlePopup : UI_Popup
             DrawCards(cardData);
             yield return new WaitForSeconds(0.15f);
         }
+        foreach (var card in _handCardsUI) { 
+            card.RefreshUI();
+        }
     }
     public void DrawCards(CardData cardData)
     {

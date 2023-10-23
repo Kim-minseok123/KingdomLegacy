@@ -23,12 +23,17 @@ public class ForestKing : EnemyController
             if (buff.Value <= 0)
                 RemoveBuff(buff);
         }
-        else if (!isAttackMode) { battleScene._playerController.Damaged(3); }
+         
         int temp = value;
         value -= Shield;
         Shield -= temp;
         if (value < 0) value = 0;
-        if (Shield < 0) Shield = 0;
+        if (Shield < 0)
+        { 
+            Shield = 0;
+            if (!isAttackMode) { battleScene._playerController.Damaged(3); }
+        }
+
         StartCoroutine(DamageMaterial());
         CurHp -= value;
         if (CurHp <= 0)
@@ -86,13 +91,13 @@ public class ForestKing : EnemyController
                 case 0:
                     curIntention = Intention.Attack;
                     IntentionFigure = 10;
-                    AttackTurnTime++;
+                    DefenseTurnTime++;
                     break;
                 case 1:
                     curIntention = Intention.AttackMany;
                     IntentionFigure = 9;
                     AttackNum = 2;
-                    AttackTurnTime++;
+                    DefenseTurnTime++;
                     break;
             }
         }
@@ -129,7 +134,7 @@ public class ForestKing : EnemyController
         {
             if (buffList.Count > 6)
                 return;
-            buffList.Add(new AttackModeBuff { Name = "공격모드", Value = value, controller = this, des = Define.Poisoning });
+            buffList.Add(new AttackModeBuff { Name = "공격모드", Value = value, controller = this, des = Define.AttackMode });
         }
         isAttackMode = true;
         RefreshUI();
@@ -141,7 +146,7 @@ public class ForestKing : EnemyController
         {
             if (buffList.Count > 6)
                 return;
-            buffList.Add(new DefenseModeBuff { Name = "수비모드", Value = value, controller = this, des = Define.Poisoning });
+            buffList.Add(new DefenseModeBuff { Name = "수비모드", Value = value, controller = this, des = Define.DefenseMode });
         }
         isAttackMode = false;
         GetShield(20);

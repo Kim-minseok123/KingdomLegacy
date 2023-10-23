@@ -187,7 +187,7 @@
       <action>WeaknessAction</action>
     </actions>
   </CardData>
-  <CardData ID="36" name="성스러운 칼+" description="피해 {0}. 취약 2, 약화 2 부여." type ="Attack" rarity="Unique" target="Enemy" damage="15" mana="1" vulnerable="3" weakness="3">
+  <CardData ID="36" name="성스러운 칼+" description="피해 {0}. 취약 2, 약화 2 부여." type ="Attack" rarity="Unique" target="Enemy" damage="15" mana="1" vulnerable="2" weakness="2">
     <actions>
       <action>AttackAction</action>
       <action>VulnerableAction</action>
