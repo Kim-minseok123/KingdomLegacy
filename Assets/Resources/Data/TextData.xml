@@ -30,4 +30,5 @@
   <TextData ID="20049" kor="소환.&lt;br&gt;[상태]&lt;br&gt;동료를 소환하고 카드는 소멸됩니다." eng="" />
   <TextData ID="20050" kor="드로우.&lt;br&gt;[상태]&lt;br&gt;뽑을 카드 더미에서 카드를 획득합니다." eng="" />
   <TextData ID="20051" kor="함성.&lt;br&gt;[버프]&lt;br&gt;스킬 카드를 사용할 때 마다 힘 2를 획득합니다." eng="" />
+  <TextData ID="20052" kor="불가침.&lt;br&gt;[버프]&lt;br&gt;다음 피해가 1이 됩니다." eng="" />
 </ArrayOfTextData>

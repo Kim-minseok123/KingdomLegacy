@@ -124,4 +124,5 @@ public class Define
     public const int Summon = 20049;
     public const int Draw = 20050;
     public const int Shout = 20051;
+	public const int Inviolable = 20052;
 }

@@ -237,6 +237,8 @@ public class EnemyController : UI_Base
         }
         else
         {
+            if (Managers.Game.isDoublePoisoning)
+                value *= 2;
             buff.Value += value;
         }
         RefreshUI();
@@ -347,6 +349,12 @@ public class EnemyController : UI_Base
     public virtual void SetIntention() { RefreshUIIntention(); }
     public int AttackNum = 1;
     public virtual void RefreshUIIntention() {
+        if (!Managers.Game.isIntension)
+        { 
+            GetImage((int)Images.IntentionImage).color = new Color(1, 1, 1, 0);
+            GetText((int)Texts.IntentionText).text = "";
+            return;
+        }
         GetImage((int)Images.IntentionImage).color = new Color(1, 1, 1, 1);
         GetImage((int)Images.IntentionImage).rectTransform.sizeDelta = new Vector2(45, 55);
         switch (curIntention) {

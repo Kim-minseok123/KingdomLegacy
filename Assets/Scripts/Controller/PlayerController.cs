@@ -18,7 +18,7 @@ public class PlayerController : UI_Base
     public int infinitySword = 0;
     public bool isInfinitySword = false;
     public Animator _playerAnim;
-
+    public int Inviolable = 0;
     public List<string> buffList = new();
     enum Images
     {
@@ -95,11 +95,21 @@ public class PlayerController : UI_Base
         if(value < 0) value = 0;
         if (Shield < 0) Shield = 0;
         StartCoroutine(DamageMaterial());
+        if (Inviolable > 0)
+        {
+            value = 1;
+            ResetInviolable();
+        }
         Managers.Game.CurHp -= value;
         GameEvents.OnLostHp();
-        if (Managers.Game.CurHp <= 0) { 
+        if (Managers.Game.CurHp <= 0 && !Managers.Game.isResurrection)
+        {
             Managers.Game.CurHp = 0;
             _playerAnim.SetTrigger("Death");
+        }
+        else if (Managers.Game.CurHp <= 0 && Managers.Game.isResurrection) { 
+            Managers.Game.CurHp = 1;
+            Managers.Game.isResurrection = false;
         }
         RefreshUI();
     }
@@ -125,6 +135,8 @@ public class PlayerController : UI_Base
     }
     public void GetVulenrable(int value)
     {
+        if (Managers.Game.isNonDebuff)
+            return;
         Vulenerable += value;
         if (!buffList.Contains("취약"))
             buffList.Add("취약");
@@ -133,6 +145,8 @@ public class PlayerController : UI_Base
     }
     public void GetWeakness(int value)
     {
+        if (Managers.Game.isNonDebuff)
+            return;
         Weakness += value;
         if (!buffList.Contains("약화"))
             buffList.Add("약화");
@@ -195,6 +209,20 @@ public class PlayerController : UI_Base
         RefreshUI();
 
     }
+    public void GetInviolable(int value) {
+        Inviolable = value;
+        if (!buffList.Contains("불가침"))
+            buffList.Add("불가침");
+        RefreshUI();
+    }
+    public void ResetInviolable()
+    {
+        Inviolable = 0;
+        if (buffList.Contains("불가침"))
+            buffList.Remove("불가침");
+        RefreshUI();
+
+    }
     public void AttackEnemy(int Damage, EnemyController enemy = null)
     {
         if (Weakness > 0)
@@ -204,9 +232,9 @@ public class PlayerController : UI_Base
         {
             //전체공격
             var Enemys = Managers.UI.FindPopup<UI_BattlePopup>()._enemyList;
-            foreach (GameObject go in Enemys)
+            for (int i = Enemys.Count - 1; i >= 0; i--)
             {
-                go.GetComponent<EnemyController>().Damaged(Damage);
+                Enemys[i].GetComponent<EnemyController>().Damaged(Damage);
             }
         }
         else if (enemy != null)
@@ -218,8 +246,9 @@ public class PlayerController : UI_Base
     public void RefreshUI()
     {
         int i = 0;
-
-        for (i = 0; i < buffList.Count; i++)
+        int count = buffList.Count;
+        if(count > 6) count = 6;
+        for (i = 0; i < count; i++)
         {
             var buff = GetImage(i + 1);
             buff.sprite = Managers.Resource.Load<Sprite>($"Sprites/Icon/{buffList[i]}");
@@ -268,6 +297,12 @@ public class PlayerController : UI_Base
             {
                 GetText(i + 1).text = infinitySword.ToString();
                 buff.gameObject.BindEvent((go) => { TooltipOn(go.transform, Define.infinitySword); }, Define.UIEvent.PointerEnter);
+                buff.gameObject.BindEvent(() => { TooltipOff(); }, Define.UIEvent.PointerExit);
+            }
+            else if (buffList[i] == "불가침")
+            {
+                GetText(i + 1).text = infinitySword.ToString();
+                buff.gameObject.BindEvent((go) => { TooltipOn(go.transform, Define.Inviolable); }, Define.UIEvent.PointerEnter);
                 buff.gameObject.BindEvent(() => { TooltipOff(); }, Define.UIEvent.PointerExit);
             }
         }

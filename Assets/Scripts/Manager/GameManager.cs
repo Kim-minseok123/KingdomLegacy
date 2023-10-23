@@ -22,6 +22,15 @@ public class GameData
     public bool isManaDisappear;
     public MapNode curMapNode;
     public bool isGoldPlusItem;
+    public bool isRest;
+    public bool isEnhance;
+    public bool isIntension;
+    public bool isDiscount;
+    public bool isResurrection;
+    public bool isChoice;
+    public bool isNonDebuff;
+    public bool isDoubleItem;
+
 }
 public class GameManager : MonoBehaviour
 {
@@ -41,6 +50,14 @@ public class GameManager : MonoBehaviour
     public MapNode CurMapNode { get { return _gameData.curMapNode; } set { _gameData.curMapNode = value; } }
     public List<CardData> Cards { get {  return _gameData.cards; } set { _gameData.cards.AddRange(value);} }
     public bool isGoldPlusItem { get { return _gameData.isGoldPlusItem; } set { _gameData.isGoldPlusItem = value; } }
+    public bool isRest { get { return _gameData.isRest; } set { _gameData.isRest = value; } }
+    public bool isIntension { get { return _gameData.isIntension; } set { _gameData.isIntension = value; } }
+    public bool isEnhance { get { return _gameData.isEnhance; } set { _gameData.isEnhance = value; } }
+    public bool isDiscount { get { return _gameData.isDiscount; } set { _gameData.isDiscount = value; } }
+    public bool isResurrection { get { return _gameData.isResurrection; } set { _gameData.isResurrection = value; } }
+    public bool isChoice { get { return _gameData.isChoice; } set { _gameData.isChoice = value; } }
+    public bool isNonDebuff { get { return _gameData.isNonDebuff; } set { _gameData.isNonDebuff = value; } }
+    public bool isDoubleItem { get { return _gameData.isDoubleItem; } set { _gameData.isDoubleItem = value; } }
     public int StartDrawCardNum { get {  return _gameData.startDrawCardNum;} set { _gameData.startDrawCardNum = value; } }
     public void Init() { 
         Stage = 1;
@@ -66,6 +83,14 @@ public class GameManager : MonoBehaviour
         PlayerName = "";
         isManaDisappear = false;
         CurMapNode = null;
+        isEnhance = true;
+        isRest = true;
+        isIntension = true;
+        isDiscount = false;
+        isResurrection = false;
+        isChoice = false;
+        isNonDebuff = false;
+        isDoubleItem = false;
     }
     
     #region Save & Load	
