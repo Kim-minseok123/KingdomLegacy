@@ -10,6 +10,7 @@ public class GameData
     public int stage;
     public int mana;
     public List<CardData> cards = new();
+    public List<ItemData> items = new();
     public int startDrawCardNum;
     public bool isPreservation;
     public bool isDoublePoisoning;
@@ -49,6 +50,7 @@ public class GameManager : MonoBehaviour
     public bool isManaDisappear { get { return _gameData.isManaDisappear; } set { _gameData.isManaDisappear = value; } }
     public MapNode CurMapNode { get { return _gameData.curMapNode; } set { _gameData.curMapNode = value; } }
     public List<CardData> Cards { get {  return _gameData.cards; } set { _gameData.cards.AddRange(value);} }
+    public List<ItemData> Items { get {  return _gameData.items; } set { _gameData.items.AddRange(value);} }
     public bool isGoldPlusItem { get { return _gameData.isGoldPlusItem; } set { _gameData.isGoldPlusItem = value; } }
     public bool isRest { get { return _gameData.isRest; } set { _gameData.isRest = value; } }
     public bool isIntension { get { return _gameData.isIntension; } set { _gameData.isIntension = value; } }

@@ -175,7 +175,8 @@ public class UI_BattlePopup : UI_Popup
                 _curTurn++;
                 GameEvents.OnTurnValue(_curTurn);
                 SetEnemyIntention();
-                _playerController.ResetShield();
+                if(_curTurn != 1)
+                    _playerController.ResetShield();
                 DrawCards(_startDrawCardNum);
                 HealMana(_maxMana);
                 _state = States.Turning;
@@ -197,6 +198,7 @@ public class UI_BattlePopup : UI_Popup
                 _state = States.EnemyTurning;
                 break;
             case States.EnemyTurning:
+                HandleCardsCircle();
                 if (isEnemyTurn) { 
                     EnemyTurnAction();
                     isEnemyTurn = false;
@@ -250,9 +252,19 @@ public class UI_BattlePopup : UI_Popup
     }
     public void DrawCards(int drawcardsnum)
     {
-        if (!cardsDrawn) return; 
+        if (!cardsDrawn) return;
         GameEvents.OnDrawCard();
         StartCoroutine(Draw(drawcardsnum));
+    }
+    public void DrawCards(int drawcardsnum, bool isDrawn)
+    {
+        if (!cardsDrawn) return;
+        GameEvents.OnDrawCard();
+        StartCoroutine(waitDraw(drawcardsnum, isDrawn));
+    }
+    IEnumerator waitDraw(int drawcardsnum,bool isDrawn) { 
+        yield return StartCoroutine(Draw(drawcardsnum));
+        cardsDrawn = isDrawn;
     }
     public IEnumerator Draw(int drawcardsnum)
     {

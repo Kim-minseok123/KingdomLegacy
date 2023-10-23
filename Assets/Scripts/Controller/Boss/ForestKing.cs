@@ -51,6 +51,7 @@ public class ForestKing : EnemyController
             RemoveBuff(buff2);
             GetAttackMode(40);
             DefenseTurnTime = 0;
+            AttackTurnTime = 0;
         }
         if (isAttackMode)
         {

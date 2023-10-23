@@ -14,8 +14,7 @@ public class DrawAction : ActionBase
                 player._battleScene.DrawCards(card.drawCard);
                 break;
             case 65: case 66:
-                player._battleScene.DrawCards(card.drawCard);
-                player._battleScene.cardsDrawn = false; 
+                player._battleScene.DrawCards(card.drawCard, false);
                 break;
             case 71: case 72:
                 if (player._battleScene._handCardsUI.Count >= 1) {

@@ -91,6 +91,29 @@ public abstract class UI_Base : MonoBehaviour
                 break;
         }
     }
+    public static void UnBindEvent(GameObject go, Action action, Define.UIEvent type = Define.UIEvent.Click)
+    {
+        UI_EventHandler evt = Utils.GetOrAddComponent<UI_EventHandler>(go);
+
+        switch (type)
+        {
+            case Define.UIEvent.Click:
+                evt.OnClickHandler -= action;
+                break;
+            case Define.UIEvent.Pressed:
+                evt.OnPressedHandler -= action;
+                break;
+            case Define.UIEvent.PointerDown:
+                evt.OnPointerDownHandler -= action;
+                break;
+            case Define.UIEvent.PointerUp:
+                evt.OnPointerUpHandler -= action;
+                break;
+            case Define.UIEvent.PointerExit:
+                evt.OnPointerExitHandler -= action;
+                break;
+        }
+    }
     public static void BindEvent(GameObject go, Action<GameObject> action, Define.UIEvent type = Define.UIEvent.Click)
     {
         UI_EventHandler evt = Utils.GetOrAddComponent<UI_EventHandler>(go);

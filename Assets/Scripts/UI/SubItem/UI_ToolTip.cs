@@ -8,7 +8,7 @@ using UnityEngine.UIElements;
 public class UI_ToolTip : UI_Base
 {
     string des;
-    Vector3 parentPos;
+
     enum Texts { 
         ToolTipText,
     }

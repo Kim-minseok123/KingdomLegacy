@@ -243,6 +243,27 @@ public class PlayerController : UI_Base
         }
         _playerAnim.SetTrigger("Attack");
     }
+    public void AttackEnemy(int Damage, EnemyController enemy = null, bool Heal = false)
+    {
+        if (Weakness > 0)
+            Damage = (int)(Damage * 0.75f);
+        //공격
+        if (enemy == null)
+        {
+            //전체공격
+            var Enemys = Managers.UI.FindPopup<UI_BattlePopup>()._enemyList;
+            for (int i = Enemys.Count - 1; i >= 0; i--)
+            {
+                Enemys[i].GetComponent<EnemyController>().Damaged(Damage);
+            }
+        }
+        else if (enemy != null)
+        {
+            enemy.Damaged(Damage);
+        }
+        HealHp(Damage);
+        _playerAnim.SetTrigger("Attack");
+    }
     public void RefreshUI()
     {
         int i = 0;
@@ -338,7 +359,6 @@ public class PlayerController : UI_Base
     {
         if (Vulenerable > 0) { Vulenerable--; if(Vulenerable == 0) buffList.Remove("취약"); }
         if (Weakness > 0) { Weakness--; if (Weakness == 0) buffList.Remove("약화"); }
-        if(!isDisappearShield) if (Shield > 0) { Shield = 0; }
         if (dePower > 0) { Power -= dePower; dePower = 0; buffList.Remove("힘감소"); }
         if (Poisoning > 0) { Damaged(Poisoning); Poisoning--; if (Poisoning == 0) buffList.Remove("중독"); }
         RefreshUI();
@@ -360,10 +380,11 @@ public class PlayerController : UI_Base
         Managers.Game.CurHp += value;
         if(Managers.Game.CurHp > Managers.Game.MaxHp)
             Managers.Game.CurHp = Managers.Game.MaxHp;
+        RefreshUI();
     }
     public void ResetShield()
     {
-        if (Shield > 0) { Shield = 0; }
+        if (!isDisappearShield) if (Shield > 0) { Shield = 0; }
         RefreshUI();
     }
 }

@@ -17,6 +17,10 @@ public static class Extension
 	{
 		UI_Base.BindEvent(go, action, type);
 	}
+    public static void UnBindEvent(this GameObject go, Action action, Define.UIEvent type = Define.UIEvent.Click)
+    {
+        UI_Base.UnBindEvent(go, action, type);
+    }
     public static void BindEvent(this GameObject go, Action<GameObject> action, Define.UIEvent type = Define.UIEvent.Click)
     {
         UI_Base.BindEvent(go, action, type);

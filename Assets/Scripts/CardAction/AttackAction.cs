@@ -24,7 +24,12 @@ public class AttackAction : ActionBase
                 player._battleScene.ManyTimesAttack(player, 4, Damage, enemy);
                 return;
             case 19: case 20:
-                    //적이 공격의도라면  취약 1 부여 및 공격 만큼 데미지
+                //적이 공격의도라면  취약 1 부여 및 공격 만큼 데미지
+                if (enemy.curIntention == Define.Intention.Attack || enemy.curIntention == Define.Intention.AttackDebuff || enemy.curIntention == Define.Intention.AttackDefense)
+                {
+                    enemy.GetVulenrable(1);
+                    Damage = enemy.IntentionFigure + player.Power;
+                }
                 break;
             case 21:
                 Damage = player.infinitySword * 15 + player.Power;

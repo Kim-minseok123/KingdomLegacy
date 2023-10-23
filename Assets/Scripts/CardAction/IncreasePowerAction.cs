@@ -13,6 +13,8 @@ public class IncreasePowerAction : ActionBase
                 break;
             case 67: case 68:
                 //선택한 적이 공격할 의도라면 공격 2 획득
+                if (enemy.curIntention == Define.Intention.Attack || enemy.curIntention == Define.Intention.AttackDebuff || enemy.curIntention == Define.Intention.AttackDefense)
+                    player.GetPower(card.increasePower);
                 break;
             case 89: case 90:
                 player.GetPower(player.Power);

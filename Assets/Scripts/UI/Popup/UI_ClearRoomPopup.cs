@@ -41,6 +41,7 @@ public class UI_ClearRoomPopup : UI_Popup
     }
     public void GetItem() {
         Destroy(GetButton((int)Buttons.GetItemButton).gameObject);
+        Managers.UI.ShowPopupUI<UI_ChooseClearItemPopup>();
     }
     public void GetGold() {
         if (Managers.Game.isGoldPlusItem) {

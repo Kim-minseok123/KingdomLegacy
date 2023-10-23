@@ -162,10 +162,7 @@ public class UI_SelectChampAndItemPopup : UI_Popup
     void OnClickStartGame()
     {
         Managers.UI.ClosePopupUI();
-        /* Managers.UI.MakeSubItem<UI_Item>().SetInfo(2);
-         Managers.UI.MakeSubItem<UI_Item>().SetInfo(4);
-         GameEvents.OnGetItem();*/
-        //Managers.UI.ShowPopupUI<UI_BattlePopup>().SetInfo();
+       
         Managers.Game.PlayerName = Champion[1].name;
         Managers.Game.Stage = 1;
         Managers.UI.ShowPopupUI<UI_MapPopup>().SetInfo();
