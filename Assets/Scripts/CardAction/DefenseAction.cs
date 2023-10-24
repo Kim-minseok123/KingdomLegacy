@@ -9,7 +9,7 @@ public class DefenseAction : ActionBase
         int Shield = 0;
         switch (card.ID)
         {
-            case 49:case 50: case 59: case 60: case 63: case 64: case 87: case 88:
+            case 49:case 50: case 59: case 60: case 63: case 64: case 73: case 74: case 87: case 88:
                 Shield = card.shield+ player.Agility;
                 break;
             case 53: case 54:

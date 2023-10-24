@@ -360,6 +360,7 @@ public class PlayerController : UI_Base
         if (Vulenerable > 0) { Vulenerable--; if(Vulenerable == 0) buffList.Remove("Ãë¾à"); }
         if (Weakness > 0) { Weakness--; if (Weakness == 0) buffList.Remove("¾àÈ­"); }
         if (dePower > 0) { Power -= dePower; dePower = 0; buffList.Remove("Èû°¨¼Ò"); }
+        if (Power == 0) { buffList.Remove("Èû"); }
         if (Poisoning > 0) { Damaged(Poisoning); Poisoning--; if (Poisoning == 0) buffList.Remove("Áßµ¶"); }
         RefreshUI();
     }
@@ -368,9 +369,9 @@ public class PlayerController : UI_Base
         var tooltip = GetObject((int)GameObjects.ToolTip);
         var txt = GetText((int)Texts.ToolTipText);
         txt.text = Managers.GetText(text);
-        Vector3 pos = trf.position + new Vector3(-1.5f, -1f, 0);
+        Vector3 pos = trf.position + new Vector3(-1.5f, -1.5f, 0);
         tooltip.transform.position = pos;
-        rect.sizeDelta = new Vector2(txt.preferredWidth + 30, txt.preferredHeight + 30);
+        rect.sizeDelta = new Vector2(txt.preferredWidth + 20, txt.preferredHeight + 20);
         tooltip.SetActive(true);
     }
     public void TooltipOff() { 

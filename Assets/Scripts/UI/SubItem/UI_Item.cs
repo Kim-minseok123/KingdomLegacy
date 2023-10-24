@@ -21,14 +21,36 @@ public class UI_Item : UI_Base
         BindImage(typeof(Images));
         BindText(typeof(Texts));
 
-        if (transform.localPosition.x <= 0)
-            GetImage((int)Images.ToolTipImage).gameObject.transform.localPosition = new Vector3(150, -170, 0);
+        if (type == 1)
+        {
+            float x = transform.localPosition.x;
+            while (x > 1800)
+            {
+                x -= 1800;
+            }
+            if (x > 1000)
+            {
+                GetImage((int)Images.ToolTipImage).gameObject.transform.localPosition = new Vector3(-175, -130, 0);
+            }
+            else
+            {
+                GetImage((int)Images.ToolTipImage).gameObject.transform.localPosition = new Vector3(175, -130, 0);
+
+            }
+            GetImage((int)Images.ItemImage).rectTransform.sizeDelta = new Vector2(50, 50);
+        }
         else
-            GetImage((int)Images.ToolTipImage).gameObject.transform.localPosition = new Vector3(-150, -170, 0);
+        {
+
+            if (transform.localPosition.x <= 0)
+                GetImage((int)Images.ToolTipImage).gameObject.transform.localPosition = new Vector3(150, -170, 0);
+            else
+                GetImage((int)Images.ToolTipImage).gameObject.transform.localPosition = new Vector3(-150, -170, 0);
+        }
 
         GetImage((int)Images.ToolTipImage).gameObject.SetActive(false);
         GetText((int)Texts.ToolTipText).text = "<color=yellow>" + _itemData.name + "</color>\n\n" + _itemData.description;
-        GetImage((int)Images.ItemImage).gameObject.BindEvent(GetItemClick);
+        if(type != 1) GetImage((int)Images.ItemImage).gameObject.BindEvent(GetItemClick);
         GetImage((int)Images.ItemImage).gameObject.BindEvent((go) => { TooltipOn(); },Define.UIEvent.PointerEnter);
         GetImage((int)Images.ItemImage).gameObject.BindEvent(TooltipOff,Define.UIEvent.PointerExit);
 
@@ -72,6 +94,7 @@ public class UI_Item : UI_Base
         {
             _itemData.ability.Setting();
         }
+        Managers.Game.Items.Add(_itemData.ID);
         GameEvents.OnGetItem();
         type = 1;
         GetImage((int)Images.ItemImage).gameObject.UnBindEvent(GetItemClick);

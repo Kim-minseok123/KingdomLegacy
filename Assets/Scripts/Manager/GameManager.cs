@@ -10,7 +10,7 @@ public class GameData
     public int stage;
     public int mana;
     public List<CardData> cards = new();
-    public List<ItemData> items = new();
+    public List<int> items = new();
     public int startDrawCardNum;
     public bool isPreservation;
     public bool isDoublePoisoning;
@@ -31,7 +31,7 @@ public class GameData
     public bool isChoice;
     public bool isNonDebuff;
     public bool isDoubleItem;
-
+    public int clearTime;
 }
 public class GameManager : MonoBehaviour
 {
@@ -50,7 +50,7 @@ public class GameManager : MonoBehaviour
     public bool isManaDisappear { get { return _gameData.isManaDisappear; } set { _gameData.isManaDisappear = value; } }
     public MapNode CurMapNode { get { return _gameData.curMapNode; } set { _gameData.curMapNode = value; } }
     public List<CardData> Cards { get {  return _gameData.cards; } set { _gameData.cards.AddRange(value);} }
-    public List<ItemData> Items { get {  return _gameData.items; } set { _gameData.items.AddRange(value);} }
+    public List<int> Items { get {  return _gameData.items; } set { _gameData.items.AddRange(value);} }
     public bool isGoldPlusItem { get { return _gameData.isGoldPlusItem; } set { _gameData.isGoldPlusItem = value; } }
     public bool isRest { get { return _gameData.isRest; } set { _gameData.isRest = value; } }
     public bool isIntension { get { return _gameData.isIntension; } set { _gameData.isIntension = value; } }
@@ -61,6 +61,7 @@ public class GameManager : MonoBehaviour
     public bool isNonDebuff { get { return _gameData.isNonDebuff; } set { _gameData.isNonDebuff = value; } }
     public bool isDoubleItem { get { return _gameData.isDoubleItem; } set { _gameData.isDoubleItem = value; } }
     public int StartDrawCardNum { get {  return _gameData.startDrawCardNum;} set { _gameData.startDrawCardNum = value; } }
+    public int ClearTime { get {  return _gameData.clearTime; } set { _gameData.clearTime = value; } }
     public void Init() { 
         Stage = 1;
         StageNumber = 0;
@@ -91,6 +92,7 @@ public class GameManager : MonoBehaviour
         isChoice = false;
         isNonDebuff = false;
         isDoubleItem = false;
+        ClearTime = 0;
     }
     
     #region Save & Load	

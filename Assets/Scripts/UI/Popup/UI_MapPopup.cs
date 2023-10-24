@@ -15,7 +15,7 @@ public class UI_MapPopup : UI_Popup
         ClearTimeText,
     }
     enum GameObjects { 
-
+        ItemList,
     }
     enum Images {
         
@@ -23,19 +23,24 @@ public class UI_MapPopup : UI_Popup
     int stage = 0;
     float _time = 0f;
     string _timeText = "";
+    List<int> _itemList = new();
     public override bool Init()
     {
         Camera.main.orthographicSize = 7;
-        //BindObject(typeof(GameObjects));
+        BindObject(typeof(GameObjects));
         //BindImage(typeof(Images));
         BindButton(typeof(Buttons));
         BindText(typeof(Texts));
-
+        _time = Managers.Game.ClearTime;
         var BackGround = Managers.Resource.Instantiate("Map/BackGroundImage").GetComponent<SpriteRenderer>();
         BackGround.sprite = Managers.Resource.Load<Sprite>($"Sprites/BattleGround/BattleGround{stage}");
 
         var Map = GameObject.FindGameObjectWithTag("Map").GetComponentInChildren<MapManager>();
         Map.StartGenerate();
+
+        InitItem();
+        GameEvents.GetItem -= AddItem;
+        GameEvents.GetItem += AddItem;
 
         RefreshUI();
 
@@ -58,5 +63,16 @@ public class UI_MapPopup : UI_Popup
         int seconds = (int)(_time % 60);
         _timeText = string.Format("{0:D2} : {1:D2} : {2:D2}", hours, minutes, seconds);
         RefreshUI();
+    }
+    public void InitItem() {
+        _itemList = Managers.Game.Items;
+
+        for (int i = 0; i < _itemList.Count; i++) {
+            Managers.Resource.Instantiate("UI/SubItem/UI_Item", GetObject((int)GameObjects.ItemList).transform).GetComponent<UI_Item>().SetInfo(_itemList[i], 1);
+        }
+    }
+    public void AddItem() {
+        _itemList.Add(Managers.Game.Items.Last());
+        Managers.Resource.Instantiate("UI/SubItem/UI_Item", GetObject((int)GameObjects.ItemList).transform).GetComponent<UI_Item>().SetInfo(_itemList.Last(), 1);
     }
 }

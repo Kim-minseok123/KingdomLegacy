@@ -1,3 +1,4 @@
+using Map;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,7 +25,11 @@ public class UI_ChooseClearItemPopup : UI_Popup
         BindButton(typeof(Buttons));
         Bind<Transform>(typeof(Transforms));
 
-        SetItem();
+        if (Managers.Game.CurMapNode.Node.nodeType == NodeType.Boss) {
+            BossItem();
+        }
+        else
+            SetItem();
 
         GetButton((int)Buttons.EndButton).gameObject.BindEvent(EndSelect);
         return true;
@@ -43,37 +48,62 @@ public class UI_ChooseClearItemPopup : UI_Popup
         else {
             type = 3;
         }
-        int random;
+
+        List<int> ItemList = new();
+        for (int i = 10; i <= 67; i++)
+        {
+            ItemList.Add(i);
+        }
+        ItemList.Remove(64);
+        for (int i = 0; i < Managers.Game.Items.Count; i++) {
+            if (ItemList.Contains(Managers.Game.Items[i]))
+                ItemList.Remove(Managers.Game.Items[i]);
+        }
 
         if (Managers.Game.isChoice || Managers.Game.isDoubleItem)
         {
-            do
-            {
-                random = Random.Range(10, 68);
-            } while (random == 64);
+            int random = ItemList.Random();
 
             var obj = Managers.Resource.Instantiate("UI/SubItem/UI_Item", transform);
             obj.transform.localPosition = new Vector3(200f, 200f, 0f);
             obj.GetComponent<UI_Item>().SetInfo(random, type);
 
-            do
-            {
-                random = Random.Range(10, 68);
-            } while (random == 64);
+            
             obj = Managers.Resource.Instantiate("UI/SubItem/UI_Item", transform);
             obj.transform.localPosition = new Vector3(-200f, 200f, 0f);
             obj.GetComponent<UI_Item>().SetInfo(random, type);
         }
         else
         {
-            do
-            {
-                random = Random.Range(10, 68);
-            } while (random == 64);
+            int random = ItemList.Random();
 
             var obj = Managers.Resource.Instantiate("UI/SubItem/UI_Item", transform);
             obj.transform.localPosition = new Vector3(0f, 200f, 0f);
             obj.GetComponent<UI_Item>().SetInfo(random, type);
+        }
+    }
+    public void BossItem()
+    {
+        float x = -300f;
+        switch (Managers.Game.Stage) {
+            case 1:
+                for (int i = 4; i < 7; i++)
+                {
+                    var obj = Managers.Resource.Instantiate("UI/SubItem/UI_Item", transform);
+                    obj.transform.localPosition = new Vector3(x, 200f, 0f);
+                    obj.GetComponent<UI_Item>().SetInfo(i, 2);
+                    x += 300f;
+                }
+                break;
+            case 2:
+                for (int i = 7; i < 10; i++)
+                {
+                    var obj = Managers.Resource.Instantiate("UI/SubItem/UI_Item", transform);
+                    obj.transform.localPosition = new Vector3(x, 200f, 0f);
+                    obj.GetComponent<UI_Item>().SetInfo(i, 2);
+                    x += 300f;
+                }
+                break;
         }
     }
 }
