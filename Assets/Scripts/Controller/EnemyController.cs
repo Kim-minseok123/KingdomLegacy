@@ -324,6 +324,7 @@ public class EnemyController : UI_Base
             buffList[i].Update();
         }
         RefreshUI();
+        TooltipOff();
     }
     public void ResetShield() {
         if (Shield > 0) { Shield = 0; }

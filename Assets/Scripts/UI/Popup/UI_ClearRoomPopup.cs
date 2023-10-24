@@ -58,6 +58,8 @@ public class UI_ClearRoomPopup : UI_Popup
         if (Managers.Game.CurMapNode.Node.nodeType == Map.NodeType.Boss) {
             Managers.Game.Stage++;
             //¸Ê ÃÊ±âÈ­ ¹× ¸Ê ÆË¾÷ ¶ç¿ì±â ÆäÀÌµå ÀÎ ¾Æ¿ô ÅëÇØ¼­
+            Managers.UI.FindPopup<UI_MapPopup>().ResetMap();
         }
+        Managers.Game.SaveGame();
     }
 }

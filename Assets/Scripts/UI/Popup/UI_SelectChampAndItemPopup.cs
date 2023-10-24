@@ -19,6 +19,7 @@ public class UI_SelectChampAndItemPopup : UI_Popup
         NextSelectText,
         PrevSelectText,
         StartGameText,
+        ItemText
     }
     enum Buttons { 
         Item1,
@@ -158,24 +159,35 @@ public class UI_SelectChampAndItemPopup : UI_Popup
             GetText((int)Texts.PlayerStartMoneyText).text = Managers.GetText(Define.WizardPlayerStartMoney);
         }
     }
-
+    int selectItem = 0;
     void OnClickStartGame()
     {
+        if (selectItem == 0) {
+            return;
+        }
         Managers.UI.ClosePopupUI();
        
         Managers.Game.PlayerName = Champion[1].name;
         Managers.Game.Stage = 1;
+        Managers.Game.Items.Add(selectItem);
         Managers.UI.ShowPopupUI<UI_MapPopup>().SetInfo();
+
     }
-    void OnClickItem1() { 
-    
+    void OnClickItem1() {
+        selectItem = 1;
+        ItemData itemdata = Managers.Data.Items[1];
+        GetText((int)Texts.ItemText).text = "<color=yellow>" + itemdata.name + "</color>\n\n" + itemdata.description;
     }
     void OnClickItem2()
     {
-
+        selectItem = 2;
+        ItemData itemdata = Managers.Data.Items[2];
+        GetText((int)Texts.ItemText).text = "<color=yellow>" + itemdata.name + "</color>\n\n" + itemdata.description;
     }
     void OnClickItem3()
     {
-
+        selectItem = 3;
+        ItemData itemdata = Managers.Data.Items[3];
+        GetText((int)Texts.ItemText).text = "<color=yellow>" + itemdata.name + "</color>\n\n" + itemdata.description;
     }
 }

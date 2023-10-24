@@ -359,7 +359,7 @@ public class PlayerController : UI_Base
     {
         if (Vulenerable > 0) { Vulenerable--; if(Vulenerable == 0) buffList.Remove("Ãë¾à"); }
         if (Weakness > 0) { Weakness--; if (Weakness == 0) buffList.Remove("¾àÈ­"); }
-        if (dePower > 0) { Power -= dePower; dePower = 0; buffList.Remove("Èû°¨¼Ò"); }
+        if (dePower > 0) {GetPower(-dePower); dePower = 0; buffList.Remove("Èû°¨¼Ò"); }
         if (Power == 0) { buffList.Remove("Èû"); }
         if (Poisoning > 0) { Damaged(Poisoning); Poisoning--; if (Poisoning == 0) buffList.Remove("Áßµ¶"); }
         RefreshUI();

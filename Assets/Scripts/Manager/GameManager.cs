@@ -9,7 +9,7 @@ public class GameData
     //이 정보들만 있으면 게임을 언제든지 불러올 수 있다 하는 것 모두.
     public int stage;
     public int mana;
-    public List<CardData> cards = new();
+    public List<int> cards = new();
     public List<int> items = new();
     public int startDrawCardNum;
     public bool isPreservation;
@@ -31,7 +31,7 @@ public class GameData
     public bool isChoice;
     public bool isNonDebuff;
     public bool isDoubleItem;
-    public int clearTime;
+    public float clearTime;
 }
 public class GameManager : MonoBehaviour
 {
@@ -49,7 +49,7 @@ public class GameManager : MonoBehaviour
     public int VulenrablePercent { get { return _gameData.VulenrablePercent; } set { _gameData.VulenrablePercent = value; } }
     public bool isManaDisappear { get { return _gameData.isManaDisappear; } set { _gameData.isManaDisappear = value; } }
     public MapNode CurMapNode { get { return _gameData.curMapNode; } set { _gameData.curMapNode = value; } }
-    public List<CardData> Cards { get {  return _gameData.cards; } set { _gameData.cards.AddRange(value);} }
+    public List<int> Cards { get {  return _gameData.cards; } set { _gameData.cards.AddRange(value);} }
     public List<int> Items { get {  return _gameData.items; } set { _gameData.items.AddRange(value);} }
     public bool isGoldPlusItem { get { return _gameData.isGoldPlusItem; } set { _gameData.isGoldPlusItem = value; } }
     public bool isRest { get { return _gameData.isRest; } set { _gameData.isRest = value; } }
@@ -61,18 +61,19 @@ public class GameManager : MonoBehaviour
     public bool isNonDebuff { get { return _gameData.isNonDebuff; } set { _gameData.isNonDebuff = value; } }
     public bool isDoubleItem { get { return _gameData.isDoubleItem; } set { _gameData.isDoubleItem = value; } }
     public int StartDrawCardNum { get {  return _gameData.startDrawCardNum;} set { _gameData.startDrawCardNum = value; } }
-    public int ClearTime { get {  return _gameData.clearTime; } set { _gameData.clearTime = value; } }
-    public void Init() { 
+    public float ClearTime { get {  return _gameData.clearTime; } set { _gameData.clearTime = value; } }
+    public void Init() {
+        Cards.Clear();
         Stage = 1;
         StageNumber = 0;
         Mana = 3;
         for (int i = 0; i < 5; i++)
         {
-            Cards.Add(Managers.Data.Cards[1]);
+            Cards.Add(1);
         }
-        Cards.Add(Managers.Data.Cards[3]);
+        Cards.Add(3);
         for (int i = 0; i < 4; i++) {
-            Cards.Add(Managers.Data.Cards[49]);
+            Cards.Add(49);
         }
         StartDrawCardNum = 5;
         isPreservation = false;
@@ -93,6 +94,7 @@ public class GameManager : MonoBehaviour
         isNonDebuff = false;
         isDoubleItem = false;
         ClearTime = 0;
+        Items.Clear();
     }
     
     #region Save & Load	

@@ -143,9 +143,8 @@ public class UI_BattlePopup : UI_Popup
         //스테이지, 체력, 카드 등 값 넘겨줘야함
         _maxMana = Managers.Game.Mana;
         _drawCards.Clear();
-        foreach (CardData cardData in Managers.Game.Cards)
+        foreach (int id in Managers.Game.Cards)
         {
-            int id = cardData.ID;
             if (Managers.Data.Cards.TryGetValue(id, out CardData card) == false)
             {
                 Debug.Log($"Faild Load Card Data. Card id is {id}");

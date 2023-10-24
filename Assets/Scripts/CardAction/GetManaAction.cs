@@ -11,7 +11,9 @@ public class GetManaAction : ActionBase
             case 15: case 16:
                 if (enemy != null)
                 {
-                    if (enemy.buffList.GetBuffName("취약").Value > 0) { 
+                    var buff = enemy.buffList.GetBuffName("취약");
+
+                    if (buff != null && buff.Value > 0) { 
                         player._battleScene.HealMana(card.getMana);
                     }
                 }

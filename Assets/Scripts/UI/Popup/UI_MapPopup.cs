@@ -24,6 +24,8 @@ public class UI_MapPopup : UI_Popup
     float _time = 0f;
     string _timeText = "";
     List<int> _itemList = new();
+    SpriteRenderer Background;
+    MapManager MapManager;
     public override bool Init()
     {
         Camera.main.orthographicSize = 7;
@@ -31,16 +33,14 @@ public class UI_MapPopup : UI_Popup
         //BindImage(typeof(Images));
         BindButton(typeof(Buttons));
         BindText(typeof(Texts));
+        
+        Background = Managers.Resource.Instantiate("Map/BackGroundImage").GetComponent<SpriteRenderer>();
+        Background.sprite = Managers.Resource.Load<Sprite>($"Sprites/BattleGround/BattleGround{stage}");
+
+        MapManager = GameObject.FindGameObjectWithTag("Map").GetComponentInChildren<MapManager>();
+        MapManager.StartGenerate();
         _time = Managers.Game.ClearTime;
-        var BackGround = Managers.Resource.Instantiate("Map/BackGroundImage").GetComponent<SpriteRenderer>();
-        BackGround.sprite = Managers.Resource.Load<Sprite>($"Sprites/BattleGround/BattleGround{stage}");
-
-        var Map = GameObject.FindGameObjectWithTag("Map").GetComponentInChildren<MapManager>();
-        Map.StartGenerate();
-
         InitItem();
-        GameEvents.GetItem -= AddItem;
-        GameEvents.GetItem += AddItem;
 
         RefreshUI();
 
@@ -52,8 +52,9 @@ public class UI_MapPopup : UI_Popup
         GetText((int)Texts.MoneyText).text = Managers.Game.Money.ToString();
         GetText((int)Texts.ClearTimeText).text = _timeText;
     }
-    public void SetInfo() { 
-        this.stage = Managers.Game.Stage;
+    public void SetInfo() {
+        
+        stage = Managers.Game.Stage;
     }
     public void Update()
     {
@@ -61,6 +62,7 @@ public class UI_MapPopup : UI_Popup
         int hours = (int)(_time / 3600);
         int minutes = (int)((_time % 3600) / 60);
         int seconds = (int)(_time % 60);
+        Managers.Game.ClearTime = _time;
         _timeText = string.Format("{0:D2} : {1:D2} : {2:D2}", hours, minutes, seconds);
         RefreshUI();
     }
@@ -68,11 +70,28 @@ public class UI_MapPopup : UI_Popup
         _itemList = Managers.Game.Items;
 
         for (int i = 0; i < _itemList.Count; i++) {
-            Managers.Resource.Instantiate("UI/SubItem/UI_Item", GetObject((int)GameObjects.ItemList).transform).GetComponent<UI_Item>().SetInfo(_itemList[i], 1);
+            var item = Managers.Resource.Instantiate("UI/SubItem/UI_Item", GetObject((int)GameObjects.ItemList).transform).GetComponent<UI_Item>();
+            item.SetInfo(_itemList[i], 1);
+            item._itemData.ability.Setting();
         }
+        int tempMoney = Managers.Game.Money;
+        int tempMaxHp = Managers.Game.MaxHp;
+        int tempCurHp = Managers.Game.CurHp;
+        GameEvents.OnGetItem();
+        GameEvents.GetItem -= AddItem;
+        GameEvents.GetItem += AddItem;
+        Managers.Game.Money = tempMoney;
+        Managers.Game.MaxHp = tempMaxHp;
+        Managers.Game.CurHp = tempCurHp;
+        Managers.Game.SaveGame();
     }
     public void AddItem() {
         _itemList.Add(Managers.Game.Items.Last());
         Managers.Resource.Instantiate("UI/SubItem/UI_Item", GetObject((int)GameObjects.ItemList).transform).GetComponent<UI_Item>().SetInfo(_itemList.Last(), 1);
+    }
+    public void ResetMap()
+    {
+        Background.sprite = Managers.Resource.Load<Sprite>($"Sprites/BattleGround/BattleGround{stage}");
+        MapManager.GenerateNewMap();
     }
 }

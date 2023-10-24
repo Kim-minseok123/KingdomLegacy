@@ -20,7 +20,7 @@ public class IncreasePowerAction : ActionBase
                 player.GetPower(player.Power);
                 break;
             case 119:
-                player.GetdePower(card.increasePower);
+                player.GetPower(card.increasePower);
                 player.HealHp(1);
                 break;
         }

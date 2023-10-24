@@ -41,21 +41,22 @@ public class UI_TitlePopup : UI_Popup
         GetButton((int)Buttons.DictionaryButton).gameObject.BindEvent(OnClickDictionaryButton);
         GetButton((int)Buttons.SettingButton).gameObject.BindEvent(OnClickSettingButton);
         GetButton((int)Buttons.LoadGameButton).gameObject.BindEvent(OnClickExitButton);
-
+        if (!Managers.Game.LoadGame()) {
+            GetButton((int)Buttons.NewGameButton).transform.position = GetButton((int)Buttons.LoadGameButton).transform.position;
+            Destroy(GetButton((int)Buttons.LoadGameButton).gameObject);
+        }
         StartCoroutine(ShaderShineGo(GetObject((int)GameObjects.GameTitleLogoImage)));
 
         return true;
     }
 
     void OnClickStartButton() {
-        Debug.Log("새 게임 시작 버튼 클릭");
         
         //이전에 플레이 게임 데이터가 있다면 팝업을 띄우고 결정하게 한다.
         if (Managers.Game.LoadGame()) {
             Managers.UI.ShowPopupUI<UI_ConfirmPopup>().SetInfo(() =>
             {
                 Managers.Game.Init();
-                Managers.Game.SaveGame();
 
                 //초반 능력치 설정하는 팝업출력/ 이전 팝업 삭제
                 Managers.UI.ShowPopupUI<UI_SelectChampAndItemPopup>();
@@ -65,31 +66,27 @@ public class UI_TitlePopup : UI_Popup
         else
         {
             Managers.Game.Init();
-            Managers.Game.SaveGame();
             mapManager.ResetSavedMap();
 
             Managers.UI.ShowPopupUI<UI_SelectChampAndItemPopup>();
         }
     }
     void OnClickContinueButton() { 
-        Debug.Log("이어하기 버튼 클릭");
 
         if (Managers.Game.LoadGame())
         {
-
-        }
-        else {
-            Debug.Log("저장된 게임이 없습니다.");
+            Managers.UI.ClosePopupUI(this);
+            Managers.UI.ShowPopupUI<UI_MapPopup>().SetInfo();
         }
     }
     void OnClickDictionaryButton() { 
-        Debug.Log("백과사전 버튼 클릭");
+
     }
     void OnClickSettingButton() { 
-        Debug.Log("세팅 버튼 클릭");
+
     }
     void OnClickExitButton() { 
-        Debug.Log("종료 버튼 클릭");
+
     }
 
     IEnumerator ShaderShineGo(GameObject go)

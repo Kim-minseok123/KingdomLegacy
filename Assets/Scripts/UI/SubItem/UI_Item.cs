@@ -30,11 +30,11 @@ public class UI_Item : UI_Base
             }
             if (x > 1000)
             {
-                GetImage((int)Images.ToolTipImage).gameObject.transform.localPosition = new Vector3(-175, -130, 0);
+                GetImage((int)Images.ToolTipImage).gameObject.transform.localPosition = new Vector3(-175, -150, 0);
             }
             else
             {
-                GetImage((int)Images.ToolTipImage).gameObject.transform.localPosition = new Vector3(175, -130, 0);
+                GetImage((int)Images.ToolTipImage).gameObject.transform.localPosition = new Vector3(175, -150, 0);
 
             }
             GetImage((int)Images.ItemImage).rectTransform.sizeDelta = new Vector2(50, 50);
@@ -85,15 +85,9 @@ public class UI_Item : UI_Base
         if (type == 1) return;
         else if (type == 2)
         {
-            //æ∆¿Ã≈€ »πµÊ
-            _itemData.ability.Setting();
             Managers.UI.ClosePopupUI();
-            //æ∆¿Ã≈€ ¿Ãµø
         }
-        else if (type == 3)
-        {
-            _itemData.ability.Setting();
-        }
+        _itemData.ability.Setting();
         Managers.Game.Items.Add(_itemData.ID);
         GameEvents.OnGetItem();
         type = 1;
