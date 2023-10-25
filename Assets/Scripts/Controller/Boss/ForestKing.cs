@@ -17,13 +17,7 @@ public class ForestKing : EnemyController
 
         if (buff != null && buff.Value > 0) value += (int)(value * (Managers.Game.VulenrablePercent / 100f));
         buff = buffList.GetBuffName("공격모드");
-        if (buff != null)
-        {
-            buff.Value -= value;
-            if (buff.Value <= 0)
-                RemoveBuff(buff);
-        }
-         
+        
         int temp = value;
         value -= Shield;
         Shield -= temp;
@@ -31,6 +25,13 @@ public class ForestKing : EnemyController
         if (Shield < 0)
         { 
             Shield = 0;
+            if (buff != null)
+            {
+                buff.Value -= value;
+                if (buff.Value <= 0)
+                    RemoveBuff(buff);
+            }
+
             if (!isAttackMode) { battleScene._playerController.Damaged(3); }
         }
 
