@@ -259,9 +259,9 @@ public class UI_BattlePopup : UI_Popup
     {
         if (!cardsDrawn) return;
         GameEvents.OnDrawCard();
-        StartCoroutine(waitDraw(drawcardsnum, isDrawn));
+        StartCoroutine(WaitDraw(drawcardsnum, isDrawn));
     }
-    IEnumerator waitDraw(int drawcardsnum,bool isDrawn) { 
+    IEnumerator WaitDraw(int drawcardsnum,bool isDrawn) { 
         yield return StartCoroutine(Draw(drawcardsnum));
         cardsDrawn = isDrawn;
     }
