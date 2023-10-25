@@ -1,4 +1,6 @@
-﻿using System.Collections;
+﻿
+using EasyTransition;
+using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -12,7 +14,7 @@ public class GameScene : BaseScene
 
         SceneType = Define.Scene.Game;
 
-		Managers.UI.ShowPopupUI<UI_TitlePopup>();
+		TransitionManager.Instance().Transition(Managers.Resource.Load<TransitionSettings>("Transitions/Fade/Fade"), 0,() => { Managers.UI.ShowPopupUI<UI_TitlePopup>(); });
 
 		Debug.Log("Init");
 		return true;

@@ -1,3 +1,4 @@
+using EasyTransition;
 using Map;
 using System.Collections;
 using System.Collections.Generic;
@@ -40,7 +41,7 @@ public class UI_TitlePopup : UI_Popup
         GetButton((int)Buttons.LoadGameButton).gameObject.BindEvent(OnClickContinueButton);
         GetButton((int)Buttons.DictionaryButton).gameObject.BindEvent(OnClickDictionaryButton);
         GetButton((int)Buttons.SettingButton).gameObject.BindEvent(OnClickSettingButton);
-        GetButton((int)Buttons.LoadGameButton).gameObject.BindEvent(OnClickExitButton);
+        GetButton((int)Buttons.ExitGameButton).gameObject.BindEvent(OnClickExitButton);
         if (!Managers.Game.LoadGame()) {
             GetButton((int)Buttons.NewGameButton).transform.position = GetButton((int)Buttons.LoadGameButton).transform.position;
             Destroy(GetButton((int)Buttons.LoadGameButton).gameObject);
@@ -75,8 +76,11 @@ public class UI_TitlePopup : UI_Popup
 
         if (Managers.Game.LoadGame())
         {
-            Managers.UI.ClosePopupUI(this);
-            Managers.UI.ShowPopupUI<UI_MapPopup>().SetInfo();
+            TransitionManager.Instance().Transition(Managers.Resource.Load<TransitionSettings>("Transitions/Brush/Brush"), 0,
+                    () => {
+                        Managers.UI.ClosePopupUI(this);
+                        Managers.UI.ShowPopupUI<UI_MapPopup>().SetInfo();
+                    });
         }
     }
     void OnClickDictionaryButton() { 
@@ -85,8 +89,12 @@ public class UI_TitlePopup : UI_Popup
     void OnClickSettingButton() { 
 
     }
-    void OnClickExitButton() { 
-
+    void OnClickExitButton() {
+#if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+#else
+        Application.Quit();
+#endif
     }
 
     IEnumerator ShaderShineGo(GameObject go)

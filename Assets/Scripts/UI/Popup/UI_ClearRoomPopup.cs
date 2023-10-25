@@ -1,3 +1,4 @@
+using EasyTransition;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -52,9 +53,12 @@ public class UI_ClearRoomPopup : UI_Popup
         Destroy(GetButton((int)Buttons.GetGoldButton).gameObject);
     }
     public void EndRoom() {
-        Camera.main.orthographicSize = 7;
-        Managers.UI.ClosePopupUI(this);
-        Managers.UI.ClosePopupUI(Managers.UI.FindPopup<UI_BattlePopup>());
+        TransitionManager.Instance().Transition(Managers.Resource.Load<TransitionSettings>("Transitions/LinearWipe/LinearWipe"), 0, 
+            () => {
+            Managers.UI.ClosePopupUI(this);
+            Camera.main.orthographicSize = 7;
+            Managers.UI.ClosePopupUI(Managers.UI.FindPopup<UI_BattlePopup>());
+        });
         if (Managers.Game.CurMapNode.Node.nodeType == Map.NodeType.Boss) {
             Managers.Game.Stage++;
             //¸Ê ÃÊ±âÈ­ ¹× ¸Ê ÆË¾÷ ¶ç¿ì±â ÆäÀÌµå ÀÎ ¾Æ¿ô ÅëÇØ¼­

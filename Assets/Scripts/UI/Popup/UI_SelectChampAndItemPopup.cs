@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using DG.Tweening;
 using System;
 using Unity.VisualScripting;
+using EasyTransition;
 
 public class UI_SelectChampAndItemPopup : UI_Popup
 {
@@ -82,15 +83,17 @@ public class UI_SelectChampAndItemPopup : UI_Popup
 
         GetText((int)Texts.StartItemText).text = "시작 유물 선택";
         GetText((int)Texts.StartCharacterText).text = "시작 영웅 선택";
-        GetText((int)Texts.PlayerContentsText).text = Managers.GetText(Define.SowrdPlayerContents);
-        GetText((int)Texts.PlayerMaxHpText).text = Managers.GetText(Define.SowrdPlayerMaxHp);
-        GetText((int)Texts.PlayerStartManaText).text = Managers.GetText(Define.SowrdPlayerStartMana);
-        GetText((int)Texts.PlayerStartMoneyText).text = Managers.GetText(Define.SowrdPlayerStartMoney);
+        GetText((int)Texts.PlayerContentsText).text = Managers.GetText(Define.SwordPlayerContents);
+        GetText((int)Texts.PlayerMaxHpText).text = Managers.GetText(Define.SwordPlayerMaxHp);
+        GetText((int)Texts.PlayerStartManaText).text = Managers.GetText(Define.SwordPlayerStartMana);
+        GetText((int)Texts.PlayerStartMoneyText).text = Managers.GetText(Define.SwordPlayerStartMoney);
+        ChampionNumber = Define.SwordPlayerContents;
         GetText((int)Texts.NextSelectText).text = ">";
         GetText((int)Texts.PrevSelectText).text = "<";
         GetText((int)Texts.StartGameText).text = "시작하기";
     }
     GameObject[] Champion;
+    int ChampionNumber = 0;
     bool isClickChampButton = false;
     void OnClickNextChampButton() {
         if (isClickChampButton)
@@ -145,33 +148,38 @@ public class UI_SelectChampAndItemPopup : UI_Popup
             GetText((int)Texts.PlayerMaxHpText).text = Managers.GetText(Define.ArcherPlayerMaxHp);
             GetText((int)Texts.PlayerStartManaText).text = Managers.GetText(Define.ArcherPlayerStartMana);
             GetText((int)Texts.PlayerStartMoneyText).text = Managers.GetText(Define.ArcherPlayerStartMoney);
+            ChampionNumber = Define.ArcherPlayerContents;
         }
         else if (gameObject == GetObject((int)GameObjects.SwordPlayer)) {
-            GetText((int)Texts.PlayerContentsText).text = Managers.GetText(Define.SowrdPlayerContents);
-            GetText((int)Texts.PlayerMaxHpText).text = Managers.GetText(Define.SowrdPlayerMaxHp);
-            GetText((int)Texts.PlayerStartManaText).text = Managers.GetText(Define.SowrdPlayerStartMana);
-            GetText((int)Texts.PlayerStartMoneyText).text = Managers.GetText(Define.SowrdPlayerStartMoney);
+            GetText((int)Texts.PlayerContentsText).text = Managers.GetText(Define.SwordPlayerContents);
+            GetText((int)Texts.PlayerMaxHpText).text = Managers.GetText(Define.SwordPlayerMaxHp);
+            GetText((int)Texts.PlayerStartManaText).text = Managers.GetText(Define.SwordPlayerStartMana);
+            GetText((int)Texts.PlayerStartMoneyText).text = Managers.GetText(Define.SwordPlayerStartMoney);
+            ChampionNumber = Define.SwordPlayerContents;
         }
         else if (gameObject == GetObject((int)GameObjects.WizardPlayer)) {
             GetText((int)Texts.PlayerContentsText).text = Managers.GetText(Define.WizardPlayerContents);
             GetText((int)Texts.PlayerMaxHpText).text = Managers.GetText(Define.WizardPlayerMaxHp);
             GetText((int)Texts.PlayerStartManaText).text = Managers.GetText(Define.WizardPlayerStartMana);
             GetText((int)Texts.PlayerStartMoneyText).text = Managers.GetText(Define.WizardPlayerStartMoney);
+            ChampionNumber = Define.WizardPlayerContents;
         }
     }
     int selectItem = 0;
     void OnClickStartGame()
     {
-        if (selectItem == 0) {
+        if (selectItem == 0 || ChampionNumber == Define.WizardPlayerContents || ChampionNumber == Define.ArcherPlayerContents) {
             return;
         }
-        Managers.UI.ClosePopupUI();
-       
-        Managers.Game.PlayerName = Champion[1].name;
-        Managers.Game.Stage = 1;
-        Managers.Game.Items.Add(selectItem);
-        Managers.UI.ShowPopupUI<UI_MapPopup>().SetInfo();
+        TransitionManager.Instance().Transition(Managers.Resource.Load<TransitionSettings>("Transitions/Brush/Brush"), 0,
+                    () => {
+                        Managers.UI.ClosePopupUI();
 
+                        Managers.Game.PlayerName = Champion[1].name;
+                        Managers.Game.Stage = 1;
+                        Managers.Game.Items.Add(selectItem);
+                        Managers.UI.ShowPopupUI<UI_MapPopup>().SetInfo();
+                    });
     }
     void OnClickItem1() {
         selectItem = 1;

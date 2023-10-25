@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Linq;
 using DG.Tweening;
+using EasyTransition;
 using UnityEngine;
 
 namespace Map
@@ -77,11 +78,14 @@ namespace Map
             {
                 case NodeType.MinorEnemy:
                     info = Managers.Resource.Load<EnemyInfo>($"ScriptableObjects/Enemy/Minor/{Managers.Game.Stage}-{Managers.Game.StageNumber}");
-                    Managers.UI.ShowPopupUI<UI_BattlePopup>().SetInfo(info);
+                    TransitionManager.Instance().Transition(Managers.Resource.Load<TransitionSettings>("Transitions/LinearWipe/LinearWipe"), 0,
+                    () => { Managers.UI.ShowPopupUI<UI_BattlePopup>().SetInfo(info);});
+                    
                     break;
                 case NodeType.EliteEnemy:
                     info = Managers.Resource.Load<EnemyInfo>($"ScriptableObjects/Enemy/Elite/{Managers.Game.Stage}-{Managers.Game.StageNumber}");
-                    Managers.UI.ShowPopupUI<UI_BattlePopup>().SetInfo(info);
+                    TransitionManager.Instance().Transition(Managers.Resource.Load<TransitionSettings>("Transitions/LinearWipe/LinearWipe"), 0,
+                    () => { Managers.UI.ShowPopupUI<UI_BattlePopup>().SetInfo(info); });
                     break;
                 case NodeType.RestSite:
                     break;
@@ -89,7 +93,8 @@ namespace Map
                     break;
                 case NodeType.Boss:
                     info = Managers.Resource.Load<EnemyInfo>($"ScriptableObjects/Enemy/Boss/{Managers.Game.Stage}-{Managers.Game.StageNumber}");
-                    Managers.UI.ShowPopupUI<UI_BattlePopup>().SetInfo(info);
+                    TransitionManager.Instance().Transition(Managers.Resource.Load<TransitionSettings>("Transitions/LinearWipe/LinearWipe"), 0,
+                    () => { Managers.UI.ShowPopupUI<UI_BattlePopup>().SetInfo(info); });
                     break;
                 default:
                     throw new ArgumentOutOfRangeException();

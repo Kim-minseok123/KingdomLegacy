@@ -96,10 +96,10 @@ public class Define
 	}
 	public const int DataResetConfirm = 20022;
 	public const int GoTitle = 20023;
-	public const int SowrdPlayerContents = 20024;
-    public const int SowrdPlayerMaxHp = 20025;
-    public const int SowrdPlayerStartMana = 20026;
-    public const int SowrdPlayerStartMoney = 20027;
+	public const int SwordPlayerContents = 20024;
+    public const int SwordPlayerMaxHp = 20025;
+    public const int SwordPlayerStartMana = 20026;
+    public const int SwordPlayerStartMoney = 20027;
     public const int ArcherPlayerContents = 20028;
     public const int ArcherPlayerMaxHp = 20029;
     public const int ArcherPlayerStartMana = 20030;
