@@ -38,6 +38,10 @@ public class UI_ChooseClearCardPopup : UI_Popup
         return true;
     }
     public void EndSelect() {
+        GetComponent<Animator>().SetTrigger("Off");
+    }
+    void OnComplete()
+    {
         Managers.UI.ClosePopupUI(this);
     }
     public void NonBoss1Stage() {

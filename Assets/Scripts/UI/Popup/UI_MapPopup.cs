@@ -68,6 +68,13 @@ public class UI_MapPopup : UI_Popup
         GetText((int)Texts.MoneyText).text = Managers.Game.Money.ToString();
         GetText((int)Texts.ClearTimeText).text = _timeText;
     }
+    public void BattleOn() { 
+        GetObject((int)GameObjects.SideBar).SetActive(false);
+    }
+    public void BattleOff()
+    {
+        GetObject((int)GameObjects.SideBar).SetActive(true);
+    }
     public void SetInfo() {
         
         stage = Managers.Game.Stage;

@@ -50,22 +50,27 @@ public class UI_ConfirmPopup : UI_Popup
             return;
 
     }
-
+    bool isYes = false;
     void OnClickYesButton()
     {
-        Managers.UI.ClosePopupUI(this);
-
-        _onClickYesButton?.Invoke();
+        isYes = true;
+        GetComponent<Animator>().SetTrigger("Off");
     }
 
     void OnClickNoButton()
     {      
-        _onClickNoButton?.Invoke();
-        OnComplete();
+        isYes = false;
+        GetComponent<Animator>().SetTrigger("Off");
     }
     void OnComplete()
     {
-       
         Managers.UI.ClosePopupUI(this);
+        if (isYes)
+        {
+            _onClickYesButton?.Invoke();
+        }
+        else { 
+            _onClickNoButton?.Invoke();
+        }
     }
 }

@@ -222,6 +222,8 @@ GameObject:
   - component: {fileID: 2966856753589584196}
   - component: {fileID: 2966856753589584199}
   - component: {fileID: 7347514561220552586}
+  - component: {fileID: 3421511083093177971}
+  - component: {fileID: -5829885391404797072}
   m_Layer: 5
   m_Name: UI_ChooseClearItemPopup
   m_TagString: Untagged
@@ -325,6 +327,39 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: efd914a0bbe6e164aa319c1d39f01411, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!225 &3421511083093177971
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2966856753589584198}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
+--- !u!95 &-5829885391404797072
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2966856753589584198}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: a0a37ab5ff0b0f7428869dc4999a6888, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &6439369289583435454
 GameObject:
   m_ObjectHideFlags: 0

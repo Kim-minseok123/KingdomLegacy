@@ -61,7 +61,11 @@ public class UI_SelectCardPopup : UI_Popup
             player.AttackEnemy(Damage, enemy);
         else if (cases == 1)
             player.GetShield(Damage);
-        Managers.UI.ClosePopupUI();
+        GetComponent<Animator>().SetTrigger("Off");
+    }
+    void OnComplete()
+    {
+        Managers.UI.ClosePopupUI(this);
     }
     public void SelectCard(GameObject go) { 
         selectCard = go;

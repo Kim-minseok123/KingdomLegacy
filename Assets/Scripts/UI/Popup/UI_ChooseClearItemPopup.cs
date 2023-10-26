@@ -36,6 +36,10 @@ public class UI_ChooseClearItemPopup : UI_Popup
     }
     public void EndSelect()
     {
+        GetComponent<Animator>().SetTrigger("Off");
+    }
+    void OnComplete()
+    {
         Managers.UI.ClosePopupUI(this);
     }
     public void SetItem() {
