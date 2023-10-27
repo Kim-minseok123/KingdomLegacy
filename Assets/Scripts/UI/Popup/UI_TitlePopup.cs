@@ -26,6 +26,7 @@ public class UI_TitlePopup : UI_Popup
         GameTitleLogoImage,
     }
     MapManager mapManager;
+    bool isGameData = true;
     public override bool Init()
     {
         if(base.Init() == false)
@@ -45,6 +46,7 @@ public class UI_TitlePopup : UI_Popup
         if (!Managers.Game.LoadGame()) {
             GetButton((int)Buttons.NewGameButton).transform.position = GetButton((int)Buttons.LoadGameButton).transform.position;
             Destroy(GetButton((int)Buttons.LoadGameButton).gameObject);
+            isGameData = false;
         }
         StartCoroutine(ShaderShineGo(GetObject((int)GameObjects.GameTitleLogoImage)));
 
@@ -54,7 +56,7 @@ public class UI_TitlePopup : UI_Popup
     void OnClickStartButton() {
         
         //이전에 플레이 게임 데이터가 있다면 팝업을 띄우고 결정하게 한다.
-        if (Managers.Game.LoadGame()) {
+        if (isGameData) {
             Managers.UI.ShowPopupUI<UI_ConfirmPopup>().SetInfo(() =>
             {
                 Managers.Game.Init();
@@ -74,7 +76,7 @@ public class UI_TitlePopup : UI_Popup
     }
     void OnClickContinueButton() { 
 
-        if (Managers.Game.LoadGame())
+        if (isGameData)
         {
             TransitionManager.Instance().Transition(Managers.Resource.Load<TransitionSettings>("Transitions/Brush/Brush"), 0,
                     () => {

@@ -2,17 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class UI_UpgradeCard : MonoBehaviour
+public class UI_UpgradeCard : UI_NonBattleCard
 {
-    // Start is called before the first frame update
-    void Start()
+    public override void ClickCard()
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        CardData card = GameEvents.OnGetCard(_cardData);
+        card ??= _cardData;
+        Managers.Game.Cards.Add(card.ID);
+        Managers.UI.FindPopup<UI_ChooseClearCardPopup>().EndSelect();
     }
 }

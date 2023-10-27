@@ -58,7 +58,7 @@ public class UI_ClearRoomPopup : UI_Popup
             Managers.UI.ClosePopupUI(this);
             Camera.main.orthographicSize = 7;
             Managers.UI.ClosePopupUI(Managers.UI.FindPopup<UI_BattlePopup>());
-            Managers.UI.FindPopup<UI_MapPopup>().BattleOff();
+            Managers.UI.FindPopup<UI_MapPopup>().SideBarOn();
         });
         if (Managers.Game.CurMapNode.Node.nodeType == Map.NodeType.Boss) {
             Managers.Game.Stage++;

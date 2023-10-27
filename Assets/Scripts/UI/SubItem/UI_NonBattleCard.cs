@@ -1,3 +1,4 @@
+using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -44,12 +45,19 @@ public class UI_NonBattleCard : UI_Base
 
         gameObject.BindEvent(ClickCard);
         gameObject.BindEvent((go)=> { ToolTipOn(); }, Define.UIEvent.PointerEnter);
+        gameObject.BindEvent((go) => { ScaleUP(); }, Define.UIEvent.PointerEnter);
         gameObject.BindEvent(ToolTipOff,Define.UIEvent.PointerExit);
-
+        gameObject.BindEvent(ScaleDown, Define.UIEvent.PointerExit);
 
         RefreshUI();
 
         return true;
+    }
+    public void ScaleUP() {
+        transform.DOScale(new Vector3(1.15f, 1.15f, 1), 0.2f).SetEase(Ease.OutSine);
+    }
+    public void ScaleDown() { 
+        transform.DOScale(new Vector3(1f, 1f, 1), 0.2f).SetEase(Ease.OutSine);
     }
     void RefreshUI()
     {
@@ -79,19 +87,19 @@ public class UI_NonBattleCard : UI_Base
         else if (_cardData.type == Define.CardType.Friend)
             GetImage((int)Images.CardBackGroundImage).sprite = Managers.Resource.Load<Sprite>("Sprites/Card/FriendCard");
 
-        if (_cardData.rarity == Define.CardRarity.Normal)
+        if (_cardData.rarity == Define.Rarity.Normal)
         {
             GetImage((int)Images.CardRarity).sprite = Managers.Resource.Load<Sprite>("Sprites/Card/Normal");
         }
-        else if (_cardData.rarity == Define.CardRarity.Rare)
+        else if (_cardData.rarity == Define.Rarity.Rare)
         {
             GetImage((int)Images.CardRarity).sprite = Managers.Resource.Load<Sprite>("Sprites/Card/Rare");
         }
-        else if (_cardData.rarity == Define.CardRarity.Unique)
+        else if (_cardData.rarity == Define.Rarity.Unique)
         {
             GetImage((int)Images.CardRarity).sprite = Managers.Resource.Load<Sprite>("Sprites/Card/Unique");
         }
-        else if (_cardData.rarity == Define.CardRarity.Legend)
+        else if (_cardData.rarity == Define.Rarity.Legend)
         {
             GetImage((int)Images.CardRarity).sprite = Managers.Resource.Load<Sprite>("Sprites/Card/Legend");
         }
@@ -115,7 +123,7 @@ public class UI_NonBattleCard : UI_Base
             Vector3 temp = pos.localPosition;
             temp += new Vector3(0, i * -105f, 0);
             
-            tooltip.GetComponent<UI_ToolTip>().SetInfo(TooltipIndex[i], temp);
+            tooltip.GetComponentInChildren<UI_ToolTip>().SetInfo(TooltipIndex[i], temp);
         }
     }
     public void ToolTipOff() {

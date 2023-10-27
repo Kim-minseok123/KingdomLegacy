@@ -19,6 +19,8 @@ public class ItemData
     public int frequency;
     [XmlAttribute]
     public int price;
+    [XmlAttribute]
+    public Rarity rarity;
     [XmlIgnore]
     public ItemAbility ability;
 }

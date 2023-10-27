@@ -11,6 +11,10 @@ public class GameData
     public int mana;
     public List<int> cards = new();
     public List<int> items = new();
+    public List<int> shopCards = new();
+    public List<int> shopItems = new(); 
+    public List<int> shopBuyCards = new();
+    public List<int> shopBuyItems = new();
     public int startDrawCardNum;
     public bool isPreservation;
     public bool isDoublePoisoning;
@@ -32,6 +36,7 @@ public class GameData
     public bool isNonDebuff;
     public bool isDoubleItem;
     public float clearTime;
+    public int ShopResetMoney;
 }
 public class GameManager : MonoBehaviour
 {
@@ -42,6 +47,7 @@ public class GameManager : MonoBehaviour
     public bool isPreservation { get { return _gameData.isPreservation; } set {_gameData.isPreservation = value; } }
     public bool isDoublePoisoning { get { return _gameData.isDoublePoisoning; } set { _gameData.isDoublePoisoning = value; } }
     public int MaxHp { get { return _gameData.MaxHp; } set { _gameData.MaxHp = value; } }
+    public int ShopResetMoney { get { return _gameData.ShopResetMoney; } set { _gameData.ShopResetMoney = value; } }
     public int CurHp { get { return _gameData.CurHp; } set { _gameData.CurHp = value; } }
     public int Money { get { return _gameData.Money; } set { _gameData.Money = value; } }
     public string PlayerName { get { return _gameData.PlayerName; } set { _gameData.PlayerName = value; } }
@@ -50,7 +56,11 @@ public class GameManager : MonoBehaviour
     public bool isManaDisappear { get { return _gameData.isManaDisappear; } set { _gameData.isManaDisappear = value; } }
     public MapNode CurMapNode { get { return _gameData.curMapNode; } set { _gameData.curMapNode = value; } }
     public List<int> Cards { get {  return _gameData.cards; } set { _gameData.cards.AddRange(value);} }
+    public List<int> ShopCards { get {  return _gameData.shopCards; } set { _gameData.shopCards.AddRange(value);} }
+    public List<int> ShopBuyCards { get {  return _gameData.shopBuyCards; } set { _gameData.shopBuyCards.AddRange(value);} }
     public List<int> Items { get {  return _gameData.items; } set { _gameData.items.AddRange(value);} }
+    public List<int> ShopItems { get {  return _gameData.shopItems; } set { _gameData.shopItems.AddRange(value);} }
+    public List<int> ShopBuyItems { get {  return _gameData.shopBuyItems; } set { _gameData.shopBuyItems.AddRange(value);} }
     public bool isGoldPlusItem { get { return _gameData.isGoldPlusItem; } set { _gameData.isGoldPlusItem = value; } }
     public bool isRest { get { return _gameData.isRest; } set { _gameData.isRest = value; } }
     public bool isIntension { get { return _gameData.isIntension; } set { _gameData.isIntension = value; } }
@@ -94,6 +104,11 @@ public class GameManager : MonoBehaviour
         isNonDebuff = false;
         isDoubleItem = false;
         ClearTime = 0;
+        ShopResetMoney = 5;
+        ShopCards.Clear();
+        ShopItems.Clear();
+        ShopBuyCards.Clear();
+        ShopBuyItems.Clear();
         Items.Clear();
     }
     

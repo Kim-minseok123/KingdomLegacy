@@ -101,7 +101,7 @@ public class UI_BattlePopup : UI_Popup
     public override bool Init()
     {
         Camera.main.orthographicSize = 5;
-        Managers.UI.FindPopup<UI_MapPopup>().BattleOn();
+        Managers.UI.FindPopup<UI_MapPopup>().SideBarOff();
         Canvas canvas = Utils.GetOrAddComponent<Canvas>(this.gameObject);
         canvas.renderMode = RenderMode.WorldSpace;
         canvas.worldCamera = Camera.main;

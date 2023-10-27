@@ -38,13 +38,13 @@ public class DrawAction : ActionBase
                 do
                 {
                     attackRandcard = Managers.Data.Cards.ElementAt(_rand.Next(0, Managers.Data.Cards.Count)).Value;
-                } while (attackRandcard.type != Define.CardType.Attack || attackRandcard.rarity != Define.CardRarity.Rare);
+                } while (attackRandcard.type != Define.CardType.Attack || attackRandcard.rarity != Define.Rarity.Rare);
                 player._battleScene.DrawCards(attackRandcard);
                 CardData skillRandcard;
                 do
                 {
                     skillRandcard = Managers.Data.Cards.ElementAt(_rand.Next(0, Managers.Data.Cards.Count)).Value;
-                } while (skillRandcard.type != Define.CardType.Skill || skillRandcard.rarity != Define.CardRarity.Rare);
+                } while (skillRandcard.type != Define.CardType.Skill || skillRandcard.rarity != Define.Rarity.Rare);
                 player._battleScene.DrawCards(skillRandcard);
                 break;
             case 80:
@@ -52,13 +52,13 @@ public class DrawAction : ActionBase
                 do
                 {
                     attackRandcard2 = Managers.Data.Cards.ElementAt(_rand.Next(0, Managers.Data.Cards.Count)).Value;
-                } while (attackRandcard2.type != Define.CardType.Attack || attackRandcard2.rarity != Define.CardRarity.Unique);
+                } while (attackRandcard2.type != Define.CardType.Attack || attackRandcard2.rarity != Define.Rarity.Unique);
                 player._battleScene.DrawCards(attackRandcard2);
                 CardData skillRandcard2;
                 do
                 {
                     skillRandcard2 = Managers.Data.Cards.ElementAt(_rand.Next(0, Managers.Data.Cards.Count)).Value;
-                } while (skillRandcard2.type != Define.CardType.Skill || skillRandcard2.rarity != Define.CardRarity.Unique);
+                } while (skillRandcard2.type != Define.CardType.Skill || skillRandcard2.rarity != Define.Rarity.Unique);
                 player._battleScene.DrawCards(skillRandcard2);
                 break;
         }

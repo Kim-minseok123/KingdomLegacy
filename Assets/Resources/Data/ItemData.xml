@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ArrayOfStatData xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <ItemData ID="1" name="짧은 휴식" description="매 전투 종로시 체력을 5 회복합니다." type ="BattleEnd" value="5" ></ItemData>
+  <ItemData ID="1" name="짧은 휴식" description="매 전투 종로시 체력을 5 회복합니다." type ="BattleEnd" value="5"></ItemData>
   <ItemData ID="2" name="준비된 마음가짐" description="첫 턴에만 카드를 3 장 더 뽑습니다." type ="TurnValue" value="3" frequency="1"></ItemData>
   <ItemData ID="3" name="약탈" description="매 전투 종료 승리 시 골드를 25% 추가 획득합니다." type ="GetItem" value="25"></ItemData>
   <ItemData ID="4" name="끝없는 근성" description="매 턴 시작 시 텐션을 1 추가 획득합니다. 더이상 휴식 장소에서 휴식을 할 수 없습니다." type ="TurnStart" value="1"></ItemData>
@@ -9,62 +9,62 @@
   <ItemData ID="7" name="정당한 거래" description="매 턴 시작 시 텐션을 1 추가 획득합니다. 전투 시작 시 2 장의 스트레스 카드를 버린 카드 더미에 추가합니다." type ="BattleStart" value="1"></ItemData>
   <ItemData ID="8" name="강강약약" description="엘리트와 보스 전투 동안, 매 턴 시작 시 텐션을 1 추가 획득합니다." type ="BattleStart" value="1"></ItemData>
   <ItemData ID="9" name="침묵" description="매 턴 시작 시 텐션을 1 추가 획득합니다. 더이상 적의 의도를 알 수 없습니다." type ="BattleStart" value="1"></ItemData>
-  <ItemData ID="10" name="왕의 인내" description="3턴 마다 텐션을 1 추가 획득합니다." type ="TurnStart" value="1" frequency="3"></ItemData>
-  <ItemData ID="11" name="사냥" description="최대 체력을 7 상승시킵니다." type ="GetItem" value="7" ></ItemData>
-  <ItemData ID="12" name="강철의 왕관" description="전투 시작 시 방어도 10을 획득합니다." type ="BattleStart" value="10" ></ItemData>
-  <ItemData ID="13" name="재산의 흐름" description="덱에 카드를 추가할 때 마다 골드를 12 획득합니다." type ="GetCard" value="12" ></ItemData>
-  <ItemData ID="14" name="왕족의 방패" description="턴 종료 시 방어도가 없다면 방어도를 11 획득합니다." type ="TurnEnd" value="11" ></ItemData>
-  <ItemData ID="15" name="용맹한 시작" description="힘을 1 얻은 채 전투를 시작합니다." type ="BattleStart" value="1" ></ItemData>
-  <ItemData ID="16" name="교활한 전략" description="민첩을 1 얻은 채 전투를 시작합니다." type ="BattleStart" value="1" ></ItemData>
-  <ItemData ID="17" name="수혈" description="전투 시작 시 체력을 2 회복합니다." type ="BattleStart" value="2" ></ItemData>
-  <ItemData ID="18" name="고요한 휴식" description="휴식을 취할 때 체력을 15 추가 획득합니다." type ="TakeRest" value="15" ></ItemData>
-  <ItemData ID="19" name="전장의 집중" description="전투 시작 후 첫 턴에만 텐션을 1 획득합니다." type ="BattleStart" value="1" ></ItemData>
-  <ItemData ID="20" name="이중 칼날" description="매 턴 시작 시 힘 2를 얻습니다. 적은 힘 1을 얻습니다." type ="TurnStart" value="2" ></ItemData>
-  <ItemData ID="21" name="왕족의 체구" description="최대 체력을 10 상승시킵니다." type ="GetItem" value="10" ></ItemData>
-  <ItemData ID="22" name="왕의 재생" description="최대 체력을 7 상승시킵니다. 체력을 모두 회복합니다." type ="GetItem" value="7" ></ItemData>
-  <ItemData ID="23" name="긴급 치유" description="전투 종료 시 체력이 50% 이하라면 체력을 12 회복합니다." type ="BattleEnd" value="12" ></ItemData>
-  <ItemData ID="24" name="사냥의 보상" description="적을 처치할 때 마다 텐션을 1 회복하고 카드를 1 장 뽑습니다." type ="KillEnemy" value="1" ></ItemData>
-  <ItemData ID="25" name="강습의 보호" description="한 턴에 공격 카드를 3 장 사용할 때 마다 방어도를 10 획득합니다." type ="UseCard" value="10" ></ItemData>
-  <ItemData ID="26" name="전투의 성장" description="매 전투가 끝난 후 최대 체력이 1 상승합니다." type ="BattleEnd" value="1" ></ItemData>
-  <ItemData ID="27" name="연속 기술" description="카드를 4장 사용할 때 마다 카드를 1 장 뽑습니다." type ="UseCard" value="1" ></ItemData>
-  <ItemData ID="28" name="새로운 검" description="공격 카드를 획득하면 그 카드를 강화합니다." type ="GetCard" value="1" ></ItemData>
-  <ItemData ID="29" name="마법의 돌" description="스킬 카드를 획득하면 그 카드를 강화합니다." type ="GetCard" value="1" ></ItemData>
-  <ItemData ID="30" name="동료의 충성" description="동료 카드를 획득하면 그 카드를 강화합니다." type ="GetCard" value="1" ></ItemData>
-  <ItemData ID="31" name="빠른 일격" description="전투 시작 시 적 전체에게 Hp의 20% 만큼 피해를 줍니다.(엘리트와 보스 제외)" type ="BattleStart" value="20" ></ItemData>
-  <ItemData ID="32" name="피의 예지" description="체력을 잃을 때 마다 카드를 1 장 뽑습니다." type ="LostHp" value="1" ></ItemData>
-  <ItemData ID="33" name="체급 성장" description="최대 체력을 14 상승시킵니다." type ="GetItem" value="14" ></ItemData>
-  <ItemData ID="34" name="일곱의 저주" description="7 번째 턴 시작 시 적 전체에게 100의 피해를 입힙니다." type ="TurnValue" value="100" frequency="7"></ItemData>
-  <ItemData ID="35" name="마법의 치유서" description="카드를 획득하면 체력을 7 회복합니다." type ="GetCard" value="7" ></ItemData>
-  <ItemData ID="36" name="바람의 고리" description="한 턴에 공격 카드를 3 장 사용할 때 마다 힘을 1 획득합니다." type ="UseCard" value="1" ></ItemData>
-  <ItemData ID="37" name="동료의 응원" description="동료 카드를 사용할 때 마다 체력을 2 회복합니다." type ="UseCard" value="2" ></ItemData>
-  <ItemData ID="38" name="심각한 취약점" description="취약 상태의 적이 50% 대신 75%의 피해를 추가로 받습니다." type ="GetItem" value="75" ></ItemData>
-  <ItemData ID="39" name="보호의 순환" description="덱을 섞을 때 마다 방어도를 6 획득합니다." type ="ShuffleDeck" value="6" ></ItemData>
-  <ItemData ID="40" name="강적 대비" description="보스 전투 시작 시 체력을 25 회복합니다." type ="BattleStart" value="25" ></ItemData>
-  <ItemData ID="41" name="단단한 체술" description="2번 째 턴 시작 시 방어도를 15 획득합니다." type ="TurnValue" value="15" frequency="2"></ItemData>
-  <ItemData ID="42" name="잊혀진 재산" description="획득 시 골드를 300 획득합니다." type ="GetItem" value="300" ></ItemData>
-  <ItemData ID="43" name="재림의 방패" description="3번 째 턴 시작 시 방어도를 20 획득합니다." type ="TurnValue" value="20" frequency="2"></ItemData>
-  <ItemData ID="44" name="상술" description="상점의 모든 품목이 50% 할인됩니다." type ="GetItem" value="50"></ItemData>
-  <ItemData ID="45" name="영원한 기억" description="더이상 자신의 턴이 끝날 때 카드를 버리지 않습니다." type ="GetItem" value="1"></ItemData>
-  <ItemData ID="46" name="재생의 부적" description="카드가 소멸 될 때 마다 무작위 카드 1 장을 뽑습니다." type ="ExitCard" value="1"></ItemData>
-  <ItemData ID="47" name="엄청난 힘" description="턴 종료 시 남은 텐션이 사라지지 않습니다." type ="TurnEnd" value="1"></ItemData>
-  <ItemData ID="48" name="망령의 돌" description="카드가 소멸 될 때 마다 적 전체에게 5의 피해를 입힙니다." type ="ExitCard" value="5"></ItemData>
-  <ItemData ID="49" name="라피엘의 반지" description="6 턴 마다 불가침을 1 획득합니다." type ="TurnValue" value="1" frequency="6"></ItemData>
-  <ItemData ID="50" name="취약의 물약" description="전투 시작 시 적 전체에게 취약을 1 부여합니다." type ="BattleStart" value="1"></ItemData>
-  <ItemData ID="51" name="마법의 스크롤" description="드로우 할 시 적 전체에게 3의 피해를 입힙니다." type ="ExitCard" value="5"></ItemData>
-  <ItemData ID="52" name="동료의 손길" description="전투 시작 시 무작위 동료 카드 1 장을 획득합니다. 획득한 카드의 비용은 0이 됩니다." type ="BattleStart" value="1"></ItemData>
-  <ItemData ID="53" name="광전사의 검" description="체력을 잃을 때 마다 힘을 1 획득합니다." type ="LostHp" value="1"></ItemData>
-  <ItemData ID="54" name="데이브레이크" description="체력을 잃을 때 마다 텐션을 1 획득합니다." type ="LostHp" value="5"></ItemData>
-  <ItemData ID="55" name="강철의 팔찌" description="최대체력이 6 상승합니다." type ="GetItem" value="6"></ItemData>
-  <ItemData ID="56" name="한 번 더!" description="덱을 섞을 때 마다 텐션을 1 획득합니다" type ="ShuffleDeck" value="1"></ItemData>
-  <ItemData ID="57" name="불사 부적" description="전투 중 체력이 0이 되면 체력 1로 살아남습니다." type ="LostHp" value="1"></ItemData>
-  <ItemData ID="58" name="생명의 심장" description="최대 체력이 20 증가합니다. 획득 시 체력을 전부 회복합니다." type ="GetItem" value="20"></ItemData>
-  <ItemData ID="59" name="엘리트 나침반" description="엘리트 보상에서 유물 2가지 중 하나를 선택할 수 있게됩니다." type ="GetItem" value="1"></ItemData>
-  <ItemData ID="60" name="중독 약병" description="중독 효과를 부여할 때 2배로 적용합니다." type ="GetItem" value="2"></ItemData>
-  <ItemData ID="61" name="독 주사" description="전투 시작 시 무작위 적에게 중독을 10 부여합니다." type ="BattleStart" value="10"></ItemData>
-  <ItemData ID="62" name="안개 독" description="매 턴 시작 시 적 전체에게 중독을 2 부여합니다." type ="TurnStart" value="2"></ItemData>
-  <ItemData ID="63" name="금화의 지팡이" description="매 턴 시작 시 골드를 1 획득합니다." type ="TurnStart" value="1"></ItemData>
-  <ItemData ID="64" name="부의 상자" description="획득 시 골드를 2000 획득합니다." type ="GetItem" value="2000"></ItemData>
-  <ItemData ID="65" name="그림자 망토" description="취약과 약화에 걸리지 않습니다." type ="GetItem" value="1"></ItemData>
-  <ItemData ID="66" name="보물 지도" description="보물에서 얻는 보상이 2개가 됩니다." type ="GetItem" value="1"></ItemData>
-  <ItemData ID="67" name="예열" description="전투 시작 시 힘을 2 획득합니다." type ="BattleStart" value="2"></ItemData>
+  <ItemData ID="10" name="왕의 인내" description="3턴 마다 텐션을 1 추가 획득합니다." type ="TurnStart" value="1" frequency="3" price="75" rarity="Normal"></ItemData>
+  <ItemData ID="11" name="사냥" description="최대 체력을 7 상승시킵니다." type ="GetItem" value="7" price="75" rarity="Normal"></ItemData>
+  <ItemData ID="12" name="강철의 왕관" description="전투 시작 시 방어도 10을 획득합니다." type ="BattleStart" value="10" price="75" rarity="Normal"></ItemData>
+  <ItemData ID="13" name="재산의 흐름" description="덱에 카드를 추가할 때 마다 골드를 12 획득합니다." type ="GetCard" value="12" price="50" rarity="Normal"></ItemData>
+  <ItemData ID="14" name="왕족의 방패" description="턴 종료 시 방어도가 없다면 방어도를 11 획득합니다." type ="TurnEnd" value="11" price="75" rarity="Normal"></ItemData>
+  <ItemData ID="15" name="용맹한 시작" description="힘을 1 얻은 채 전투를 시작합니다." type ="BattleStart" value="1" price="75" rarity="Normal"></ItemData>
+  <ItemData ID="16" name="교활한 전략" description="민첩을 1 얻은 채 전투를 시작합니다." type ="BattleStart" value="1" price="75" rarity="Normal"></ItemData>
+  <ItemData ID="17" name="수혈" description="전투 시작 시 체력을 2 회복합니다." type ="BattleStart" value="2" price="75" rarity="Normal"></ItemData>
+  <ItemData ID="18" name="고요한 휴식" description="휴식을 취할 때 체력을 15 추가 획득합니다." type ="TakeRest" value="15" price="75" rarity="Normal"></ItemData>
+  <ItemData ID="19" name="전장의 집중" description="전투 시작 후 첫 턴에만 텐션을 1 획득합니다." type ="BattleStart" value="1" price="75" rarity="Normal"></ItemData>
+  <ItemData ID="20" name="이중 칼날" description="매 턴 시작 시 힘 2를 얻습니다. 적은 힘 1을 얻습니다." type ="TurnStart" value="2" price="100" rarity="Rare"></ItemData>
+  <ItemData ID="21" name="왕족의 체구" description="최대 체력을 10 상승시킵니다." type ="GetItem" value="10" price="150" rarity="Rare"></ItemData>
+  <ItemData ID="22" name="왕의 재생" description="최대 체력을 7 상승시킵니다. 체력을 모두 회복합니다." type ="GetItem" value="7" price="150" rarity="Rare"></ItemData>
+  <ItemData ID="23" name="긴급 치유" description="전투 종료 시 체력이 50% 이하라면 체력을 12 회복합니다." type ="BattleEnd" value="12" price="150" rarity="Rare"></ItemData>
+  <ItemData ID="24" name="사냥의 보상" description="적을 처치할 때 마다 텐션을 1 회복하고 카드를 1 장 뽑습니다." type ="KillEnemy" value="1" price="150" rarity="Rare"></ItemData>
+  <ItemData ID="25" name="강습의 보호" description="한 턴에 공격 카드를 3 장 사용할 때 마다 방어도를 10 획득합니다." type ="UseCard" value="10" price="150" rarity="Rare"></ItemData>
+  <ItemData ID="26" name="전투의 성장" description="매 전투가 끝난 후 최대 체력이 1 상승합니다." type ="BattleEnd" value="1" price="150" rarity="Rare"></ItemData>
+  <ItemData ID="27" name="연속 기술" description="카드를 4장 사용할 때 마다 카드를 1 장 뽑습니다." type ="UseCard" value="1" price="150" rarity="Rare"></ItemData>
+  <ItemData ID="28" name="새로운 검" description="공격 카드를 획득하면 그 카드를 강화합니다." type ="GetCard" value="1" price="150" rarity="Rare"></ItemData>
+  <ItemData ID="29" name="마법의 돌" description="스킬 카드를 획득하면 그 카드를 강화합니다." type ="GetCard" value="1" price="150" rarity="Rare"></ItemData>
+  <ItemData ID="30" name="동료의 충성" description="동료 카드를 획득하면 그 카드를 강화합니다." type ="GetCard" value="1" price="150" rarity="Rare"></ItemData>
+  <ItemData ID="31" name="빠른 일격" description="전투 시작 시 적 전체에게 Hp의 20% 만큼 피해를 줍니다.(엘리트와 보스 제외)" type ="BattleStart" value="20" price="200" rarity="Unique"></ItemData>
+  <ItemData ID="32" name="피의 예지" description="체력을 잃을 때 마다 카드를 1 장 뽑습니다." type ="LostHp" value="1" price="200" rarity="Unique"></ItemData>
+  <ItemData ID="33" name="체급 성장" description="최대 체력을 14 상승시킵니다." type ="GetItem" value="14" price="200"  rarity="Unique"></ItemData>
+  <ItemData ID="34" name="일곱의 저주" description="7 번째 턴 시작 시 적 전체에게 100의 피해를 입힙니다." type ="TurnValue" value="100" frequency="7" price="200" rarity="Unique"></ItemData>
+  <ItemData ID="35" name="마법의 치유서" description="카드를 획득하면 체력을 7 회복합니다." type ="GetCard" value="7" price="200" rarity="Unique"></ItemData>
+  <ItemData ID="36" name="바람의 고리" description="한 턴에 공격 카드를 3 장 사용할 때 마다 힘을 1 획득합니다." type ="UseCard" value="1" price="200" rarity="Unique"></ItemData>
+  <ItemData ID="37" name="동료의 응원" description="동료 카드를 사용할 때 마다 체력을 2 회복합니다." type ="UseCard" value="2" price="200" rarity="Unique"></ItemData>
+  <ItemData ID="38" name="심각한 취약점" description="취약 상태의 적이 50% 대신 75%의 피해를 추가로 받습니다." type ="GetItem" value="75" price="200" rarity="Unique"></ItemData>
+  <ItemData ID="39" name="보호의 순환" description="덱을 섞을 때 마다 방어도를 6 획득합니다." type ="ShuffleDeck" value="6" price="200" rarity="Unique"></ItemData>
+  <ItemData ID="40" name="강적 대비" description="보스 전투 시작 시 체력을 25 회복합니다." type ="BattleStart" value="25" price="300" rarity="Legend"></ItemData>
+  <ItemData ID="41" name="단단한 체술" description="2번 째 턴 시작 시 방어도를 15 획득합니다." type ="TurnValue" value="15" frequency="2" price="300" rarity="Legend"></ItemData>
+  <ItemData ID="42" name="잊혀진 재산" description="획득 시 골드를 300 획득합니다." type ="GetItem" value="300" price="300" rarity="Legend"></ItemData>
+  <ItemData ID="43" name="재림의 방패" description="3번 째 턴 시작 시 방어도를 20 획득합니다." type ="TurnValue" value="20" frequency="2" price="300" rarity="Legend"></ItemData>
+  <ItemData ID="44" name="상술" description="상점의 모든 품목이 50% 할인됩니다." type ="GetItem" value="50" price="300" rarity="Legend"></ItemData>
+  <ItemData ID="45" name="영원한 기억" description="더이상 자신의 턴이 끝날 때 카드를 버리지 않습니다." type ="GetItem" value="1" price="250" rarity="Legend"></ItemData>
+  <ItemData ID="46" name="재생의 부적" description="카드가 소멸 될 때 마다 무작위 카드 1 장을 뽑습니다." type ="ExitCard" value="1" price="350" rarity="Legend"></ItemData>
+  <ItemData ID="47" name="엄청난 힘" description="턴 종료 시 남은 텐션이 사라지지 않습니다." type ="TurnEnd" value="1" price="350" rarity="Legend"></ItemData>
+  <ItemData ID="48" name="망령의 돌" description="카드가 소멸 될 때 마다 적 전체에게 5의 피해를 입힙니다." type ="ExitCard" value="5" price="300" rarity="Legend"></ItemData>
+  <ItemData ID="49" name="라피엘의 반지" description="6 턴 마다 불가침을 1 획득합니다." type ="TurnValue" value="1" frequency="6" price="300" rarity="Legend"></ItemData>
+  <ItemData ID="50" name="취약의 물약" description="전투 시작 시 적 전체에게 취약을 1 부여합니다." type ="BattleStart" value="1" price="150" rarity="Rare"></ItemData>
+  <ItemData ID="51" name="마법의 스크롤" description="드로우 할 시 적 전체에게 3의 피해를 입힙니다." type ="ExitCard" value="5" price="200" rarity="Unique"></ItemData>
+  <ItemData ID="52" name="동료의 손길" description="전투 시작 시 무작위 동료 카드 1 장을 획득합니다. 획득한 카드의 비용은 0이 됩니다." type ="BattleStart" value="1" price="200"></ItemData>
+  <ItemData ID="53" name="광전사의 검" description="체력을 잃을 때 마다 힘을 1 획득합니다." type ="LostHp" value="1" price="200" rarity="Unique"></ItemData>
+  <ItemData ID="54" name="데이브레이크" description="체력을 잃을 때 마다 텐션을 1 획득합니다." type ="LostHp" value="5" price="200" rarity="Unique"></ItemData>
+  <ItemData ID="55" name="강철의 팔찌" description="최대 체력이 6 상승합니다." type ="GetItem" value="6" price="75" rarity="Normal"></ItemData>
+  <ItemData ID="56" name="한 번 더!" description="덱을 섞을 때 마다 텐션을 1 획득합니다" type ="ShuffleDeck" value="1" price="200" rarity="Unique"></ItemData>
+  <ItemData ID="57" name="불사 부적" description="전투 중 체력이 0이 되면 체력 1로 살아남습니다." type ="LostHp" value="1" price="300" rarity="Legend"></ItemData>
+  <ItemData ID="58" name="생명의 심장" description="최대 체력이 20 증가합니다. 획득 시 체력을 전부 회복합니다." type ="GetItem" value="20" price="300" rarity="Legend"></ItemData>
+  <ItemData ID="59" name="엘리트 나침반" description="엘리트 보상에서 유물 2가지 중 하나를 선택할 수 있게됩니다." type ="GetItem" value="1" price="150" rarity="Legend"></ItemData>
+  <ItemData ID="60" name="중독 약병" description="중독 효과를 부여할 때 2배로 적용합니다." type ="GetItem" value="2" price="200" rarity="Unique"></ItemData>
+  <ItemData ID="61" name="독 주사" description="전투 시작 시 무작위 적에게 중독을 10 부여합니다." type ="BattleStart" value="10" price="200" rarity="Unique"></ItemData>
+  <ItemData ID="62" name="안개 독" description="매 턴 시작 시 적 전체에게 중독을 2 부여합니다." type ="TurnStart" value="2" price="100" rarity="Rare"></ItemData>
+  <ItemData ID="63" name="금화의 지팡이" description="매 턴 시작 시 골드를 1 획득합니다." type ="TurnStart" value="1" price="150" rarity="Rare"></ItemData>
+  <ItemData ID="64" name="부의 상자" description="획득 시 골드를 2000 획득합니다." type ="GetItem" value="2000" price="1000" rarity="Legend"></ItemData>
+  <ItemData ID="65" name="그림자 망토" description="취약과 약화에 걸리지 않습니다." type ="GetItem" value="1" price="500" rarity="Legend"></ItemData>
+  <ItemData ID="66" name="보물 지도" description="보물에서 얻는 보상이 2개가 됩니다." type ="GetItem" value="1" price="500" rarity="Legend"></ItemData>
+  <ItemData ID="67" name="예열" description="힘을 2 얻은 채 전투를 시작합니다." type ="BattleStart" value="2" price="100" rarity="Rare"></ItemData>
 </ArrayOfStatData>

@@ -22,7 +22,7 @@ public class Define
 		Skill,
 		Friend
 	}
-	public enum CardRarity { 
+	public enum Rarity { 
 		Normal,
 		Rare,
         Unique,

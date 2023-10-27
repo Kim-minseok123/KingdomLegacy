@@ -9,6 +9,6 @@ public class UI_ClearCard : UI_NonBattleCard
         CardData card =  GameEvents.OnGetCard(_cardData);
         card ??= _cardData;
         Managers.Game.Cards.Add(card.ID);
-        Managers.UI.ClosePopupUI();
+        Managers.UI.FindPopup<UI_ChooseClearCardPopup>().EndSelect();
     }
 }

@@ -68,12 +68,12 @@ public class UI_MapPopup : UI_Popup
         GetText((int)Texts.MoneyText).text = Managers.Game.Money.ToString();
         GetText((int)Texts.ClearTimeText).text = _timeText;
     }
-    public void BattleOn() { 
-        GetObject((int)GameObjects.SideBar).SetActive(false);
-    }
-    public void BattleOff()
-    {
+    public void SideBarOn() {
         GetObject((int)GameObjects.SideBar).SetActive(true);
+    }
+    public void SideBarOff()
+    {
+        GetObject((int)GameObjects.SideBar).SetActive(false);
     }
     public void SetInfo() {
         
@@ -114,8 +114,9 @@ public class UI_MapPopup : UI_Popup
         GetImage((int)Images.MenuButton).gameObject.SetActive(true);
         GetImage((int)Images.ContentsButton).gameObject.SetActive(false);
     }
-    public void ShopOn() { 
-    
+    public void ShopOn() {
+        SideBarOff();
+        Managers.UI.ShowPopupUI<UI_ShopPopup>();
     }
     public void DeleteCardOn()
     {

@@ -49,8 +49,20 @@ public class UI_Item : UI_Base
         }
 
         GetImage((int)Images.ToolTipImage).gameObject.SetActive(false);
-        GetText((int)Texts.ToolTipText).text = "<color=yellow>" + _itemData.name + "</color>\n\n" + _itemData.description;
-        if(type != 1) GetImage((int)Images.ItemImage).gameObject.BindEvent(GetItemClick);
+        if (_itemData.rarity == Define.Rarity.Normal) {
+            GetText((int)Texts.ToolTipText).text = "<color=#32CD32>" + _itemData.name + "</color>\n\n" + _itemData.description;
+        }
+        else if (_itemData.rarity == Define.Rarity.Rare) {
+            GetText((int)Texts.ToolTipText).text = "<color=#1E90FF>" + _itemData.name + "</color>\n\n" + _itemData.description;
+
+        }
+        else if (_itemData.rarity == Define.Rarity.Unique) {
+            GetText((int)Texts.ToolTipText).text = "<color=#FF00FF>" + _itemData.name + "</color>\n\n" + _itemData.description;
+        }
+        else if (_itemData.rarity == Define.Rarity.Legend) { 
+            GetText((int)Texts.ToolTipText).text = "<color=#FF8C00>" + _itemData.name + "</color>\n\n" + _itemData.description;
+        }
+        if (type != 1) GetImage((int)Images.ItemImage).gameObject.BindEvent(GetItemClick);
         GetImage((int)Images.ItemImage).gameObject.BindEvent((go) => { TooltipOn(); },Define.UIEvent.PointerEnter);
         GetImage((int)Images.ItemImage).gameObject.BindEvent(TooltipOff,Define.UIEvent.PointerExit);
 
@@ -80,13 +92,14 @@ public class UI_Item : UI_Base
 
         RefreshUI();
     }
-    public void GetItemClick()
+    public virtual void GetItemClick()
     {
         if (type == 1) return;
         else if (type == 2)
         {
-            Managers.UI.ClosePopupUI();
+            Managers.UI.FindPopup<UI_ChooseClearItemPopup>().EndSelect();
         }
+        
         _itemData.ability.Setting();
         Managers.Game.Items.Add(_itemData.ID);
         GameEvents.OnGetItem();

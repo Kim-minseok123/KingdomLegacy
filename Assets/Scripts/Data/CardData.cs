@@ -14,7 +14,7 @@ public class CardData : ICloneable
     [XmlAttribute] 
     public CardType type;
     [XmlAttribute] 
-    public CardRarity rarity;
+    public Rarity rarity;
     [XmlAttribute]
     public TargetType target;
     [XmlAttribute]
@@ -49,7 +49,9 @@ public class CardData : ICloneable
     public int poisoning;   //Áßµ¶
     [XmlAttribute]
     public int disturbance;
-    
+    [XmlAttribute]
+    public int price;
+
     [XmlArray("actions")]
     [XmlArrayItem("action")]
     public List<string> actionNames;
@@ -96,6 +98,7 @@ public class CardData : ICloneable
             poisoning = this.poisoning,
             disturbance = this.disturbance,
             anyAttribute = this.anyAttribute,
+            price = this.price,
         };
     }
     public void Upgrade() {

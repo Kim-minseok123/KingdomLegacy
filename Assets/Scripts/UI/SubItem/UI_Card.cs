@@ -66,16 +66,16 @@ public class UI_Card : UI_Base
         else if(_cardData.type == Define.CardType.Friend)
             GetImage((int)Images.CardBackGroundImage).sprite = Managers.Resource.Load<Sprite>("Sprites/Card/FriendCard");
 
-        if (_cardData.rarity == Define.CardRarity.Normal) {
+        if (_cardData.rarity == Define.Rarity.Normal) {
             GetImage((int)Images.CardRarity).sprite = Managers.Resource.Load<Sprite>("Sprites/Card/Normal");
         }
-        else if (_cardData.rarity == Define.CardRarity.Rare) {
+        else if (_cardData.rarity == Define.Rarity.Rare) {
             GetImage((int)Images.CardRarity).sprite = Managers.Resource.Load<Sprite>("Sprites/Card/Rare");
         }
-        else if (_cardData.rarity == Define.CardRarity.Unique) {
+        else if (_cardData.rarity == Define.Rarity.Unique) {
             GetImage((int)Images.CardRarity).sprite = Managers.Resource.Load<Sprite>("Sprites/Card/Unique");
         }
-        else if (_cardData.rarity == Define.CardRarity.Legend) {
+        else if (_cardData.rarity == Define.Rarity.Legend) {
             GetImage((int)Images.CardRarity).sprite = Managers.Resource.Load<Sprite>("Sprites/Card/Legend");
         }
 
