@@ -51,7 +51,7 @@ public class UI_CardDeletePopup : UI_Popup
         Cards.Clear();
         var parent = GetObject((int)Gameobjects.DeleteCard).transform;
         for (int i = 0; i < Managers.Game.Cards.Count; i++) {
-            var card = Managers.Resource.Instantiate("UI/SubItem/UI_UpgradeCard", parent);
+            var card = Managers.Resource.Instantiate("UI/SubItem/UI_DeleteCard", parent);
             card.GetComponent<UI_NonBattleCard>().SetInfo(Managers.Game.Cards[i]);
             Cards.Add(card);
         }
