@@ -120,7 +120,8 @@ public class UI_MapPopup : UI_Popup
     }
     public void DeleteCardOn()
     {
-
+        SideBarOff();
+        Managers.UI.ShowPopupUI<UI_CardDeletePopup>();
     }
     public void InitItem() {
         _itemList = Managers.Game.Items;

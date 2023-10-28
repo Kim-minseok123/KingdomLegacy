@@ -1,14 +1,50 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class UI_UpgradeCard : UI_NonBattleCard
 {
+    public override bool Init()
+    {
+        base.Init();
+        Image uiImage = GetComponent<Image>();
+        uiImage.material = new Material(uiImage.material);
+        GetImage((int)Images.CardImage).material = uiImage.material;
+        GetImage((int)Images.CardBackGroundImage).material = uiImage.material;
+        GetImage((int)Images.CardManaImage).material = uiImage.material;
+        GetImage((int)Images.CardRarity).material = uiImage.material;
+        return true;
+    }
     public override void ClickCard()
     {
-        CardData card = GameEvents.OnGetCard(_cardData);
-        card ??= _cardData;
-        Managers.Game.Cards.Add(card.ID);
-        Managers.UI.FindPopup<UI_ChooseClearCardPopup>().EndSelect();
+        if (Managers.Game.Money < _cardData.price) return;
+
+        BurnFade();
+    }
+    public void BurnFade()
+    {
+        GetText(0).gameObject.SetActive(false);
+        GetText(1).gameObject.SetActive(false);
+        GetText(2).gameObject.SetActive(false);
+        StartCoroutine(Burn());
+    }
+    IEnumerator Burn()
+    {
+        Material material = GetComponent<Image>().material;
+        material.EnableKeyword("FADE_ON");
+        float value = -0.1f;
+        while (value <= 1f)
+        {
+            value += 0.03f;
+            material.SetFloat("_FadeAmount", value);
+            yield return null;
+        }
+        material.EnableKeyword("FADE_ON");
+        Managers.Game.Money -= Managers.Game.DeleteCardMoney;
+        Managers.Game.DeleteCardMoney += 10;
+        Managers.Game.Cards.Remove(_cardData.ID);
+        Managers.Game.SaveGame();
+        Managers.UI.FindPopup<UI_CardDeletePopup>().ShowCardandText();
     }
 }

@@ -13,6 +13,7 @@ public class UI_ShopCard : UI_NonBattleCard
     public TextMeshProUGUI Money;
     public override void ClickCard()
     {
+        if (Managers.Game.Money < _cardData.price) return;
 
         CardData card = GameEvents.OnGetCard(_cardData);
         card ??= _cardData;

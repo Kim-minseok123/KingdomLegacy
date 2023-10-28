@@ -37,12 +37,14 @@ public class GameData
     public bool isDoubleItem;
     public float clearTime;
     public int ShopResetMoney;
+    public int DeleteCardMoney;
 }
 public class GameManager : MonoBehaviour
 {
     GameData _gameData = new GameData();
     public GameData SaveData {  get { return _gameData; } set { _gameData = value; } }
     public int Stage { get { return _gameData.stage; } set { _gameData.stage = value; } }
+    public int DeleteCardMoney { get { return _gameData.DeleteCardMoney; } set { _gameData.DeleteCardMoney = value; } }
     public int Mana { get { return _gameData.mana; } set { _gameData.mana = value; } }
     public bool isPreservation { get { return _gameData.isPreservation; } set {_gameData.isPreservation = value; } }
     public bool isDoublePoisoning { get { return _gameData.isDoublePoisoning; } set { _gameData.isDoublePoisoning = value; } }
@@ -110,6 +112,7 @@ public class GameManager : MonoBehaviour
         ShopBuyCards.Clear();
         ShopBuyItems.Clear();
         Items.Clear();
+        DeleteCardMoney = 30;
     }
     
     #region Save & Load	

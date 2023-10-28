@@ -16,7 +16,7 @@ public class UI_NonBattleCard : UI_Base
         CardContentsText,
         CardManaText
     }
-    enum Images
+    public enum Images
     {
         CardImage,
         CardBackGroundImage,
