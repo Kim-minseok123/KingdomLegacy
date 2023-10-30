@@ -93,7 +93,7 @@
       <action>AttackAction</action>
     </actions>
   </CardData>
-  <CardData ID="18" name="베어가르기+" description="소멸. {0}만큼 4번 피해." type ="Attack" rarity="Rare" target="Enemy" damage="8" mana="1" state="Extinction" attackNum="4" price="60">
+  <CardData ID="18" name="베어가르기+" description="소멸. {0}만큼 4번 피해." type ="Attack" rarity="Rare" target="Enemy" damage="5" mana="1" state="Extinction" attackNum="4" price="60">
     <actions>
       <action>AttackAction</action>
     </actions>

@@ -117,7 +117,7 @@ public class UI_Card : UI_Base
             material.SetFloat("_FadeAmount", value);
             yield return null;
         }
-        material.EnableKeyword("FADE_ON");
+        material.DisableKeyword("FADE_ON");
         Managers.Resource.Destroy(gameObject);
 
     }

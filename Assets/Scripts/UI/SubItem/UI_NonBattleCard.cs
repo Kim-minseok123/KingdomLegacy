@@ -59,7 +59,7 @@ public class UI_NonBattleCard : UI_Base
     public void ScaleDown() { 
         transform.DOScale(new Vector3(1f, 1f, 1), 0.2f).SetEase(Ease.OutSine);
     }
-    void RefreshUI()
+    public void RefreshUI()
     {
         if (_init == false)
             return;

@@ -41,7 +41,7 @@ public class UI_DeleteCard : UI_NonBattleCard
             material.SetFloat("_FadeAmount", value);
             yield return null;
         }
-        material.EnableKeyword("FADE_ON");
+        material.DisableKeyword("FADE_ON");
         Managers.Game.Money -= Managers.Game.DeleteCardMoney;
         Managers.Game.DeleteCardMoney += 10;
         Managers.Game.Cards.Remove(_cardData.ID);

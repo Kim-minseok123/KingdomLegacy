@@ -473,7 +473,7 @@ public class UI_BattlePopup : UI_Popup
         }
         else
         {
-            if (worldPos.y > -0.8f || _isDragArrow)
+            if (worldPos.y > -2f || _isDragArrow)
             {
                 Vector3 target = GetObject((int)GameObjects.UseTarget).transform.position;
                 obj.transform.DOMove(target, 0.5f).SetEase(ease);
@@ -587,7 +587,8 @@ public class UI_BattlePopup : UI_Popup
     bool ishaveEnemy = false;
     public void ManyTimesAttack(PlayerController player, int num, int Damage, EnemyController enemy = null)
     {
-        if(enemy != null)
+        ishaveEnemy = false;
+        if (enemy != null)
             ishaveEnemy = true;
         StartCoroutine(ManyTimeAttack(player,num,Damage,enemy));
     }

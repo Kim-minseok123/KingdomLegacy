@@ -80,7 +80,6 @@ namespace Map
                     info = Managers.Resource.Load<EnemyInfo>($"ScriptableObjects/Enemy/Minor/{Managers.Game.Stage}-{Managers.Game.StageNumber}");
                     TransitionManager.Instance().Transition(Managers.Resource.Load<TransitionSettings>("Transitions/LinearWipe/LinearWipe"), 0,
                     () => { Managers.UI.ShowPopupUI<UI_BattlePopup>().SetInfo(info);});
-                    
                     break;
                 case NodeType.EliteEnemy:
                     info = Managers.Resource.Load<EnemyInfo>($"ScriptableObjects/Enemy/Elite/{Managers.Game.Stage}-{Managers.Game.StageNumber}");
@@ -88,6 +87,8 @@ namespace Map
                     () => { Managers.UI.ShowPopupUI<UI_BattlePopup>().SetInfo(info); });
                     break;
                 case NodeType.RestSite:
+                    Managers.UI.ShowPopupUI<UI_RestOrEnhancePopup>();
+                    Managers.UI.FindPopup<UI_MapPopup>().SideBarOff();
                     break;
                 case NodeType.Treasure:
                     break;
