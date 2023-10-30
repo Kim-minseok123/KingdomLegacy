@@ -55,11 +55,12 @@ public class UI_ClearRoomPopup : UI_Popup
     public void EndRoom() {
         TransitionManager.Instance().Transition(Managers.Resource.Load<TransitionSettings>("Transitions/LinearWipe/LinearWipe"), 0, 
             () => {
-            Managers.UI.ClosePopupUI(this);
-            Camera.main.orthographicSize = 7;
-            Managers.UI.ClosePopupUI(Managers.UI.FindPopup<UI_BattlePopup>());
-            Managers.UI.FindPopup<UI_MapPopup>().SideBarOn();
-        });
+                Managers.UI.ClosePopupUI(this);
+                Camera.main.orthographicSize = 7;
+                Managers.UI.ClosePopupUI(Managers.UI.FindPopup<UI_BattlePopup>());
+                Managers.UI.FindPopup<UI_MapPopup>().SideBarOn();
+                Managers.UI.FindPopup<UI_MapPopup>().ShowMap();
+            });
         if (Managers.Game.CurMapNode.Node.nodeType == Map.NodeType.Boss) {
             Managers.Game.Stage++;
             //¸Ê ÃÊ±âÈ­ ¹× ¸Ê ÆË¾÷ ¶ç¿ì±â ÆäÀÌµå ÀÎ ¾Æ¿ô ÅëÇØ¼­

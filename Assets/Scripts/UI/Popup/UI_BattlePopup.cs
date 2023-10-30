@@ -6,6 +6,7 @@ using DG.Tweening;
 using System;
 using static UnityEngine.EventSystems.EventTrigger;
 using Unity.VisualScripting;
+using UnityEditor.SceneManagement;
 
 public class UI_BattlePopup : UI_Popup
 {
@@ -102,6 +103,8 @@ public class UI_BattlePopup : UI_Popup
     {
         Camera.main.orthographicSize = 5;
         Managers.UI.FindPopup<UI_MapPopup>().SideBarOff();
+        Managers.UI.FindPopup<UI_MapPopup>().HideMap();
+
         Canvas canvas = Utils.GetOrAddComponent<Canvas>(this.gameObject);
         canvas.renderMode = RenderMode.WorldSpace;
         canvas.worldCamera = Camera.main;
@@ -114,17 +117,30 @@ public class UI_BattlePopup : UI_Popup
         BindImage(typeof(Images));
         BindButton(typeof(Buttons));
         BindText(typeof(Texts));
+        
+        GetImage((int)Images.BattleGroundImage).sprite = Managers.Resource.Load<Sprite>($"Sprites/BattleGround/BattleGround{Managers.Game.Stage}");
 
         _player = Managers.Resource.Instantiate("PlayerCharacter/" + Managers.Game.PlayerName, GetObject((int)GameObjects.PlayerTransform).transform);
         _playerController = _player.GetComponent<PlayerController>();
         //적들 소환
-        for (int i = 0; i < _enemyInfo.Enemys.Count; i++)
+        if (_enemyInfo.Enemys.Count >= 3)
         {
-            var enemy = Managers.Resource.Instantiate(_enemyInfo.Enemys[i], GetObject(i + 7).transform);
-            enemy.GetComponent<EnemyController>().Setting(_enemyInfo.EnemyHp[i], i + 1);
-            _enemyList.Add(enemy);
+            for (int i = 0; i < _enemyInfo.Enemys.Count; i++)
+            {
+                var enemy = Managers.Resource.Instantiate(_enemyInfo.Enemys[i], GetObject(i + 7).transform);
+                enemy.GetComponent<EnemyController>().Setting(_enemyInfo.EnemyHp[i], i + 1);
+                enemy.transform.localPosition = new Vector3(enemy.transform.localPosition.x, enemy.transform.localPosition.y - 90f);
+                _enemyList.Add(enemy);
+            }
         }
-
+        else {
+            for (int i = 0; i < _enemyInfo.Enemys.Count; i++)
+            {
+                var enemy = Managers.Resource.Instantiate(_enemyInfo.Enemys[i], GetObject(i + 7).transform);
+                enemy.GetComponent<EnemyController>().Setting(_enemyInfo.EnemyHp[i], i + 1);
+                _enemyList.Add(enemy);
+            }
+        }
         GetButton((int)Buttons.TurnEndButton).gameObject.BindEvent(TurnEnd);
         _ar = GetObject((int)GameObjects.ArrowController).GetComponent<ArrowController>();
         RefreshUI();
@@ -140,7 +156,7 @@ public class UI_BattlePopup : UI_Popup
     }
     public void SetInfo(EnemyInfo enemyInfo)
     {
-        //스테이지, 체력, 카드 등 값 넘겨줘야함
+        
         _maxMana = Managers.Game.Mana;
         _drawCards.Clear();
         foreach (int id in Managers.Game.Cards)

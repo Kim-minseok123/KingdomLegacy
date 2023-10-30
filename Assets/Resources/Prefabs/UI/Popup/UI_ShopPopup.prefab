@@ -218,6 +218,7 @@ GameObject:
   - component: {fileID: 5374910650178613330}
   - component: {fileID: 3179025791216503087}
   - component: {fileID: 8937253417530051763}
+  - component: {fileID: 8086459792940162610}
   m_Layer: 5
   m_Name: UI_ShopPopup
   m_TagString: Untagged
@@ -346,6 +347,19 @@ CanvasGroup:
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
+--- !u!114 &8086459792940162610
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1546556771880066858}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d79ad8849183d97429df4fb3720849ed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shoplist: []
 --- !u!1 &2625720974389190906
 GameObject:
   m_ObjectHideFlags: 0

@@ -34,6 +34,7 @@ public class UI_MapPopup : UI_Popup
     List<int> _itemList = new();
     SpriteRenderer Background;
     MapManager MapManager;
+    GameObject map;
     public override bool Init()
     {
         Camera.main.orthographicSize = 7;
@@ -53,6 +54,7 @@ public class UI_MapPopup : UI_Popup
         GetButton((int)Buttons.ShopButton).gameObject.BindEvent(ShopOn);
         GetButton((int)Buttons.DeleteCardButton).gameObject.BindEvent(DeleteCardOn);
 
+        
         MapManager = GameObject.FindGameObjectWithTag("Map").GetComponentInChildren<MapManager>();
         MapManager.StartGenerate();
         _time = Managers.Game.ClearTime;
@@ -150,5 +152,15 @@ public class UI_MapPopup : UI_Popup
     {
         Background.sprite = Managers.Resource.Load<Sprite>($"Sprites/BattleGround/BattleGround{stage}");
         MapManager.GenerateNewMap();
+    }
+    public void HideMap() {
+        if(map == null)
+            map = GameObject.Find("OuterMapParent");
+        map.SetActive(false);
+    }
+    public void ShowMap() {
+        if (map == null)
+            map = GameObject.Find("OuterMapParent");
+        map.SetActive(true);
     }
 }

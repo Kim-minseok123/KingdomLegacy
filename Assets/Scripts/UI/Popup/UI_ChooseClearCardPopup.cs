@@ -50,7 +50,7 @@ public class UI_ChooseClearCardPopup : UI_Popup
             do
             {
                 Randcard = Managers.Data.Cards.ElementAt(_rand.Next(0, Managers.Data.Cards.Count)).Value;
-            } while ((Randcard.rarity != Define.Rarity.Normal && Randcard.rarity != Define.Rarity.Rare) || Randcard.ID >=119);
+            } while ((Randcard.rarity != Define.Rarity.Normal && Randcard.rarity != Define.Rarity.Rare) || Randcard.ID >=119 || Randcard.ID == 1 || Randcard.ID == 2 || Randcard.ID == 49 || Randcard.ID == 50);
             var card = Managers.Resource.Instantiate("UI/SubItem/UI_ClearCard", transform);
             card.GetComponent<UI_NonBattleCard>().SetInfo(Randcard.ID);
             card.transform.position = Get<Transform>(i).position;
@@ -64,7 +64,7 @@ public class UI_ChooseClearCardPopup : UI_Popup
             do
             {
                 Randcard = Managers.Data.Cards.ElementAt(_rand.Next(0, Managers.Data.Cards.Count)).Value;
-            } while ((Randcard.rarity != Define.Rarity.Normal && Randcard.rarity != Define.Rarity.Rare && Randcard.rarity != Define.Rarity.Unique) || Randcard.ID >= 119);
+            } while ((Randcard.rarity != Define.Rarity.Normal && Randcard.rarity != Define.Rarity.Rare && Randcard.rarity != Define.Rarity.Unique) || Randcard.ID >= 119 || Randcard.ID == 1 || Randcard.ID == 2 || Randcard.ID == 49 || Randcard.ID == 50);
             var card = Managers.Resource.Instantiate("UI/SubItem/UI_ClearCard", transform);
             card.GetComponent<UI_NonBattleCard>().SetInfo(Randcard.ID);
             card.transform.position = Get<Transform>(i).position;
