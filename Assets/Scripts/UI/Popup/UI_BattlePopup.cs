@@ -584,13 +584,17 @@ public class UI_BattlePopup : UI_Popup
         _exitCards.Add(obj._cardData);
         GameEvents.OnExitCard();
     }
+    bool ishaveEnemy = false;
     public void ManyTimesAttack(PlayerController player, int num, int Damage, EnemyController enemy = null)
     {
+        if(enemy != null)
+            ishaveEnemy = true;
         StartCoroutine(ManyTimeAttack(player,num,Damage,enemy));
     }
     IEnumerator ManyTimeAttack(PlayerController player, int num, int Damage, EnemyController enemy = null) {
         for (int i = 0; i < num; i++)
         {
+            if(ishaveEnemy && enemy == null) yield break;
             player.AttackEnemy(Damage, enemy);
             if(_curMana > 0)
                 _curMana--;
