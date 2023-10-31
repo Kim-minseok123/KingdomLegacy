@@ -2,6 +2,7 @@
 {
     Properties
     {
+		
         _MainTex ("Main Texture", 2D) = "white" {}	//0
 		_Color("Main Color", Color) = (1,1,1,1)		//1
 		_Alpha("General Alpha",  Range(0,1)) = 1	//2

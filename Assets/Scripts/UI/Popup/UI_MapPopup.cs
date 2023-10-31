@@ -47,6 +47,7 @@ public class UI_MapPopup : UI_Popup
         Background.sprite = Managers.Resource.Load<Sprite>($"Sprites/BattleGround/BattleGround{stage}");
 
         GetButton((int)Buttons.SideBarButton).gameObject.BindEvent(OnOffButton);
+        GetButton((int)Buttons.DeckButton).gameObject.BindEvent(ClickDeckButton);
         GetObject((int)GameObjects.Contents).SetActive(false);
         GetImage((int)Images.MenuButton).gameObject.SetActive(false);
         GetImage((int)Images.MenuButton).gameObject.BindEvent(MenuOn);
@@ -69,6 +70,9 @@ public class UI_MapPopup : UI_Popup
         GetText((int)Texts.HpText).text = Managers.Game.CurHp.ToString() + " / " + Managers.Game.MaxHp.ToString();
         GetText((int)Texts.MoneyText).text = Managers.Game.Money.ToString();
         GetText((int)Texts.ClearTimeText).text = _timeText;
+    }
+    public void ClickDeckButton() {
+        Managers.UI.ShowPopupUI<UI_ShowCardsListPopup>().SetInfo();
     }
     public void SideBarOn() {
         GetObject((int)GameObjects.SideBar).SetActive(true);

@@ -27,7 +27,7 @@ MonoBehaviour:
   extraPaths: 0
   layers:
     array:
-    - nodeType: 3
+    - nodeType: 0
       distanceFromPreviousLayer:
         min: 0
         max: 0

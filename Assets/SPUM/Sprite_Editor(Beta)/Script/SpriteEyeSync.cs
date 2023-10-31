@@ -72,6 +72,7 @@ public class SpriteEyeSync : MonoBehaviour
         }
     }
 
+    [System.Obsolete]
     public void SyncPivot()
     {
         // if(_mySprite.sprite!=null)

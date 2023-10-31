@@ -117,7 +117,11 @@ public class UI_BattlePopup : UI_Popup
         BindImage(typeof(Images));
         BindButton(typeof(Buttons));
         BindText(typeof(Texts));
-        
+
+        GetButton((int)Buttons.DrawDeckCard).gameObject.BindEvent(ClickDrawDeck);
+        GetButton((int)Buttons.ThrowDeckCard).gameObject.BindEvent(ClickThrowDeck);
+        GetButton((int)Buttons.ExitDeckCard).gameObject.BindEvent(ClickExitDeck);
+
         GetImage((int)Images.BattleGroundImage).sprite = Managers.Resource.Load<Sprite>($"Sprites/BattleGround/BattleGround{Managers.Game.Stage}");
 
         _player = Managers.Resource.Instantiate("PlayerCharacter/" + Managers.Game.PlayerName, GetObject((int)GameObjects.PlayerTransform).transform);
@@ -683,5 +687,16 @@ public class UI_BattlePopup : UI_Popup
         Friend.GetComponent<UI_Friend>().SetInfo(name, ability, card);
         Friends.Add(ability);
         FriendsName.Add(name);
+    }
+    public void ClickDrawDeck() {
+        Managers.UI.ShowPopupUI<UI_ShowCardsListPopup>().SetInfo(_drawCards);
+    }
+    public void ClickExitDeck()
+    {
+        Managers.UI.ShowPopupUI<UI_ShowCardsListPopup>().SetInfo(_exitCards);
+    }
+    public void ClickThrowDeck()
+    {
+        Managers.UI.ShowPopupUI<UI_ShowCardsListPopup>().SetInfo(_throwCards);
     }
 }
