@@ -24,7 +24,6 @@ public class UI_ChooseClearItemPopup : UI_Popup
 
         BindButton(typeof(Buttons));
         Bind<Transform>(typeof(Transforms));
-
         if (Managers.Game.CurMapNode.Node.nodeType == NodeType.Boss) {
             BossItem();
         }
@@ -40,6 +39,10 @@ public class UI_ChooseClearItemPopup : UI_Popup
     }
     void OnComplete()
     {
+        if (Managers.UI.FindPopup<UI_BattlePopup>() == null)
+        {
+            Managers.UI.FindPopup<UI_MapPopup>().SideBarOn();
+        }
         Managers.UI.ClosePopupUI(this);
     }
     public void SetItem() {

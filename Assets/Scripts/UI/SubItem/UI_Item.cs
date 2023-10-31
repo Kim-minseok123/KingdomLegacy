@@ -99,6 +99,9 @@ public class UI_Item : UI_Base
         {
             Managers.UI.FindPopup<UI_ChooseClearItemPopup>().EndSelect();
         }
+        else if (type == 3) {
+            Destroy(gameObject);
+        }
         
         _itemData.ability.Setting();
         Managers.Game.Items.Add(_itemData.ID);

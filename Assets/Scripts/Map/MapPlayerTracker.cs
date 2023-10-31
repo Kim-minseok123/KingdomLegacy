@@ -91,6 +91,8 @@ namespace Map
                     Managers.UI.FindPopup<UI_MapPopup>().SideBarOff();
                     break;
                 case NodeType.Treasure:
+                    Managers.UI.ShowPopupUI<UI_ChooseClearItemPopup>();
+                    Managers.UI.FindPopup<UI_MapPopup>().SideBarOff();
                     break;
                 case NodeType.Boss:
                     info = Managers.Resource.Load<EnemyInfo>($"ScriptableObjects/Enemy/Boss/{Managers.Game.Stage}-{Managers.Game.StageNumber}");
