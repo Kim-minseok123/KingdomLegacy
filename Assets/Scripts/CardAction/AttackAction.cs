@@ -17,11 +17,11 @@ public class AttackAction : ActionBase
                 break;
             case 17:
                 Damage = card.damage + player.Power;
-                player._battleScene.ManyTimesAttack(player, 3, Damage, enemy);
+                player._battleScene.ManyTimesAttack(player, 3, Damage, false, enemy);
                 return;
             case 18:
                 Damage = card.damage + player.Power;
-                player._battleScene.ManyTimesAttack(player, 4, Damage, enemy);
+                player._battleScene.ManyTimesAttack(player, 4, Damage, false, enemy);
                 return;
             case 19: case 20:
                 //적이 공격의도라면  취약 1 부여 및 공격 만큼 데미지
@@ -63,7 +63,7 @@ public class AttackAction : ActionBase
                 break;
             case 33: case 34:
                 var num = player._battleScene._curMana;
-                player._battleScene.ManyTimesAttack(player, num, player.Power + card.damage, enemy);
+                player._battleScene.ManyTimesAttack(player, num, player.Power + card.damage, true, enemy);
                 return;
             case 37: case 38:
                 player.Damaged(2);

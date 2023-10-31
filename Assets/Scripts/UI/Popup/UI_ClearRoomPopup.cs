@@ -53,18 +53,33 @@ public class UI_ClearRoomPopup : UI_Popup
         Destroy(GetButton((int)Buttons.GetGoldButton).gameObject);
     }
     public void EndRoom() {
-        TransitionManager.Instance().Transition(Managers.Resource.Load<TransitionSettings>("Transitions/LinearWipe/LinearWipe"), 0, 
-            () => {
-                Managers.UI.ClosePopupUI(this);
-                Camera.main.orthographicSize = 7;
-                Managers.UI.ClosePopupUI(Managers.UI.FindPopup<UI_BattlePopup>());
-                Managers.UI.FindPopup<UI_MapPopup>().SideBarOn();
-                Managers.UI.FindPopup<UI_MapPopup>().ShowMap();
-            });
-        if (Managers.Game.CurMapNode.Node.nodeType == Map.NodeType.Boss) {
-            Managers.Game.Stage++;
-            //¸Ê ÃÊ±âÈ­ ¹× ¸Ê ÆË¾÷ ¶ç¿ì±â ÆäÀÌµå ÀÎ ¾Æ¿ô ÅëÇØ¼­
-            Managers.UI.FindPopup<UI_MapPopup>().ResetMap();
+
+        if (Managers.Game.CurMapNode.Node.nodeType == Map.NodeType.Boss)
+        {
+            TransitionManager.Instance().Transition(Managers.Resource.Load<TransitionSettings>("Transitions/LinearWipe/LinearWipe"), 0,
+                () => {
+                    Managers.Game.Stage++;
+                    Managers.Game.CurHp += (int)(Managers.Game.MaxHp * 0.4f);
+                    if (Managers.Game.CurHp > Managers.Game.MaxHp) Managers.Game.CurHp = Managers.Game.MaxHp;
+                    Managers.UI.FindPopup<UI_MapPopup>().SideBarOn();
+                    Managers.UI.FindPopup<UI_MapPopup>().ShowMap();
+                    Managers.UI.FindPopup<UI_MapPopup>().ResetMap();
+                    GameObject.Find("OuterMapParent").transform.position = new Vector3(-5f, -1.5f);
+                    Managers.UI.ClosePopupUI(this);
+                    Camera.main.orthographicSize = 7;
+                    Managers.UI.ClosePopupUI(Managers.UI.FindPopup<UI_BattlePopup>());
+
+                });
+        }
+        else {
+            TransitionManager.Instance().Transition(Managers.Resource.Load<TransitionSettings>("Transitions/LinearWipe/LinearWipe"), 0,
+                () => {
+                    Managers.UI.ClosePopupUI(this);
+                    Camera.main.orthographicSize = 7;
+                    Managers.UI.ClosePopupUI(Managers.UI.FindPopup<UI_BattlePopup>());
+                    Managers.UI.FindPopup<UI_MapPopup>().SideBarOn();
+                    Managers.UI.FindPopup<UI_MapPopup>().ShowMap();
+                });
         }
         Managers.Game.SaveGame();
     }

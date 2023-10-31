@@ -38,7 +38,6 @@ public class UI_CardDeletePopup : UI_Popup
     }
     public void OnComplete()
     {
-        Managers.UI.FindPopup<UI_MapPopup>().SideBarOn();
         Managers.UI.ClosePopupUI(this);
     }
     public List<GameObject> Cards = new();

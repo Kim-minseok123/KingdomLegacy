@@ -10,6 +10,7 @@ public class UI_ShopPopup : UI_Popup
     {
         ShopResetButton,
         ExitButton,
+        DeleteCardButton
     }
     enum Texts
     {
@@ -38,8 +39,13 @@ public class UI_ShopPopup : UI_Popup
         GetText((int)Texts.ResetMoneyText).text = Managers.Game.ShopResetMoney.ToString() + " °ñµå";
         GetButton((int)Buttons.ShopResetButton).gameObject.BindEvent(ShopResetButton);
         GetButton((int)Buttons.ExitButton).gameObject.BindEvent(ExitShop);
+        GetButton((int)Buttons.DeleteCardButton).gameObject.BindEvent(DeleteCardOn);
         InitShop();
         return true;
+    }
+    public void DeleteCardOn()
+    {
+        Managers.UI.ShowPopupUI<UI_CardDeletePopup>();
     }
     public void ShopResetButton() {
         if (Managers.Game.Money < Managers.Game.ShopResetMoney) return;

@@ -9,9 +9,7 @@ public class UI_MapPopup : UI_Popup
     enum Buttons {
         DeckButton,
         SettingButton,
-        SideBarButton,
         ShopButton,
-        DeleteCardButton,
     }
     enum Texts {
         HpText,
@@ -46,14 +44,10 @@ public class UI_MapPopup : UI_Popup
         Background = Managers.Resource.Instantiate("Map/BackGroundImage").GetComponent<SpriteRenderer>();
         Background.sprite = Managers.Resource.Load<Sprite>($"Sprites/BattleGround/BattleGround{stage}");
 
-        GetButton((int)Buttons.SideBarButton).gameObject.BindEvent(OnOffButton);
+
         GetButton((int)Buttons.DeckButton).gameObject.BindEvent(ClickDeckButton);
-        GetObject((int)GameObjects.Contents).SetActive(false);
-        GetImage((int)Images.MenuButton).gameObject.SetActive(false);
-        GetImage((int)Images.MenuButton).gameObject.BindEvent(MenuOn);
-        GetImage((int)Images.ContentsButton).gameObject.BindEvent(ContentsOn);
+
         GetButton((int)Buttons.ShopButton).gameObject.BindEvent(ShopOn);
-        GetButton((int)Buttons.DeleteCardButton).gameObject.BindEvent(DeleteCardOn);
 
         
         MapManager = GameObject.FindGameObjectWithTag("Map").GetComponentInChildren<MapManager>();
@@ -95,40 +89,12 @@ public class UI_MapPopup : UI_Popup
         _timeText = string.Format("{0:D2} : {1:D2} : {2:D2}", hours, minutes, seconds);
         RefreshUI();
     }
-    bool isOn = false;
-    public void OnOffButton()
-    {
-        if (!isOn)
-        {
-            GetObject((int)GameObjects.SideBar).transform.DOMove(new Vector3(1365f, 540, 0), 1f).SetEase(Ease.OutSine);
-            isOn = true;
-        }
-        else { 
-            GetObject((int)GameObjects.SideBar).transform.DOMove(new Vector3(960f, 540, 0), 1f).SetEase(Ease.OutSine);
-            isOn = false;
-        }
-    }
-    public void MenuOn() {
-        GetObject((int)GameObjects.Menu).SetActive(true);
-        GetObject((int)GameObjects.Contents).SetActive(false);
-        GetImage((int)Images.ContentsButton).gameObject.SetActive(true);
-        GetImage((int)Images.MenuButton).gameObject.SetActive(false);
-    }
-    public void ContentsOn() {
-        GetObject((int)GameObjects.Menu).SetActive(false);
-        GetObject((int)GameObjects.Contents).SetActive(true);
-        GetImage((int)Images.MenuButton).gameObject.SetActive(true);
-        GetImage((int)Images.ContentsButton).gameObject.SetActive(false);
-    }
+    
     public void ShopOn() {
         SideBarOff();
         Managers.UI.ShowPopupUI<UI_ShopPopup>();
     }
-    public void DeleteCardOn()
-    {
-        SideBarOff();
-        Managers.UI.ShowPopupUI<UI_CardDeletePopup>();
-    }
+    
     public void InitItem() {
         _itemList = Managers.Game.Items;
 
