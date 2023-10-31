@@ -45,6 +45,7 @@ public class UI_RestOrEnhancePopup : UI_Popup
     void OnComplete()
     {
         Managers.UI.ClosePopupUI(this);
+        Managers.UI.FindPopup<UI_MapPopup>().SideBarOn();
         Managers.Game.SaveGame();
     }
     public void RestButton() {

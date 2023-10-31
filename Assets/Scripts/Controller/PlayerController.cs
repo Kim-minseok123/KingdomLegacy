@@ -243,7 +243,7 @@ public class PlayerController : UI_Base
         }
         _playerAnim.SetTrigger("Attack");
     }
-    public void AttackEnemy(int Damage, EnemyController enemy = null, bool Heal = false)
+    public void AttackEnemy(int Damage, bool Heal, EnemyController enemy = null)
     {
         if (Weakness > 0)
             Damage = (int)(Damage * 0.75f);

@@ -41,8 +41,8 @@ public class AttackAction : ActionBase
                 break;
             case 25: case 26:
                 Damage = card.damage + (int)(player.Power * 0.5);
-                player.HealHp(Damage);
-                break;
+                player.AttackEnemy(Damage, true, enemy);
+                return;
             case 27: case 28:
                 foreach (UI_Card uicard in player._battleScene._handCardsUI) {
                     if (uicard._cardData.type != Define.CardType.Attack) { 

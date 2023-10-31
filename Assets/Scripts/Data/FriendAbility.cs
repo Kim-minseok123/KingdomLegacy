@@ -134,7 +134,7 @@ public class Grafton : FriendAbility
 
     public void Die()
     {
-        throw new System.NotImplementedException();
+        GameEvents.KillEnemy -= Use;
     }
 }
 

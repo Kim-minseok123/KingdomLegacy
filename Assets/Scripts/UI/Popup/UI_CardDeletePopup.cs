@@ -15,7 +15,7 @@ public class UI_CardDeletePopup : UI_Popup
     { 
         ExitButton,
     }
-
+    public bool isDelete = false;
     public override bool Init()
     {
         if (!base.Init())

@@ -206,7 +206,6 @@ public class UI_BattlePopup : UI_Popup
                 break;
             case States.TurnEnd:
                 HandleCardsCircle();
-                _playerController.ResetBuff();
                 break;
             case States.EnemyTurnStart:
                 isEnemyTurn = true; 
@@ -236,6 +235,7 @@ public class UI_BattlePopup : UI_Popup
             EndBattle();
             isBattleEnd = true;
         }
+        //if (Input.GetKeyDown(KeyCode.Space)) { _playerController.AttackEnemy(999); }
     }
     bool isBattleEnd = false;
     private void EndBattle()
@@ -382,6 +382,7 @@ public class UI_BattlePopup : UI_Popup
         {
             isDestoryCard = true;
             _state = States.TurnEnd;
+            _playerController.ResetBuff();
             GameEvents.OnTurnEnd();
             cardsDrawn = true;
             if(!Managers.Game.isManaDisappear)

@@ -77,7 +77,7 @@ public class UI_ChooseClearCardPopup : UI_Popup
             do
             {
                 Randcard = Managers.Data.Cards.ElementAt(_rand.Next(0, Managers.Data.Cards.Count)).Value;
-            } while ((Randcard.rarity != Define.Rarity.Legend)|| Randcard.ID >= 119);
+            } while (!((Randcard.rarity == Define.Rarity.Legend) && Randcard.ID < 119));
             var card = Managers.Resource.Instantiate("UI/SubItem/UI_ClearCard", transform);
             card.GetComponent<UI_NonBattleCard>().SetInfo(Randcard.ID);
             card.transform.position = Get<Transform>(i).position;

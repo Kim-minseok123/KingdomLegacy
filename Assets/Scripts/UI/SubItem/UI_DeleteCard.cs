@@ -20,7 +20,8 @@ public class UI_DeleteCard : UI_NonBattleCard
     public override void ClickCard()
     {
         if (Managers.Game.Money < Managers.Game.DeleteCardMoney) return;
-
+        if (Managers.UI.FindPopup<UI_CardDeletePopup>().isDelete) return;
+        Managers.UI.FindPopup<UI_CardDeletePopup>().isDelete = false;
         BurnFade();
     }
     public void BurnFade()
@@ -46,6 +47,7 @@ public class UI_DeleteCard : UI_NonBattleCard
         Managers.Game.DeleteCardMoney += 10;
         Managers.Game.Cards.Remove(_cardData.ID);
         Managers.Game.SaveGame();
+        Managers.UI.FindPopup<UI_CardDeletePopup>().isDelete = false;
         Managers.UI.FindPopup<UI_CardDeletePopup>().ShowCardandText();
     }
 }

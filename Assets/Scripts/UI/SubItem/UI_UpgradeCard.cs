@@ -60,7 +60,7 @@ public class UI_UpgradeCard : UI_NonBattleCard
         Managers.Game.Cards.Add(_cardData.ID);
         yield return new WaitForSeconds(0.5f);
         Managers.UI.FindPopup<UI_EnhancePopup>().ExitButton();
-        yield return new WaitForSeconds(0.15f);
+        yield return new WaitForSeconds(0.16f);
         Managers.UI.FindPopup<UI_RestOrEnhancePopup>().ExitButton();
     }
 }

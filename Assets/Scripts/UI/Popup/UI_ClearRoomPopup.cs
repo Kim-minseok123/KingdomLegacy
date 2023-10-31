@@ -64,7 +64,6 @@ public class UI_ClearRoomPopup : UI_Popup
                     Managers.UI.FindPopup<UI_MapPopup>().SideBarOn();
                     Managers.UI.FindPopup<UI_MapPopup>().ShowMap();
                     Managers.UI.FindPopup<UI_MapPopup>().ResetMap();
-                    GameObject.Find("OuterMapParent").transform.position = new Vector3(-5f, -1.5f);
                     Managers.UI.ClosePopupUI(this);
                     Camera.main.orthographicSize = 7;
                     Managers.UI.ClosePopupUI(Managers.UI.FindPopup<UI_BattlePopup>());

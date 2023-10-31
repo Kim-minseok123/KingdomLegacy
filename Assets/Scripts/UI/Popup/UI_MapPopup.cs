@@ -120,7 +120,7 @@ public class UI_MapPopup : UI_Popup
     }
     public void ResetMap()
     {
-        Background.sprite = Managers.Resource.Load<Sprite>($"Sprites/BattleGround/BattleGround{stage}");
+        Background.sprite = Managers.Resource.Load<Sprite>($"Sprites/BattleGround/BattleGround{Managers.Game.Stage}");
         MapManager.GenerateNewMap();
     }
     public void HideMap() {
