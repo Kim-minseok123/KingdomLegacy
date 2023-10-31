@@ -103,7 +103,7 @@ namespace Map
 
             CreateMapBackground(m);
 
-            firstParent.transform.position = new Vector3(-7, -1.5f);
+            firstParent.transform.position = new Vector3(-5, -1.5f);
 
         }
 
@@ -122,6 +122,7 @@ namespace Map
             sr.drawMode = SpriteDrawMode.Sliced;
             sr.sprite = background;
             sr.size = new Vector2(xSize, span + yOffset * 2f);
+            backgroundObject.transform.SetParent(firstParent.transform);
         }
 
         protected virtual void CreateMapParent()
@@ -130,6 +131,7 @@ namespace Map
             mapParent = new GameObject("MapParentWithAScroll");
             mapParent.transform.SetParent(firstParent.transform);
             var scrollNonUi = mapParent.AddComponent<ScrollNonUI>();
+            scrollNonUi.tweenBackEase = DG.Tweening.Ease.OutCubic;
             scrollNonUi.freezeX = orientation == MapOrientation.BottomToTop || orientation == MapOrientation.TopToBottom;
             scrollNonUi.freezeY = orientation == MapOrientation.LeftToRight || orientation == MapOrientation.RightToLeft;
             var boxCollider = mapParent.AddComponent<BoxCollider>();

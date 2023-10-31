@@ -28,6 +28,7 @@ namespace Map
             rend.material.mainTextureScale =
                 new Vector2(Vector2.Distance(lR.GetPosition(0), lR.GetPosition(lR.positionCount - 1)) / lR.widthMultiplier,
                     1);
+            
         }
     }
 }

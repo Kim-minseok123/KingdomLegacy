@@ -17,7 +17,7 @@ namespace Map
         private float zDisplacement;
         private bool dragging;
         private Camera mainCamera;
-
+        public float value = -6;
         private void Awake()
         {
             mainCamera = Camera.main;
@@ -47,6 +47,13 @@ namespace Map
                 freezeX ? transform.position.x : mousePos.x - pointerDisplacement.x,
                 freezeY ? transform.position.y : mousePos.y - pointerDisplacement.y,
                 transform.position.z);
+            foreach (Transform child in transform)
+            {
+                if (child.position.x <= value)
+                    child.gameObject.SetActive(false);
+                else
+                    child.gameObject.SetActive(true);
+            }
         }
 
         // returns mouse position in World coordinates for our GameObject to follow. 
@@ -66,7 +73,7 @@ namespace Map
                     return;
 
                 var targetX = transform.localPosition.x < xConstraints.min ? xConstraints.min : xConstraints.max;
-                transform.DOLocalMoveX(targetX, tweenBackDuration).SetEase(tweenBackEase);
+                transform.DOLocalMoveX(targetX, tweenBackDuration).SetEase(tweenBackEase).OnComplete(() => { HideOrShow(); });
             }
             else if (freezeX)
             {
@@ -74,7 +81,16 @@ namespace Map
                     return;
 
                 var targetY = transform.localPosition.y < yConstraints.min ? yConstraints.min : yConstraints.max;
-                transform.DOLocalMoveY(targetY, tweenBackDuration).SetEase(tweenBackEase);
+                transform.DOLocalMoveY(targetY, tweenBackDuration).SetEase(tweenBackEase).OnComplete(() => { HideOrShow(); });
+            }
+        }
+        private void HideOrShow() {
+            foreach (Transform child in transform)
+            {
+                if (child.position.x <= value)
+                    child.gameObject.SetActive(false);
+                else
+                    child.gameObject.SetActive(true);
             }
         }
     }
