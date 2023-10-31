@@ -23,8 +23,7 @@ public class UI_MapPopup : UI_Popup
         Contents,
     }
     enum Images {
-        ContentsButton,
-        MenuButton,
+
     }
     int stage = 0;
     float _time = 0f;
@@ -107,16 +106,13 @@ public class UI_MapPopup : UI_Popup
         int tempMaxHp = Managers.Game.MaxHp;
         int tempCurHp = Managers.Game.CurHp;
         GameEvents.OnGetItem();
-        GameEvents.GetItem -= AddItem;
-        GameEvents.GetItem += AddItem;
         Managers.Game.Money = tempMoney;
         Managers.Game.MaxHp = tempMaxHp;
         Managers.Game.CurHp = tempCurHp;
         Managers.Game.SaveGame();
     }
-    public void AddItem() {
-        _itemList.Add(Managers.Game.Items.Last());
-        Managers.Resource.Instantiate("UI/SubItem/UI_Item", GetObject((int)GameObjects.ItemList).transform).GetComponent<UI_Item>().SetInfo(_itemList.Last(), 1);
+    public void AddItem(int id) {
+        Managers.Resource.Instantiate("UI/SubItem/UI_Item", GetObject((int)GameObjects.ItemList).transform).GetComponent<UI_Item>().SetInfo(id, 1);
     }
     public void ResetMap()
     {

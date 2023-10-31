@@ -23,6 +23,7 @@ public class UI_ShopItem : UI_Item
             Managers.Game.ShopBuyItems.Add(_itemData.ID);
             _itemData.ability.Setting();
             Managers.Game.Items.Add(_itemData.ID);
+            Managers.UI.FindPopup<UI_MapPopup>().AddItem(_itemData.ID);
             GameEvents.OnGetItem();
             Managers.Game.SaveGame();
             Destroy(gameObject);

@@ -102,6 +102,8 @@ public class UI_Item : UI_Base
         else if (type == 3) {
             _itemData.ability.Setting();
             Managers.Game.Items.Add(_itemData.ID);
+            Managers.UI.FindPopup<UI_MapPopup>().AddItem(_itemData.ID);
+
             GameEvents.OnGetItem();
             Managers.Game.SaveGame();
             Destroy(gameObject);
@@ -110,6 +112,8 @@ public class UI_Item : UI_Base
         
         _itemData.ability.Setting();
         Managers.Game.Items.Add(_itemData.ID);
+        Managers.UI.FindPopup<UI_MapPopup>().AddItem(_itemData.ID);
+
         GameEvents.OnGetItem();
         type = 1;
         GetImage((int)Images.ItemImage).gameObject.UnBindEvent(GetItemClick);
