@@ -109,7 +109,7 @@ public class UI_Card : UI_Base
         StartCoroutine(Burn());
     }
     IEnumerator Burn() { 
-        Material material = GetComponent<Image>().material;
+        Material material = GetComponent<Image>().materialForRendering;
         material.EnableKeyword("FADE_ON");
         float value = -0.1f;
         while (value <= 1f) {
