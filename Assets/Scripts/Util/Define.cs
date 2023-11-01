@@ -125,7 +125,9 @@ public class Define
     public const int Draw = 20050;
     public const int Shout = 20051;
 	public const int Inviolable = 20052;
-    public const int AttackMode = 20053;
-    public const int DefenseMode = 20054;
+    public const int Stress = 20053;
+    public const int Dizziness = 20054;
+    public const int AttackMode = 20055;
+    public const int DefenseMode = 20056;
 
 }

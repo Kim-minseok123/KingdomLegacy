@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class UI_NonBattleCard : UI_Base
 {
-    string[] CardDesToolTip = new string[15] {"약화", "취약","힘","민첩","중독","방어도","힘 감소","무한의 검","방어막","소멸","보존","조건","텐션","소환","드로우"};
+    string[] CardDesToolTip = new string[17] {"약화", "취약","힘","민첩","중독","방어도","힘 감소","무한의 검","방어막","소멸","보존","조건","텐션","소환","드로우","스트레스","어지러움"};
     int StartIndex = 20036;
     List<int> TooltipIndex = new List<int>();
     List<GameObject> ToolTip = new List<GameObject>(); 
