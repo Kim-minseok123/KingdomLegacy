@@ -5,7 +5,7 @@
       <action>AttackAction</action>
     </actions>
   </CardData>
-  <CardData ID="2" name="낡은 검+" description="피해 {0}." type ="Attack" rarity="Normal" target="Enemy" damage="9" mana="1">
+  <CardData ID="2" name="낡은 검+" description="피해 {0}." type ="Attack" rarity="Normal" target="Enemy" damage="9" mana="0">
     <actions>
       <action>AttackAction</action>
     </actions>
@@ -667,9 +667,8 @@
 		<actions>
 		</actions>
 	</CardData>
-	<CardData ID="129" name="어지러움" description="소멸." type ="Skill" rarity="Normal" target="AllEnemy" mana="1" state="Extinction" damage ="0">
+	<CardData ID="129" name="어지러움" description="휘발성. 사용 불가." type ="Skill" rarity="Normal" target="AllEnemy" mana="0" state="Volatility" damage ="0">
 	    <actions>
 	    </actions>
     </CardData>
-	
 </ArrayOfStatData>

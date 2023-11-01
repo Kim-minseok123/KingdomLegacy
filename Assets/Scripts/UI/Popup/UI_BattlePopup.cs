@@ -412,9 +412,15 @@ public class UI_BattlePopup : UI_Popup
         {
             if (_handCardsUI[i]._cardData.state == Define.CardLifeState.Preservation)
             {
-                if (_handCardsUI[i]._cardData.ID == 23 || _handCardsUI[i]._cardData.ID == 24) {
+                if (_handCardsUI[i]._cardData.ID == 23 || _handCardsUI[i]._cardData.ID == 24)
+                {
                     _handCardsUI[i]._cardData.Upgrade();
                 }
+                continue;
+            }
+            else if(_handCardsUI[i]._cardData.state == Define.CardLifeState.Volatility) {
+                _handCardsUI[i].BurnFade();
+                _exitCards.Add(_handCardsUI[i]._cardData);
                 continue;
             }
 
@@ -466,7 +472,7 @@ public class UI_BattlePopup : UI_Popup
     public void DragCard(GameObject obj)
     {
         var card = obj.GetComponent<UI_Card>();
-        if (_state != States.Turning || isUseCard || !card._isUseCard || card._cardData.ID == 128)
+        if (_state != States.Turning || isUseCard || !card._isUseCard || card._cardData.ID == 128 || card._cardData.ID == 129)
             return;
         isDraggingCard = true;
         Vector3 screenPoint = new Vector3(Input.mousePosition.x, Input.mousePosition.y, Camera.main.WorldToScreenPoint(obj.transform.position).z);
@@ -492,7 +498,7 @@ public class UI_BattlePopup : UI_Popup
     public void EndDragCard(GameObject obj)
     {
         var card = obj.GetComponent<UI_Card>();
-        if (_state != States.Turning || isUseCard || !card._isUseCard || card._cardData.ID == 128)
+        if (_state != States.Turning || isUseCard || !card._isUseCard || card._cardData.ID == 128 || card._cardData.ID == 129)
             return;
         isDraggingCard = false;
         Vector3 screenPoint = new Vector3(Input.mousePosition.x, Input.mousePosition.y, Camera.main.WorldToScreenPoint(obj.transform.position).z);
