@@ -103,9 +103,12 @@ public class UI_Card : UI_Base
         }
     }
     public void BurnFade() { 
-        GetText(0).gameObject.SetActive(false);
-        GetText(1).gameObject.SetActive(false);
-        GetText(2).gameObject.SetActive(false);
+        
+            GetText(0).gameObject.SetActive(false);
+        
+            GetText(1).gameObject.SetActive(false);
+       
+            GetText(2).gameObject.SetActive(false);
         StartCoroutine(Burn());
     }
     IEnumerator Burn() { 

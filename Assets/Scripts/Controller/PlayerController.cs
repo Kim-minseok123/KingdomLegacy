@@ -219,7 +219,7 @@ public class PlayerController : UI_Base
     }
     public void GetConfusion(int value)
     {
-        Inviolable = value;
+        Confusion = value;
         if (!buffList.Contains("È¥¶õ"))
             buffList.Add("È¥¶õ");
         RefreshUI();
@@ -337,7 +337,7 @@ public class PlayerController : UI_Base
             }
             else if (buffList[i] == "È¥¶õ")
             {
-                GetText(i + 1).text = Confusion.ToString();
+                GetText(i + 1).text = "";
                 buff.gameObject.BindEvent((go) => { TooltipOn(go.transform, Define.Confusion); }, Define.UIEvent.PointerEnter);
                 buff.gameObject.BindEvent(() => { TooltipOff(); }, Define.UIEvent.PointerExit);
             }

@@ -260,7 +260,7 @@ public class UI_BattlePopup : UI_Popup
         foreach (GameObject enemy in _enemyList)
         {
             yield return StartCoroutine(enemy.GetComponent<EnemyController>().IntentionMotion());
-            yield return new WaitForSeconds(1f);
+            yield return new WaitForSeconds(1.5f);
         }
         _state = States.EnemyTurnEnd;
     }
@@ -419,8 +419,9 @@ public class UI_BattlePopup : UI_Popup
                 continue;
             }
             else if(_handCardsUI[i]._cardData.state == Define.CardLifeState.Volatility) {
-                _handCardsUI[i].BurnFade();
                 _exitCards.Add(_handCardsUI[i]._cardData);
+                _handCardsUI[i].BurnFade();
+                _handCardsUI[i] = null;
                 continue;
             }
 
@@ -636,9 +637,11 @@ public class UI_BattlePopup : UI_Popup
     }
     IEnumerator GenerateStressCards(int value)
     {
+        CardData card = Managers.Data.Cards[128];
         for (int i = 0; i < value; i++)
         {
             StartCoroutine(StressAction());
+            _throwCards.Add(card);
             yield return new WaitForSeconds(0.6f); // Wait for the card to move before generating the next
         }
     }
@@ -648,9 +651,8 @@ public class UI_BattlePopup : UI_Popup
 
         Vector3 target = GetButton((int)Buttons.ThrowDeckCard).gameObject.transform.position;
         stresscard.transform.DOMove(target, 0.6f).SetEase(ease);
-        stresscard.transform.DOScale(Vector3.zero, 0.6f).SetEase(ease);
+        stresscard.transform.DOScale(Vector3.zero, 0.6f).SetEase(ease).OnComplete(() => { Destroy(stresscard.gameObject); });
         yield return new WaitForSeconds(0.6f);
-        _throwCards.Add(stresscard._cardData);
         RefreshUI();
     }
     public void GetDizziness(int value)
@@ -660,11 +662,17 @@ public class UI_BattlePopup : UI_Popup
 
     IEnumerator GenerateDizzinessCards(int value)
     {
+        CardData card = Managers.Data.Cards[129];
         for (int i = 0; i < value; i++)
         {
             StartCoroutine(DizzinessAction());
-            yield return new WaitForSeconds(0.6f); // Wait for the card to move before generating the next
+            _drawCards.Add(card);
+            if (value >= 5)
+                yield return new WaitForSeconds(0.2f);
+            else
+                yield return new WaitForSeconds(0.6f); // Wait for the card to move before generating the next
         }
+        _drawCards.Shuffle();
     }
 
     IEnumerator DizzinessAction() {
@@ -674,9 +682,9 @@ public class UI_BattlePopup : UI_Popup
 
         Vector3 target = GetButton((int)Buttons.DrawDeckCard).gameObject.transform.position;
         Dizzinesscard.transform.DOMove(target, 0.6f).SetEase(ease);
-        Dizzinesscard.transform.DOScale(Vector3.zero, 0.6f).SetEase(ease);
+        Dizzinesscard.transform.DOScale(Vector3.zero, 0.6f).SetEase(ease).OnComplete(() => { Destroy(Dizzinesscard.gameObject); });
         yield return new WaitForSeconds(0.6f);
-        _drawCards.Add(Dizzinesscard._cardData);
+        Destroy(Dizzinesscard);
         RefreshUI();
 
     }

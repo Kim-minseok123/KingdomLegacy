@@ -69,7 +69,9 @@ public class EnemyController : UI_Base
         GetText((int)Texts.NameText).gameObject.SetActive(false);
 
         battleScene = Managers.UI.FindPopup<UI_BattlePopup>();
-        animator = GetComponent<Animator>();
+        if(MaxHp != 460)
+            animator = GetComponent<Animator>();
+        else animator = GetComponentInChildren<Animator>();
 
         Image uiImage = GetComponent<Image>();
         uiImage.material = new Material(uiImage.material);
@@ -119,7 +121,7 @@ public class EnemyController : UI_Base
         }
         material.DisableKeyword("HITEFFECT_ON");
     }
-    public void AttackPlayer(int Damage)
+    public virtual void AttackPlayer(int Damage)
     {
         Buff buff = buffList.GetBuffName("Èû");
         if(buff != null)
@@ -298,13 +300,23 @@ public class EnemyController : UI_Base
         UnitNumber = number;
     }
     public void PointerEnterBody(GameObject go) {
-        gameObject.GetComponent<Image>().material.EnableKeyword("OUTBASE_ON");
+        if(MaxHp == 460)
+        {
+            transform.GetChild(0).GetComponent<Image>().material.EnableKeyword("OUTBASE_ON");
+        }
+        else
+            gameObject.GetComponent<Image>().material.EnableKeyword("OUTBASE_ON");
         battleScene._curEnemy = gameObject;
         GetText((int)Texts.NameText).gameObject.SetActive(true);
         GetText((int)Texts.NameText).DOFade(1, 0.5f);
     }
     public void PointerExitBody() {
-        gameObject.GetComponent<Image>().material.DisableKeyword("OUTBASE_ON");
+        if (MaxHp == 460)
+        {
+            transform.GetChild(0).GetComponent<Image>().material.DisableKeyword("OUTBASE_ON");
+        }
+        else
+            gameObject.GetComponent<Image>().material.DisableKeyword("OUTBASE_ON");
         battleScene._curEnemy = null;
         GetText((int)Texts.NameText).DOFade(0, 1f).OnComplete(() => { GetText((int)Texts.NameText).gameObject.SetActive(false); });
     }
