@@ -78,18 +78,18 @@ public class Lihenne : EnemyController
     }
     
     IEnumerator Attack(int Damage,int num) {
+        tempDamage = 0;
         Buff buff = buffList.GetBuffName("Èû");
         if (buff != null)
             Damage += buffList.GetBuffName("Èû").Value;
         buff = buffList.GetBuffName("¾àÈ­");
         if (buff != null && buff.Value > 0)
             Damage = (int)(Damage * 0.75f);
-
-        for(int i = 0; i < AttackNum; i ++)
+        tempDamage = Damage;
+        for (int i = 0; i < AttackNum; i ++)
         {
             animator.SetTrigger("Attack");
-            battleScene._playerController.Damaged(Damage);
-            yield return new WaitForSeconds(1.7f);
+            yield return new WaitForSeconds(2f);
         }
     }
 }

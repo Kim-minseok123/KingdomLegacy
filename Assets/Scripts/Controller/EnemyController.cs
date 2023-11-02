@@ -69,9 +69,8 @@ public class EnemyController : UI_Base
         GetText((int)Texts.NameText).gameObject.SetActive(false);
 
         battleScene = Managers.UI.FindPopup<UI_BattlePopup>();
-        if(MaxHp != 460)
-            animator = GetComponent<Animator>();
-        else animator = GetComponentInChildren<Animator>();
+        animator = GetComponent<Animator>();
+        
 
         Image uiImage = GetComponent<Image>();
         uiImage.material = new Material(uiImage.material);
@@ -121,18 +120,22 @@ public class EnemyController : UI_Base
         }
         material.DisableKeyword("HITEFFECT_ON");
     }
+    public int tempDamage;
     public virtual void AttackPlayer(int Damage)
     {
+        tempDamage = 0;
         Buff buff = buffList.GetBuffName("Èû");
         if(buff != null)
             Damage += buffList.GetBuffName("Èû").Value;
         buff = buffList.GetBuffName("¾àÈ­");
         if (buff != null && buff.Value > 0)
             Damage = (int)(Damage * 0.75f);
-
+        tempDamage = Damage;
         //°ø°Ý
         animator.SetTrigger("Attack");
-        battleScene._playerController.Damaged(Damage);
+    }
+    public void AttackAnim() {
+        battleScene._playerController.Damaged(tempDamage);
     }
     public void RemoveBuff(Buff buff) { 
         buffList.Remove(buff);
