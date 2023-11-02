@@ -57,3 +57,9 @@ public class DefenseModeBuff : Buff {
         return;
     }
 }
+public class ArmorBuff : Buff {
+    public override void Update()
+    {
+        controller.GetShield(Value);
+    }
+}

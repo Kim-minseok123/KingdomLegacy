@@ -1,3 +1,5 @@
+using Unity.VisualScripting;
+
 public class AttackAction : ActionBase
 {
     public override void StartAction(PlayerController player, CardData card, EnemyController enemy = null) {
@@ -44,9 +46,10 @@ public class AttackAction : ActionBase
                 player.AttackEnemy(Damage, true, enemy);
                 return;
             case 27: case 28:
-                foreach (UI_Card uicard in player._battleScene._handCardsUI) {
-                    if (uicard._cardData.type != Define.CardType.Attack) { 
-                        player._battleScene.ExitCard(uicard);
+                for (int i = player._battleScene._handCardsUI.Count - 1; i >= 0; i--) {
+                    if (player._battleScene._handCardsUI[i]._cardData.type != Define.CardType.Attack)
+                    {
+                        player._battleScene.ExitCard(player._battleScene._handCardsUI[i]);
                     }
                 }
                 Damage = card.damage + player.Power;

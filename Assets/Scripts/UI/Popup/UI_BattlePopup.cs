@@ -235,7 +235,7 @@ public class UI_BattlePopup : UI_Popup
             EndBattle();
             isBattleEnd = true;
         }
-        //if (Input.GetKeyDown(KeyCode.Space)) { _playerController.AttackEnemy(999); }
+        if (Input.GetKeyDown(KeyCode.Space)) { _playerController.AttackEnemy(999); }
     }
     bool isBattleEnd = false;
     private void EndBattle()
@@ -576,6 +576,10 @@ public class UI_BattlePopup : UI_Popup
         }
         else
             _throwCards.Add(obj._cardData);
+        if (_playerController.Confusion > 0 && obj._cardData.type != Define.CardType.Attack) {
+            GetDizziness(1);
+        }
+
         Managers.Resource.Destroy(obj.gameObject);
         
         _curTurnUseCard++;

@@ -634,13 +634,18 @@ public class Item33 : ItemAbility
 {
     public override void Use()
     {
-        Managers.Game.MaxHp += 14;
+        
     }
 
     public override void Setting()
     {
-        GameEvents.GetItem -= Use;
-        GameEvents.GetItem += Use;
+        GameEvents.GetItem -= GetItem;
+        GameEvents.GetItem += GetItem;
+    }
+    public void GetItem()
+    {
+        GameEvents.GetItem -= GetItem;
+        Managers.Game.MaxHp += 14;
     }
 }
 public class Item34 : ItemAbility

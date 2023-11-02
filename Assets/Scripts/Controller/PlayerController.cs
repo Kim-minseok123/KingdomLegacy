@@ -19,6 +19,7 @@ public class PlayerController : UI_Base
     public bool isInfinitySword = false;
     public Animator _playerAnim;
     public int Inviolable = 0;
+    public int Confusion = 0;
     public List<string> buffList = new();
     enum Images
     {
@@ -101,7 +102,8 @@ public class PlayerController : UI_Base
             ResetInviolable();
         }
         Managers.Game.CurHp -= value;
-        GameEvents.OnLostHp();
+        if(value > 0)
+            GameEvents.OnLostHp();
         if (Managers.Game.CurHp <= 0 && !Managers.Game.isResurrection)
         {
             Managers.Game.CurHp = 0;
@@ -215,6 +217,13 @@ public class PlayerController : UI_Base
             buffList.Add("ºÒ°¡Ä§");
         RefreshUI();
     }
+    public void GetConfusion(int value)
+    {
+        Inviolable = value;
+        if (!buffList.Contains("È¥¶õ"))
+            buffList.Add("È¥¶õ");
+        RefreshUI();
+    }
     public void ResetInviolable()
     {
         Inviolable = 0;
@@ -322,8 +331,14 @@ public class PlayerController : UI_Base
             }
             else if (buffList[i] == "ºÒ°¡Ä§")
             {
-                GetText(i + 1).text = infinitySword.ToString();
+                GetText(i + 1).text = Inviolable.ToString();
                 buff.gameObject.BindEvent((go) => { TooltipOn(go.transform, Define.Inviolable); }, Define.UIEvent.PointerEnter);
+                buff.gameObject.BindEvent(() => { TooltipOff(); }, Define.UIEvent.PointerExit);
+            }
+            else if (buffList[i] == "È¥¶õ")
+            {
+                GetText(i + 1).text = Confusion.ToString();
+                buff.gameObject.BindEvent((go) => { TooltipOn(go.transform, Define.Confusion); }, Define.UIEvent.PointerEnter);
                 buff.gameObject.BindEvent(() => { TooltipOff(); }, Define.UIEvent.PointerExit);
             }
         }

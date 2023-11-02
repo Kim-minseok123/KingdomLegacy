@@ -1,3 +1,4 @@
+using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,11 +6,11 @@ using UnityEngine.UI;
 
 public class UI_SelectCardPopup : UI_Popup
 {
-    enum GameObjects { 
+    enum GameObjects {
         CardContent,
     }
-    enum Buttons { 
-        SelectButton,
+    enum Buttons {
+
     }
     public List<UI_Card> cards = new();
     public List<GameObject> cardList = new();
@@ -22,7 +23,7 @@ public class UI_SelectCardPopup : UI_Popup
     int Damage;
     public override bool Init()
     {
-        if(base.Init() == false)
+        if (base.Init() == false)
             return false;
 
         BindButton(typeof(Buttons));
@@ -34,13 +35,15 @@ public class UI_SelectCardPopup : UI_Popup
             //ÅøÆÁ Ãß°¡
             cardList.Add(card.gameObject);
             card.gameObject.BindEvent(() => { SelectCard(card.gameObject); });
+            card.gameObject.BindEvent((go) => { ScaleUp(card.gameObject); },Define.UIEvent.PointerEnter);
+            card.gameObject.BindEvent(() => { ScaleDown(card.gameObject); }, Define.UIEvent.PointerExit);
         }
-        GetButton((int)Buttons.SelectButton).gameObject.BindEvent(SelectCardButton);
+
         RefreshUI();
         return true;
     }
-    public void RefreshUI() { 
-        
+    public void RefreshUI() {
+
     }
     public void SetInfo(List<UI_Card> cards, int numofThrow, int cases, CardData useCard = null, PlayerController player = null, EnemyController enemy = null, int Damage = 0) {
         this.cards = cards;
@@ -52,8 +55,13 @@ public class UI_SelectCardPopup : UI_Popup
         this.Damage = Damage;
         cardList.Clear();
     }
-    public void SelectCardButton() {
-        if (selectCard == null) return;
+
+    void OnComplete()
+    {
+        Managers.UI.ClosePopupUI(this);
+    }
+    public void SelectCard(GameObject go) {
+        selectCard = go;
         int i = cardList.IndexOf(selectCard);
 
         Managers.UI.FindPopup<UI_BattlePopup>().ThrowCard(i);
@@ -63,21 +71,10 @@ public class UI_SelectCardPopup : UI_Popup
             player.GetShield(Damage);
         GetComponent<Animator>().SetTrigger("Off");
     }
-    void OnComplete()
-    {
-        Managers.UI.ClosePopupUI(this);
+    public void ScaleUp(GameObject go){
+        go.transform.DOScale(new Vector3(1.15f, 1.15f, 1), 0.2f).SetEase(Ease.OutSine);
     }
-    public void SelectCard(GameObject go) { 
-        selectCard = go;
-        for (int y = 0; y < cardList.Count; y++) {
-            if (selectCard == cardList[y])
-            {
-                cardList[y].GetComponent<Image>().material.EnableKeyword("INNEROUTLINE_ON");
-            }
-            else {
-                cardList[y].GetComponent<Image>().material.DisableKeyword("INNEROUTLINE_ON");
-
-            }
-        }
+    public void ScaleDown(GameObject go) { 
+        go.transform.DOScale(new Vector3(1f, 1f, 1), 0.2f).SetEase(Ease.OutSine);
     }
 }

@@ -59,6 +59,7 @@ public class UI_ClearRoomPopup : UI_Popup
             TransitionManager.Instance().Transition(Managers.Resource.Load<TransitionSettings>("Transitions/LinearWipe/LinearWipe"), 0,
                 () => {
                     Managers.Game.Stage++;
+                    Managers.Game.StageNumber = 0;
                     Managers.Game.CurHp += (int)(Managers.Game.MaxHp * 0.4f);
                     if (Managers.Game.CurHp > Managers.Game.MaxHp) Managers.Game.CurHp = Managers.Game.MaxHp;
                     Managers.UI.FindPopup<UI_MapPopup>().SideBarOn();

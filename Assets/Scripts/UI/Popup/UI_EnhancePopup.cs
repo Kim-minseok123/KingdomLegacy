@@ -40,7 +40,7 @@ public class UI_EnhancePopup : UI_Popup
     public void OnComplete()
     {
         Managers.UI.ClosePopupUI(this);
-        Managers.UI.FindPopup<UI_MapPopup>().SideBarOn();
+        
     }
     public void CreateCards() {
         var parent = Get<Transform>((int)Transforms.UpgradeCardList);

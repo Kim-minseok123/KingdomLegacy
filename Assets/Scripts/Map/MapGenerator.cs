@@ -10,7 +10,8 @@ namespace Map
 
         private static readonly List<NodeType> RandomNodes = new List<NodeType>
         {NodeType.EliteEnemy,NodeType.MinorEnemy, NodeType.RestSite};
-
+        private static readonly List<NodeType> RandomNodesStage2 = new List<NodeType>
+        {NodeType.MinorEnemy, NodeType.RestSite};
         private static List<float> layerDistances;
         private static List<List<Point>> paths;
         // ALL nodes by layer:
@@ -72,7 +73,15 @@ namespace Map
 
             for (var i = 0; i < config.GridWidth; i++)
             {
-                var nodeType = Random.Range(0f, 1f) < layer.randomizeNodes ? GetRandomNode() : layer.nodeType;
+
+                NodeType nodeType;
+                if (Managers.Game.Stage == 2)
+                {
+                    nodeType = Random.Range(0f, 1f) < layer.randomizeNodes ? GetRandomNodeStage2() : layer.nodeType;
+                }
+                else { 
+                    nodeType = Random.Range(0f, 1f) < layer.randomizeNodes ? GetRandomNode() : layer.nodeType;
+                }
                 var blueprintName = config.nodeBlueprints.Where(b => b.nodeType == nodeType).ToList().Random().name;
                 var node = new Node(nodeType, blueprintName, new Point(i, layerIndex))
                 {
@@ -274,6 +283,10 @@ namespace Map
         private static NodeType GetRandomNode()
         {
             return RandomNodes[Random.Range(0, RandomNodes.Count)];
+        }
+        private static NodeType GetRandomNodeStage2()
+        {
+            return RandomNodesStage2[Random.Range(0, RandomNodesStage2.Count)];
         }
     }
 }

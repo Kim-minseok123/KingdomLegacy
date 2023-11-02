@@ -41,7 +41,7 @@ public class Gorblin : EnemyController
                     curIntention = Intention.Attack;
                     turnNumber--;
                 }
-                else if (turnNumber <= 2) {
+                else if (turnNumber == 2) {
                     IntentionFigure--;
                     curIntention = Intention.Nothing;
                     turnNumber--;

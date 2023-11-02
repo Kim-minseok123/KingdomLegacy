@@ -77,7 +77,14 @@ namespace Map
             switch (mapNode.Node.nodeType)
             {
                 case NodeType.MinorEnemy:
-                    info = Managers.Resource.Load<EnemyInfo>($"ScriptableObjects/Enemy/Minor/{Managers.Game.Stage}-{Managers.Game.StageNumber}");
+                    if (Managers.Game.Stage == 2)
+                    {
+                        int random = UnityEngine.Random.Range(1, 7);
+                        info = Managers.Resource.Load<EnemyInfo>($"ScriptableObjects/Enemy/Minor/{Managers.Game.Stage}-{random}");
+                    }
+                    else { 
+                        info = Managers.Resource.Load<EnemyInfo>($"ScriptableObjects/Enemy/Minor/{Managers.Game.Stage}-{Managers.Game.StageNumber}");
+                    }
                     TransitionManager.Instance().Transition(Managers.Resource.Load<TransitionSettings>("Transitions/LinearWipe/LinearWipe"), 0,
                     () => { Managers.UI.ShowPopupUI<UI_BattlePopup>().SetInfo(info);});
                     break;

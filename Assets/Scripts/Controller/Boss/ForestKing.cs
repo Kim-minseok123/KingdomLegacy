@@ -121,7 +121,7 @@ public class ForestKing : EnemyController
             case Intention.AttackMany:
                 for (int i = 0; i < AttackNum; i++) {
                     AttackPlayer(IntentionFigure);
-                    yield return new WaitForSeconds(0.5f);
+                    yield return new WaitForSeconds(0.41f);
                 }
                 break;
         }

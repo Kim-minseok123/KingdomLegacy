@@ -129,5 +129,6 @@ public class Define
     public const int Dizziness = 20054;
     public const int AttackMode = 20055;
     public const int DefenseMode = 20056;
-
+	public const int Armor = 20057;
+	public const int Confusion = 20058;
 }
