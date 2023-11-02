@@ -78,7 +78,7 @@ public class GorblinMagician : EnemyController
                 for (int i = 0; i < AttackNum; i++)
                 {
                     AttackPlayer(IntentionFigure);
-                    yield return new WaitForSeconds(0.3f);
+                    yield return new WaitForSeconds(0.7f);
                 }
                 break;
             case Intention.Buff:

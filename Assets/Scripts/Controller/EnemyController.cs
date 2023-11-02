@@ -129,9 +129,10 @@ public class EnemyController : UI_Base
         buff = buffList.GetBuffName("약화");
         if (buff != null && buff.Value > 0)
             Damage = (int)(Damage * 0.75f);
-        battleScene._playerController.Damaged(Damage);
+
         //공격
         animator.SetTrigger("Attack");
+        battleScene._playerController.Damaged(Damage);
     }
     public void RemoveBuff(Buff buff) { 
         buffList.Remove(buff);
@@ -416,6 +417,6 @@ public class EnemyController : UI_Base
     }
     public virtual IEnumerator IntentionMotion() { 
         ResetIntention();
-        yield return null;
+        yield return new WaitForSeconds(1f);
     }
 }

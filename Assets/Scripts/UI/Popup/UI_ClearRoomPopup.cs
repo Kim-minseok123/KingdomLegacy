@@ -56,7 +56,7 @@ public class UI_ClearRoomPopup : UI_Popup
 
         if (Managers.Game.CurMapNode.Node.nodeType == Map.NodeType.Boss)
         {
-            TransitionManager.Instance().Transition(Managers.Resource.Load<TransitionSettings>("Transitions/LinearWipe/LinearWipe"), 0,
+            TransitionManager.Instance().Transition(Managers.Resource.Load<TransitionSettings>("Transitions/Brush/Brush"), 0,
                 () => {
                     Managers.Game.Stage++;
                     Managers.Game.StageNumber = 0;

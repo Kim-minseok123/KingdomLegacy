@@ -76,7 +76,7 @@ public class Lihenne : EnemyController
         yield return null;
         StartCoroutine(base.IntentionMotion());
     }
-
+    
     IEnumerator Attack(int Damage,int num) {
         Buff buff = buffList.GetBuffName("Èû");
         if (buff != null)
@@ -84,11 +84,12 @@ public class Lihenne : EnemyController
         buff = buffList.GetBuffName("¾àÈ­");
         if (buff != null && buff.Value > 0)
             Damage = (int)(Damage * 0.75f);
-        for (int i = 0; i < num; i++) {
+
+        for(int i = 0; i < AttackNum; i ++)
+        {
             animator.SetTrigger("Attack");
-            yield return new WaitForSeconds(0.6f);
-            battleScene._playerController.Damaged(damage);
+            battleScene._playerController.Damaged(Damage);
+            yield return new WaitForSeconds(1.7f);
         }
-        
     }
 }

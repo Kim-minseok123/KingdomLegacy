@@ -81,7 +81,7 @@ public class Braum : EnemyController
                 for (int i = 0; i < AttackNum; i++)
                 {
                     AttackPlayer(IntentionFigure);
-                    yield return new WaitForSeconds(0.31f);
+                    yield return new WaitForSeconds(0.7f);
                 }
                 break;
         }
