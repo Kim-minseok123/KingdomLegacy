@@ -77,7 +77,6 @@ public class GorblinMagician : EnemyController
             case Intention.AttackMany:
                 for (int i = 0; i < AttackNum; i++)
                 {
-                    Debug.Log(i);
                     AttackPlayer(IntentionFigure);
                     yield return new WaitForSeconds(0.7f);
                 }
