@@ -2951,6 +2951,7 @@ MonoBehaviour:
   IntentionFigure: 0
   animator: {fileID: 0}
   battleScene: {fileID: 0}
+  tempDamage: 0
   AttackNum: 1
 --- !u!114 &6012020650972018470
 MonoBehaviour:

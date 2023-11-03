@@ -4,9 +4,6 @@ using TMPro;
 using UnityEngine;
 using DG.Tweening;
 using System;
-using static UnityEngine.EventSystems.EventTrigger;
-using Unity.VisualScripting;
-using UnityEditor.SceneManagement;
 
 public class UI_BattlePopup : UI_Popup
 {

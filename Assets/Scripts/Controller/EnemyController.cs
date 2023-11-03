@@ -47,6 +47,7 @@ public class EnemyController : UI_Base
         ToolTipText,
         IntentionText,
         NameText,
+        text
     }
     RectTransform rect;
     enum GameObjects {
@@ -74,7 +75,6 @@ public class EnemyController : UI_Base
 
         Image uiImage = GetComponent<Image>();
         uiImage.material = new Material(uiImage.material);
-
         buffList.Clear();
         GetObject((int)GameObjects.ToolTip).SetActive(false);
         rect = GetImage((int)Images.TooltipImage).rectTransform;
