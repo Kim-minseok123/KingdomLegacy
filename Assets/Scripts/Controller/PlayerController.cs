@@ -101,6 +101,8 @@ public class PlayerController : UI_Base
             value = 1;
             ResetInviolable();
         }
+        var effect = Managers.Resource.Instantiate("Effect/Hit");
+        effect.transform.position = transform.position;
         Managers.Game.CurHp -= value;
         if(value > 0)
             GameEvents.OnLostHp();
@@ -143,6 +145,8 @@ public class PlayerController : UI_Base
         if (!buffList.Contains("Ãë¾à"))
             buffList.Add("Ãë¾à");
         //ÀÌÆåÆ® Ãß°¡
+        var effect = Managers.Resource.Instantiate("Effect/DeBuff");
+        effect.transform.position = transform.position;
         RefreshUI();
     }
     public void GetWeakness(int value)
@@ -153,6 +157,8 @@ public class PlayerController : UI_Base
         if (!buffList.Contains("¾àÈ­"))
             buffList.Add("¾àÈ­");
         //ÀÌÆåÆ® Ãß°¡
+        var effect = Managers.Resource.Instantiate("Effect/DeBuff");
+        effect.transform.position = transform.position;
         RefreshUI();
     }
     public void GetShield(int value)
@@ -174,6 +180,8 @@ public class PlayerController : UI_Base
         Power += value;
         if (!buffList.Contains("Èû"))
             buffList.Add("Èû");
+        var effect = Managers.Resource.Instantiate("Effect/Buff");
+        effect.transform.position = transform.position;
         RefreshUI();
     }
     public void GetdePower(int value)
@@ -181,6 +189,8 @@ public class PlayerController : UI_Base
         dePower += value;
         if (!buffList.Contains("Èû°¨¼Ò"))
             buffList.Add("Èû°¨¼Ò");
+        var effect = Managers.Resource.Instantiate("Effect/DeBuff");
+        effect.transform.position = transform.position;
         RefreshUI();
     }
     public void GetAgility(int value)
@@ -188,6 +198,8 @@ public class PlayerController : UI_Base
         Agility += value;
         if (!buffList.Contains("¹ÎÃ¸"))
             buffList.Add("¹ÎÃ¸");
+        var effect = Managers.Resource.Instantiate("Effect/Buff");
+        effect.transform.position = transform.position;
         RefreshUI();
     }
     public void GetPoisoning(int value)
@@ -195,12 +207,16 @@ public class PlayerController : UI_Base
         Poisoning += value;
         if (!buffList.Contains("Áßµ¶"))
             buffList.Add("Áßµ¶");
+        var effect = Managers.Resource.Instantiate("Effect/Poison");
+        effect.transform.position = transform.position;
         RefreshUI();
     }
     public void GetSwordGauge(int value) {
         infinitySword += value;
         if (!buffList.Contains("¹«ÇÑÀÇ°Ë"))
             buffList.Add("¹«ÇÑÀÇ°Ë");
+        var effect = Managers.Resource.Instantiate("Effect/Buff");
+        effect.transform.position = transform.position;
         RefreshUI();
 
     }
@@ -215,6 +231,8 @@ public class PlayerController : UI_Base
         Inviolable = value;
         if (!buffList.Contains("ºÒ°¡Ä§"))
             buffList.Add("ºÒ°¡Ä§");
+        var effect = Managers.Resource.Instantiate("Effect/Buff");
+        effect.transform.position = transform.position;
         RefreshUI();
     }
     public void GetConfusion(int value)
@@ -222,6 +240,8 @@ public class PlayerController : UI_Base
         Confusion = value;
         if (!buffList.Contains("È¥¶õ"))
             buffList.Add("È¥¶õ");
+        var effect = Managers.Resource.Instantiate("Effect/DeBuff");
+        effect.transform.position = transform.position;
         RefreshUI();
     }
     public void ResetInviolable()

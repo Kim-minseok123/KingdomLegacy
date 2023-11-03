@@ -28,6 +28,8 @@ public class GorblinMagician : EnemyController
         {
             if (buffList.Count > 6)
                 return;
+            var effect = Managers.Resource.Instantiate("Effect/Buff");
+            effect.transform.position = transform.position;
             buffList.Add(new BarrierBuff { Name = "¹è¸®¾î", Value = value, controller = this, des = Define.Barrier });
         }
         else

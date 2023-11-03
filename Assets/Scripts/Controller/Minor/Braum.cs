@@ -96,6 +96,8 @@ public class Braum : EnemyController
         {
             if (buffList.Count > 6)
                 return;
+            var effect = Managers.Resource.Instantiate("Effect/Buff");
+            effect.transform.position = transform.position;
             buffList.Add(new ArmorBuff { Name = "ÆÇ±Ý°©¿Ê", Value = value, controller = this, des = Define.Armor });
         }
         RefreshUI();

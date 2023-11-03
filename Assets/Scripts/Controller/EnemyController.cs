@@ -92,6 +92,8 @@ public class EnemyController : UI_Base
         Shield -= temp;
         if (value < 0) value = 0;
         if (Shield < 0) Shield = 0;
+        var effect = Managers.Resource.Instantiate("Effect/Hit");
+        effect.transform.position = transform.position;
         StartCoroutine(DamageMaterial());
         CurHp -= value;
         if (CurHp <= 0) { 
@@ -104,7 +106,13 @@ public class EnemyController : UI_Base
     }
     public IEnumerator DamageMaterial() {
         float value = 0f;
-        Material material = GetComponent<Image>().material;
+        Material material;
+        if (MaxHp == 460)
+        {
+            material = transform.GetChild(0).GetComponent<Image>().material;
+        }
+        else
+            material = GetComponent<Image>().material;
         //animator.SetTrigger("Stun");
         material.EnableKeyword("HITEFFECT_ON");
         while (value < 0.3f) {
@@ -152,6 +160,8 @@ public class EnemyController : UI_Base
         else {
             buff.Value += value;
         }
+        var effect = Managers.Resource.Instantiate("Effect/DeBuff");
+        effect.transform.position = transform.position;
         //ÀÌÆåÆ® Ãß°¡
         RefreshUI();
     }   
@@ -168,6 +178,8 @@ public class EnemyController : UI_Base
             buff.Value += value;
         }
         //ÀÌÆåÆ® Ãß°¡
+        var effect = Managers.Resource.Instantiate("Effect/DeBuff");
+        effect.transform.position = transform.position;
         RefreshUI();
     }
     public void GetShield(int value)
@@ -180,6 +192,7 @@ public class EnemyController : UI_Base
         //ÀÌÆåÆ® Ãß°¡
         var effect = Managers.Resource.Instantiate("Effect/ShieldEffect", gameObject.transform);
         Managers.Resource.Destroy(effect, 0.45f);
+
         RefreshUI();
     }
     public void HalfShield() { 
@@ -200,6 +213,8 @@ public class EnemyController : UI_Base
         {
             buff.Value += value;
         }
+        var effect = Managers.Resource.Instantiate("Effect/Buff");
+        effect.transform.position = transform.position;
         RefreshUI();
     }
     public void GetdePower(int value)
@@ -215,6 +230,8 @@ public class EnemyController : UI_Base
         {
             buff.Value += value;
         }
+        var effect = Managers.Resource.Instantiate("Effect/DeBuff");
+        effect.transform.position = transform.position;
         RefreshUI();
     }
     public void GetAgility(int value)
@@ -230,6 +247,8 @@ public class EnemyController : UI_Base
         {
             buff.Value += value;
         }
+        var effect = Managers.Resource.Instantiate("Effect/Buff");
+        effect.transform.position = transform.position;
         RefreshUI();
     }
     public void GetPoisoning(int value)
@@ -247,6 +266,8 @@ public class EnemyController : UI_Base
                 value *= 2;
             buff.Value += value;
         }
+        var effect = Managers.Resource.Instantiate("Effect/Poison");
+        effect.transform.position = transform.position;
         RefreshUI();
     }
     public void RefreshUI()

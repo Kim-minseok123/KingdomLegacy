@@ -53,6 +53,8 @@ public class CorruptKnight : EnemyController
         {
             if (buffList.Count > 6)
                 return;
+            var effect = Managers.Resource.Instantiate("Effect/Buff");
+            effect.transform.position = transform.position;
             buffList.Add(new ShoutBuff { Name = "ÇÔ¼º", Value = value, controller = this, des = Define.Shout });
         }
         else

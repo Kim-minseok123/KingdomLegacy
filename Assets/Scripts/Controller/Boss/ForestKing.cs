@@ -135,6 +135,8 @@ public class ForestKing : EnemyController
         {
             if (buffList.Count > 6)
                 return;
+            var effect = Managers.Resource.Instantiate("Effect/Buff");
+            effect.transform.position = transform.position;
             buffList.Add(new AttackModeBuff { Name = "공격모드", Value = value, controller = this, des = Define.AttackMode });
         }
         isAttackMode = true;
@@ -147,6 +149,8 @@ public class ForestKing : EnemyController
         {
             if (buffList.Count > 6)
                 return;
+            var effect = Managers.Resource.Instantiate("Effect/Buff");
+            effect.transform.position = transform.position;
             buffList.Add(new DefenseModeBuff { Name = "수비모드", Value = value, controller = this, des = Define.DefenseMode });
         }
         isAttackMode = false;
