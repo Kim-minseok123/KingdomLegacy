@@ -91,7 +91,7 @@ public class Item4 : ItemAbility
         GameEvents.GetItem -= GetItem;
         Managers.Game.Mana += value;
         //ÈÞ½Ä ¸øÇÏ°Ô
-        Managers.Game.isRest = false;
+        Managers.Game.isRest = true;
     }
     public override void Setting()
     {
@@ -108,7 +108,7 @@ public class Item5 : ItemAbility
     public void GetItem()
     {
         GameEvents.GetItem -= GetItem;
-        Managers.Game.isRest = true;
+        Managers.Game.isEnhance = true;
         Managers.Game.Mana += value;
     }
     public override void Setting()

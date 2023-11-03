@@ -37,6 +37,13 @@ public class UI_RestOrEnhancePopup : UI_Popup
         GetButton((int)Buttons.EnhanceButton).gameObject.BindEvent(PointLeaveEnhance, Define.UIEvent.PointerExit);
 
         GetButton((int)Buttons.ExitButton).gameObject.BindEvent(ExitButton);
+        if (Managers.Game.isRest) {
+            GetButton((int)Buttons.RestButton).interactable = false;
+        }
+        if (Managers.Game.isEnhance)
+        {
+            GetButton((int)Buttons.EnhanceButton).interactable = false;
+        }
         return true;
     }
     public void ExitButton() { 
