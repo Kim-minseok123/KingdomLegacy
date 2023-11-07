@@ -63,3 +63,9 @@ public class ArmorBuff : Buff {
         controller.GetShield(Value);
     }
 }
+public class LightShield : Buff {
+    public override void Update()
+    {
+        
+    }
+}

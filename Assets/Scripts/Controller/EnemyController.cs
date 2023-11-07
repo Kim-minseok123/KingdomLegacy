@@ -15,7 +15,7 @@ public class EnemyController : UI_Base
     public int UnitNumber = 0;
     public Intention curIntention = Intention.Nothing;
     public int IntentionFigure = -1;
-
+    public bool IsShield = false;
     public Animator animator;
     public UI_BattlePopup battleScene;
     public List<Buff> buffList = new();
@@ -364,7 +364,7 @@ public class EnemyController : UI_Base
         TooltipOff();
     }
     public void ResetShield() {
-        if (Shield > 0) { Shield = 0; }
+        if (Shield > 0 || !IsShield) { Shield = 0; }
         RefreshUI();
     }
     public void TooltipOn(Transform trf, int text)

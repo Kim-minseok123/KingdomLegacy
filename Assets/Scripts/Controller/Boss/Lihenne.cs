@@ -70,7 +70,7 @@ public class Lihenne : EnemyController
                 yield return StartCoroutine(Attack(IntentionFigure, AttackNum));
                 break;
             case Intention.DeBuff:
-                battleScene.GetDizziness(6);
+                battleScene.GetDizziness(6, false);
                 break;
         }
         yield return null;

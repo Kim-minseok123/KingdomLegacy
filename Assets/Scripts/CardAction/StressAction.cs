@@ -9,7 +9,7 @@ public class StressAction : ActionBase
         switch (card.ID)
         {
             case 43: case 44: case 73: case 74:
-                player._battleScene.GetStress(card.disturbance);
+                player._battleScene.GetStress(card.disturbance , true);
                 break;
         }
     }

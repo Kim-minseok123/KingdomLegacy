@@ -20,6 +20,8 @@ public class PlayerController : UI_Base
     public Animator _playerAnim;
     public int Inviolable = 0;
     public int Confusion = 0;
+    public int Restraint = 0;
+    public int BeDamaged = 0;
     public List<string> buffList = new();
     enum Images
     {
@@ -164,6 +166,11 @@ public class PlayerController : UI_Base
     public void GetShield(int value)
     {
         Shield = Shield + value + Agility;
+        if (BeDamaged > 0) {
+            Shield = (int)(Shield * 0.7f);
+           
+        }
+        if (Shield < 0) Shield = 0;
         //이펙트 추가
         var obj = transform.Find("ShieldEffect");
         if (obj != null)
@@ -235,11 +242,29 @@ public class PlayerController : UI_Base
         effect.transform.position = transform.position;
         RefreshUI();
     }
+    public void GetBeDamaged(int value)
+    {
+        BeDamaged = value;
+        if (!buffList.Contains("손상"))
+            buffList.Add("손상");
+        var effect = Managers.Resource.Instantiate("Effect/DeBuff");
+        effect.transform.position = transform.position;
+        RefreshUI();
+    }
     public void GetConfusion(int value)
     {
         Confusion = value;
         if (!buffList.Contains("혼란"))
             buffList.Add("혼란");
+        var effect = Managers.Resource.Instantiate("Effect/DeBuff");
+        effect.transform.position = transform.position;
+        RefreshUI();
+    }
+    public void GetRestraint(int value)
+    {
+        Restraint = value;
+        if (!buffList.Contains("속박"))
+            buffList.Add("속박");
         var effect = Managers.Resource.Instantiate("Effect/DeBuff");
         effect.transform.position = transform.position;
         RefreshUI();
@@ -361,6 +386,18 @@ public class PlayerController : UI_Base
                 buff.gameObject.BindEvent((go) => { TooltipOn(go.transform, Define.Confusion); }, Define.UIEvent.PointerEnter);
                 buff.gameObject.BindEvent(() => { TooltipOff(); }, Define.UIEvent.PointerExit);
             }
+            else if (buffList[i] == "속박")
+            {
+                GetText(i + 1).text = "";
+                buff.gameObject.BindEvent((go) => { TooltipOn(go.transform, Define.Restraint); }, Define.UIEvent.PointerEnter);
+                buff.gameObject.BindEvent(() => { TooltipOff(); }, Define.UIEvent.PointerExit);
+            }
+            else if (buffList[i] == "손상")
+            {
+                GetText(i + 1).text = BeDamaged.ToString();
+                buff.gameObject.BindEvent((go) => { TooltipOn(go.transform, Define.Restraint); }, Define.UIEvent.PointerEnter);
+                buff.gameObject.BindEvent(() => { TooltipOff(); }, Define.UIEvent.PointerExit);
+            }
         }
         for (int j = i; j < 7; j++)
         {
@@ -393,6 +430,7 @@ public class PlayerController : UI_Base
     public void ResetBuff()
     {
         if (Vulenerable > 0) { Vulenerable--; if(Vulenerable == 0) buffList.Remove("취약"); }
+        if (BeDamaged > 0) { BeDamaged--; if (BeDamaged == 0) buffList.Remove("손상"); }
         if (Weakness > 0) { Weakness--; if (Weakness == 0) buffList.Remove("약화"); }
         if (dePower > 0) {GetPower(-dePower); dePower = 0; buffList.Remove("힘감소"); }
         if (Power == 0) { buffList.Remove("힘"); }

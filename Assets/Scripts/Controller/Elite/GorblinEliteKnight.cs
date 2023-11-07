@@ -42,7 +42,7 @@ public class GorblinEliteKnight : EnemyController
                 AttackPlayer(IntentionFigure);
                 break;
             case Intention.DeBuff:
-                battleScene.GetStress(IntentionFigure);
+                battleScene.GetStress(IntentionFigure, false);
                 break;
         }
         yield return null;

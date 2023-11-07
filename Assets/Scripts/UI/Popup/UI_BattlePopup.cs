@@ -4,6 +4,7 @@ using TMPro;
 using UnityEngine;
 using DG.Tweening;
 using System;
+using UnityEngine.UIElements;
 
 public class UI_BattlePopup : UI_Popup
 {
@@ -193,6 +194,8 @@ public class UI_BattlePopup : UI_Popup
                 SetEnemyIntention();
                 if(_curTurn != 1)
                     _playerController.ResetShield();
+                if (_playerController.Restraint > 0)
+                    _playerController.Damaged(10);
                 DrawCards(_startDrawCardNum);
                 HealMana(_maxMana);
                 _state = States.Turning;
@@ -575,7 +578,7 @@ public class UI_BattlePopup : UI_Popup
         else
             _throwCards.Add(obj._cardData);
         if (_playerController.Confusion > 0 && obj._cardData.type != Define.CardType.Attack) {
-            GetDizziness(1);
+            GetDizziness(1, false);
         }
 
         Managers.Resource.Destroy(obj.gameObject);
@@ -629,40 +632,72 @@ public class UI_BattlePopup : UI_Popup
         _handCardsUI.RemoveAt(i);
         Managers.Resource.Destroy(go);  
     }
-    public void GetStress(int value) {
-        StartCoroutine(GenerateStressCards(value));
+    public void GetStress(int value, bool Throw) {
+        if(Throw)
+            StartCoroutine(GenerateStressCardsToThrow(value));
+        else
+            StartCoroutine(GenerateStressCardsToDraw(value));
     }
-    IEnumerator GenerateStressCards(int value)
+    IEnumerator GenerateStressCardsToThrow(int value)
     {
         CardData card = Managers.Data.Cards[128];
         for (int i = 0; i < value; i++)
         {
-            StartCoroutine(StressAction());
+            StartCoroutine(StressAction(GetButton((int)Buttons.ThrowDeckCard).gameObject.transform.position));
             _throwCards.Add(card);
             yield return new WaitForSeconds(0.6f); // Wait for the card to move before generating the next
         }
+        _drawCards.Shuffle();
+
     }
-    IEnumerator StressAction() {
+    IEnumerator GenerateStressCardsToDraw(int value)
+    {
+        CardData card = Managers.Data.Cards[128];
+        for (int i = 0; i < value; i++)
+        {
+            StartCoroutine(StressAction(GetButton((int)Buttons.DrawDeckCard).gameObject.transform.position));
+            _drawCards.Add(card);
+            yield return new WaitForSeconds(0.6f); // Wait for the card to move before generating the next
+        }
+    }
+    IEnumerator StressAction(Vector3 position) {
         var stresscard = Managers.UI.MakeSubItem<UI_Card>(transform).SetInfo(Managers.Data.Cards[128]);
         yield return new WaitForSeconds(0.6f);
 
-        Vector3 target = GetButton((int)Buttons.ThrowDeckCard).gameObject.transform.position;
+        Vector3 target = position;
         stresscard.transform.DOMove(target, 0.6f).SetEase(ease);
         stresscard.transform.DOScale(Vector3.zero, 0.6f).SetEase(ease).OnComplete(() => { Destroy(stresscard.gameObject); });
         yield return new WaitForSeconds(0.6f);
         RefreshUI();
     }
-    public void GetDizziness(int value)
+    public void GetDizziness(int value, bool Throw)
     {
-        StartCoroutine(GenerateDizzinessCards(value));
+        if(Throw)
+            StartCoroutine(GenerateDizzinessCardsToThrow(value));
+        else
+            StartCoroutine(GenerateDizzinessCardsToDraw(value));
     }
 
-    IEnumerator GenerateDizzinessCards(int value)
+    IEnumerator GenerateDizzinessCardsToThrow(int value)
     {
         CardData card = Managers.Data.Cards[129];
         for (int i = 0; i < value; i++)
         {
-            StartCoroutine(DizzinessAction());
+            StartCoroutine(DizzinessAction(GetButton((int)Buttons.ThrowDeckCard).gameObject.transform.position));
+            _throwCards.Add(card);
+            if (value >= 5)
+                yield return new WaitForSeconds(0.2f);
+            else
+                yield return new WaitForSeconds(0.6f); // Wait for the card to move before generating the next
+        }
+        _drawCards.Shuffle();
+    }
+    IEnumerator GenerateDizzinessCardsToDraw(int value)
+    {
+        CardData card = Managers.Data.Cards[129];
+        for (int i = 0; i < value; i++)
+        {
+            StartCoroutine(DizzinessAction(GetButton((int)Buttons.DrawDeckCard).gameObject.transform.position));
             _drawCards.Add(card);
             if (value >= 5)
                 yield return new WaitForSeconds(0.2f);
@@ -672,12 +707,12 @@ public class UI_BattlePopup : UI_Popup
         _drawCards.Shuffle();
     }
 
-    IEnumerator DizzinessAction() {
+    IEnumerator DizzinessAction(Vector3 position) {
         var Dizzinesscard = Managers.UI.MakeSubItem<UI_Card>(transform).SetInfo(Managers.Data.Cards[129]);
 
         yield return new WaitForSeconds(0.6f);
 
-        Vector3 target = GetButton((int)Buttons.DrawDeckCard).gameObject.transform.position;
+        Vector3 target = position;
         Dizzinesscard.transform.DOMove(target, 0.6f).SetEase(ease);
         Dizzinesscard.transform.DOScale(Vector3.zero, 0.6f).SetEase(ease).OnComplete(() => { Destroy(Dizzinesscard.gameObject); });
         yield return new WaitForSeconds(0.6f);

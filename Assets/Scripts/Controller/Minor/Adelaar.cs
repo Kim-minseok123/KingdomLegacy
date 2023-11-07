@@ -1,18 +1,40 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static Define;
 
 public class Adelaar : EnemyController
 {
-    // Start is called before the first frame update
-    void Start()
+    public override void SetIntention()
     {
-        
-    }
+        int num = Random.Range(0, 100);
 
-    // Update is called once per frame
-    void Update()
+        if (num < 50)
+        {
+            curIntention = Intention.Attack;
+            IntentionFigure = 25;
+        }
+        else if (num < 100)
+        {
+            curIntention = Intention.AttackDefense;
+            IntentionFigure = 12;
+        }
+
+        base.SetIntention();
+    }
+    public override IEnumerator IntentionMotion()
     {
-        
+        switch (curIntention)
+        {
+            case Intention.Attack:
+                AttackPlayer(IntentionFigure);
+                break;
+            case Intention.AttackDefense:
+                AttackPlayer(IntentionFigure);
+                GetShield(15);
+                break;
+        }
+        yield return null;
+        StartCoroutine(base.IntentionMotion());
     }
 }

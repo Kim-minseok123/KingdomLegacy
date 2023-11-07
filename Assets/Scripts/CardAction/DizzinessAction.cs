@@ -8,7 +8,7 @@ public class DizzinessAction : ActionBase
     {
         switch (card.ID) {
             case 47: case 48:
-                player._battleScene.GetDizziness(card.disturbance);
+                player._battleScene.GetDizziness(card.disturbance, false);
                 break;
         }
     }

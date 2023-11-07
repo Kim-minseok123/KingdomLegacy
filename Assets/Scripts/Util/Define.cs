@@ -131,4 +131,7 @@ public class Define
     public const int DefenseMode = 20056;
 	public const int Armor = 20057;
 	public const int Confusion = 20058;
+	public const int Restraint = 20059;
+    public const int LightShield = 20060;
+	public const int BeDamaged = 20061;
 }

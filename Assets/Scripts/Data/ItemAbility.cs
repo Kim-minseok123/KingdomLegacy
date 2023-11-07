@@ -149,7 +149,7 @@ public class Item7 : ItemAbility
         UI_BattlePopup btp = Managers.UI.FindPopup<UI_BattlePopup>();
         if (btp != null)
         {
-            btp.GetStress(2);
+            btp.GetStress(2, true);
         }
     }
     public void GetItem()
