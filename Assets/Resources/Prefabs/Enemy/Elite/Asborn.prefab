@@ -2839,7 +2839,7 @@ GameObject:
   - component: {fileID: 4495388727830604621}
   - component: {fileID: 346601673721372034}
   - component: {fileID: 6012020650972018470}
-  - component: {fileID: 6238646705266597463}
+  - component: {fileID: 2991112669951766148}
   m_Layer: 5
   m_Name: Asborn
   m_TagString: Untagged
@@ -2947,7 +2947,7 @@ MonoBehaviour:
   normalStrength: 5
   normalSmoothing: 1
   computingNormal: 0
---- !u!114 &6238646705266597463
+--- !u!114 &2991112669951766148
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2956,15 +2956,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 8849442430046357180}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7a9158e7f554dc140b514e97dfae33be, type: 3}
+  m_Script: {fileID: 11500000, guid: d8e11b0afc76a6b4a9180fe010f54915, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   MaxHp: 0
   CurHp: 0
   Shield: 0
   UnitNumber: 0
-  curIntention: 7
-  IntentionFigure: 0
+  curIntention: 8
+  IntentionFigure: -1
+  IsShield: 0
   animator: {fileID: 0}
   battleScene: {fileID: 0}
   tempDamage: 0

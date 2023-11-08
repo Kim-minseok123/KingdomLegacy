@@ -60,7 +60,7 @@ public class Lihenne : EnemyController
                 yield return StartCoroutine(Attack(IntentionFigure, 1));
                 break;
             case Intention.Buff:
-                CurHp = Math.Min(MaxHp, CurHp + IntentionFigure);
+                HealBuff(IntentionFigure);
                 break;
             case Intention.DefenseBuff:
                 GetShield(IntentionFigure);

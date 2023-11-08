@@ -1,18 +1,27 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static Define;
 
 public class Iridial : EnemyController
 {
-    // Start is called before the first frame update
-    void Start()
+    public override void SetIntention()
     {
-        
-    }
+        curIntention = Intention.AttackDebuff;
+        IntentionFigure = 10;
 
-    // Update is called once per frame
-    void Update()
+        base.SetIntention();
+    }
+    public override IEnumerator IntentionMotion()
     {
-        
+        switch (curIntention)
+        {
+            case Intention.AttackDebuff:
+                AttackPlayer(IntentionFigure);
+                battleScene.GetStress(2, false);
+                break;
+        }
+        yield return null;
+        StartCoroutine(base.IntentionMotion());
     }
 }

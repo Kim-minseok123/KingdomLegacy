@@ -245,7 +245,7 @@ public class UI_BattlePopup : UI_Popup
         foreach (FriendAbility ability in Friends) {
             ability.Die();
         }
-        if (Managers.Game.Stage == 3) {
+        if (Managers.Game.CurMapNode.Node.nodeType == Map.NodeType.Boss && Managers.Game.Stage == 3) {
             //¿£µù ÆË¾÷ ¶ç¿ì±â
             return;
         }
@@ -473,7 +473,7 @@ public class UI_BattlePopup : UI_Popup
     public void DragCard(GameObject obj)
     {
         var card = obj.GetComponent<UI_Card>();
-        if (_state != States.Turning || isUseCard || !card._isUseCard || card._cardData.ID == 128 || card._cardData.ID == 129)
+        if (_state != States.Turning || isUseCard || !card._isUseCard || card._cardData.ID == 128 || card._cardData.ID == 129 ||(_playerController.Gag > 0 && card._cardData.type == Define.CardType.Attack))
             return;
         isDraggingCard = true;
         Vector3 screenPoint = new Vector3(Input.mousePosition.x, Input.mousePosition.y, Camera.main.WorldToScreenPoint(obj.transform.position).z);
@@ -499,7 +499,7 @@ public class UI_BattlePopup : UI_Popup
     public void EndDragCard(GameObject obj)
     {
         var card = obj.GetComponent<UI_Card>();
-        if (_state != States.Turning || isUseCard || !card._isUseCard || card._cardData.ID == 128 || card._cardData.ID == 129)
+        if (_state != States.Turning || isUseCard || !card._isUseCard || card._cardData.ID == 128 || card._cardData.ID == 129 || (_playerController.Gag > 0 && card._cardData.type == Define.CardType.Attack))
             return;
         isDraggingCard = false;
         Vector3 screenPoint = new Vector3(Input.mousePosition.x, Input.mousePosition.y, Camera.main.WorldToScreenPoint(obj.transform.position).z);
@@ -647,7 +647,6 @@ public class UI_BattlePopup : UI_Popup
             _throwCards.Add(card);
             yield return new WaitForSeconds(0.6f); // Wait for the card to move before generating the next
         }
-        _drawCards.Shuffle();
 
     }
     IEnumerator GenerateStressCardsToDraw(int value)
@@ -659,6 +658,7 @@ public class UI_BattlePopup : UI_Popup
             _drawCards.Add(card);
             yield return new WaitForSeconds(0.6f); // Wait for the card to move before generating the next
         }
+        _drawCards.Shuffle();
     }
     IEnumerator StressAction(Vector3 position) {
         var stresscard = Managers.UI.MakeSubItem<UI_Card>(transform).SetInfo(Managers.Data.Cards[128]);
@@ -690,7 +690,6 @@ public class UI_BattlePopup : UI_Popup
             else
                 yield return new WaitForSeconds(0.6f); // Wait for the card to move before generating the next
         }
-        _drawCards.Shuffle();
     }
     IEnumerator GenerateDizzinessCardsToDraw(int value)
     {

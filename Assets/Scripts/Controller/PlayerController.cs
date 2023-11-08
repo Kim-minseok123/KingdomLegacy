@@ -22,6 +22,7 @@ public class PlayerController : UI_Base
     public int Confusion = 0;
     public int Restraint = 0;
     public int BeDamaged = 0;
+    public int Gag = 0;
     public List<string> buffList = new();
     enum Images
     {
@@ -269,6 +270,15 @@ public class PlayerController : UI_Base
         effect.transform.position = transform.position;
         RefreshUI();
     }
+    public void GetGag(int value)
+    {
+        Gag = value;
+        if (!buffList.Contains("재갈"))
+            buffList.Add("재갈");
+        var effect = Managers.Resource.Instantiate("Effect/DeBuff");
+        effect.transform.position = transform.position;
+        RefreshUI();
+    }
     public void ResetInviolable()
     {
         Inviolable = 0;
@@ -395,7 +405,13 @@ public class PlayerController : UI_Base
             else if (buffList[i] == "손상")
             {
                 GetText(i + 1).text = BeDamaged.ToString();
-                buff.gameObject.BindEvent((go) => { TooltipOn(go.transform, Define.Restraint); }, Define.UIEvent.PointerEnter);
+                buff.gameObject.BindEvent((go) => { TooltipOn(go.transform, Define.BeDamaged); }, Define.UIEvent.PointerEnter);
+                buff.gameObject.BindEvent(() => { TooltipOff(); }, Define.UIEvent.PointerExit);
+            }
+            else if (buffList[i] == "재갈")
+            {
+                GetText(i + 1).text = Gag.ToString();
+                buff.gameObject.BindEvent((go) => { TooltipOn(go.transform, Define.Gag); }, Define.UIEvent.PointerEnter);
                 buff.gameObject.BindEvent(() => { TooltipOff(); }, Define.UIEvent.PointerExit);
             }
         }
@@ -431,6 +447,7 @@ public class PlayerController : UI_Base
     {
         if (Vulenerable > 0) { Vulenerable--; if(Vulenerable == 0) buffList.Remove("취약"); }
         if (BeDamaged > 0) { BeDamaged--; if (BeDamaged == 0) buffList.Remove("손상"); }
+        if (Gag > 0) { Gag--; if (Gag == 0) buffList.Remove("재갈"); }
         if (Weakness > 0) { Weakness--; if (Weakness == 0) buffList.Remove("약화"); }
         if (dePower > 0) {GetPower(-dePower); dePower = 0; buffList.Remove("힘감소"); }
         if (Power == 0) { buffList.Remove("힘"); }

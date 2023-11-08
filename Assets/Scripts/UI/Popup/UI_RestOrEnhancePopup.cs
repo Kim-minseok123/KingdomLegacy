@@ -53,6 +53,7 @@ public class UI_RestOrEnhancePopup : UI_Popup
         Managers.Game.SaveGame();
     }
     public void RestButton() {
+        if (Managers.Game.isRest) return;
         int HealHp = (int)(Managers.Game.MaxHp * 0.3f);
         Managers.Game.CurHp += HealHp;
         if (Managers.Game.CurHp > Managers.Game.MaxHp) { 
@@ -61,6 +62,7 @@ public class UI_RestOrEnhancePopup : UI_Popup
         ExitButton();
     }
     public void EnhanceButton() {
+        if (Managers.Game.isEnhance) return;
         Managers.UI.ShowPopupUI<UI_EnhancePopup>();
     }
     public void PointEnterRest() {

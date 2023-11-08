@@ -47,7 +47,6 @@ public class EnemyController : UI_Base
         ToolTipText,
         IntentionText,
         NameText,
-        text
     }
     RectTransform rect;
     enum GameObjects {
@@ -107,7 +106,7 @@ public class EnemyController : UI_Base
     public IEnumerator DamageMaterial() {
         float value = 0f;
         Material material;
-        if (MaxHp == 460)
+        if (MaxHp == 460 || MaxHp == 1000)
         {
             material = transform.GetChild(0).GetComponent<Image>().material;
         }
@@ -148,7 +147,11 @@ public class EnemyController : UI_Base
     public void RemoveBuff(Buff buff) { 
         buffList.Remove(buff);
     }
-    
+    public void HealBuff(int value) {
+        var effect = Managers.Resource.Instantiate("Effect/Buff");
+        effect.transform.position = transform.position;
+        CurHp = Math.Min(MaxHp, CurHp + value);
+    }
     public void GetVulenrable(int value) {
         Buff buff = buffList.GetBuffName("Ãë¾à");
         if (buff == null)
@@ -325,7 +328,7 @@ public class EnemyController : UI_Base
         UnitNumber = number;
     }
     public void PointerEnterBody(GameObject go) {
-        if(MaxHp == 460)
+        if(MaxHp == 460 || MaxHp == 1000)
         {
             transform.GetChild(0).GetComponent<Image>().material.EnableKeyword("OUTBASE_ON");
         }
@@ -336,7 +339,7 @@ public class EnemyController : UI_Base
         GetText((int)Texts.NameText).DOFade(1, 0.5f);
     }
     public void PointerExitBody() {
-        if (MaxHp == 460)
+        if (MaxHp == 460 || MaxHp == 1000)
         {
             transform.GetChild(0).GetComponent<Image>().material.DisableKeyword("OUTBASE_ON");
         }
@@ -364,7 +367,7 @@ public class EnemyController : UI_Base
         TooltipOff();
     }
     public void ResetShield() {
-        if (Shield > 0 || !IsShield) { Shield = 0; }
+        if (Shield > 0 && !IsShield) { Shield = 0; }
         RefreshUI();
     }
     public void TooltipOn(Transform trf, int text)

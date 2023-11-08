@@ -97,8 +97,8 @@ public class GameManager : MonoBehaviour
         PlayerName = "";
         isManaDisappear = false;
         CurMapNode = null;
-        isEnhance = true;
-        isRest = true;
+        isEnhance = false;
+        isRest = false;
         isIntension = true;
         isDiscount = false;
         isResurrection = false;

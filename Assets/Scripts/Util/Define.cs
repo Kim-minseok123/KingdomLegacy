@@ -134,4 +134,7 @@ public class Define
 	public const int Restraint = 20059;
     public const int LightShield = 20060;
 	public const int BeDamaged = 20061;
+	public const int Gag = 20062;
+	public const int Heal = 20063;
+	public const int Envy = 20064;
 }

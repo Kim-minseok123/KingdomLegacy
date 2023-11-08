@@ -40,4 +40,7 @@
   <TextData ID="20059" kor="&lt;color=yellow&gt;속박.&lt;/color&gt;&lt;br&gt;&lt;color=#22DEFF&gt;[디버프]&lt;/color&gt;&lt;br&gt;턴 시작 시 피해를 10 입습니다." eng="" />
   <TextData ID="20060" kor="&lt;color=yellow&gt;빛의 방패.&lt;/color&gt;&lt;br&gt;&lt;color=#22DEFF&gt;[버프]&lt;/color&gt;&lt;br&gt;턴 시작 시 방어도가 사라지지 않습니다." eng="" />
   <TextData ID="20061" kor="&lt;color=yellow&gt;손상.&lt;/color&gt;&lt;br&gt;&lt;color=#22DEFF&gt;[디버프]&lt;/color&gt;&lt;br&gt;방어도를 획득 시 수치가 30% 줄어듭니다." eng="" />
+  <TextData ID="20062" kor="&lt;color=yellow&gt;재갈.&lt;/color&gt;&lt;br&gt;&lt;color=#22DEFF&gt;[디버프]&lt;/color&gt;&lt;br&gt;남은 수치의 턴 만큼 공격카드를 사용할 수 없습니다." eng="" />
+  <TextData ID="20063" kor="&lt;color=yellow&gt;재생.&lt;/color&gt;&lt;br&gt;&lt;color=#22DEFF&gt;[버프]&lt;/color&gt;&lt;br&gt;턴 종료 시 체력을 15 회복합니다." eng="" />
+  <TextData ID="20064" kor="&lt;color=yellow&gt;질투.&lt;/color&gt;&lt;br&gt;&lt;color=#22DEFF&gt;[버프]&lt;/color&gt;&lt;br&gt;동료 카드를 사용 시 힘 4를 획득합니다.&gt;&lt;br&gt;수치가 0이 되면 사라집니다." eng="" />
 </ArrayOfTextData>

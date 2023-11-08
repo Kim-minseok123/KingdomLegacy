@@ -74,8 +74,8 @@ public class Braum : EnemyController
                 AttackPlayer(IntentionFigure);
                 break;
             case Intention.AttackDebuff:
-                battleScene._playerController.GetWeakness(1);
                 AttackPlayer(IntentionFigure);
+                battleScene._playerController.GetWeakness(1);
                 break;
             case Intention.AttackMany:
                 for (int i = 0; i < AttackNum; i++)

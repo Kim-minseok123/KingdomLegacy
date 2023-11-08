@@ -7,7 +7,7 @@ public class Jerrold : EnemyController
 {
     public override void SetIntention()
     {
-        if (battleScene._curTurn == 1 || battleScene._curTurn % 6 == 0)
+        if (battleScene._curTurn == 1)
         {
             curIntention = Intention.DeBuff;
             IntentionFigure = 5;
