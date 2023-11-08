@@ -244,8 +244,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -3.3474, y: 1.5947}
-  m_SizeDelta: {x: 183.6848, y: 200.5983}
+  m_AnchoredPosition: {x: -22.595, y: 69.9061}
+  m_SizeDelta: {x: 145.19, y: 337.221}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3757501676082156274
 CanvasRenderer:
@@ -2960,6 +2960,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2b3d4d7ca6adf5042b9008d45c888a2b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  MaxHp: 0
+  CurHp: 0
+  Shield: 0
+  UnitNumber: 0
+  curIntention: 8
+  IntentionFigure: -1
+  IsShield: 0
+  animator: {fileID: 0}
+  battleScene: {fileID: 0}
+  tempDamage: 0
+  AttackNum: 1
 --- !u!1 &8951559800498387887
 GameObject:
   m_ObjectHideFlags: 0
@@ -3061,7 +3072,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 4723107735738678597, guid: 0e3502a80399d164ea01f1868f65acbf, type: 3}
+  m_Sprite: {fileID: 4723107735738678597, guid: 6a521c7253bd1464e96e3ae9acc453e0, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1

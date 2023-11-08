@@ -38,6 +38,7 @@ public class UI_BattlePopup : UI_Popup
         ThrowCardText,
         ExitCardText,
         ManaText,
+        CurTurnText,
     }
     enum Images
     {
@@ -190,6 +191,7 @@ public class UI_BattlePopup : UI_Popup
             case States.TurnStart:
                 GameEvents.OnTurnStart();
                 _curTurn++;
+                GetText((int)Texts.CurTurnText).text = "ео : " + _curTurn.ToString();
                 GameEvents.OnTurnValue(_curTurn);
                 SetEnemyIntention();
                 if(_curTurn != 1)

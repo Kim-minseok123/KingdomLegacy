@@ -346,7 +346,7 @@ public class EnemyController : UI_Base
         else
             gameObject.GetComponent<Image>().material.DisableKeyword("OUTBASE_ON");
         battleScene._curEnemy = null;
-        GetText((int)Texts.NameText).DOFade(0, 1f).OnComplete(() => { GetText((int)Texts.NameText).gameObject.SetActive(false); });
+        GetText((int)Texts.NameText).DOFade(0, 0.5f).OnComplete(() => { GetText((int)Texts.NameText).gameObject.SetActive(false); });
     }
     private void OnDestroy()
     {
