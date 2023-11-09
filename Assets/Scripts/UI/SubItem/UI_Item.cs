@@ -78,7 +78,7 @@ public class UI_Item : UI_Base
         if (_itemData == null)
             return;
 
-        //GetImage((int)Images.ItemImage).sprite = Managers.Resource.Load<Sprite>($"Sprites/Item/{_itemData.ID}");
+        GetImage((int)Images.ItemImage).sprite = Managers.Resource.Load<Sprite>($"Sprites/Item/{_itemData.ID}");
 
     }
     public void SetInfo(int id, int type)

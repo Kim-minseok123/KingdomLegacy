@@ -175,7 +175,7 @@ public class UI_SelectChampAndItemPopup : UI_Popup
                     () => {
                         Managers.UI.ClosePopupUI();
                         Managers.Game.PlayerName = Champion[1].name;
-                        Managers.Game.Stage = 3;
+                        Managers.Game.Stage = 1;
                         Managers.Game.Items.Add(selectItem);
                         Managers.UI.ShowPopupUI<UI_MapPopup>().SetInfo();
                     });
