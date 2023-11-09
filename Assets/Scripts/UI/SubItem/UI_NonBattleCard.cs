@@ -104,7 +104,7 @@ public class UI_NonBattleCard : UI_Base
             GetImage((int)Images.CardRarity).sprite = Managers.Resource.Load<Sprite>("Sprites/Card/Legend");
         }
 
-        //GetImage((int)Images.CardImage).sprite = Managers.Resource.Load<Sprite>($"Sprites/Card/{_cardData.ID}");
+        GetImage((int)Images.CardImage).sprite = Managers.Resource.Load<Sprite>($"Sprites/Card/{_cardData.ID}");
     }
     public void SetInfo(int id) {
         if (Managers.Data.Cards.TryGetValue(id, out CardData card) == true)

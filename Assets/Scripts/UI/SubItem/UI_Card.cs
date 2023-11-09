@@ -80,7 +80,7 @@ public class UI_Card : UI_Base
         }
 
 
-        //GetImage((int)Images.CardImage).sprite = Managers.Resource.Load<Sprite>($"Sprites/Card/{_cardData.ID}");
+        GetImage((int)Images.CardImage).sprite = Managers.Resource.Load<Sprite>($"Sprites/Card/{_cardData.ID}");
     }
     public UI_Card SetInfo(CardData id) {
         _cardData = (CardData)id.Clone();

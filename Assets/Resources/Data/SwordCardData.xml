@@ -52,12 +52,12 @@
       <action>AttackAction</action>
     </actions>
   </CardData>
-  <CardData ID="11" name="몰락 기사단" description="피해 {0}. 힘 효과 2배 적용." type ="Attack" rarity="Rare" target="Enemy" damage="10" mana="2" attackDiff="2" price="20">
+  <CardData ID="11" name="타락 기사단" description="피해 {0}. 힘 효과 2배 적용." type ="Attack" rarity="Rare" target="Enemy" damage="10" mana="2" attackDiff="2" price="20">
     <actions>
       <action>AttackAction</action>
     </actions>
   </CardData>
-  <CardData ID="12" name="몰락 기사단+" description="피해 {0}. 힘 효과 5배 적용." type ="Attack" rarity="Rare" target="Enemy" damage="10" mana="2" attackDiff="5" price="30">
+  <CardData ID="12" name="타락 기사단+" description="피해 {0}. 힘 효과 5배 적용." type ="Attack" rarity="Rare" target="Enemy" damage="10" mana="2" attackDiff="5" price="30">
     <actions>
       <action>AttackAction</action>
     </actions>
@@ -290,12 +290,12 @@
       <action>DefenseAction</action>
     </actions>
   </CardData>
-  <CardData ID="55" name="완고한 고집" description="버린 카드의 더미 수만큼 방어도 획득." type ="Skill" rarity="Normal" target="Player"  shield="0" mana="1" price="20">
+  <CardData ID="55" name="망자" description="버린 카드의 더미 수만큼 방어도 획득." type ="Skill" rarity="Normal" target="Player"  shield="0" mana="1" price="20">
     <actions>
       <action>DefenseAction</action>
     </actions>
   </CardData>
-  <CardData ID="56" name="완고한 고집+" description="버린 카드의 더미 수만큼 방어도 획득." type ="Skill" rarity="Normal" target="Player"  shield="0" mana="0" price="30">
+  <CardData ID="56" name="망자+" description="버린 카드의 더미 수만큼 방어도 획득." type ="Skill" rarity="Normal" target="Player"  shield="0" mana="0" price="30">
     <actions>
       <action>DefenseAction</action>
     </actions>
@@ -667,7 +667,7 @@
 		<actions>
 		</actions>
 	</CardData>
-	<CardData ID="129" name="어지러움" description="휘발성. 사용 불가." type ="Skill" rarity="Normal" target="AllEnemy" mana="0" state="Volatility" damage ="0">
+	  <CardData ID="129" name="어지러움" description="휘발성. 사용 불가." type ="Skill" rarity="Normal" target="AllEnemy" mana="0" state="Volatility" damage ="0">
 	    <actions>
 	    </actions>
     </CardData>
