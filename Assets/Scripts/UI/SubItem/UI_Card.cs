@@ -16,6 +16,7 @@ public class UI_Card : UI_Base
         DontUseCardImage,
         CardManaImage,
         CardRarity,
+        Black,
     }
     public CardData _cardData;
     public bool _isUseCard = true;
@@ -35,6 +36,7 @@ public class UI_Card : UI_Base
         GetImage((int)Images.DontUseCardImage).material = uiImage.material;
         GetImage((int)Images.CardManaImage).material = uiImage.material;
         GetImage((int)Images.CardRarity).material = uiImage.material;
+        GetImage((int)Images.Black).material = uiImage.material;
 
         RefreshUI();
 
@@ -115,6 +117,8 @@ public class UI_Card : UI_Base
         Material material = GetComponent<Image>().materialForRendering;
         material.EnableKeyword("FADE_ON");
         float value = -0.1f;
+        Managers.Sound.Play(Define.Sound.Effect, "Effect/¼Ò¸ê", Managers.Game.EffectSound);
+
         while (value <= 1f) {
             value += 0.03f;
             material.SetFloat("_FadeAmount", value);

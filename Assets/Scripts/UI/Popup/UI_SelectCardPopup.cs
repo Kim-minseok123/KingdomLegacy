@@ -61,6 +61,8 @@ public class UI_SelectCardPopup : UI_Popup
         Managers.UI.ClosePopupUI(this);
     }
     public void SelectCard(GameObject go) {
+        Managers.Sound.Play(Define.Sound.Effect, "Effect/Click", Managers.Game.EffectSound);
+
         selectCard = go;
         int i = cardList.IndexOf(selectCard);
 

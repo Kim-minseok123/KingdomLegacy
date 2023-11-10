@@ -35,6 +35,8 @@ public class UI_ChooseClearItemPopup : UI_Popup
     }
     public void EndSelect()
     {
+        Managers.Sound.Play(Define.Sound.Effect, "Effect/Click", Managers.Game.EffectSound);
+
         GetComponent<Animator>().SetTrigger("Off");
     }
     void OnComplete()

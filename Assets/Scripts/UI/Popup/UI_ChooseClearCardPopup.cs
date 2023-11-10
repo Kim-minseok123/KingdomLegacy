@@ -38,6 +38,8 @@ public class UI_ChooseClearCardPopup : UI_Popup
         return true;
     }
     public void EndSelect() {
+        Managers.Sound.Play(Define.Sound.Effect, "Effect/Click", Managers.Game.EffectSound);
+
         GetComponent<Animator>().SetTrigger("Off");
     }
     void OnComplete()

@@ -296,6 +296,8 @@ public class UI_BattlePopup : UI_Popup
                 _drawCards.AddRange(_throwCards);
                 _throwCards.Clear();
                 _drawCards.Shuffle();
+                Managers.Sound.Play(Define.Sound.Effect, "Effect/¼ÅÇÃ", Managers.Game.EffectSound);
+
                 GameEvents.OnShuffleDeck();
             }
             if ((_drawCards.Count <= 0 && _throwCards.Count <= 0) || _handCardsUI.Count >= 12)
@@ -380,6 +382,8 @@ public class UI_BattlePopup : UI_Popup
     bool isDestoryCard = false;
     public void TurnEnd()
     {
+        Managers.Sound.Play(Define.Sound.Effect, "Effect/Click", Managers.Game.EffectSound);
+
         if (_state == States.Turning && !isUseCard && !isDestoryCard)
         {
             isDestoryCard = true;
@@ -615,7 +619,7 @@ public class UI_BattlePopup : UI_Popup
         {
             if(ishaveEnemy && enemy == null) yield break;
             player.AttackEnemy(Damage, enemy);
-            if(_curMana > 0 || isXattck)
+            if(_curMana > 0 && isXattck)
                 _curMana--;
             yield return new WaitForSeconds(0.5f);
         }
@@ -741,14 +745,20 @@ public class UI_BattlePopup : UI_Popup
         FriendsName.Add(name);
     }
     public void ClickDrawDeck() {
+        Managers.Sound.Play(Define.Sound.Effect, "Effect/Click", Managers.Game.EffectSound);
+
         Managers.UI.ShowPopupUI<UI_ShowCardsListPopup>().SetInfo(_drawCards);
     }
     public void ClickExitDeck()
     {
+        Managers.Sound.Play(Define.Sound.Effect, "Effect/Click", Managers.Game.EffectSound);
+
         Managers.UI.ShowPopupUI<UI_ShowCardsListPopup>().SetInfo(_exitCards);
     }
     public void ClickThrowDeck()
     {
+        Managers.Sound.Play(Define.Sound.Effect, "Effect/Click", Managers.Game.EffectSound);
+
         Managers.UI.ShowPopupUI<UI_ShowCardsListPopup>().SetInfo(_throwCards);
     }
 }

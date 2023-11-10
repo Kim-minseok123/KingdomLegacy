@@ -19,6 +19,8 @@ public class UI_ShopItem : UI_Item
             return;
         else
         {
+            Managers.Sound.Play(Define.Sound.Effect, "Effect/±¸¸Å", Managers.Game.EffectSound);
+
             Managers.Game.Money -= _itemData.price;
             Managers.Game.ShopBuyItems.Add(_itemData.ID);
             _itemData.ability.Setting();

@@ -35,4 +35,9 @@ public class Froce : EnemyController
         yield return null;
         StartCoroutine(base.IntentionMotion());
     }
+    public override void AttackAnim()
+    {
+        Managers.Sound.Play(Define.Sound.Effect, "Effect/ภüป็", Managers.Game.EffectSound);
+        base.AttackAnim();
+    }
 }

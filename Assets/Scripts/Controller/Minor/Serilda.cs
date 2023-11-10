@@ -36,10 +36,17 @@ public class Serilda : EnemyController
                 }
                 break;
             case Intention.Buff:
+                Managers.Sound.Play(Define.Sound.Effect, "Effect/버프", Managers.Game.EffectSound);
+
                 GetPower(IntentionFigure);
                 break;
         }
         yield return null;
         StartCoroutine(base.IntentionMotion());
+    }
+    public override void AttackAnim()
+    {
+        Managers.Sound.Play(Define.Sound.Effect, "Effect/전사", Managers.Game.EffectSound);
+        base.AttackAnim();
     }
 }

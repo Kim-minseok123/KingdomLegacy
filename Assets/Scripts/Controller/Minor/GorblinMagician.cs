@@ -8,6 +8,8 @@ public class GorblinMagician : EnemyController
     public override bool Init()
     {
         base.Init();
+        Managers.Sound.Play(Define.Sound.Effect, "Effect/버프", Managers.Game.EffectSound);
+
         GetBarrier(2);
         return true;
     }
@@ -86,14 +88,23 @@ public class GorblinMagician : EnemyController
             case Intention.Buff:
                 if (IntentionFigure == 2)
                 {
+                    Managers.Sound.Play(Define.Sound.Effect, "Effect/버프", Managers.Game.EffectSound);
+
                     GetBarrier(IntentionFigure);
                 }
                 else { 
+                    Managers.Sound.Play(Define.Sound.Effect, "Effect/버프", Managers.Game.EffectSound);
+
                     GetPower(IntentionFigure);
                 }
                 break;
         }
         yield return null;
         StartCoroutine(base.IntentionMotion());
+    }
+    public override void AttackAnim()
+    {
+        Managers.Sound.Play(Define.Sound.Effect, "Effect/법사", Managers.Game.EffectSound);
+        base.AttackAnim();
     }
 }

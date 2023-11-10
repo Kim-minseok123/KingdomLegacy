@@ -35,6 +35,8 @@ public class DarkElf : EnemyController
                 break;
             case Intention.Buff:
                 GetPower(IntentionFigure);
+                Managers.Sound.Play(Define.Sound.Effect, "Effect/버프", Managers.Game.EffectSound);
+
                 break;
             case Intention.Defense:
                 GetShield(IntentionFigure);
@@ -42,5 +44,10 @@ public class DarkElf : EnemyController
         }
         yield return null;
         StartCoroutine(base.IntentionMotion());
+    }
+    public override void AttackAnim()
+    {
+        Managers.Sound.Play(Define.Sound.Effect, "Effect/전사", Managers.Game.EffectSound);
+        base.AttackAnim();
     }
 }

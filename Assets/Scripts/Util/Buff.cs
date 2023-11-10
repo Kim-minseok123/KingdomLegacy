@@ -27,7 +27,6 @@ public class DePowerBuff : Buff {
 public class PoisonBuff : Buff {
     public override void Update()
     {
-        controller.Damaged(Value);
         base.Update();
     }
 }

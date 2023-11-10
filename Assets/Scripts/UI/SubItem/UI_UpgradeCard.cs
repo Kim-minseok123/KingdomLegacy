@@ -14,6 +14,8 @@ public class UI_UpgradeCard : UI_NonBattleCard
         GetImage((int)Images.CardBackGroundImage).material = uiImage.material;
         GetImage((int)Images.CardManaImage).material = uiImage.material;
         GetImage((int)Images.CardRarity).material = uiImage.material;
+        GetImage((int)Images.Black).material = uiImage.material;
+
         return true;
     }
     public override void ClickCard()
@@ -34,6 +36,8 @@ public class UI_UpgradeCard : UI_NonBattleCard
         Material material = GetComponent<Image>().materialForRendering;
         material.EnableKeyword("FADE_ON");
         float value = -0.1f;
+        Managers.Sound.Play(Define.Sound.Effect, "Effect/¼Ò¸ê", Managers.Game.EffectSound);
+
         while (value <= 1f)
         {
             value += 0.02f;
@@ -46,6 +50,8 @@ public class UI_UpgradeCard : UI_NonBattleCard
         RefreshUI();
         material.EnableKeyword("FADE_ON");
         value = 1f;
+        Managers.Sound.Play(Define.Sound.Effect, "Effect/°­È­", Managers.Game.EffectSound);
+
         while (value >= 0f)
         {
             value -= 0.02f;

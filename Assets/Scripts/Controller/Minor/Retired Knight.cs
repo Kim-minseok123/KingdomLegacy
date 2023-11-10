@@ -47,14 +47,22 @@ public class RetiredKnight : EnemyController
                 battleScene._playerController.GetVulenrable(2);
                 break;
             case Intention.Buff:
+                Managers.Sound.Play(Define.Sound.Effect, "Effect/버프", Managers.Game.EffectSound);
+
                 GetPower(IntentionFigure);
                 battleScene._playerController.GetWeakness(3);
                 break;
             case Intention.DeBuff:
                 battleScene._playerController.GetConfusion(1);
+                Managers.Sound.Play(Define.Sound.Effect, "Effect/디버프", Managers.Game.EffectSound * 0.7f) ;
                 break;
         }
         yield return null;
         StartCoroutine(base.IntentionMotion());
+    }
+    public override void AttackAnim()
+    {
+        Managers.Sound.Play(Define.Sound.Effect, "Effect/전사", Managers.Game.EffectSound);
+        base.AttackAnim();
     }
 }

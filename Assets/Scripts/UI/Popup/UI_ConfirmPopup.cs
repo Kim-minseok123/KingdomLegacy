@@ -53,12 +53,16 @@ public class UI_ConfirmPopup : UI_Popup
     bool isYes = false;
     void OnClickYesButton()
     {
+        Managers.Sound.Play(Define.Sound.Effect, "Effect/Click", Managers.Game.EffectSound);
+
         isYes = true;
         GetComponent<Animator>().SetTrigger("Off");
     }
 
     void OnClickNoButton()
-    {      
+    {
+        Managers.Sound.Play(Define.Sound.Effect, "Effect/Click", Managers.Game.EffectSound);
+
         isYes = false;
         GetComponent<Animator>().SetTrigger("Off");
     }

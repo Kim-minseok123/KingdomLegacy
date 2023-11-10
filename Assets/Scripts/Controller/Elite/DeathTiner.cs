@@ -39,12 +39,20 @@ public class DeathTiner : EnemyController
             case Intention.AttackDebuff:
                 AttackPlayer(IntentionFigure);
                 battleScene._playerController.GetVulenrable(2);
+                Managers.Sound.Play(Define.Sound.Effect, "Effect/디버프", Managers.Game.EffectSound * 0.7f);
                 break;
             case Intention.DeBuff:
                 battleScene._playerController.GetGag(IntentionFigure);
+                Managers.Sound.Play(Define.Sound.Effect, "Effect/디버프", Managers.Game.EffectSound * 0.7f);
+
                 break;
         }
         yield return null;
         StartCoroutine(base.IntentionMotion());
+    }
+    public override void AttackAnim()
+    {
+        Managers.Sound.Play(Define.Sound.Effect, "Effect/궁수", Managers.Game.EffectSound);
+        base.AttackAnim();
     }
 }

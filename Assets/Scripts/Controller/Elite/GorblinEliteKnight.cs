@@ -43,9 +43,15 @@ public class GorblinEliteKnight : EnemyController
                 break;
             case Intention.DeBuff:
                 battleScene.GetStress(IntentionFigure, false);
+                Managers.Sound.Play(Define.Sound.Effect, "Effect/디버프", Managers.Game.EffectSound * 0.7f);
                 break;
         }
         yield return null;
         StartCoroutine(base.IntentionMotion());
+    }
+    public override void AttackAnim()
+    {
+        Managers.Sound.Play(Define.Sound.Effect, "Effect/전사", Managers.Game.EffectSound);
+        base.AttackAnim();
     }
 }

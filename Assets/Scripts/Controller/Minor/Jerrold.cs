@@ -37,13 +37,23 @@ public class Jerrold : EnemyController
                 AttackPlayer(IntentionFigure);
                 break;
             case Intention.Buff:
+                Managers.Sound.Play(Define.Sound.Effect, "Effect/버프", Managers.Game.EffectSound);
+
                 GetPower(IntentionFigure);
                 break;
             case Intention.DeBuff:
-                battleScene._playerController.GetVulenrable(IntentionFigure); 
+
+                battleScene._playerController.GetVulenrable(IntentionFigure);
+                Managers.Sound.Play(Define.Sound.Effect, "Effect/디버프", Managers.Game.EffectSound * 0.7f);
+
                 break;
         }
         yield return null;
         StartCoroutine(base.IntentionMotion());
+    }
+    public override void AttackAnim()
+    {
+        Managers.Sound.Play(Define.Sound.Effect, "Effect/전사", Managers.Game.EffectSound);
+        base.AttackAnim();
     }
 }

@@ -60,7 +60,10 @@ public class Gorblin : EnemyController
                 break;
             case Intention.AttackDebuff:
                 AttackPlayer(IntentionFigure);
+
                 battleScene._playerController.GetWeakness(1);
+                Managers.Sound.Play(Define.Sound.Effect, "Effect/디버프", Managers.Game.EffectSound * 0.7f);
+
                 break;
             case Intention.Defense:
                 battleScene._enemyList.GetRandom().GetComponent<EnemyController>().GetShield(IntentionFigure);
@@ -69,5 +72,10 @@ public class Gorblin : EnemyController
                 yield break;
         }
         StartCoroutine(base.IntentionMotion());
+    }
+    public override void AttackAnim()
+    {
+        Managers.Sound.Play(Define.Sound.Effect, "Effect/전사", Managers.Game.EffectSound);
+        base.AttackAnim();
     }
 }

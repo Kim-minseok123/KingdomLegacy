@@ -40,9 +40,16 @@ public class Valiant : EnemyController
             case Intention.AttackDebuff:
                 AttackPlayer(IntentionFigure);
                 battleScene.GetStress(2, false);
+                Managers.Sound.Play(Define.Sound.Effect, "Effect/디버프", Managers.Game.EffectSound * 0.7f);
                 break;
         }
         yield return null;
         StartCoroutine(base.IntentionMotion());
     }
+    public override void AttackAnim()
+    {
+        Managers.Sound.Play(Define.Sound.Effect, "Effect/전사", Managers.Game.EffectSound);
+        base.AttackAnim();
+    }
+
 }

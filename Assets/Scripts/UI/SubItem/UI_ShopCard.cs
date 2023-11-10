@@ -14,6 +14,7 @@ public class UI_ShopCard : UI_NonBattleCard
     public override void ClickCard()
     {
         if (Managers.Game.Money < _cardData.price) return;
+        Managers.Sound.Play(Define.Sound.Effect, "Effect/±¸¸Å", Managers.Game.EffectSound);
 
         CardData card = GameEvents.OnGetCard(_cardData);
         card ??= _cardData;

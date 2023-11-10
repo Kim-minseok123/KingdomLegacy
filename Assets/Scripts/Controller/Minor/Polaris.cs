@@ -21,6 +21,8 @@ public class Polaris : EnemyController
     public override bool Init()
     {
         base.Init();
+        Managers.Sound.Play(Define.Sound.Effect, "Effect/버프", Managers.Game.EffectSound);
+
         GetLightShield(0);
         GetShield(200);
         return true;
@@ -83,9 +85,15 @@ public class Polaris : EnemyController
             case Intention.AttackDebuff:
                 AttackPlayer(IntentionFigure);
                 battleScene._playerController.GetBeDamaged(5);
+                Managers.Sound.Play(Define.Sound.Effect, "Effect/디버프", Managers.Game.EffectSound * 0.7f);
                 break;
         }
         yield return null;
         StartCoroutine(base.IntentionMotion());
+    }
+    public override void AttackAnim()
+    {
+        Managers.Sound.Play(Define.Sound.Effect, "Effect/전사", Managers.Game.EffectSound);
+        base.AttackAnim();
     }
 }

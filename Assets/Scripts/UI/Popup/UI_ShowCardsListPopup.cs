@@ -26,6 +26,8 @@ public class UI_ShowCardsListPopup : UI_Popup
         return true;
     }
     public void EndButton() {
+        Managers.Sound.Play(Define.Sound.Effect, "Effect/Click", Managers.Game.EffectSound);
+
         GetComponent<Animator>().SetTrigger("Off");
     }
     public void OnComplete() {

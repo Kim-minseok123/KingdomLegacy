@@ -53,6 +53,7 @@ public class EnemyController : UI_Base
         CheckBody,
         ToolTip,
         NameText,
+        Posion,
     }
     public override bool Init()
     {
@@ -93,6 +94,7 @@ public class EnemyController : UI_Base
         if (Shield < 0) Shield = 0;
         var effect = Managers.Resource.Instantiate("Effect/Hit");
         effect.transform.position = transform.position;
+        Managers.Sound.Play(Define.Sound.Effect, "Effect/피격", Managers.Game.EffectSound);
         StartCoroutine(DamageMaterial());
         CurHp -= value;
         if (CurHp <= 0) { 
@@ -141,7 +143,7 @@ public class EnemyController : UI_Base
         //공격
         animator.SetTrigger("Attack");
     }
-    public void AttackAnim() {
+    public virtual void AttackAnim() {
         battleScene._playerController.Damaged(tempDamage);
     }
     public void RemoveBuff(Buff buff) { 
@@ -165,6 +167,7 @@ public class EnemyController : UI_Base
         }
         var effect = Managers.Resource.Instantiate("Effect/DeBuff");
         effect.transform.position = transform.position;
+        Managers.Sound.Play(Define.Sound.Effect, "Effect/디버프", Managers.Game.EffectSound *0.7f);
         //이펙트 추가
         RefreshUI();
     }   
@@ -183,6 +186,7 @@ public class EnemyController : UI_Base
         //이펙트 추가
         var effect = Managers.Resource.Instantiate("Effect/DeBuff");
         effect.transform.position = transform.position;
+        Managers.Sound.Play(Define.Sound.Effect, "Effect/디버프", Managers.Game.EffectSound * 0.7f);
         RefreshUI();
     }
     public void GetShield(int value)
@@ -193,13 +197,17 @@ public class EnemyController : UI_Base
         else
             Shield = Shield + value;
         //이펙트 추가
+        Managers.Sound.Play(Define.Sound.Effect, "Effect/방어", Managers.Game.EffectSound);
+
         var effect = Managers.Resource.Instantiate("Effect/ShieldEffect", gameObject.transform);
         Managers.Resource.Destroy(effect, 0.45f);
 
         RefreshUI();
     }
-    public void HalfShield() { 
-        if(Shield > 0)
+    public void HalfShield() {
+        Managers.Sound.Play(Define.Sound.Effect, "Effect/부셔짐", Managers.Game.EffectSound);
+
+        if (Shield > 0)
             Shield /= 2;
         RefreshUI();
     }
@@ -235,6 +243,7 @@ public class EnemyController : UI_Base
         }
         var effect = Managers.Resource.Instantiate("Effect/DeBuff");
         effect.transform.position = transform.position;
+        Managers.Sound.Play(Define.Sound.Effect, "Effect/디버프", Managers.Game.EffectSound * 0.7f);
         RefreshUI();
     }
     public void GetAgility(int value)
@@ -254,6 +263,7 @@ public class EnemyController : UI_Base
         effect.transform.position = transform.position;
         RefreshUI();
     }
+    Buff PBuff;
     public void GetPoisoning(int value)
     {
         Buff buff = buffList.GetBuffName("중독");
@@ -261,7 +271,8 @@ public class EnemyController : UI_Base
         {
             if (buffList.Count > 6)
                 return;
-            buffList.Add(new PoisonBuff { Name = "중독", Value = value, controller = this , des = Define.Poisoning});
+            PBuff = new PoisonBuff { Name = "중독", Value = value, controller = this, des = Define.Poisoning };
+            buffList.Add(PBuff);
         }
         else
         {
@@ -270,7 +281,8 @@ public class EnemyController : UI_Base
             buff.Value += value;
         }
         var effect = Managers.Resource.Instantiate("Effect/Poison");
-        effect.transform.position = transform.position;
+        effect.transform.position = GetObject((int)GameObjects.Posion).transform.position;
+        Managers.Sound.Play(Define.Sound.Effect, "Effect/디버프", Managers.Game.EffectSound * 0.7f);
         RefreshUI();
     }
     public void RefreshUI()
@@ -368,6 +380,10 @@ public class EnemyController : UI_Base
     }
     public void ResetShield() {
         if (Shield > 0 && !IsShield) { Shield = 0; }
+        var buff = buffList.GetBuffName("중독");
+        if (buff != null) {
+            Damaged(buff.Value);
+        }
         RefreshUI();
     }
     public void TooltipOn(Transform trf, int text)

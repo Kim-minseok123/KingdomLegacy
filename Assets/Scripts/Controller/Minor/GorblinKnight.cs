@@ -39,11 +39,18 @@ public class GorblinKnight : EnemyController
                 GetShield(5);
                 break;
             case Intention.DefenseBuff:
+                Managers.Sound.Play(Define.Sound.Effect, "Effect/버프", Managers.Game.EffectSound);
+
                 GetShield(7);
                 GetPower(IntentionFigure);
                 break;
         }
         yield return null;
         StartCoroutine(base.IntentionMotion());
+    }
+    public override void AttackAnim()
+    {
+        Managers.Sound.Play(Define.Sound.Effect, "Effect/전사", Managers.Game.EffectSound);
+        base.AttackAnim();
     }
 }

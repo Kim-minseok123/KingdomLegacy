@@ -56,6 +56,7 @@ public class PlayerController : UI_Base
     {
         ToolTip,
         CheckBody,
+        Posion
     }
     RectTransform rect;
     public UI_BattlePopup _battleScene;
@@ -106,6 +107,7 @@ public class PlayerController : UI_Base
         }
         var effect = Managers.Resource.Instantiate("Effect/Hit");
         effect.transform.position = transform.position;
+        Managers.Sound.Play(Define.Sound.Effect, "Effect/피격", Managers.Game.EffectSound);
         Managers.Game.CurHp -= value;
         if(value > 0)
             GameEvents.OnLostHp();
@@ -181,6 +183,7 @@ public class PlayerController : UI_Base
         }
         var effect = Managers.Resource.Instantiate("Effect/ShieldEffect", gameObject.transform);
         Managers.Resource.Destroy(effect, 0.45f);
+        Managers.Sound.Play(Define.Sound.Effect, "Effect/방어", Managers.Game.EffectSound);
         RefreshUI();
     }
     public void GetPower(int value)
@@ -190,6 +193,7 @@ public class PlayerController : UI_Base
             buffList.Add("힘");
         var effect = Managers.Resource.Instantiate("Effect/Buff");
         effect.transform.position = transform.position;
+        Managers.Sound.Play(Define.Sound.Effect, "Effect/버프", Managers.Game.EffectSound);
         RefreshUI();
     }
     public void GetdePower(int value)
@@ -208,6 +212,8 @@ public class PlayerController : UI_Base
             buffList.Add("민첩");
         var effect = Managers.Resource.Instantiate("Effect/Buff");
         effect.transform.position = transform.position;
+        if(value > 0)
+            Managers.Sound.Play(Define.Sound.Effect, "Effect/버프", Managers.Game.EffectSound);
         RefreshUI();
     }
     public void GetPoisoning(int value)
@@ -216,7 +222,7 @@ public class PlayerController : UI_Base
         if (!buffList.Contains("중독"))
             buffList.Add("중독");
         var effect = Managers.Resource.Instantiate("Effect/Poison");
-        effect.transform.position = transform.position;
+        effect.transform.position = GetObject((int)GameObjects.Posion).transform.position;
         RefreshUI();
     }
     public void GetSwordGauge(int value) {
@@ -225,6 +231,7 @@ public class PlayerController : UI_Base
             buffList.Add("무한의검");
         var effect = Managers.Resource.Instantiate("Effect/Buff");
         effect.transform.position = transform.position;
+        Managers.Sound.Play(Define.Sound.Effect, "Effect/버프", Managers.Game.EffectSound);
         RefreshUI();
 
     }
@@ -241,6 +248,7 @@ public class PlayerController : UI_Base
             buffList.Add("불가침");
         var effect = Managers.Resource.Instantiate("Effect/Buff");
         effect.transform.position = transform.position;
+        Managers.Sound.Play(Define.Sound.Effect, "Effect/버프", Managers.Game.EffectSound);
         RefreshUI();
     }
     public void GetBeDamaged(int value)
@@ -306,6 +314,7 @@ public class PlayerController : UI_Base
             enemy.Damaged(Damage);
         }
         _playerAnim.SetTrigger("Attack");
+        Managers.Sound.Play(Define.Sound.Effect, "Effect/공격", Managers.Game.EffectSound);
     }
     public void AttackEnemy(int Damage, bool Heal, EnemyController enemy = null)
     {
@@ -327,6 +336,7 @@ public class PlayerController : UI_Base
         }
         HealHp(Damage);
         _playerAnim.SetTrigger("Attack");
+        Managers.Sound.Play(Define.Sound.Effect, "Effect/공격", Managers.Game.EffectSound);
     }
     public void RefreshUI()
     {
@@ -451,7 +461,7 @@ public class PlayerController : UI_Base
         if (Weakness > 0) { Weakness--; if (Weakness == 0) buffList.Remove("약화"); }
         if (dePower > 0) {GetPower(-dePower); dePower = 0; buffList.Remove("힘감소"); }
         if (Power == 0) { buffList.Remove("힘"); }
-        if (Poisoning > 0) { Damaged(Poisoning); Poisoning--; if (Poisoning == 0) buffList.Remove("중독"); }
+        if (Poisoning > 0) { Poisoning--; if (Poisoning == 0) buffList.Remove("중독"); }
         RefreshUI();
     }
     public void TooltipOn(Transform trf ,int text) {
@@ -476,6 +486,10 @@ public class PlayerController : UI_Base
     public void ResetShield()
     {
         if (!isDisappearShield) if (Shield > 0) { Shield = 0; }
+        if (Poisoning > 0)
+        {
+            Damaged(Poisoning);
+        }
         RefreshUI();
     }
 }

@@ -28,4 +28,9 @@ public class Altion : EnemyController
         yield return null;
         StartCoroutine(base.IntentionMotion());
     }
+    public override void AttackAnim()
+    {
+        Managers.Sound.Play(Define.Sound.Effect, "Effect/±Ã¼ö", Managers.Game.EffectSound);
+        base.AttackAnim();
+    }
 }

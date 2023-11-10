@@ -37,4 +37,9 @@ public class Adelaar : EnemyController
         yield return null;
         StartCoroutine(base.IntentionMotion());
     }
+    public override void AttackAnim()
+    {
+        Managers.Sound.Play(Define.Sound.Effect, "Effect/นýป็", Managers.Game.EffectSound);
+        base.AttackAnim();
+    }
 }

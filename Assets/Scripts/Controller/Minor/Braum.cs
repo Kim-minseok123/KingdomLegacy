@@ -8,6 +8,8 @@ public class Braum : EnemyController
     public override bool Init()
     {
         base.Init();
+        Managers.Sound.Play(Define.Sound.Effect, "Effect/버프", Managers.Game.EffectSound);
+
         GetArmor(20);
         return true;
     }
@@ -76,6 +78,8 @@ public class Braum : EnemyController
             case Intention.AttackDebuff:
                 AttackPlayer(IntentionFigure);
                 battleScene._playerController.GetWeakness(1);
+                Managers.Sound.Play(Define.Sound.Effect, "Effect/디버프", Managers.Game.EffectSound * 0.7f);
+
                 break;
             case Intention.AttackMany:
                 for (int i = 0; i < AttackNum; i++)
@@ -101,5 +105,10 @@ public class Braum : EnemyController
             buffList.Add(new ArmorBuff { Name = "판금갑옷", Value = value, controller = this, des = Define.Armor });
         }
         RefreshUI();
+    }
+    public override void AttackAnim()
+    {
+        Managers.Sound.Play(Define.Sound.Effect, "Effect/전사", Managers.Game.EffectSound);
+        base.AttackAnim();
     }
 }

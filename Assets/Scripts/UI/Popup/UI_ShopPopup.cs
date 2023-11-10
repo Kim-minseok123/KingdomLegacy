@@ -49,6 +49,8 @@ public class UI_ShopPopup : UI_Popup
     }
     public void ShopResetButton() {
         if (Managers.Game.Money < Managers.Game.ShopResetMoney) return;
+        Managers.Sound.Play(Define.Sound.Effect, "Effect/상점리롤", Managers.Game.EffectSound);
+
         Managers.Game.Money -= Managers.Game.ShopResetMoney;
         Managers.Game.ShopResetMoney += 5;
         GetText((int)Texts.ResetMoneyText).text = Managers.Game.ShopResetMoney.ToString() + " 골드";
@@ -65,6 +67,8 @@ public class UI_ShopPopup : UI_Popup
         shoplist.Clear();
     }
     public void ExitShop() {
+        Managers.Sound.Play(Define.Sound.Effect, "Effect/Click", Managers.Game.EffectSound);
+
         GetComponent<Animator>().SetTrigger("Off");
     }
     public void OnComplete() {

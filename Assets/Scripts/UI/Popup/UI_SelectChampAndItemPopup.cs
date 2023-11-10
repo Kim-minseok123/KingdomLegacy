@@ -72,6 +72,8 @@ public class UI_SelectChampAndItemPopup : UI_Popup
     }
 
     IEnumerator FadeImage(Image image) {
+        Managers.Sound.Play(Define.Sound.Effect, "Effect/소멸", Managers.Game.EffectSound);
+
         float temp = 1f;
         while (temp > -0.1f) { 
             temp -= Time.deltaTime;
@@ -96,6 +98,8 @@ public class UI_SelectChampAndItemPopup : UI_Popup
     int ChampionNumber = 0;
     bool isClickChampButton = false;
     void OnClickNextChampButton() {
+        Managers.Sound.Play(Define.Sound.Effect, "Effect/Click", Managers.Game.EffectSound);
+
         if (isClickChampButton)
             return;
         isClickChampButton = true;
@@ -110,6 +114,8 @@ public class UI_SelectChampAndItemPopup : UI_Popup
         Champion[^1] = temp;
     }
     void OnClickPrevChampButton() {
+        Managers.Sound.Play(Define.Sound.Effect, "Effect/Click", Managers.Game.EffectSound);
+
         if (isClickChampButton)
             return;
         isClickChampButton = true;
@@ -168,31 +174,42 @@ public class UI_SelectChampAndItemPopup : UI_Popup
     int selectItem = 0;
     void OnClickStartGame()
     {
+        Managers.Sound.Play(Define.Sound.Effect, "Effect/Click", Managers.Game.EffectSound);
+
         if (selectItem == 0 || ChampionNumber == Define.WizardPlayerContents || ChampionNumber == Define.ArcherPlayerContents) {
             return;
         }
+        Managers.Sound.Play(Define.Sound.Effect, "Effect/넘기기", Managers.Game.EffectSound);
+
         TransitionManager.Instance().Transition(Managers.Resource.Load<TransitionSettings>("Transitions/Brush/Brush"), 0,
                     () => {
                         Managers.UI.ClosePopupUI();
                         Managers.Game.PlayerName = Champion[1].name;
-                        Managers.Game.Stage = 1;
+                        Managers.Game.Stage = 3;
                         Managers.Game.Items.Add(selectItem);
                         Managers.UI.ShowPopupUI<UI_MapPopup>().SetInfo();
+                        Managers.Sound.Play(Define.Sound.Effect, "Effect/넘기기", Managers.Game.EffectSound);
                     });
     }
     void OnClickItem1() {
+        Managers.Sound.Play(Define.Sound.Effect, "Effect/Click", Managers.Game.EffectSound);
+
         selectItem = 1;
         ItemData itemdata = Managers.Data.Items[1];
         GetText((int)Texts.ItemText).text = "<color=yellow>" + itemdata.name + "</color>\n\n" + itemdata.description;
     }
     void OnClickItem2()
     {
+        Managers.Sound.Play(Define.Sound.Effect, "Effect/Click", Managers.Game.EffectSound);
+
         selectItem = 2;
         ItemData itemdata = Managers.Data.Items[2];
         GetText((int)Texts.ItemText).text = "<color=yellow>" + itemdata.name + "</color>\n\n" + itemdata.description;
     }
     void OnClickItem3()
     {
+        Managers.Sound.Play(Define.Sound.Effect, "Effect/Click", Managers.Game.EffectSound);
+
         selectItem = 3;
         ItemData itemdata = Managers.Data.Items[3];
         GetText((int)Texts.ItemText).text = "<color=yellow>" + itemdata.name + "</color>\n\n" + itemdata.description;

@@ -20,7 +20,9 @@ public class UI_ClearRoomPopup : UI_Popup
             return false;
         BindText(typeof(Texts));
         BindButton(typeof(Buttons));
-        if(Managers.Game.CurMapNode.Node.nodeType == Map.NodeType.MinorEnemy)
+        Managers.Sound.Play(Define.Sound.Effect, "Effect/보상", Managers.Game.EffectSound);
+
+        if (Managers.Game.CurMapNode.Node.nodeType == Map.NodeType.MinorEnemy)
         {
             Destroy(GetButton((int)Buttons.GetItemButton).gameObject);
         }
@@ -36,11 +38,15 @@ public class UI_ClearRoomPopup : UI_Popup
 
         return true;
     }
-    public void GetCard() { 
+    public void GetCard() {
+        Managers.Sound.Play(Define.Sound.Effect, "Effect/Click", Managers.Game.EffectSound);
+
         Destroy(GetButton((int)Buttons.GetCardButton).gameObject);
         Managers.UI.ShowPopupUI<UI_ChooseClearCardPopup>();
     }
     public void GetItem() {
+        Managers.Sound.Play(Define.Sound.Effect, "Effect/Click", Managers.Game.EffectSound);
+
         Destroy(GetButton((int)Buttons.GetItemButton).gameObject);
         Managers.UI.ShowPopupUI<UI_ChooseClearItemPopup>();
     }
@@ -50,12 +56,17 @@ public class UI_ClearRoomPopup : UI_Popup
         }
         else
             Managers.Game.Money += 25;
+        Managers.Sound.Play(Define.Sound.Effect, "Effect/돈", Managers.Game.EffectSound);
+
         Destroy(GetButton((int)Buttons.GetGoldButton).gameObject);
     }
     public void EndRoom() {
+        Managers.Sound.Play(Define.Sound.Effect, "Effect/Click", Managers.Game.EffectSound);
 
         if (Managers.Game.CurMapNode.Node.nodeType == Map.NodeType.Boss)
         {
+            Managers.Sound.Play(Define.Sound.Effect, "Effect/넘기기", Managers.Game.EffectSound);
+
             TransitionManager.Instance().Transition(Managers.Resource.Load<TransitionSettings>("Transitions/Brush/Brush"), 0,
                 () => {
                     Managers.Game.Stage++;
@@ -68,7 +79,7 @@ public class UI_ClearRoomPopup : UI_Popup
                     Managers.UI.ClosePopupUI(this);
                     Camera.main.orthographicSize = 7;
                     Managers.UI.ClosePopupUI(Managers.UI.FindPopup<UI_BattlePopup>());
-
+                    Managers.Sound.Play(Define.Sound.Effect, "Effect/넘기기", Managers.Game.EffectSound);
                 });
         }
         else {

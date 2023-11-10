@@ -34,7 +34,9 @@ public class ForestKing : EnemyController
 
             if (!isAttackMode) { battleScene._playerController.Damaged(3); }
         }
-
+        var effect = Managers.Resource.Instantiate("Effect/Hit");
+        effect.transform.position = transform.position;
+        Managers.Sound.Play(Define.Sound.Effect, "Effect/피격", Managers.Game.EffectSound);
         StartCoroutine(DamageMaterial());
         CurHp -= value;
         if (CurHp <= 0)
@@ -114,6 +116,7 @@ public class ForestKing : EnemyController
             case Intention.DeBuff:
                 battleScene._playerController.GetWeakness(2);
                 battleScene._playerController.GetVulenrable(2);
+                Managers.Sound.Play(Define.Sound.Effect, "Effect/디버프", Managers.Game.EffectSound * 0.7f);
                 break;
             case Intention.Defense:
                 GetShield(IntentionFigure);
@@ -140,6 +143,8 @@ public class ForestKing : EnemyController
             buffList.Add(new AttackModeBuff { Name = "공격모드", Value = value, controller = this, des = Define.AttackMode });
         }
         isAttackMode = true;
+        Managers.Sound.Play(Define.Sound.Effect, "Effect/버프", Managers.Game.EffectSound);
+
         RefreshUI();
     }
     public void GetDefenseMode(int value)
@@ -154,7 +159,14 @@ public class ForestKing : EnemyController
             buffList.Add(new DefenseModeBuff { Name = "수비모드", Value = value, controller = this, des = Define.DefenseMode });
         }
         isAttackMode = false;
+        Managers.Sound.Play(Define.Sound.Effect, "Effect/버프", Managers.Game.EffectSound);
+
         GetShield(20);
         RefreshUI();
+    }
+    public override void AttackAnim()
+    {
+        Managers.Sound.Play(Define.Sound.Effect, "Effect/전사", Managers.Game.EffectSound);
+        base.AttackAnim();
     }
 }

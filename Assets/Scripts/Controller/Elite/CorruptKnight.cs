@@ -37,11 +37,15 @@ public class CorruptKnight : EnemyController
                 AttackPlayer(IntentionFigure);
                 break;
             case Intention.Buff:
+                Managers.Sound.Play(Define.Sound.Effect, "Effect/버프", Managers.Game.EffectSound);
+
                 GetShout(IntentionFigure);
                 break;
             case Intention.AttackDebuff:
                 AttackPlayer(IntentionFigure);
                 battleScene._playerController.GetWeakness(2);
+                Managers.Sound.Play(Define.Sound.Effect, "Effect/디버프", Managers.Game.EffectSound * 0.7f);
+
                 break;
         }
         yield return null;
@@ -73,5 +77,10 @@ public class CorruptKnight : EnemyController
     {
         base.Death();
         GameEvents.UseCard -= UseSkillCard;
+    }
+    public override void AttackAnim()
+    {
+        Managers.Sound.Play(Define.Sound.Effect, "Effect/전사", Managers.Game.EffectSound);
+        base.AttackAnim();
     }
 }

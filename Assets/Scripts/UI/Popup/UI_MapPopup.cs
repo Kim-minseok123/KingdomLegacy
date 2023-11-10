@@ -66,6 +66,8 @@ public class UI_MapPopup : UI_Popup
         GetText((int)Texts.ClearTimeText).text = _timeText;
     }
     public void ClickDeckButton() {
+        Managers.Sound.Play(Define.Sound.Effect, "Effect/Click", Managers.Game.EffectSound);
+
         Managers.UI.ShowPopupUI<UI_ShowCardsListPopup>().SetInfo();
     }
     public void SideBarOn() {
@@ -92,6 +94,8 @@ public class UI_MapPopup : UI_Popup
     
     public void ShopOn() {
         SideBarOff();
+        Managers.Sound.Play(Define.Sound.Effect, "Effect/Click", Managers.Game.EffectSound);
+
         Managers.UI.ShowPopupUI<UI_ShopPopup>();
     }
     

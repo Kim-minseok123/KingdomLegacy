@@ -34,6 +34,8 @@ public class UI_CardDeletePopup : UI_Popup
 
     public void ExitMenu()
     {
+        Managers.Sound.Play(Define.Sound.Effect, "Effect/Click", Managers.Game.EffectSound);
+
         GetComponent<Animator>().SetTrigger("Off");
     }
     public void OnComplete()

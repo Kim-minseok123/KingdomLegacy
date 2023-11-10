@@ -60,10 +60,14 @@ public class Lihenne : EnemyController
                 yield return StartCoroutine(Attack(IntentionFigure, 1));
                 break;
             case Intention.Buff:
+                Managers.Sound.Play(Define.Sound.Effect, "Effect/버프", Managers.Game.EffectSound);
+
                 HealBuff(IntentionFigure);
                 break;
             case Intention.DefenseBuff:
                 GetShield(IntentionFigure);
+                Managers.Sound.Play(Define.Sound.Effect, "Effect/버프", Managers.Game.EffectSound);
+
                 GetPower(5);
                 break;
             case Intention.AttackMany:
@@ -71,6 +75,8 @@ public class Lihenne : EnemyController
                 break;
             case Intention.DeBuff:
                 battleScene.GetDizziness(6, false);
+                Managers.Sound.Play(Define.Sound.Effect, "Effect/디버프", Managers.Game.EffectSound * 0.7f);
+
                 break;
         }
         yield return null;
@@ -89,7 +95,13 @@ public class Lihenne : EnemyController
         for (int i = 0; i < AttackNum; i ++)
         {
             animator.SetTrigger("Attack");
+            Managers.Sound.Play(Define.Sound.Effect, "Effect/보스2", Managers.Game.EffectSound);
+
             yield return new WaitForSeconds(2f);
         }
+    }
+    public override void AttackAnim()
+    {
+        base.AttackAnim();
     }
 }

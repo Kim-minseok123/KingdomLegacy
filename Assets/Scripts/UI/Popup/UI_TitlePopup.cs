@@ -56,7 +56,7 @@ public class UI_TitlePopup : UI_Popup
     }
 
     void OnClickStartButton() {
-        
+        Managers.Sound.Play(Define.Sound.Effect, "Effect/Click", Managers.Game.EffectSound);
         //이전에 플레이 게임 데이터가 있다면 팝업을 띄우고 결정하게 한다.
         if (isGameData) {
             Managers.UI.ShowPopupUI<UI_ConfirmPopup>().SetInfo(() =>
@@ -76,24 +76,32 @@ public class UI_TitlePopup : UI_Popup
             Managers.UI.ShowPopupUI<UI_SelectChampAndItemPopup>();
         }
     }
-    void OnClickContinueButton() { 
+    void OnClickContinueButton() {
+        Managers.Sound.Play(Define.Sound.Effect, "Effect/Click", Managers.Game.EffectSound);
 
         if (isGameData)
         {
+            Managers.Sound.Play(Define.Sound.Effect, "Effect/넘기기", Managers.Game.EffectSound);
+
             TransitionManager.Instance().Transition(Managers.Resource.Load<TransitionSettings>("Transitions/Brush/Brush"), 0,
                     () => {
                         Managers.UI.ClosePopupUI(this);
                         Managers.UI.ShowPopupUI<UI_MapPopup>().SetInfo();
+                        Managers.Sound.Play(Define.Sound.Effect, "Effect/넘기기", Managers.Game.EffectSound);
                     });
         }
     }
-    void OnClickDictionaryButton() { 
+    void OnClickDictionaryButton() {
+        Managers.Sound.Play(Define.Sound.Effect, "Effect/Click", Managers.Game.EffectSound);
 
     }
-    void OnClickSettingButton() { 
+    void OnClickSettingButton() {
+        Managers.Sound.Play(Define.Sound.Effect, "Effect/Click", Managers.Game.EffectSound);
 
     }
     void OnClickExitButton() {
+        Managers.Sound.Play(Define.Sound.Effect, "Effect/Click", Managers.Game.EffectSound);
+
 #if UNITY_EDITOR
         UnityEditor.EditorApplication.isPlaying = false;
 #else

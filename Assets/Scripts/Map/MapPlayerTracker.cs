@@ -26,6 +26,8 @@ namespace Map
 
         public void SelectNode(MapNode mapNode)
         {
+            Managers.Sound.Play(Define.Sound.Effect, "Effect/Click", Managers.Game.EffectSound);
+
             if (Locked) return;
 
             // Debug.Log("Selected node: " + mapNode.Node.point);

@@ -8,6 +8,8 @@ public class Ivan : EnemyController
     public override bool Init()
     {
         base.Init();
+        Managers.Sound.Play(Define.Sound.Effect, "Effect/버프", Managers.Game.EffectSound);
+
         GetHeal(0);
         GetEnvy(3);
         return true;
@@ -103,6 +105,7 @@ public class Ivan : EnemyController
             case Intention.DeBuff:
                 battleScene.GetStress(2, false);
                 battleScene._playerController.GetWeakness(2);
+                Managers.Sound.Play(Define.Sound.Effect, "Effect/디버프", Managers.Game.EffectSound * 0.7f);
                 break;
         }
         yield return null;
@@ -121,6 +124,7 @@ public class Ivan : EnemyController
         animator.SetTrigger("Stun");
         var effect = Managers.Resource.Instantiate("Effect/Hit");
         effect.transform.position = transform.position;
+        Managers.Sound.Play(Define.Sound.Effect, "Effect/피격", Managers.Game.EffectSound);
         StartCoroutine(DamageMaterial());
         CurHp -= value;
         if (CurHp <= 0)
@@ -130,5 +134,16 @@ public class Ivan : EnemyController
             animator.SetTrigger("Death");
         }
         RefreshUI();
+    }
+    public void Sound1() { 
+        Managers.Sound.Play(Define.Sound.Effect, "Effect/검1", Managers.Game.EffectSound);
+    }
+    public void Sound2()
+    {
+        Managers.Sound.Play(Define.Sound.Effect, "Effect/검2", Managers.Game.EffectSound);
+    }
+    public void Sound3()
+    {
+        Managers.Sound.Play(Define.Sound.Effect, "Effect/검3", Managers.Game.EffectSound);
     }
 }

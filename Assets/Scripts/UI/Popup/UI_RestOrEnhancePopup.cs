@@ -43,7 +43,9 @@ public class UI_RestOrEnhancePopup : UI_Popup
         }
         return true;
     }
-    public void ExitButton() { 
+    public void ExitButton() {
+        Managers.Sound.Play(Define.Sound.Effect, "Effect/Click", Managers.Game.EffectSound);
+
         GetComponent<Animator>().SetTrigger("Off");
     }
     void OnComplete()
@@ -62,6 +64,8 @@ public class UI_RestOrEnhancePopup : UI_Popup
         ExitButton();
     }
     public void EnhanceButton() {
+        Managers.Sound.Play(Define.Sound.Effect, "Effect/Click", Managers.Game.EffectSound);
+
         if (Managers.Game.isEnhance) return;
         Managers.UI.ShowPopupUI<UI_EnhancePopup>();
     }

@@ -22,6 +22,7 @@ public class UI_NonBattleCard : UI_Base
         CardBackGroundImage,
         CardManaImage,
         CardRarity,
+        Black,
     }
     enum Transforms {
         ToolTipTransform,
