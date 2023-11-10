@@ -86,12 +86,18 @@ namespace Map
                         info = Managers.Resource.Load<EnemyInfo>($"ScriptableObjects/Enemy/Minor/{Managers.Game.Stage}-{Managers.Game.StageNumber}");
                     }
                     TransitionManager.Instance().Transition(Managers.Resource.Load<TransitionSettings>("Transitions/LinearWipe/LinearWipe"), 0,
-                    () => { Managers.UI.ShowPopupUI<UI_BattlePopup>().SetInfo(info);});
+                    () => { 
+                        Managers.UI.ShowPopupUI<UI_BattlePopup>().SetInfo(info);
+                        Managers.Sound.Play(Define.Sound.Bgm, $"Bgm/Battle{Managers.Game.Stage}", Managers.Game.BgmSound);
+                    });
                     break;
                 case NodeType.EliteEnemy:
                     info = Managers.Resource.Load<EnemyInfo>($"ScriptableObjects/Enemy/Elite/{Managers.Game.Stage}-{Managers.Game.StageNumber}");
                     TransitionManager.Instance().Transition(Managers.Resource.Load<TransitionSettings>("Transitions/LinearWipe/LinearWipe"), 0,
-                    () => { Managers.UI.ShowPopupUI<UI_BattlePopup>().SetInfo(info); });
+                    () => { 
+                        Managers.UI.ShowPopupUI<UI_BattlePopup>().SetInfo(info); 
+                        Managers.Sound.Play(Define.Sound.Bgm, $"Bgm/Battle{Managers.Game.Stage}", Managers.Game.BgmSound);
+                    });
                     break;
                 case NodeType.RestSite:
                     Managers.UI.ShowPopupUI<UI_RestOrEnhancePopup>();
@@ -104,7 +110,10 @@ namespace Map
                 case NodeType.Boss:
                     info = Managers.Resource.Load<EnemyInfo>($"ScriptableObjects/Enemy/Boss/{Managers.Game.Stage}-{Managers.Game.StageNumber}");
                     TransitionManager.Instance().Transition(Managers.Resource.Load<TransitionSettings>("Transitions/LinearWipe/LinearWipe"), 0,
-                    () => { Managers.UI.ShowPopupUI<UI_BattlePopup>().SetInfo(info); });
+                    () => { 
+                        Managers.UI.ShowPopupUI<UI_BattlePopup>().SetInfo(info);
+                        Managers.Sound.Play(Define.Sound.Bgm, $"Bgm/Boss{Managers.Game.Stage}", Managers.Game.BgmSound);
+                    });
                     break;
                 default:
                     throw new ArgumentOutOfRangeException();

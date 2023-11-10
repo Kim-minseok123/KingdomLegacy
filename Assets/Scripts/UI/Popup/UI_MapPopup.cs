@@ -53,6 +53,7 @@ public class UI_MapPopup : UI_Popup
         MapManager.StartGenerate();
         _time = Managers.Game.ClearTime;
         InitItem();
+        Managers.Sound.Play(Define.Sound.Bgm, $"Bgm/Stage{Managers.Game.Stage}", Managers.Game.BgmSound);
 
         RefreshUI();
 
@@ -125,6 +126,7 @@ public class UI_MapPopup : UI_Popup
         map.SetActive(false);
     }
     public void ShowMap() {
+        Managers.Sound.Play(Define.Sound.Bgm, $"Bgm/Stage{Managers.Game.Stage}", Managers.Game.BgmSound);
         if (map == null)
             map = GameObject.Find("OuterMapParent");
         map.SetActive(true);

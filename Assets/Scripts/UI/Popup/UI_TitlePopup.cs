@@ -47,7 +47,9 @@ public class UI_TitlePopup : UI_Popup
             GetButton((int)Buttons.NewGameButton).transform.position = GetButton((int)Buttons.LoadGameButton).transform.position;
             Destroy(GetButton((int)Buttons.LoadGameButton).gameObject);
             isGameData = false;
+            Managers.Game.Init();
         }
+        Managers.Sound.Play(Define.Sound.Bgm, "Bgm/Title", Managers.Game.BgmSound);
         StartCoroutine(ShaderShineGo(GetObject((int)GameObjects.GameTitleLogoImage)));
 
         return true;

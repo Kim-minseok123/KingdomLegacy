@@ -38,6 +38,8 @@ public class GameData
     public float clearTime;
     public int ShopResetMoney;
     public int DeleteCardMoney;
+    public float BgmSound;
+    public float EffectSound;
 }
 public class GameManager : MonoBehaviour
 {
@@ -74,6 +76,8 @@ public class GameManager : MonoBehaviour
     public bool isDoubleItem { get { return _gameData.isDoubleItem; } set { _gameData.isDoubleItem = value; } }
     public int StartDrawCardNum { get {  return _gameData.startDrawCardNum;} set { _gameData.startDrawCardNum = value; } }
     public float ClearTime { get {  return _gameData.clearTime; } set { _gameData.clearTime = value; } }
+    public float BgmSound { get {  return _gameData.BgmSound; } set { _gameData.BgmSound = value; } }
+    public float EffectSound { get {  return _gameData.EffectSound; } set { _gameData.EffectSound = value; } }
     public void Init() {
         Cards.Clear();
         Stage = 1;
@@ -113,6 +117,8 @@ public class GameManager : MonoBehaviour
         ShopBuyItems.Clear();
         Items.Clear();
         DeleteCardMoney = 30;
+        EffectSound = 0.8f;
+        BgmSound = 0.8f;
     }
     
     #region Save & Load	

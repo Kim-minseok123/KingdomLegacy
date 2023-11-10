@@ -83,20 +83,7 @@ public class SoundManager
             audioSource.PlayOneShot(audioClip);
             return true;
         }
-        else if (type == Define.Sound.Speech)
-		{
-			AudioClip audioClip = GetAudioClip(path);
-			if (audioClip == null)
-				return false;
-
-			if (audioSource.isPlaying)
-				audioSource.Stop();
-
-			audioSource.clip = audioClip;
-			audioSource.pitch = pitch;
-			audioSource.Play();
-			return true;
-		}
+        
 
         return false;
     }
@@ -124,9 +111,5 @@ public class SoundManager
         audioClip = Managers.Resource.Load<AudioClip>(path);
         _audioClips.Add(path, audioClip);
         return audioClip;
-    }
-    public void SetVolume(Define.Sound type, float volume) { 
-        AudioSource audioSource1 = _audioSources[(int)type]; 
-        audioSource1.volume = volume;
     }
 }
