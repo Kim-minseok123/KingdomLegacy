@@ -97,7 +97,7 @@ public class UI_TitlePopup : UI_Popup
     }
     void OnClickSettingButton() {
         Managers.Sound.Play(Define.Sound.Effect, "Effect/Click", Managers.Game.EffectSound);
-
+        Managers.UI.ShowPopupUI<UI_SettingPopup>();
     }
     void OnClickExitButton() {
         Managers.Sound.Play(Define.Sound.Effect, "Effect/Click", Managers.Game.EffectSound);

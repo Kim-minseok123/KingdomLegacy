@@ -21,6 +21,7 @@ public class UI_ConfirmPopup : UI_Popup
     {
         if (base.Init() == false)
             return false;
+        GetComponent<Canvas>().sortingOrder = 999;
 
         BindText(typeof(Texts));
         BindButton(typeof(Buttons));
