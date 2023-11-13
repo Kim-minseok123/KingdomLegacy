@@ -112,4 +112,8 @@ public class SoundManager
         _audioClips.Add(path, audioClip);
         return audioClip;
     }
+    public void SetVolume(Define.Sound type, float value) {
+        AudioSource audioSource = _audioSources[(int)type];
+        audioSource.volume = value;
+    }
 }

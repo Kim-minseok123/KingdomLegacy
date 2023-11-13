@@ -148,5 +148,12 @@ public class GameManager : MonoBehaviour
         Debug.Log($"Save Game Loaded : {_path}");
         return true;
     }
+    public void ClearGame() {
+        if (File.Exists(_path) == false) {
+            return;
+        }
+
+        File.Delete(_path);
+    }
     #endregion
 }

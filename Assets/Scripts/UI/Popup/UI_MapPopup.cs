@@ -47,6 +47,7 @@ public class UI_MapPopup : UI_Popup
         GetButton((int)Buttons.DeckButton).gameObject.BindEvent(ClickDeckButton);
 
         GetButton((int)Buttons.ShopButton).gameObject.BindEvent(ShopOn);
+        GetButton((int)Buttons.SettingButton).gameObject.BindEvent(SettingButtonClick);
 
         
         MapManager = GameObject.FindGameObjectWithTag("Map").GetComponentInChildren<MapManager>();
@@ -134,5 +135,9 @@ public class UI_MapPopup : UI_Popup
         if (map == null)
             map = GameObject.Find("OuterMapParent");
         map.SetActive(true);
+    }
+    public void SettingButtonClick() {
+        Managers.Sound.Play(Define.Sound.Effect, "Effect/Click", Managers.Game.EffectSound);
+        Managers.UI.ShowPopupUI<UI_SettingPopup>();
     }
 }
