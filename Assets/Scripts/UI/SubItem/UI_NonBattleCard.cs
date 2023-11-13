@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class UI_NonBattleCard : UI_Base
 {
-    string[] CardDesToolTip = new string[17] {"약화", "취약","힘","민첩","중독","방어도","힘 감소","무한의 검","방어막","소멸","보존","조건","텐션","소환","드로우","스트레스","어지러움"};
+    string[] CardDesToolTip = new string[19] {"약화", "취약","힘","민첩","중독","방어도","힘 감소","무한의 검","방어막","소멸","보존","조건","텐션","소환","드로우","불가침","스트레스","어지러움","휘발성"};
     int StartIndex = 20036;
     List<int> TooltipIndex = new List<int>();
     List<GameObject> ToolTip = new List<GameObject>(); 
@@ -54,11 +54,12 @@ public class UI_NonBattleCard : UI_Base
 
         return true;
     }
+    Vector3 Curscale;
     public void ScaleUP() {
-        transform.DOScale(new Vector3(1.15f, 1.15f, 1), 0.2f).SetEase(Ease.OutSine);
+        transform.DOScale(new Vector3(Curscale.x + 0.15f, Curscale.y + 0.15f, 1), 0.2f).SetEase(Ease.OutSine);
     }
     public void ScaleDown() { 
-        transform.DOScale(new Vector3(1f, 1f, 1), 0.2f).SetEase(Ease.OutSine);
+        transform.DOScale(new Vector3(Curscale.x, Curscale.y, 1), 0.2f).SetEase(Ease.OutSine);
     }
     public void RefreshUI()
     {
@@ -110,6 +111,7 @@ public class UI_NonBattleCard : UI_Base
     public void SetInfo(int id) {
         if (Managers.Data.Cards.TryGetValue(id, out CardData card) == true)
             _cardData = (CardData)card.Clone();
+        Curscale = transform.localScale;
     }
 
     public virtual void ClickCard() {

@@ -29,10 +29,10 @@
 	<TextData ID="20048" kor="&lt;color=yellow&gt;텐션.&lt;/color&gt;&lt;br&gt;&lt;color=green&gt;[상태]&lt;/color&gt;&lt;br&gt;카드를 사용할 때 소모되는 마나입니다." eng="" />
 	<TextData ID="20049" kor="&lt;color=yellow&gt;소환.&lt;/color&gt;&lt;br&gt;&lt;color=green&gt;[상태]&lt;/color&gt;&lt;br&gt;동료를 소환하고 카드는 소멸됩니다." eng="" />
 	<TextData ID="20050" kor="&lt;color=yellow&gt;드로우.&lt;/color&gt;&lt;br&gt;&lt;color=green&gt;[상태]&lt;/color&gt;&lt;br&gt;뽑을 카드 더미에서 카드를 획득합니다." eng="" />
-	<TextData ID="20051" kor="&lt;color=yellow&gt;함성.&lt;/color&gt;&lt;br&gt;&lt;color=#22DEFF&gt;[버프]&lt;/color&gt;&lt;br&gt;스킬 카드를 사용할 때 마다 힘 2를 획득합니다." eng="" />
-	<TextData ID="20052" kor="&lt;color=yellow&gt;불가침.&lt;/color&gt;&lt;br&gt;&lt;color=#22DEFF&gt;[버프]&lt;/color&gt;&lt;br&gt;다음 피해가 1이 됩니다." eng="" />
-  <TextData ID="20053" kor="&lt;color=yellow&gt;스트레스.&lt;/color&gt;&lt;br&gt;&lt;color=#22DEFF&gt;[상태]&lt;/color&gt;&lt;br&gt;사용 불가." eng="" />
-  <TextData ID="20054" kor="&lt;color=yellow&gt;어지러움.&lt;/color&gt;&lt;br&gt;&lt;color=#22DEFF&gt;[상태]&lt;/color&gt;&lt;br&gt;휘발성. 사용 불가" eng="" />
+	<TextData ID="20051" kor="&lt;color=yellow&gt;불가침.&lt;/color&gt;&lt;br&gt;&lt;color=#22DEFF&gt;[버프]&lt;/color&gt;&lt;br&gt;다음 피해가 1이 됩니다." eng="" />
+  <TextData ID="20052" kor="&lt;color=yellow&gt;스트레스.&lt;/color&gt;&lt;br&gt;&lt;color=#22DEFF&gt;[상태]&lt;/color&gt;&lt;br&gt;사용 불가." eng="" />
+  <TextData ID="20053" kor="&lt;color=yellow&gt;어지러움.&lt;/color&gt;&lt;br&gt;&lt;color=#22DEFF&gt;[상태]&lt;/color&gt;&lt;br&gt;휘발성. 사용 불가" eng="" />
+  <TextData ID="20054" kor="&lt;color=yellow&gt;휘발성.&lt;/color&gt;&lt;br&gt;&lt;color=#22DEFF&gt;[상태]&lt;/color&gt;&lt;br&gt;턴 종료 시 소멸." eng="" />
   <TextData ID="20055" kor="&lt;color=yellow&gt;공격모드.&lt;/color&gt;&lt;br&gt;&lt;color=#22DEFF&gt;[버프]&lt;/color&gt;&lt;br&gt;체력을 잃을 시 감소합니다.&lt;br&gt;수치가 0이 되면 수비모드로 전환합니다." eng="" />
   <TextData ID="20056" kor="&lt;color=yellow&gt;수비모드.&lt;/color&gt;&lt;br&gt;&lt;color=#22DEFF&gt;[버프]&lt;/color&gt;&lt;br&gt;피해를 입으면 플레이어에게 3의 피해를 입힙니다." eng="" />
   <TextData ID="20057" kor="&lt;color=yellow&gt;판금갑옷.&lt;/color&gt;&lt;br&gt;&lt;color=#22DEFF&gt;[버프]&lt;/color&gt;&lt;br&gt;턴 종료 시 수치만큼 방어도를 획득합니다.&lt;br&gt;체력이 감소할 때 마다 수치가 1 감소합니다." eng="" />
@@ -43,4 +43,5 @@
   <TextData ID="20062" kor="&lt;color=yellow&gt;재갈.&lt;/color&gt;&lt;br&gt;&lt;color=#22DEFF&gt;[디버프]&lt;/color&gt;&lt;br&gt;남은 수치의 턴 만큼 공격카드를 사용할 수 없습니다." eng="" />
   <TextData ID="20063" kor="&lt;color=yellow&gt;재생.&lt;/color&gt;&lt;br&gt;&lt;color=#22DEFF&gt;[버프]&lt;/color&gt;&lt;br&gt;턴 종료 시 체력을 15 회복합니다." eng="" />
   <TextData ID="20064" kor="&lt;color=yellow&gt;질투.&lt;/color&gt;&lt;br&gt;&lt;color=#22DEFF&gt;[버프]&lt;/color&gt;&lt;br&gt;동료 카드를 사용 시 힘 4를 획득합니다.&gt;&lt;br&gt;수치가 0이 되면 사라집니다." eng="" />
+  <TextData ID="20065" kor="&lt;color=yellow&gt;함성.&lt;/color&gt;&lt;br&gt;&lt;color=#22DEFF&gt;[버프]&lt;/color&gt;&lt;br&gt;스킬 카드를 사용할 때 마다 힘 2를 획득합니다." eng="" />
 </ArrayOfTextData>

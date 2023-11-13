@@ -123,10 +123,10 @@ public class Define
 	public const int Tension = 20048;
     public const int Summon = 20049;
     public const int Draw = 20050;
-    public const int Shout = 20051;
-	public const int Inviolable = 20052;
-    public const int Stress = 20053;
-    public const int Dizziness = 20054;
+	public const int Inviolable = 20051;
+    public const int Stress = 20052;
+    public const int Dizziness = 20053;
+    public const int Volatility = 20054;
     public const int AttackMode = 20055;
     public const int DefenseMode = 20056;
 	public const int Armor = 20057;
@@ -137,4 +137,5 @@ public class Define
 	public const int Gag = 20062;
 	public const int Heal = 20063;
 	public const int Envy = 20064;
+    public const int Shout = 20065;
 }

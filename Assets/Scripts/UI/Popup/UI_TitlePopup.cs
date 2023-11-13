@@ -93,7 +93,7 @@ public class UI_TitlePopup : UI_Popup
     }
     void OnClickDictionaryButton() {
         Managers.Sound.Play(Define.Sound.Effect, "Effect/Click", Managers.Game.EffectSound);
-
+        Managers.UI.ShowPopupUI<UI_DictionaryPopup>();
     }
     void OnClickSettingButton() {
         Managers.Sound.Play(Define.Sound.Effect, "Effect/Click", Managers.Game.EffectSound);
