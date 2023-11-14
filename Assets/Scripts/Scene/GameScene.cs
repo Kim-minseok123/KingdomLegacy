@@ -12,7 +12,7 @@ public class GameScene : BaseScene
 		if (base.Init() == false)
 			return false;
 
-        SceneType = Define.Scene.Game;
+        SceneType = Define.Scene.GameScene;
 		Screen.SetResolution(1920, 1080, true);
 
 		TransitionManager.Instance().Transition(Managers.Resource.Load<TransitionSettings>("Transitions/Fade/Fade"), 0,() => { Managers.UI.ShowPopupUI<UI_TitlePopup>(); });

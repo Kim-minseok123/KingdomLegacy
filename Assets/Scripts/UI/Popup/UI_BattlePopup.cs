@@ -5,6 +5,7 @@ using UnityEngine;
 using DG.Tweening;
 using System;
 using UnityEngine.UIElements;
+using EasyTransition;
 
 public class UI_BattlePopup : UI_Popup
 {
@@ -248,7 +249,11 @@ public class UI_BattlePopup : UI_Popup
             ability.Die();
         }
         if (Managers.Game.CurMapNode.Node.nodeType == Map.NodeType.Boss && Managers.Game.Stage == 3) {
-            //¿£µù ÆË¾÷ ¶ç¿ì±â
+            TransitionManager.Instance().Transition(Managers.Resource.Load<TransitionSettings>("Transitions/Fade/Fade"), 0,
+            () => {
+                Managers.UI.CloseAllPopupUI();
+                Managers.Scene.ChangeScene(Define.Scene.EndingScene);
+            });
             return;
         }
         //¹èÆ² ³¡³µÀ» ¶§ È¹µæ ÆË¾÷ ¶ç¿ì±â
