@@ -9,19 +9,22 @@ public class UI_ShopItem : UI_Item
     public override bool Init()
     {
         base.Init();
-        Money.text = _itemData.price.ToString();
+
         return true;
     }
     public override void GetItemClick()
     {
+        int price = _itemData.price;
+        if (Managers.Game.isDiscount)
+            price /= 2;
 
-        if (Managers.Game.Money - _itemData.price < 0)
+        if (Managers.Game.Money - price < 0)
             return;
         else
         {
             Managers.Sound.Play(Define.Sound.Effect, "Effect/±¸¸Å", Managers.Game.EffectSound);
 
-            Managers.Game.Money -= _itemData.price;
+            Managers.Game.Money -= price;
             Managers.Game.ShopBuyItems.Add(_itemData.ID);
             _itemData.ability.Setting();
             Managers.Game.Items.Add(_itemData.ID);
@@ -30,6 +33,11 @@ public class UI_ShopItem : UI_Item
             Managers.Game.SaveGame();
             Destroy(gameObject);
         }
+    }
+    public void Update()
+    {
+        if (Managers.Game.isDiscount)
+            Money.text = (_itemData.price / 2).ToString();
     }
 }
 
