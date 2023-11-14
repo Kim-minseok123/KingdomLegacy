@@ -34,6 +34,7 @@ public class AttackAction : ActionBase
                     enemy.GetVulenrable(1);
                     return;
                 }
+                break;
             case 21:
                 Damage = player.infinitySword * 15 + player.Power;
                 player.ResetSwordGauge();
