@@ -97,7 +97,7 @@ public class UI_ShopPopup : UI_Popup
         do
         {
             RandItem = Managers.Data.Items.ElementAt(_rand.Next(0, Managers.Data.Items.Count)).Value;
-        } while (!((RandItem.rarity == Define.Rarity.Normal || RandItem.rarity == Define.Rarity.Rare) && RandItem.ID >= 10));
+        } while (!((RandItem.rarity == Define.Rarity.Normal || RandItem.rarity == Define.Rarity.Rare) && RandItem.ID >= 10 && !Managers.Game.Items.Contains(RandItem.ID)));
         var item = Managers.Resource.Instantiate("UI/SubItem/UI_ShopItem",transform);
         item.transform.position = Get<Transform>((int)Transforms.ItemTransForm1).position;
         shoplist.Add(item);
@@ -108,7 +108,7 @@ public class UI_ShopPopup : UI_Popup
         do
         {
             RandItem = Managers.Data.Items.ElementAt(_rand.Next(0, Managers.Data.Items.Count)).Value;
-        } while (!(RandItem.rarity == Define.Rarity.Unique && RandItem.ID >= 10));
+        } while (!(RandItem.rarity == Define.Rarity.Unique && RandItem.ID >= 10 && !Managers.Game.Items.Contains(RandItem.ID)));
         item = Managers.Resource.Instantiate("UI/SubItem/UI_ShopItem", transform);
         item.transform.position = Get<Transform>((int)Transforms.ItemTransForm2).position;
         shoplist.Add(item);
@@ -119,7 +119,7 @@ public class UI_ShopPopup : UI_Popup
         do
         {
             RandItem = Managers.Data.Items.ElementAt(_rand.Next(0, Managers.Data.Items.Count)).Value;
-        } while (!(RandItem.rarity == Define.Rarity.Legend && RandItem.ID >= 10));
+        } while (!(RandItem.rarity == Define.Rarity.Legend && RandItem.ID >= 10 && !Managers.Game.Items.Contains(RandItem.ID)));
         item = Managers.Resource.Instantiate("UI/SubItem/UI_ShopItem", transform);
         item.transform.position = Get<Transform>((int)Transforms.ItemTransForm3).position;
         shoplist.Add(item);
