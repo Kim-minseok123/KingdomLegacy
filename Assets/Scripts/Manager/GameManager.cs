@@ -155,5 +155,10 @@ public class GameManager : MonoBehaviour
 
         File.Delete(_path);
     }
+    public bool isExists() {
+        if (File.Exists(_path) == false)
+            return false;
+        return true;
+    }
     #endregion
 }

@@ -24,7 +24,7 @@ public class UI_SettingPopup : UI_Popup
         GetComponent<Canvas>().sortingOrder = 998;
         BindButton(typeof(Buttons));
         Bind<Slider>(typeof(Sliders));
-        if(!Managers.Game.LoadGame())
+        if(!Managers.Game.isExists())
             GetButton((int)Buttons.GameEndButton).gameObject.SetActive(false);
 
         Get<Slider>((int)Sliders.BgmSlider).value = Managers.Game.BgmSound;
