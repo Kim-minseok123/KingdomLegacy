@@ -32,7 +32,7 @@ public class ForestKing : EnemyController
                     RemoveBuff(buff);
             }
 
-            if (!isAttackMode) { battleScene._playerController.Damaged(3); }
+            if (!isAttackMode) { battleScene._playerController.Damaged(3, GetText((int)Texts.NameText).text); }
         }
         var effect = Managers.Resource.Instantiate("Effect/Hit");
         effect.transform.position = transform.position;

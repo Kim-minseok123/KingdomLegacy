@@ -12,7 +12,7 @@ public class DarkElf : EnemyController
         if (num < 50)
         {
             curIntention = Intention.Attack;
-            IntentionFigure = 7;
+            IntentionFigure = 99;
         }
         else if (num < 80)
         {

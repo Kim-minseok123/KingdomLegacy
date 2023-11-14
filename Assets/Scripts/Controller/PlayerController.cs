@@ -90,7 +90,7 @@ public class PlayerController : UI_Base
         GetText((int)Texts.NameText).DOFade(0, 1f);
     }
 
-    public void Damaged(int value)
+    public void Damaged(int value, string enemy = null)
     {
         //Ã¼·Â ´â±â
         if (Vulenerable > 0) value += (int)(value * (50 / 100f));
@@ -115,6 +115,7 @@ public class PlayerController : UI_Base
         {
             Managers.Game.CurHp = 0;
             _playerAnim.SetTrigger("Death");
+            Managers.UI.ShowPopupUI<UI_DeathPopup>().SetInfo(enemy);
         }
         else if (Managers.Game.CurHp <= 0 && Managers.Game.isResurrection) { 
             Managers.Game.CurHp = 1;

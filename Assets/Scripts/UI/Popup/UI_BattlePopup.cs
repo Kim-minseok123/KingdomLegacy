@@ -237,7 +237,7 @@ public class UI_BattlePopup : UI_Popup
             EndBattle();
             isBattleEnd = true;
         }
-        if (Input.GetKeyDown(KeyCode.Space)) { _playerController.AttackEnemy(999); }
+        //if (Input.GetKeyDown(KeyCode.Space)) { _playerController.AttackEnemy(999); }
     }
     bool isBattleEnd = false;
     private void EndBattle()

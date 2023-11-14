@@ -33,7 +33,7 @@ public class EnemyController : UI_Base
         TooltipImage,
         IntentionImage,
     }
-    enum Texts
+    public enum Texts
     {
         HpText,
         BuffText1,
@@ -144,7 +144,7 @@ public class EnemyController : UI_Base
         animator.SetTrigger("Attack");
     }
     public virtual void AttackAnim() {
-        battleScene._playerController.Damaged(tempDamage);
+        battleScene._playerController.Damaged(tempDamage, GetText((int)Texts.NameText).text);
     }
     public void RemoveBuff(Buff buff) { 
         buffList.Remove(buff);
