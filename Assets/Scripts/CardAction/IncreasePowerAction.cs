@@ -21,6 +21,7 @@ public class IncreasePowerAction : ActionBase
                 break;
             case 119:
                 player.GetPower(card.increasePower);
+                player.GetdePower(card.increasePower);
                 player.HealHp(1);
                 break;
         }

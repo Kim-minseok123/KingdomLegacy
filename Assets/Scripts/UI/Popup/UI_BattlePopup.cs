@@ -145,6 +145,7 @@ public class UI_BattlePopup : UI_Popup
                 _enemyList.Add(enemy);
             }
         }
+        EnemyCount = _enemyList.Count;
         GetButton((int)Buttons.TurnEndButton).gameObject.BindEvent(TurnEnd);
         _ar = GetObject((int)GameObjects.ArrowController).GetComponent<ArrowController>();
         RefreshUI();
@@ -233,14 +234,8 @@ public class UI_BattlePopup : UI_Popup
                 _state = States.TurnStart;
                 break;
         }
-        if(_enemyList.Count == 0 && !isBattleEnd)
-        {
-            EndBattle();
-            isBattleEnd = true;
-        }
         //if (Input.GetKeyDown(KeyCode.Space)) { _playerController.AttackEnemy(999); }
     }
-    bool isBattleEnd = false;
     private void EndBattle()
     {
         GameEvents.OnBattleEnd();
@@ -765,5 +760,11 @@ public class UI_BattlePopup : UI_Popup
         Managers.Sound.Play(Define.Sound.Effect, "Effect/Click", Managers.Game.EffectSound);
 
         Managers.UI.ShowPopupUI<UI_ShowCardsListPopup>().SetInfo(_throwCards);
+    }
+    public int EnemyCount;
+    public void CheckEnemy() {
+        if (EnemyCount == 0) {
+            EndBattle();
+        }
     }
 }

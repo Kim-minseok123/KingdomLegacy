@@ -68,27 +68,51 @@ public class UI_ChooseClearItemPopup : UI_Popup
             if (ItemList.Contains(Managers.Game.Items[i]))
                 ItemList.Remove(Managers.Game.Items[i]);
         }
-
-        if (Managers.Game.isChoice || Managers.Game.isDoubleItem)
+        if (type == 2)
         {
-            int random = ItemList.Random();
+            if (Managers.Game.isChoice)
+            {
+                int random = ItemList.Random();
 
-            var obj = Managers.Resource.Instantiate("UI/SubItem/UI_Item", transform);
-            obj.transform.localPosition = new Vector3(200f, 200f, 0f);
-            obj.GetComponent<UI_Item>().SetInfo(random, type);
+                var obj = Managers.Resource.Instantiate("UI/SubItem/UI_Item", transform);
+                obj.transform.localPosition = new Vector3(200f, 200f, 0f);
+                obj.GetComponent<UI_Item>().SetInfo(random, type);
+                random = ItemList.Random();
 
-            
-            obj = Managers.Resource.Instantiate("UI/SubItem/UI_Item", transform);
-            obj.transform.localPosition = new Vector3(-200f, 200f, 0f);
-            obj.GetComponent<UI_Item>().SetInfo(random, type);
+                obj = Managers.Resource.Instantiate("UI/SubItem/UI_Item", transform);
+                obj.transform.localPosition = new Vector3(-200f, 200f, 0f);
+                obj.GetComponent<UI_Item>().SetInfo(random, type);
+            }
+            else
+            {
+                int random = ItemList.Random();
+
+                var obj = Managers.Resource.Instantiate("UI/SubItem/UI_Item", transform);
+                obj.transform.localPosition = new Vector3(0f, 200f, 0f);
+                obj.GetComponent<UI_Item>().SetInfo(random, type);
+            }
         }
-        else
-        {
-            int random = ItemList.Random();
+        else if (type == 3) {
+            if (Managers.Game.isDoubleItem) {
+                int random = ItemList.Random();
 
-            var obj = Managers.Resource.Instantiate("UI/SubItem/UI_Item", transform);
-            obj.transform.localPosition = new Vector3(0f, 200f, 0f);
-            obj.GetComponent<UI_Item>().SetInfo(random, type);
+                var obj = Managers.Resource.Instantiate("UI/SubItem/UI_Item", transform);
+                obj.transform.localPosition = new Vector3(200f, 200f, 0f);
+                obj.GetComponent<UI_Item>().SetInfo(random, type);
+                random = ItemList.Random();
+
+                obj = Managers.Resource.Instantiate("UI/SubItem/UI_Item", transform);
+                obj.transform.localPosition = new Vector3(-200f, 200f, 0f);
+                obj.GetComponent<UI_Item>().SetInfo(random, type);
+            }
+            else
+            {
+                int random = ItemList.Random();
+
+                var obj = Managers.Resource.Instantiate("UI/SubItem/UI_Item", transform);
+                obj.transform.localPosition = new Vector3(0f, 200f, 0f);
+                obj.GetComponent<UI_Item>().SetInfo(random, type);
+            }
         }
     }
     public void BossItem()

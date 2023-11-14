@@ -5,7 +5,7 @@ public class AttackAction : ActionBase
     public override void StartAction(PlayerController player, CardData card, EnemyController enemy = null) {
         int Damage = 0;
         switch (card.ID) {
-            case 1: case 2: case 3: case 4: case 5: case 6: case 7: case 8: case 13: case 14:case 15:case 16: case 23: case 24: case 35: case 36: case 41: case 42: case 43: case 44: case 47: case 48: case 122: case 123: case 126: case 127:
+            case 1: case 2: case 3: case 4: case 5: case 6: case 7: case 8: case 13: case 14:case 15:case 16: case 35: case 36: case 41: case 42: case 43: case 44: case 47: case 48: case 122: case 123: case 126: case 127:
                 Damage = card.damage + player.Power;
                 break;
             case 9: case 10:
@@ -40,6 +40,14 @@ public class AttackAction : ActionBase
             case 22:
                 Damage = player.infinitySword * 20 + player.Power;
                 player.ResetSwordGauge();
+                break;
+            case 23:
+                Damage = card.damage + player.Power;
+                card.damage = 7;
+                break;
+            case 24:
+                Damage = card.damage + player.Power;
+                card.damage = 10;
                 break;
             case 25: case 26:
                 Damage = card.damage + (int)(player.Power * 0.5);

@@ -368,6 +368,8 @@ public class EnemyController : UI_Base
     {
         battleScene._enemyList.Remove(gameObject);
         GameEvents.OnKillEnemy();
+        battleScene.EnemyCount--;
+        battleScene.CheckEnemy();
         Managers.Resource.Destroy(gameObject);
     }
     public void ResetBuff()
