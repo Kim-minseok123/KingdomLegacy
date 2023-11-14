@@ -266,6 +266,8 @@ public class EnemyController : UI_Base
     Buff PBuff;
     public void GetPoisoning(int value)
     {
+        if (Managers.Game.isDoublePoisoning)
+            value *= 2;
         Buff buff = buffList.GetBuffName("Áßµ¶");
         if (buff == null)
         {
@@ -276,8 +278,6 @@ public class EnemyController : UI_Base
         }
         else
         {
-            if (Managers.Game.isDoublePoisoning)
-                value *= 2;
             buff.Value += value;
         }
         var effect = Managers.Resource.Instantiate("Effect/Poison");
