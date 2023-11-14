@@ -100,6 +100,7 @@ public class EnemyController : UI_Base
         if (CurHp <= 0) { 
             CurHp = 0;
             // Á×À½
+            battleScene._enemyList.Remove(gameObject);
             animator.SetTrigger("Death");
         }
         RefreshUI();
@@ -366,7 +367,7 @@ public class EnemyController : UI_Base
     }
     public virtual void Death()
     {
-        battleScene._enemyList.Remove(gameObject);
+        
         GameEvents.OnKillEnemy();
         battleScene.EnemyCount--;
         battleScene.CheckEnemy();

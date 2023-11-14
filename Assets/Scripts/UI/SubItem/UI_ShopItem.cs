@@ -38,7 +38,8 @@ public class UI_ShopItem : UI_Item
     {
         if (Managers.Game.isDiscount)
             Money.text = (_itemData.price / 2).ToString();
-        Money.text = (_itemData.price).ToString();
+        else
+            Money.text = (_itemData.price).ToString();
     }
 }
 

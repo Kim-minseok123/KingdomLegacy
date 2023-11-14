@@ -261,6 +261,7 @@ public class UI_BattlePopup : UI_Popup
     IEnumerator EnemyActionCor() {
         foreach (GameObject enemy in _enemyList)
         {
+            if (enemy == null) continue;
             yield return StartCoroutine(enemy.GetComponent<EnemyController>().IntentionMotion());
             yield return new WaitForSeconds(1.5f);
         }

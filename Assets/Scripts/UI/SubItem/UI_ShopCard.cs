@@ -31,7 +31,8 @@ public class UI_ShopCard : UI_NonBattleCard
     {
         if (Managers.Game.isDiscount)
             Money.text = (_cardData.price / 2).ToString();
-        Money.text = (_cardData.price).ToString();
+        else
+            Money.text = (_cardData.price).ToString();
 
     }
 }
