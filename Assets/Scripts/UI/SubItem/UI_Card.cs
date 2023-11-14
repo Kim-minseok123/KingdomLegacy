@@ -104,7 +104,7 @@ public class UI_Card : UI_Base
             GetImage((int)Images.DontUseCardImage).gameObject.SetActive(true);
         }
     }
-    public void BurnFade() { 
+    public void BurnFade(int i = 0) { 
         
             GetText(0).gameObject.SetActive(false);
         
@@ -113,7 +113,7 @@ public class UI_Card : UI_Base
             GetText(2).gameObject.SetActive(false);
         StartCoroutine(Burn());
     }
-    IEnumerator Burn() { 
+    IEnumerator Burn(int i = 0) { 
         Material material = GetComponent<Image>().materialForRendering;
         material.EnableKeyword("FADE_ON");
         float value = -0.1f;
@@ -125,7 +125,8 @@ public class UI_Card : UI_Base
             yield return null;
         }
         material.DisableKeyword("FADE_ON");
-        Managers.Resource.Destroy(gameObject);
-
+        if(i !=1)
+            Managers.Resource.Destroy(gameObject);
+        Debug.Log("¼Ò¸êµÊ" + _cardData.name);
     }
 }

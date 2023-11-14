@@ -6,6 +6,7 @@ using DG.Tweening;
 using System;
 using UnityEngine.UIElements;
 using EasyTransition;
+using Unity.VisualScripting;
 
 public class UI_BattlePopup : UI_Popup
 {
@@ -565,31 +566,37 @@ public class UI_BattlePopup : UI_Popup
     }
     IEnumerator EndCard(UI_Card obj)
     {
+        if (obj == null)
+        {
+            yield break;
+        }
+
         Vector3 target = GetButton((int)Buttons.ThrowDeckCard).gameObject.transform.position;
         if (obj._cardData.state != Define.CardLifeState.Extinction)
         {
+            _throwCards.Add(obj._cardData);
+            if (_playerController.Confusion > 0 && obj._cardData.type != Define.CardType.Attack)
+            {
+                GetDizziness(1, false);
+            }
             obj.transform.DOMove(target, 0.5f).SetEase(ease);
             obj.transform.DOScale(Vector3.zero, 0.5f).SetEase(ease);
             yield return new WaitForSeconds(0.5f);
         }
         //카드 소멸 함수 하나 만들기
         else {
-            obj.BurnFade();
-            yield return new WaitForSeconds(0.5f);
-        }
-        if (obj._cardData.state == Define.CardLifeState.Extinction)
-        {
             _exitCards.Add(obj._cardData);
             GameEvents.OnExitCard();
+            obj.BurnFade(1);
+            if (_playerController.Confusion > 0 && obj._cardData.type != Define.CardType.Attack)
+            {
+                GetDizziness(1, false);
+            }
+            yield return new WaitForSeconds(0.5f);
         }
-        else
-            _throwCards.Add(obj._cardData);
-        if (_playerController.Confusion > 0 && obj._cardData.type != Define.CardType.Attack) {
-            GetDizziness(1, false);
-        }
-
-        Managers.Resource.Destroy(obj.gameObject);
-        
+            
+        if (obj != null)
+            Managers.Resource.Destroy(obj.gameObject);
         _curTurnUseCard++;
         _handCardsUI.RemoveAll(ui => ui == null);
         RefreshUI();
