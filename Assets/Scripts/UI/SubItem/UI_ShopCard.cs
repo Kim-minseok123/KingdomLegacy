@@ -20,15 +20,25 @@ public class UI_ShopCard : UI_NonBattleCard
         Managers.Sound.Play(Define.Sound.Effect, "Effect/±¸¸Å", Managers.Game.EffectSound);
 
         GameEvents.OnGetCard();
-        CardData card = _cardData;
-        Managers.Game.ShopBuyCards.Add(card.ID);
+        CardData card = null;
         if (_cardData.type == Define.CardType.Attack)
             card = GameEvents.OnGetAttackCard(_cardData);
         if (_cardData.type == Define.CardType.Skill)
             card = GameEvents.OnGetSkillCard(_cardData);
         if (_cardData.type == Define.CardType.Friend)
             card = GameEvents.OnGetFriendCard(_cardData);
-        Managers.Game.Cards.Add(card.ID);
+        if (card == null)
+        {
+            Managers.Game.ShopBuyCards.Add(_cardData.ID);
+
+            Managers.Game.Cards.Add(_cardData.ID);
+        }
+        else if (card != null)
+        {
+            Managers.Game.ShopBuyCards.Add(card.ID);
+
+            Managers.Game.Cards.Add(card.ID);
+        }
         Managers.Game.Money -= price;
         
         Managers.Game.SaveGame();

@@ -226,7 +226,14 @@ public class EnemyController : UI_Base
             buff.Value += value;
         }
         var effect = Managers.Resource.Instantiate("Effect/Buff");
-        effect.transform.position = transform.position;
+        if (effect == null)
+        {
+            Debug.LogError("Effect/Buff 인스턴스화에 실패했습니다.");
+            return;
+        }
+        else { 
+            effect.transform.position = transform.position;
+        }
         RefreshUI();
     }
     public void GetdePower(int value)

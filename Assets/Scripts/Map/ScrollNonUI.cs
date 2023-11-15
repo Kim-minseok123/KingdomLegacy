@@ -39,7 +39,7 @@ namespace Map
 
         private void Update()
         {
-            if (!dragging || Time.timeScale == 0f) return;
+            if (!dragging || Time.timeScale == 0f || Managers.UI.PeekPopupUI<UI_MapPopup>() == null) return;
 
             var mousePos = MouseInWorldCoords();
             //Debug.Log(mousePos);

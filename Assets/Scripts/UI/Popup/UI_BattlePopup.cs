@@ -192,7 +192,6 @@ public class UI_BattlePopup : UI_Popup
                 _state = States.TurnStart;
                 break;
             case States.TurnStart:
-                GameEvents.OnTurnStart();
                 _curTurn++;
                 GetText((int)Texts.CurTurnText).text = "ео : " + _curTurn.ToString();
                 GameEvents.OnTurnValue(_curTurn);
@@ -203,6 +202,8 @@ public class UI_BattlePopup : UI_Popup
                     if (Managers.Game.IsInviolable)
                         _playerController.GetInviolable(1);
                 }
+                GameEvents.OnTurnStart();
+
                 if (_playerController.Restraint > 0)
                     _playerController.Damaged(10);
                 DrawCards(_startDrawCardNum);
