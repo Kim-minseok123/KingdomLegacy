@@ -25,6 +25,7 @@ public class DefenseAction : ActionBase
                 break;
             case 83: case 84:
                 //무한의 검 소환
+                player.isInfinitySword = true;
                 FriendAbility Infinity = new InfinitySword();
                 player._battleScene.MakeFriend("무한의 검", Infinity,card);
                 return;
