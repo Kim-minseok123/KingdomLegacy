@@ -539,7 +539,7 @@ public class Item28 : ItemAbility
     }
     public CardData GetCard(CardData card)
     {
-        if (card.ID % 2 == 1) {
+        if (card.ID % 2 == 1 && card.type == Define.CardType.Attack) {
             return Managers.Data.Cards[card.ID + 1];
         }
         return card;
@@ -558,7 +558,7 @@ public class Item29 : ItemAbility
     }
     public CardData GetCard(CardData card)
     {
-        if (card.ID % 2 == 1)
+        if (card.ID % 2 == 1 && card.type == Define.CardType.Skill)
         {
             return Managers.Data.Cards[card.ID + 1];
         }
@@ -578,7 +578,7 @@ public class Item30 : ItemAbility
     }
     public CardData GetCard(CardData card)
     {
-        if (card.ID % 2 == 1)
+        if (card.ID % 2 == 1 && card.type == Define.CardType.Friend)
         {
             return Managers.Data.Cards[card.ID + 1];
         }

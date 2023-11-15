@@ -148,12 +148,12 @@
       <action>AttackAction</action>
     </actions>
   </CardData>
-  <CardData ID="29" name="깨드리다" description="적 방어도 제거. 피해 {0}." type ="Attack" rarity="Unique" target="Enemy" damage="10" mana="1" price="150">
+  <CardData ID="29" name="깨트리다" description="적 방어도 제거. 피해 {0}." type ="Attack" rarity="Unique" target="Enemy" damage="10" mana="1" price="150">
     <actions>
       <action>AttackAction</action>
     </actions>
   </CardData>
-  <CardData ID="30" name="깨드리다+" description="적 방어도 제거. 피해 {0}." type ="Attack" rarity="Unique" target="Enemy" damage="14" mana="1" price="220">
+  <CardData ID="30" name="깨트리다+" description="적 방어도 제거. 피해 {0}." type ="Attack" rarity="Unique" target="Enemy" damage="14" mana="1" price="220">
     <actions>
       <action>AttackAction</action>
     </actions>

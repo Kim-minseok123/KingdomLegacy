@@ -34,7 +34,9 @@ public class Braum : EnemyController
                     RemoveBuff(buff);
             }
         }
-
+        var effect = Managers.Resource.Instantiate("Effect/Hit");
+        effect.transform.position = transform.position;
+        Managers.Sound.Play(Define.Sound.Effect, "Effect/ÇÇ°Ý", Managers.Game.EffectSound);
         StartCoroutine(DamageMaterial());
         CurHp -= value;
         if (CurHp <= 0)
@@ -61,7 +63,7 @@ public class Braum : EnemyController
             curIntention = Intention.Attack;
             IntentionFigure = 14;
         }
-        else if (num < 20)
+        else if (num < 100)
         {
             curIntention = Intention.AttackDebuff;
             IntentionFigure = 25;

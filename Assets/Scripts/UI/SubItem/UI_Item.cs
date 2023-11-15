@@ -107,6 +107,8 @@ public class UI_Item : UI_Base
             GameEvents.OnGetItem();
             Managers.Game.SaveGame();
             Destroy(gameObject);
+            Managers.UI.FindPopup<UI_ChooseClearItemPopup>().EndSelect();
+
             return;
         }
         
