@@ -47,7 +47,7 @@ public class UI_ShopItem : UI_Item
         else
         {
             Money.text = (_itemData.price).ToString();
-            if (Managers.Game.Money < (_itemData.price / 2))
+            if (Managers.Game.Money < (_itemData.price))
             {
                 Money.text = "<color=red>" + Money.text + "</color>";
             }
