@@ -18,9 +18,14 @@ public class UI_ShopCard : UI_NonBattleCard
 
         if (Managers.Game.Money < price) return;
         Managers.Sound.Play(Define.Sound.Effect, "Effect/±¸¸Å", Managers.Game.EffectSound);
-
-        CardData card = GameEvents.OnGetCard(_cardData);
-        card ??= _cardData;
+        GameEvents.OnGetCard();
+        CardData card = _cardData;
+        if(_cardData.type == Define.CardType.Attack)
+            card = GameEvents.OnGetAttackCard(_cardData);
+        if (_cardData.type == Define.CardType.Skill)
+            card = GameEvents.OnGetSkillCard(_cardData);
+        if (_cardData.type == Define.CardType.Friend)
+            card = GameEvents.OnGetFriendCard(_cardData);
         Managers.Game.Cards.Add(card.ID);
         Managers.Game.Money -= price;
         Managers.Game.ShopBuyCards.Add(card.ID);

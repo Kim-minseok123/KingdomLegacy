@@ -11,7 +11,10 @@ public static class GameEvents
     public static event Action TakeRest;
     public static event Action KillEnemy;
     public static event Action<CardData> UseCard;
-    public static event Func<CardData, CardData> GetCard;
+    public static event Action GetCard;
+    public static event Func<CardData, CardData> GetAttackCard;
+    public static event Func<CardData, CardData> GetSkillCard;
+    public static event Func<CardData, CardData> GetFriendCard;
     public static event Action LostHp;
     public static event Action ShuffleDeck;
     public static event Action ExitCard;
@@ -53,9 +56,21 @@ public static class GameEvents
     {
         UseCard?.Invoke(card);
     }
-    public static CardData OnGetCard(CardData card)
+    public static CardData OnGetAttackCard(CardData card)
     {
-        return GetCard?.Invoke(card);
+        return GetAttackCard?.Invoke(card);
+    }
+    public static CardData OnGetSkillCard(CardData card)
+    {
+        return GetSkillCard?.Invoke(card);
+    }
+    public static CardData OnGetFriendCard(CardData card)
+    {
+        return GetFriendCard?.Invoke(card);
+    }
+    public static void OnGetCard()
+    {
+        GetCard?.Invoke();
     }
     public static void OnLostHp() { 
         LostHp?.Invoke();

@@ -266,9 +266,8 @@ public class Item13 : ItemAbility
     {
         
     }
-    public CardData GetCard(CardData card) {
+    public void GetCard() {
         Managers.Game.Money += value;
-        return card;
     }
 
     public override void Setting()
@@ -541,15 +540,15 @@ public class Item28 : ItemAbility
     }
     public CardData GetCard(CardData card)
     {
-        if (card.ID % 2 == 1 && card.type == Define.CardType.Attack) {
+        if (card.ID % 2 == 1) {
             return Managers.Data.Cards[card.ID + 1];
         }
         return card;
     }
     public override void Setting()
     {
-        GameEvents.GetCard -= GetCard;
-        GameEvents.GetCard += GetCard;
+        GameEvents.GetAttackCard -= GetCard;
+        GameEvents.GetAttackCard += GetCard;
     }
 }
 public class Item29 : ItemAbility
@@ -560,7 +559,7 @@ public class Item29 : ItemAbility
     }
     public CardData GetCard(CardData card)
     {
-        if (card.ID % 2 == 1 && card.type == Define.CardType.Skill)
+        if (card.ID % 2 == 1)
         {
             return Managers.Data.Cards[card.ID + 1];
         }
@@ -568,8 +567,8 @@ public class Item29 : ItemAbility
     }
     public override void Setting()
     {
-        GameEvents.GetCard -= GetCard;
-        GameEvents.GetCard += GetCard;
+        GameEvents.GetSkillCard -= GetCard;
+        GameEvents.GetSkillCard += GetCard;
     }
 }
 public class Item30 : ItemAbility
@@ -580,7 +579,7 @@ public class Item30 : ItemAbility
     }
     public CardData GetCard(CardData card)
     {
-        if (card.ID % 2 == 1 && card.type == Define.CardType.Friend)
+        if (card.ID % 2 == 1)
         {
             return Managers.Data.Cards[card.ID + 1];
         }
@@ -588,8 +587,8 @@ public class Item30 : ItemAbility
     }
     public override void Setting()
     {
-        GameEvents.GetCard -= GetCard;
-        GameEvents.GetCard += GetCard;
+        GameEvents.GetFriendCard -= GetCard;
+        GameEvents.GetFriendCard += GetCard;
     }
 }
 public class Item31 : ItemAbility
@@ -680,12 +679,11 @@ public class Item35 : ItemAbility
     {
 
     }
-    public CardData GetCard(CardData card)
+    public void GetCard()
     {
         Managers.Game.CurHp += 7;
         if(Managers.Game.CurHp >= Managers.Game.MaxHp )
             Managers.Game.CurHp = Managers.Game.MaxHp;
-        return card;
     }
 
     public override void Setting()
