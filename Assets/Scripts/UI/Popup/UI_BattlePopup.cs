@@ -194,7 +194,6 @@ public class UI_BattlePopup : UI_Popup
             case States.TurnStart:
                 _curTurn++;
                 GetText((int)Texts.CurTurnText).text = "ео : " + _curTurn.ToString();
-                GameEvents.OnTurnValue(_curTurn);
                 SetEnemyIntention();
                 if (_curTurn != 1)
                     _playerController.ResetShield();
@@ -203,6 +202,7 @@ public class UI_BattlePopup : UI_Popup
                         _playerController.GetInviolable(1);
                 }
                 GameEvents.OnTurnStart();
+                GameEvents.OnTurnValue(_curTurn);
 
                 if (_playerController.Restraint > 0)
                     _playerController.Damaged(10);
