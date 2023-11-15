@@ -29,10 +29,20 @@ public class UI_ShopCard : UI_NonBattleCard
     }
     public void Update()
     {
-        if (Managers.Game.isDiscount)
-            Money.text = (_cardData.price / 2).ToString();
-        else
-            Money.text = (_cardData.price).ToString();
 
+        if (Managers.Game.isDiscount) {
+            Money.text = (_cardData.price / 2).ToString();
+            if (Managers.Game.Money < (_cardData.price / 2)) {
+                Money.text = "<color=red>" + Money.text + "</color>";
+            }
+        }
+        else { 
+            Money.text = (_cardData.price).ToString();
+            if (Managers.Game.Money < _cardData.price)
+            {
+                Money.text = "<color=red>" + Money.text + "</color>";
+            }
+        }
+        
     }
 }

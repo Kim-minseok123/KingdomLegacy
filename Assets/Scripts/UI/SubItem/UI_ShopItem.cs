@@ -37,9 +37,21 @@ public class UI_ShopItem : UI_Item
     public void Update()
     {
         if (Managers.Game.isDiscount)
+        {
             Money.text = (_itemData.price / 2).ToString();
+            if (Managers.Game.Money < (_itemData.price / 2))
+            {
+                Money.text = "<color=red>" + Money.text + "</color>";
+            }
+        }
         else
+        {
             Money.text = (_itemData.price).ToString();
+            if (Managers.Game.Money < (_itemData.price / 2))
+            {
+                Money.text = "<color=red>" + Money.text + "</color>";
+            }
+        }
     }
 }
 
