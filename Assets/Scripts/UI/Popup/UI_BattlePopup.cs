@@ -197,8 +197,12 @@ public class UI_BattlePopup : UI_Popup
                 GetText((int)Texts.CurTurnText).text = "ео : " + _curTurn.ToString();
                 GameEvents.OnTurnValue(_curTurn);
                 SetEnemyIntention();
-                if(_curTurn != 1)
+                if (_curTurn != 1)
                     _playerController.ResetShield();
+                else {
+                    if (Managers.Game.IsInviolable)
+                        _playerController.GetInviolable(1);
+                }
                 if (_playerController.Restraint > 0)
                     _playerController.Damaged(10);
                 DrawCards(_startDrawCardNum);
@@ -241,6 +245,13 @@ public class UI_BattlePopup : UI_Popup
     {
         GameEvents.OnBattleEnd();
         _state = States.BattleEnd;
+        if (_playerController.Inviolable > 0)
+        {
+            Managers.Game.IsInviolable = true;
+        }
+        else { 
+            Managers.Game.IsInviolable = false;
+        }
         foreach (FriendAbility ability in Friends) {
             ability.Die();
         }

@@ -100,7 +100,7 @@ public class PlayerController : UI_Base
         if(value < 0) value = 0;
         if (Shield < 0) Shield = 0;
         StartCoroutine(DamageMaterial());
-        if (Inviolable > 0)
+        if (value > 0 && Inviolable > 0)
         {
             value = 1;
             ResetInviolable();

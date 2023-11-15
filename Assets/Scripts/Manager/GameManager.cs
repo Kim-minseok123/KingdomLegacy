@@ -40,6 +40,7 @@ public class GameData
     public int DeleteCardMoney;
     public float BgmSound;
     public float EffectSound;
+    public bool isInviolable;
 }
 public class GameManager : MonoBehaviour
 {
@@ -58,6 +59,7 @@ public class GameManager : MonoBehaviour
     public int StageNumber { get { return _gameData.stageNumber; } set { _gameData.stageNumber = value; } }
     public int VulenrablePercent { get { return _gameData.VulenrablePercent; } set { _gameData.VulenrablePercent = value; } }
     public bool isManaDisappear { get { return _gameData.isManaDisappear; } set { _gameData.isManaDisappear = value; } }
+    public bool IsInviolable { get { return _gameData.isInviolable; } set { _gameData.isInviolable = value; } }
     public MapNode CurMapNode { get { return _gameData.curMapNode; } set { _gameData.curMapNode = value; } }
     public List<int> Cards { get {  return _gameData.cards; } set { _gameData.cards.AddRange(value);} }
     public List<int> ShopCards { get {  return _gameData.shopCards; } set { _gameData.shopCards.AddRange(value);} }
@@ -119,6 +121,7 @@ public class GameManager : MonoBehaviour
         DeleteCardMoney = 30;
         EffectSound = 0.8f;
         BgmSound = 0.8f;
+        IsInviolable = false;
     }
     
     #region Save & Load	
