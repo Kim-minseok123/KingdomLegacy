@@ -374,7 +374,7 @@
       <action>WeaknessAction</action>
     </actions>
   </CardData>
-  <CardData ID="71" name="승천+" description="무작위 손 패 카드 1장 소멸. 드로우 2." type ="Skill" rarity="Rare" target="Player" mana="1" drawCard="2" price="30">
+  <CardData ID="71" name="승천" description="무작위 손 패 카드 1장 소멸. 드로우 2." type ="Skill" rarity="Rare" target="Player" mana="1" drawCard="2" price="30">
     <actions>
       <action>DrawAction</action>
     </actions>
