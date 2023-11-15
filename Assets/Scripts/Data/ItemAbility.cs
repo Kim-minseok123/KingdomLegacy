@@ -492,6 +492,8 @@ public class Item25 : ItemAbility
         GameEvents.UseCard += UseCard;
         GameEvents.TurnEnd -= Use;
         GameEvents.TurnEnd += Use;
+        GameEvents.BattleEnd -= Use;
+        GameEvents.BattleEnd += Use;
     }
 }
 public class Item26 : ItemAbility
