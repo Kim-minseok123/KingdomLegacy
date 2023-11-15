@@ -80,6 +80,7 @@ public class UI_ClearRoomPopup : UI_Popup
                     Camera.main.orthographicSize = 7;
                     Managers.UI.ClosePopupUI(Managers.UI.FindPopup<UI_BattlePopup>());
                     Managers.Sound.Play(Define.Sound.Effect, "Effect/³Ñ±â±â", Managers.Game.EffectSound);
+                    Managers.Game.SaveGame();
                 });
         }
         else {
@@ -90,8 +91,8 @@ public class UI_ClearRoomPopup : UI_Popup
                     Managers.UI.ClosePopupUI(Managers.UI.FindPopup<UI_BattlePopup>());
                     Managers.UI.FindPopup<UI_MapPopup>().SideBarOn();
                     Managers.UI.FindPopup<UI_MapPopup>().ShowMap();
+                    Managers.Game.SaveGame();
                 });
         }
-        Managers.Game.SaveGame();
     }
 }
