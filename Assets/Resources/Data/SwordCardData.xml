@@ -74,14 +74,14 @@
       <action>DrawAction</action>
     </actions>
   </CardData>
-  <CardData ID="15" name="약점 파악" description="피해 {0}. 적이 취약 상태라면 텐션 2 획득. 드로우 1." type ="Attack" rarity="Rare" target="Enemy" damage="1" mana="1" drawCard="1" getMana="2" price="30">
+  <CardData ID="15" name="약점 파악" description="피해 {0}. 드로우 1. 적이 취약 상태라면 텐션 2 획득." type ="Attack" rarity="Rare" target="Enemy" damage="1" mana="1" drawCard="1" getMana="2" price="30">
     <actions>
       <action>AttackAction</action>
       <action>DrawAction</action>
       <action>GetManaAction</action>
     </actions>
   </CardData>
-  <CardData ID="16" name="약점 파악+" description="피해 {0}. 적이 취약 상태라면 텐션 2 획득. 드로우 1." type ="Attack" rarity="Rare" target="Enemy" damage="8" mana="1" drawCard="1" getMana="2" price="60">
+  <CardData ID="16" name="약점 파악+" description="피해 {0}. 드로우 1. 적이 취약 상태라면 텐션 2 획득." type ="Attack" rarity="Rare" target="Enemy" damage="8" mana="1" drawCard="1" getMana="2" price="60">
     <actions>
       <action>AttackAction</action>
       <action>DrawAction</action>
