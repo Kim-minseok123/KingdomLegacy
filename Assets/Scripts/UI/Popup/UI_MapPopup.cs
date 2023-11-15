@@ -111,10 +111,12 @@ public class UI_MapPopup : UI_Popup
         int tempMoney = Managers.Game.Money;
         int tempMaxHp = Managers.Game.MaxHp;
         int tempCurHp = Managers.Game.CurHp;
+        int tempMana = Managers.Game.Mana;
         GameEvents.OnGetItem();
         Managers.Game.Money = tempMoney;
         Managers.Game.MaxHp = tempMaxHp;
         Managers.Game.CurHp = tempCurHp;
+        Managers.Game.Mana = tempMana;
         Managers.Game.SaveGame();
     }
     public void AddItem(int id) {
