@@ -26,7 +26,6 @@ public class UI_SelectCardPopup : UI_Popup
         if (base.Init() == false)
             return false;
 
-        BindButton(typeof(Buttons));
         BindObject(typeof(GameObjects));
 
         for (int i = 0; i < cards.Count; i++) {

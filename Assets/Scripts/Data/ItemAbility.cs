@@ -172,20 +172,13 @@ public class Item8 : ItemAbility
         UI_BattlePopup btp = Managers.UI.FindPopup<UI_BattlePopup>();
         if (btp != null && (Managers.Game.CurMapNode.Node.nodeType == Map.NodeType.EliteEnemy || Managers.Game.CurMapNode.Node.nodeType == Map.NodeType.Boss))
         {
-            Managers.Game.Mana += value;
-            GameEvents.BattleEnd -= BattleEnd;
-            GameEvents.BattleEnd += BattleEnd;
+            btp.HealMana(1);
         }
-    }
-    public void BattleEnd()
-    {
-        GameEvents.BattleEnd -= BattleEnd;
-        Managers.Game.Mana -= value;
     }
     public override void Setting()
     {
-        GameEvents.BattleStart -= Use;
-        GameEvents.BattleStart += Use;
+        GameEvents.TurnStart -= Use;
+        GameEvents.TurnStart += Use;
     }
 }
 public class Item9 : ItemAbility
@@ -1029,7 +1022,8 @@ public class Item52 : ItemAbility
         UI_BattlePopup btp = Managers.UI.FindPopup<UI_BattlePopup>();
         if (btp != null)
         {
-            var Rancard = Managers.Data.Cards.ElementAt(_rand.Next(91, 119)).Value;
+            int rand = UnityEngine.Random.Range(91, 119);
+            var Rancard = Managers.Data.Cards.ElementAt(rand).Value;
             Rancard.mana = 0;
             btp.DrawCards(Rancard);
         }

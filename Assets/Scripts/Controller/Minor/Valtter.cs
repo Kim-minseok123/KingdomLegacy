@@ -21,7 +21,7 @@ public class Valtter : EnemyController
                 curIntention = Intention.Attack;
                 IntentionFigure = 18;
             }
-            else if (num < 40)
+            else if (num < 100)
             {
                 curIntention = Intention.Attack;
                 IntentionFigure = 25;

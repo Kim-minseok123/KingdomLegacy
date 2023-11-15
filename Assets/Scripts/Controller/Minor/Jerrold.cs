@@ -20,7 +20,7 @@ public class Jerrold : EnemyController
                 curIntention = Intention.Attack;
                 IntentionFigure = 30;
             }
-            else if (num < 40)
+            else if (num < 100)
             {
                 curIntention = Intention.Buff;
                 IntentionFigure = 5;
