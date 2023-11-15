@@ -142,4 +142,7 @@ public class UI_MapPopup : UI_Popup
         Managers.Sound.Play(Define.Sound.Effect, "Effect/Click", Managers.Game.EffectSound);
         Managers.UI.ShowPopupUI<UI_SettingPopup>();
     }
+    public void BackGroundClear() {
+        Destroy(Background.gameObject);
+    }
 }

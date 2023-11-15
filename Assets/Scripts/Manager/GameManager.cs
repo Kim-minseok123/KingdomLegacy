@@ -118,9 +118,6 @@ public class GameManager : MonoBehaviour
         ShopBuyCards.Clear();
         ShopBuyItems.Clear();
         Items.Clear();
-        Items.Add(28);
-        Items.Add(29);
-        Items.Add(30);
         DeleteCardMoney = 30;
         EffectSound = 0.8f;
         BgmSound = 0.8f;

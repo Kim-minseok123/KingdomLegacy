@@ -53,6 +53,8 @@ public class UI_SettingPopup : UI_Popup
 
             TransitionManager.Instance().Transition(Managers.Resource.Load<TransitionSettings>("Transitions/Brush/Brush"), 0,
                         () => {
+                            if(Managers.UI.FindPopup<UI_MapPopup>() != null)
+                                Managers.UI.FindPopup<UI_MapPopup>().BackGroundClear();
                             Managers.UI.CloseAllPopupUI();
                             Managers.Game.ClearGame();
                             Managers.UI.ShowPopupUI<UI_TitlePopup>();
