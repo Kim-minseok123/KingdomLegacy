@@ -98,11 +98,14 @@ public class UI_Item : UI_Base
         else if (type == 2)
         {
             Managers.UI.FindPopup<UI_ChooseClearItemPopup>().EndSelect();
+            Managers.Sound.Play(Define.Sound.Effect, "Effect/È¹µæ", Managers.Game.EffectSound);
+
         }
         else if (type == 3) {
             _itemData.ability.Setting();
             Managers.Game.Items.Add(_itemData.ID);
             Managers.UI.FindPopup<UI_MapPopup>().AddItem(_itemData.ID);
+            Managers.Sound.Play(Define.Sound.Effect, "Effect/È¹µæ", Managers.Game.EffectSound);
 
             GameEvents.OnGetItem();
             Managers.Game.SaveGame();

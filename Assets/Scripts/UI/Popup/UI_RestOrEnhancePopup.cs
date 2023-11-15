@@ -56,6 +56,8 @@ public class UI_RestOrEnhancePopup : UI_Popup
     }
     public void RestButton() {
         if (Managers.Game.isRest) return;
+        Managers.Sound.Play(Define.Sound.Effect, "Effect/È¸º¹", Managers.Game.EffectSound);
+
         int HealHp = (int)(Managers.Game.MaxHp * 0.3f);
         Managers.Game.CurHp += HealHp;
         if (Managers.Game.CurHp > Managers.Game.MaxHp) { 
