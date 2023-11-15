@@ -14,7 +14,11 @@ public class DefenseAction : ActionBase
                 break;
             case 53: case 54:
                 Shield = card.shield ;
-                player._battleScene.ThrowCardSelect(1, 1, card, player, enemy, Shield);
+                if (player._battleScene._handCardsUI.Count <= 0) { 
+                    player.GetShield(Shield);
+                }
+                else
+                    player._battleScene.ThrowCardSelect(1, 1, card, player, enemy, Shield);
                 return;
             case 55: case 56:
                 Shield = player._battleScene._throwCards.Count;
