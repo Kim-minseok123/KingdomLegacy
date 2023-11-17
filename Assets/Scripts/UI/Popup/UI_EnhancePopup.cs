@@ -35,6 +35,8 @@ public class UI_EnhancePopup : UI_Popup
     }
     public void ExitButton()
     {
+        if (Managers.UI.PeekPopupUI<UI_EnhancePopup>() != this)
+            return;
         Managers.Sound.Play(Define.Sound.Effect, "Effect/Click", Managers.Game.EffectSound);
 
         GetComponent<Animator>().SetTrigger("Off");

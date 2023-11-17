@@ -1,4 +1,5 @@
 using DG.Tweening;
+using System.Collections;
 using UnityEngine;
 
 public class UI_RestOrEnhancePopup : UI_Popup
@@ -14,7 +15,7 @@ public class UI_RestOrEnhancePopup : UI_Popup
     enum Texts { 
         ContentsText,
     }
-
+    public bool isEnhacne = false;
     public override bool Init()
     {
         if (!base.Init()) {
@@ -44,6 +45,8 @@ public class UI_RestOrEnhancePopup : UI_Popup
         return true;
     }
     public void ExitButton() {
+        if (Managers.UI.PeekPopupUI<UI_RestOrEnhancePopup>() != this)
+            return;
         Managers.Sound.Play(Define.Sound.Effect, "Effect/Click", Managers.Game.EffectSound);
 
         GetComponent<Animator>().SetTrigger("Off");
@@ -55,8 +58,10 @@ public class UI_RestOrEnhancePopup : UI_Popup
         Managers.Game.SaveGame();
     }
     public void RestButton() {
-        if (Managers.Game.isRest) return;
         Managers.Sound.Play(Define.Sound.Effect, "Effect/È¸º¹", Managers.Game.EffectSound);
+
+        if (Managers.Game.isRest) return;
+        if (isEnhacne) return;
 
         int HealHp = (int)(Managers.Game.MaxHp * 0.3f);
         Managers.Game.CurHp += HealHp;
@@ -69,6 +74,8 @@ public class UI_RestOrEnhancePopup : UI_Popup
         Managers.Sound.Play(Define.Sound.Effect, "Effect/Click", Managers.Game.EffectSound);
 
         if (Managers.Game.isEnhance) return;
+        if (isEnhacne) return;
+
         Managers.UI.ShowPopupUI<UI_EnhancePopup>();
     }
     public void PointEnterRest() {
@@ -91,4 +98,11 @@ public class UI_RestOrEnhancePopup : UI_Popup
         GetButton((int)Buttons.EnhanceButton).transform.DOScale(new Vector3(1f, 1f, 1), 0.2f).SetEase(Ease.OutSine);
         GetText((int)Texts.ContentsText).DOFade(0, 0.2f);
     }
+    public void Enhance()
+    {
+        isEnhacne = true;
+        GetButton((int)Buttons.RestButton).interactable = false;
+        GetButton((int)Buttons.EnhanceButton).interactable = false;
+    }
+
 }
