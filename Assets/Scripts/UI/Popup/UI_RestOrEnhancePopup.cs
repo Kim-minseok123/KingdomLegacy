@@ -45,6 +45,7 @@ public class UI_RestOrEnhancePopup : UI_Popup
         return true;
     }
     public void ExitButton() {
+
         if (Managers.UI.PeekPopupUI<UI_RestOrEnhancePopup>() != this)
             return;
         Managers.Sound.Play(Define.Sound.Effect, "Effect/Click", Managers.Game.EffectSound);
@@ -103,6 +104,10 @@ public class UI_RestOrEnhancePopup : UI_Popup
         isEnhacne = true;
         GetButton((int)Buttons.RestButton).interactable = false;
         GetButton((int)Buttons.EnhanceButton).interactable = false;
+        if (Managers.UI.PeekPopupUI<UI_EnhancePopup>() == Managers.UI.FindPopup<UI_EnhancePopup>()) {
+            Managers.UI.ClosePopupUI();
+        }
+        ExitButton();
     }
 
 }
