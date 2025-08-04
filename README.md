@@ -10,7 +10,18 @@
 ## 소개
 <div align="center">
 
-<img alt="Title" src="https://github.com/user-attachments/assets/65954443-6ff9-4f11-a493-ebea7f529c03" width="49%" height="230"/>
+<img alt="Title" src="https://github.com/user-attachments/assets/f5555353-dd17-4291-b2e8-8d9c35201300" width="49%" height="330"/>
+<img alt="Start" src="https://github.com/user-attachments/assets/25c2a730-5a9c-4826-b813-e6912fcc2de5" width="49%" height="330"/>
+<img alt="1Stage" src="https://github.com/user-attachments/assets/a83a8802-9fb7-4202-9e05-9386cb44dc23" width="49%" height="330"/>
+<img alt="Menu" src="https://github.com/user-attachments/assets/32d8d3b7-b0f3-4867-bbd3-e8801d4619b7" width="49%" height="330"/>
+<img alt="Shop" src="https://github.com/user-attachments/assets/3380376b-ee7c-45a8-9d66-640ce94695cf" width="49%" height="330"/>
+<img alt="Battle1" src="https://github.com/user-attachments/assets/85e90cfc-4164-490b-a2c7-48d6ef4d6a2c" width="49%" height="330"/>
+<img alt="Boss1" src="https://github.com/user-attachments/assets/1cb16232-4ce8-4790-8538-8cca06625f7c" width="49%" height="330"/>
+<img alt="Battle2" src="https://github.com/user-attachments/assets/d0d154e4-829e-41b9-b2d1-d0f3030dc527" width="49%" height="330"/>
+<img alt="Rest" src="https://github.com/user-attachments/assets/ca276619-6744-4551-aa17-5d5ea8d7a7cf" width="49%" height="330"/>
+<img alt="Boss2" src="https://github.com/user-attachments/assets/12a85d4e-67d7-4b9a-9bb2-77f2a2799f72" width="49%" height="330"/>
+<img alt="Boss3" src="https://github.com/user-attachments/assets/2e3cd9b4-ad89-4bfa-81ec-7ebb1e24ea98" width="49%" height="330"/>
+<img alt="Encyclopedia" src="https://github.com/user-attachments/assets/a66c9822-064a-4ed5-bac7-2e360cd9632b" width="49%" height="330"/>
 
   < 게임 플레이 사진 >
 
@@ -40,7 +51,7 @@
 특히 Slay the Spire를 참고해 기획을 단순화하고, **모든 게임 요소를 Unity의 UI 시스템만으로 구현하는 것을 핵심 도전 과제**로 삼았다.  
 
 카드 선택, 드로우, 에너지 시스템, 턴 관리, 전투 로그, 적의 의도 표시 등 **다양한 상호작용과 시각적 피드백을 필요로 하는 장르로**,  
-- **UI로만 구성된 전투 시스템**  
+- **UI로만 구성된 시스템**  
 - **게임 상태에 따라 실시간으로 변하는 화면 구성**  
 - **직관적인 유저 피드백을 주는 연출과 인터페이스 설계**  
 
@@ -86,7 +97,7 @@
     
 ### 📄 데이터 관리
 - **XML 파일 기반 데이터 관리 및 로딩 시스템 구현**  
-  - 카드 정보, 효과 등의 게임 데이터를 XML 파일로 분리해 관리했 
+  - 카드 정보, 효과 등의 게임 데이터를 XML 파일로 분리해 관리 
   - XML 파싱을 통해 런타임 중 데이터를 동적으로 로드할 수 있도록 구성
   - 코드 수정 없이 외부 파일만 수정해도 밸런싱 조정이나 콘텐츠 확장이 가능하도록 설계
 
@@ -98,9 +109,9 @@
 <br>
 
 ## 플레이영상
-
+https://youtu.be/Z_0KZKLjm_U
 
 ## 게임 다운로드
-
+https://drive.google.com/drive/folders/1CFE4nKiHjfKAKDESpc4CLE421BYSKfDV?usp=sharing
 
 
