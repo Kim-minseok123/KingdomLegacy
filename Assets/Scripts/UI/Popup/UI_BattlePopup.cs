@@ -206,6 +206,7 @@ public class UI_BattlePopup : UI_Popup
 
                 if (_playerController.Restraint > 0)
                     _playerController.Damaged(10);
+                _isTurnEndClicked = true;
                 DrawCards(_startDrawCardNum);
                 HealMana(_maxMana);
                 _state = States.Turning;
@@ -267,7 +268,6 @@ public class UI_BattlePopup : UI_Popup
         //¹èÆ² ³¡³µÀ» ¶§ È¹µæ ÆË¾÷ ¶ç¿ì±â
         Managers.UI.ShowPopupUI<UI_ClearRoomPopup>();
     }
-
     public void EnemyTurnAction() {
         StartCoroutine(EnemyActionCor());
     }
@@ -327,6 +327,7 @@ public class UI_BattlePopup : UI_Popup
         foreach (var card in _handCardsUI) { 
             card.RefreshUI();
         }
+        _isTurnEndClicked = false;
     }
     public void DrawCards(CardData cardData)
     {
@@ -394,24 +395,34 @@ public class UI_BattlePopup : UI_Popup
         RefreshUI();
     }
     bool isDestoryCard = false;
+
+    bool _isTurnEndClicked = false;
+
     public void TurnEnd()
     {
+        if (_isTurnEndClicked) return; 
+
         Managers.Sound.Play(Define.Sound.Effect, "Effect/Click", Managers.Game.EffectSound);
 
         if (_state == States.Turning && !isUseCard && !isDestoryCard)
         {
+            _isTurnEndClicked = true;
+
             isDestoryCard = true;
             _state = States.TurnEnd;
             _playerController.ResetBuff();
             GameEvents.OnTurnEnd();
             cardsDrawn = true;
-            if(!Managers.Game.isManaDisappear)
+
+            if (!Managers.Game.isManaDisappear)
                 _curMana = 0;
+
             StartCoroutine(CheckDestoryCard());
             _curTurnUseCard = 0;
         }
 
     }
+    
     IEnumerator CheckDestoryCard()
     {
         if (!Managers.Game.isPreservation)
@@ -421,7 +432,6 @@ public class UI_BattlePopup : UI_Popup
 
         _state = States.EnemyTurnStart;
     }
-
     IEnumerator DestroyCardRoutine()
     {
         Vector3 target = GetButton((int)Buttons.ThrowDeckCard).gameObject.transform.position;
@@ -474,7 +484,6 @@ public class UI_BattlePopup : UI_Popup
 
         _handCardsUI.RemoveAll(ui => ui == null);
     }
-
     public void PointEnterSelectCard(GameObject obj)
     {
         var card = obj.GetComponent<UI_Card>();
@@ -550,7 +559,6 @@ public class UI_BattlePopup : UI_Popup
             _isDragArrow = false;
         }
     }
-
     IEnumerator UseCardNonTarget(UI_Card obj)
     {
         obj.transform.DOMove(transform.position, 0.5f).SetEase(ease);
@@ -626,6 +634,7 @@ public class UI_BattlePopup : UI_Popup
         _exitCards.Add(obj._cardData);
         GameEvents.OnExitCard();
     }
+
     bool ishaveEnemy = false;
     public void ManyTimesAttack(PlayerController player, int num, int Damage, bool isXattck, EnemyController enemy = null)
     {
@@ -752,7 +761,9 @@ public class UI_BattlePopup : UI_Popup
         yield return new WaitForSeconds(0.6f);
         DrawCards(value);
     }
+
     public List<string> FriendsName = new();
+
     public List<FriendAbility> Friends = new();
     public void MakeFriend(string name, FriendAbility ability, CardData card) {
         if (curFriendNumer > 6) return;
@@ -781,6 +792,7 @@ public class UI_BattlePopup : UI_Popup
 
         Managers.UI.ShowPopupUI<UI_ShowCardsListPopup>().SetInfo(_throwCards);
     }
+
     public int EnemyCount;
     public void CheckEnemy() {
         if (EnemyCount == 0) {
