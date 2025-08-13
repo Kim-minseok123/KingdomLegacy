@@ -112,6 +112,6 @@
 https://youtu.be/Z_0KZKLjm_U
 
 ## 게임 다운로드
-https://drive.google.com/drive/folders/1CFE4nKiHjfKAKDESpc4CLE421BYSKfDV?usp=sharing
+https://drive.google.com/file/d/1LeHfnJwzQKVkQ0UUF9FoX8y9HlB7UW5f/view?usp=sharing
 
 
